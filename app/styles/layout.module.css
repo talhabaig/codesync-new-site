@@ -49,15 +49,59 @@
 .link:hover {
   text-decoration: underline;
 }
-
+.shadow-white {
+  box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.7);
+}
 .link {
-  color: #704cb6;
+  /* color: #00F0FF; */
 }
 
 .link.active {
-  text-decoration: underline;
+  /* text-decoration: underline; */
+  color: #00F0FF;
+}
+.navMenu {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  right:0;
+  /* padding-bottom: 20px; */
+  width: 100%;
+  background-color: #0B4383 !important;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+  max-height: 0;
 }
 
+.navMenu.open {
+  max-height: 500px;
+}
+
+.navItem {
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .navMenu {
+    position: static;
+    width: auto;
+    max-height: none;
+    display: flex;
+    align-items: center;
+    padding-bottom: 0px;
+    gap: 20px;
+  }
+
+  .navItem {
+    padding: 10px 15px;
+  }
+}
+@media(min-width:992px){
+  .navMenu {
+    gap: 45px;
+  }
+}
 @media (prefers-reduced-motion: no-preference) {
   .logo {
     animation: logo-float infinite 3s ease-in-out;
