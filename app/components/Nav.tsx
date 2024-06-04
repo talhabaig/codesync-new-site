@@ -71,7 +71,7 @@ export const Nav = () => {
                 Home
               </div>
             </Link>
-            <Link href="/verify" className={`${styles.link} ${pathname === "/verify" ? styles.active : ""}`}>
+            <Link href="/services" className={`${styles.link} ${pathname === "/services" ? styles.active : ""}`}>
               <div onClick={handleClose} className={`${styles.navItem} md:px-3 lg:px-[18px] py-[10px] font-poppins font-normal md:text-md lg:text-lg leading-[27px]`}>
                 Services
               </div>
