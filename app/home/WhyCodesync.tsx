@@ -14,11 +14,11 @@ export default function WhyCodesync() {
         <div className="text-center font-poppins mb-12 xl:mb-24">
           <div className="flex items-center gap-2 md:gap-8 justify-center uppercase font-bold text-lg md:text-2xl lg:text-3xl xl:text-5xl leading-[20px] md:leading-[50px] lg:leading-[69px] tracking-[1.5%] mb-4">
             {/* <div className="h-[7px] w-[100px] md:w-[160px] rounded-lg bg-gradient-to-r  via-[#16B3C3] to-[#5BB1FF]"></div> */}
-            <img src="/hori-line.svg" alt="" />
+            <img src="/hori-line.svg" className='w-[90px] h-[9px] md:w-auto md:h-auto' alt="" />
             <div>
               <span className="text-white">Why CodeSyncs?</span>{" "}
             </div>
-            <img src="/hori-line2.svg" alt="" />
+            <img src="/hori-line2.svg" className='w-[90px] h-[9px] md:w-auto md:h-auto' alt="" />
             {/* <div className="h-[7px] w-[100px] md:w-[160px] rounded-lg bg-gradient-to-r from-[#5BB1FF] via-[#16B3C3]"></div> */}
           </div>
           <div className="text-white mb-4 md:mb-[25px] text-[18px] md:text-[20px] lg:text-[22px] font-light leading-[32.78px] tracking-[2%]">

@@ -51,14 +51,14 @@ export default function OurServices() {
         </div>
 
         <div className="p-12 xl:px-36 xl:py-24" style={{ backgroundImage: 'url("/Frame.svg")' }}>
-          <div className="flex flex-col md:flex-row gap-[55px] justify-around">
+          <div className="flex flex-col md:flex-row gap-[30px] lg:gap-[55px] justify-around">
             {services.map((service, index) => (
               <div key={index} className="basis-1/4 flex flex-col justify-center items-center gap-[30px] cursor-pointer">
-                <div className="h-[229px] w-[229px] rounded-[28.2px] bg-gradient-to-b from-customDarkBlue to-customMediumBlue flex justify-center items-center">
+                <div className="w-[150px] h-[150px] lg:h-[229px] lg:w-[229px] rounded-[28.2px] bg-gradient-to-b from-customDarkBlue to-customMediumBlue flex justify-center items-center">
                   <img src={service.icon} alt="" className="" />
                 </div>
                 <div className="flex flex-col items-center justify-center md:justify-start md:items-start">
-                  <span className="font-poppins text-[#3F3F3F] text-center uppercase text-[26.48px] md:text-[20px] lg:text-[26.48px] font-bold leading-[39.72px] md:leading-[30px] lg:leading-[39.72px] tracking-[6%] hover:text-customBlue1">{service.title}</span>
+                  <span className="font-poppins text-[#3F3F3F] text-center uppercase text-[26.48px] md:text-[18px] lg:text-[26.48px] font-bold leading-[39.72px] md:leading-[30px] lg:leading-[39.72px] tracking-[6%] hover:text-customBlue1">{service.title}</span>
                 </div>
               </div>
             ))}
@@ -66,20 +66,32 @@ export default function OurServices() {
         </div>
 
         {services[0].details && (
-          <div className='p-12 xl:px-36 xl:py-24'>
+          <div className='p-12 xl:px-36 xl:py-24 2xl:px-48'>
             <div className='mb-24'>
-              <span className='text-[#0693EB] font-bold text-[48.6px] leading-[60.51px]'>{services[0].title.toUpperCase()} </span>
+              <p className=''><span className='text-[#0693EB] font-bold text-[48.6px] leading-[60.51px]'>{services[0].title.toUpperCase()} </span></p>
               <p className='font-Chenla text-2xl leading-[39.96px] mb-[17.2px] tracking-[4%] 2xl:w-[73%]'>{services[0].description}</p>
             </div>
 
-            <div className='flex flex-col md:flex-row md:gap-[28.9px]'>
+            <div className='flex flex-col md:flex-row md:justify-between mb-12'>
               {services[0].details.map((detail, index) => (
-                <div key={index} className='basis-[42%]'>
+                <div key={index} className='basis-[46%]'>
                   <img src={detail.img} alt="" />
-                  <span className='font-bold text-[28.25px] leading-[47.04px] mb-[19.11px] tracking-[4%] text-[#0693EB]'>{detail.heading} </span>
+                  <p className='my-4'><span className='font-bold text-[28.25px] leading-[47.04px] tracking-[4%] text-[#0693EB]'>{detail.heading} </span></p>
                   <p className='font-normal text-[22px] leading-[35.86px] mb-[19.11px] tracking-[2%] text-[#454545]'>{detail.content}</p>
                 </div>
               ))}
+            </div>
+
+            <div className='flex flex-col md:flex-row md:justify-between'>
+              <div className='basis-[42%] flex items-center'>
+                <div className=''>
+                  <img src="/OurServices-img3.svg" alt="" />
+                  <p className='my-4'><span className='font-bold text-[28.25px] leading-[47.04px] tracking-[4%] text-[#0693EB]'>Full-Cycle</span></p>
+                  <p className='font-normal text-[22px] leading-[35.86px] mb-[19.11px] tracking-[2%] text-[#454545]'>Codesync Company offers Full-Cycle Development, covering concept Ideation, UI/UX DESIGN, FRONTEND & BACKEND DEVELOPNMENT, QUALITY ASSURANCE, Deployment, and Ongoing Maintenance. Our approach ensures seamless digital solutions from inception to operation."</p>
+                </div>
+                
+              </div>
+              <div className='basis-[42%]'><img src="/Ourservices-img.png" alt="" /></div>
             </div>
           </div>
         )}
