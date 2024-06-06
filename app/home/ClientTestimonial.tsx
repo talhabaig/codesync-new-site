@@ -4,11 +4,13 @@ export default function ClientTestimonial() {
       <div className="2xl:container 2xl:mx-auto py-12 px-8 md:p-12 xl:p-24 2xl:px-12">
         <div className="text-center font-poppins mb-24">
           <div className="flex items-center gap-2 md:gap-8 justify-center uppercase font-bold text-lg md:text-2xl lg:text-3xl xl:text-5xl leading-[20px] md:leading-[50px] lg:leading-[69px] tracking-[1.5%] mb-4">
-            <div className="h-[7px] w-[100px] md:w-[160px] rounded-lg bg-gradient-to-r  via-[#16B3C3] to-[#5BB1FF]"></div>
+            {/* <div className="h-[7px] w-[100px] md:w-[160px] rounded-lg bg-gradient-to-r  via-[#16B3C3] to-[#5BB1FF]"></div> */}
+            <img src="/hori-line.svg" alt="" />
             <div>
               <span className="font-poppins font-bold text-[50px] leading-[69px] text-[#FFFFFF] tracking-[1.5%]">Client Testimonial</span>{" "}
             </div>
-            <div className="h-[7px] w-[100px] md:w-[160px] rounded-lg bg-gradient-to-r from-[#5BB1FF] via-[#16B3C3]"></div>
+            <img src="/hori-line2.svg" alt="" />
+            {/* <div className="h-[7px] w-[100px] md:w-[160px] rounded-lg bg-gradient-to-r from-[#5BB1FF] via-[#16B3C3]"></div> */}
           </div>
           <div className="text-white mb-4 md:mb-[25px] text-[18px] md:text-[20px] lg:text-[22px] font-light leading-[32.78px] tracking-[2%]">
           We love our clients
