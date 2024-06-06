@@ -45,7 +45,7 @@ export function Footer() {
               <span>Support and maintenance</span>
             </div>
           </div>
-          <div className="basis-1/3 flex flex-col gap-4 md:gap-[28px]" style={{ backgroundImage: 'url("/path/to/your/image.jpg")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+          <div className="basis-1/3 flex flex-col gap-4 md:gap-[28px]" style={{ backgroundImage: 'url("/footer-bg.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
             <span className="uppercase font-poppins font-semibold text-[26.48px] leading-[39.72px] tracking-[6%]">Information</span>
             <div className="flex flex-col gap-[15px] font-poppins font-light text-18px 2xl:text-[20px] leading-[32.78px] tracking-[2%]">
               <Link href="/verify" className={` ${pathname === "/verify"}`}>

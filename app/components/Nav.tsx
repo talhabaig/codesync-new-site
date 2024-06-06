@@ -43,8 +43,8 @@ export const Nav = () => {
   }, [isOpen]);
 
   return (
-    <nav className="bg-customNavy text-white relative p-[16px] md:py-[18px] md:px-[2rem] lg:py-[15px] lg:px-[3rem] 2xl:py-[24px]">
-      <div className="2xl:container 2xl:mx-auto h-full flex justify-between items-center">
+    <nav className="bg-customNavy text-white relative p-[16px] md:py-[18px] md:px-[2rem] lg:py-[15px] lg:px-[3rem] 2xl:py-[24px] 2xl:px-[6rem]">
+      <div className=" h-full flex justify-between items-center">
         <div className="flex items-center">
           <Link href="/">
             <img
@@ -131,7 +131,7 @@ export const Nav = () => {
             </Link>
           </div>
           <div className="px-[20px] md:px-[0px] md:mt-0">
-            <button className="text-white mb-5 md:mb-0 font-normal py-2 px-4 md:px-2 lg:px-4 rounded bg-gradient-to-b from-customBlue4 to-customSky hover:from-[#156fba] hover:to-[#4ba5ea] md:w-[100px] lg:w-[135px] lg:h-[46px]">
+            <button className="text-white mb-5 md:mb-0 font-normal py-2 px-4 md:px-2 lg:px-4 rounded bg-gradient-to-b from-customBlue4 to-customSky hover:from-[#156fba] hover:to-[#4ba5ea] lg:w-[135px] lg:h-[46px]">
               Contact Us
             </button>
           </div>
