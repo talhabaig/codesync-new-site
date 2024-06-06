@@ -47,17 +47,28 @@ export const Nav = () => {
       <div className="2xl:container 2xl:mx-auto h-full flex justify-between items-center">
         <div className="flex items-center">
           <Link href="/">
-            <img src="/CodeSyncLogo.svg" alt="Logo" className="w-[150px] md:w-[200px] lg[265px]" />
+            <img
+              src="/CodeSyncLogo.svg"
+              alt="Logo"
+              className="w-[150px] md:w-[200px] lg[265px]"
+            />
           </Link>
         </div>
         <div className="md:hidden">
-          <button
-            ref={buttonRef}
-            onClick={handleToggle}
-            className="text-white"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16m-7 6h7"}></path>
+          <button ref={buttonRef} onClick={handleToggle} className="text-white">
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16m-7 6h7"}
+              ></path>
             </svg>
           </button>
         </div>
@@ -66,23 +77,55 @@ export const Nav = () => {
           className={`${styles.navMenu} ${isOpen ? styles.open : ""}`}
         >
           <div className="flex flex-col md:flex-row md:gap-2 md:items-center lg:gap-3 xl:gap-3 p-[10px] md:p-0">
-            <Link href="/" className={`${styles.link} ${pathname === "/" ? styles.active : ""}`}>
-              <div onClick={handleClose} className={`${styles.navItem} md:px-3 lg:px-[18px] py-[10px] font-poppins font-normal md:text-md lg:text-lg leading-[27px]`}>
+            <Link
+              href="/"
+              className={`${styles.link} ${
+                pathname === "/" ? styles.active : ""
+              }`}
+            >
+              <div
+                onClick={handleClose}
+                className={`${styles.navItem} md:px-3 lg:px-[18px] py-[10px] font-poppins font-normal md:text-md lg:text-lg leading-[27px]`}
+              >
                 Home
               </div>
             </Link>
-            <Link href="/verify" className={`${styles.link} ${pathname === "/verify" ? styles.active : ""}`}>
-              <div onClick={handleClose} className={`${styles.navItem} md:px-3 lg:px-[18px] py-[10px] font-poppins font-normal md:text-md lg:text-lg leading-[27px]`}>
+            <Link
+              href="/verify"
+              className={`${styles.link} ${
+                pathname === "/verify" ? styles.active : ""
+              }`}
+            >
+              <div
+                onClick={handleClose}
+                className={`${styles.navItem} md:px-3 lg:px-[18px] py-[10px] font-poppins font-normal md:text-md lg:text-lg leading-[27px]`}
+              >
                 Services
               </div>
             </Link>
-            <Link href="/quotes" className={`${styles.link} ${pathname === "/quotes" ? styles.active : ""}`}>
-              <div onClick={handleClose} className={`${styles.navItem} md:px-3 lg:px-[18px] py-[10px] font-poppins font-normal md:text-md lg:text-lg leading-[27px]`}>
+            <Link
+              href="/portfolio"
+              className={`${styles.link} ${
+                pathname === "/portfolio" ? styles.active : ""
+              }`}
+            >
+              <div
+                onClick={handleClose}
+                className={`${styles.navItem} md:px-3 lg:px-[18px] py-[10px] font-poppins font-normal md:text-md lg:text-lg leading-[27px]`}
+              >
                 Portfolio
               </div>
             </Link>
-            <Link href="/team" className={`${styles.link} ${pathname === "/team" ? styles.active : ""}`}>
-              <div onClick={handleClose} className={`${styles.navItem} md:px-3 lg:px-[18px] py-[10px] font-poppins font-normal md:text-md lg:text-lg leading-[27px]`}>
+            <Link
+              href="/team"
+              className={`${styles.link} ${
+                pathname === "/team" ? styles.active : ""
+              }`}
+            >
+              <div
+                onClick={handleClose}
+                className={`${styles.navItem} md:px-3 lg:px-[18px] py-[10px] font-poppins font-normal md:text-md lg:text-lg leading-[27px]`}
+              >
                 Our Team
               </div>
             </Link>
