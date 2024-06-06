@@ -51,14 +51,14 @@ export default function OurServices() {
         </div>
 
         <div className="p-12 xl:px-36 xl:py-24" style={{ backgroundImage: 'url("/Frame.svg")' }}>
-          <div className="flex flex-col md:flex-row gap-[30px] lg:gap-[55px] justify-around">
+          <div className="flex flex-col md:flex-row gap-[40px] md:gap-[30px] lg:gap-[10px] xl:gap-[55px] justify-around">
             {services.map((service, index) => (
-              <div key={index} className="basis-1/4 flex flex-col justify-center items-center gap-[30px] cursor-pointer">
-                <div className="w-[150px] h-[150px] lg:h-[229px] lg:w-[229px] rounded-[28.2px] bg-gradient-to-b from-customDarkBlue to-customMediumBlue flex justify-center items-center">
-                  <img src={service.icon} alt="" className="" />
+              <div key={index} className="group basis-1/4 flex flex-col justify-start items-center gap-[20px] hover:text-customBlue1 md:gap-[30px] lg:gap-[25px] xl:gap-[30px] cursor-pointer">
+                <div className="w-[140px] h-[140px] xl:h-[229px] xl:w-[229px] group-hover:w-[150px] group-hover:h-[150px] md:group-hover:h-[140px] md:group-hover:w-[140px] xl:group-hover:h-[235px] xl:group-hover:w-[235px] rounded-[28.2px] bg-gradient-to-b from-customDarkBlue to-customMediumBlue flex justify-center items-center group-hover:shadow-[0_0_30px_#15a7c5] group-hover:outline group-hover:outline-4 group-hover:outline-white">
+                  <img src={service.icon} alt="" className="h-[100px] w-[100px] xl:h-auto xl:w-auto" />
                 </div>
                 <div className="flex flex-col items-center justify-center md:justify-start md:items-start">
-                  <span className="font-poppins text-[#3F3F3F] text-center uppercase text-[26.48px] md:text-[18px] lg:text-[26.48px] font-bold leading-[39.72px] md:leading-[30px] lg:leading-[39.72px] tracking-[6%] hover:text-customBlue1">{service.title}</span>
+                  <span className="font-poppins text-[#3F3F3F] text-center uppercase text-[26.48px] md:text-[18px] xl:text-[26.48px] font-bold leading-[39.72px] md:leading-[30px] xl:leading-[39.72px] tracking-[6%] group-hover:text-customBlue1">{service.title}</span>
                 </div>
               </div>
             ))}
@@ -66,32 +66,32 @@ export default function OurServices() {
         </div>
 
         {services[0].details && (
-          <div className='p-12 xl:px-36 xl:py-24 2xl:px-48'>
-            <div className='mb-24'>
-              <p className=''><span className='text-[#0693EB] font-bold text-[48.6px] leading-[60.51px]'>{services[0].title.toUpperCase()} </span></p>
-              <p className='font-Chenla text-2xl leading-[39.96px] mb-[17.2px] tracking-[4%] 2xl:w-[73%]'>{services[0].description}</p>
+          <div className='px-8 py-12 sm:p-12 xl:px-36 xl:py-24 2xl:px-48'>
+            <div className='mb-12 md:mb-16 xl:mb-24'>
+              <p className=''><span className='text-[#0693EB] font-bold text-[25px] md:text-[40px] 2xl:text-[48.6px] leading-[40px] md:leading-[50px] 2xl:leading-[60.51px]'>{services[0].title.toUpperCase()} </span></p>
+              <p className='font-Chenla text-[16px] md:text-xl 2xl:text-2xl leading-[20px] md:leading-[25px] 2xl:leading-[39.96px] mb-[17.2px] tracking-[4%] 2xl:w-[80%]'>{services[0].description}</p>
             </div>
 
-            <div className='flex flex-col md:flex-row md:justify-between mb-12'>
+            <div className='flex flex-col md:flex-row md:justify-between mb-6 md:mb-12'>
               {services[0].details.map((detail, index) => (
                 <div key={index} className='basis-[46%]'>
                   <img src={detail.img} alt="" />
-                  <p className='my-4'><span className='font-bold text-[28.25px] leading-[47.04px] tracking-[4%] text-[#0693EB]'>{detail.heading} </span></p>
-                  <p className='font-normal text-[22px] leading-[35.86px] mb-[19.11px] tracking-[2%] text-[#454545]'>{detail.content}</p>
+                  <p className='my-4'><span className='font-bold text-2xl 2xl:text-[28.25px] 2xl:leading-[47.04px] tracking-[4%] text-[#0693EB]'>{detail.heading} </span></p>
+                  <p className='font-normal text-lg 2xl:text-[22px] 2xl:leading-[35.86px] mb-[19.11px] tracking-[2%] text-[#454545]'>{detail.content}</p>
                 </div>
               ))}
             </div>
 
-            <div className='flex flex-col md:flex-row md:justify-between'>
-              <div className='basis-[42%] flex items-center'>
+            <div className='flex flex-col md:flex-row gap-8 md:gap-0 md:justify-between'>
+              <div className='md:basis-[46%] 2xl:basis-[42%] flex items-center'>
                 <div className=''>
                   <img src="/OurServices-img3.svg" alt="" />
-                  <p className='my-4'><span className='font-bold text-[28.25px] leading-[47.04px] tracking-[4%] text-[#0693EB]'>Full-Cycle</span></p>
-                  <p className='font-normal text-[22px] leading-[35.86px] mb-[19.11px] tracking-[2%] text-[#454545]'>Codesync Company offers Full-Cycle Development, covering concept Ideation, UI/UX DESIGN, FRONTEND & BACKEND DEVELOPNMENT, QUALITY ASSURANCE, Deployment, and Ongoing Maintenance. Our approach ensures seamless digital solutions from inception to operation."</p>
+                  <p className='my-4'><span className='font-bold text-2xl 2xl:text-[28.25px] 2xl:leading-[47.04px] tracking-[4%] text-[#0693EB]'>Full-Cycle</span></p>
+                  <p className='font-normal text-lg 2xl:text-[22px] 2xl:leading-[35.86px] mb-[19.11px] tracking-[2%] text-[#454545]'>Codesync Company offers Full-Cycle Development, covering concept Ideation, UI/UX DESIGN, FRONTEND & BACKEND DEVELOPNMENT, QUALITY ASSURANCE, Deployment, and Ongoing Maintenance. Our approach ensures seamless digital solutions from inception to operation."</p>
                 </div>
                 
               </div>
-              <div className='basis-[42%]'><img src="/Ourservices-img.png" alt="" /></div>
+              <div className='md:basis-[46%] 2xl:basis-[42%]'><img src="/Ourservices-img.png" alt="" /></div>
             </div>
           </div>
         )}

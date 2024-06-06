@@ -91,9 +91,9 @@ export const Nav = () => {
               </div>
             </Link>
             <Link
-              href="/verify"
+              href="/services"
               className={`${styles.link} ${
-                pathname === "/verify" ? styles.active : ""
+                pathname === "/services" ? styles.active : ""
               }`}
             >
               <div

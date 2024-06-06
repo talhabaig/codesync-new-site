@@ -14,3 +14,25 @@
   font-weight: 400;
   font-style: normal;
 }
+.image-background {
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    // background: linear-gradient(rgba($color: white, $alpha: 0.0), rgba($color: #005187, $alpha: 0.2));
+    background: linear-gradient(
+      182deg,
+      rgba(255, 255, 255, 0) 45.01%,
+      #0693EB 100%
+    );
+  }
+}
