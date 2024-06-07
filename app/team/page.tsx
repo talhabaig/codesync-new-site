@@ -1,11 +1,11 @@
-import { Team } from "../components/team/Team";
-
-export default function TeamPage() {
+import React from 'react'
+import Hero from './Hero'
+import OurTeam from './OurTeam'
+export default function Team() {
   return (
     <>
-      <h1>Team page</h1>
-      <p>This page is intended to showcase our team.</p>
-      <Team />
+    <Hero/>
+    <OurTeam/>
     </>
-  );
+  )
 }

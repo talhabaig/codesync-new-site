@@ -7,7 +7,7 @@ export default function ClientTestimonial() {
             {/* <div className="h-[7px] w-[100px] md:w-[160px] rounded-lg bg-gradient-to-r  via-[#16B3C3] to-[#5BB1FF]"></div> */}
             <img src="/hori-line.svg" className='w-[90px] h-[9px] lg:w-auto lg:h-auto' alt="" />
             <div>
-              <span className="font-poppins font-bold text-lg md:text-2xl 2xl:text-[50px] leading-[20px] md:leading-[30px] 2xl:leading-[69px] text-[#FFFFFF] tracking-[1.5%]">Client Testimonial</span>{" "}
+              <span className="font-poppins font-bold text-lg md:text-2xl lg:text-3xl 2xl:text-[50px] leading-[20px] md:leading-[30px] 2xl:leading-[69px] text-[#FFFFFF] tracking-[1.5%]">Client Testimonial</span>{" "}
             </div>
             <img src="/hori-line2.svg" className='w-[90px] h-[9px] lg:w-auto lg:h-auto' alt="" />
             {/* <div className="h-[7px] w-[100px] md:w-[160px] rounded-lg bg-gradient-to-r from-[#5BB1FF] via-[#16B3C3]"></div> */}
