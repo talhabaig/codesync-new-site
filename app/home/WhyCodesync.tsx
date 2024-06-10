@@ -4,7 +4,7 @@ import React, { useState } from "react";
 export default function WhyCodesync() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const handleClickDot = (index) => {
+  const handleClickDot = (index: number) => {
     setCurrentIndex(index);
   };
 

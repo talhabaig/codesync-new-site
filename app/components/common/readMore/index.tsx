@@ -29,22 +29,16 @@ export const FeedReadMore: React.FC<ReadMoreProps> = ({
 
   return (
     <div className="flex flex-col gap-2 justify-start items-start">
-      <Caption className={`text-gray-900 ${className}`}>{displayText }{!isExpanded && <span>...</span>}</Caption>
+      <Caption className={`text-gray-900 ${className}`}>
+        {displayText}
+        {!isExpanded && text.length > maxLength && <span>...</span>}
+      </Caption>
       {text.length > maxLength && (
         <button onClick={handleToggleReadMore}>
-          {isExpanded ? (
-            <Caption1Semibold className="cursor-pointer text-[#0693EB]">
-              {" "}
-              &nbsp;&nbsp;{readMore ? "Read Less" : "...less"}
-              <Icon name="right-arrow" size="md" />
-            </Caption1Semibold>
-          ) : (
-            <Caption1Semibold className="cursor-pointer  text-[#0693EB]">
-              {" "}
-              &nbsp;&nbsp;{readMore ? "Read More" : "View work"}
-              <Icon name="right-arrow" size="md" />
-            </Caption1Semibold>
-          )}
+          <Caption1Semibold className="cursor-pointer text-[#0693EB]">
+            &nbsp;&nbsp;{isExpanded ? (readMore ? "Read Less" : "less") : (readMore ? "Read More" : "View work")}
+            <Icon name="right-arrow" size="md" />
+          </Caption1Semibold>
         </button>
       )}
     </div>
