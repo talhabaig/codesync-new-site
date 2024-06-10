@@ -7,7 +7,7 @@ export default function Team() {
     <>
     <Hero/>
     <OurTeam2/>
-    <OurTeam/>
+    {/* <OurTeam/> */}
     </>
   )
 }
