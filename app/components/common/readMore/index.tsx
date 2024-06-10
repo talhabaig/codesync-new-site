@@ -29,7 +29,7 @@ export const FeedReadMore: React.FC<ReadMoreProps> = ({
 
   return (
     <div className="flex flex-col gap-2 justify-start items-start">
-      <Caption className={`text-gray-900 ${className}`}>{displayText}</Caption>
+      <Caption className={`text-gray-900 ${className}`}>{displayText }{!isExpanded && <span>...</span>}</Caption>
       {text.length > maxLength && (
         <button onClick={handleToggleReadMore}>
           {isExpanded ? (
