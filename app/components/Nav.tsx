@@ -131,9 +131,13 @@ export const Nav = () => {
             </Link>
           </div>
           <div className="px-[20px] md:px-[0px] md:mt-0">
-            <button className="text-white mb-5 md:mb-0 font-normal py-2 px-4 md:px-2 lg:px-4 rounded bg-gradient-to-b from-customBlue4 to-customSky hover:from-[#156fba] hover:to-[#4ba5ea] lg:w-[135px] lg:h-[46px]">
-              Contact Us
-            </button>
+            <Link href='/contact' className={`${styles.link} ${
+                pathname === "/contact" ? styles.active : ""
+              }`}>
+              <button className="text-white mb-5 md:mb-0 font-normal py-2 px-4 md:px-2 lg:px-4 rounded bg-gradient-to-b from-customBlue4 to-customSky hover:from-[#156fba] hover:to-[#4ba5ea] lg:w-[135px] lg:h-[46px]">
+                Contact Us
+              </button>
+            </Link>
           </div>
         </div>
       </div>
