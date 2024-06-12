@@ -3,260 +3,221 @@ import { getImagePath } from "./utils.js";
 const teamMembers = [
   {
     name: "Mahad Khursheed",
-    role: "Frontend Developer",
+    designation: "Frontend Developer",
     bio: "Former co-founder of Opendoor. Early staff at Spotify and Clearbit.",
-    image: getImagePath("default-member.png"),
+    image: getImagePath("mahad.jpg"),
     social: {
       twitter: {
-        icon: "../icons/twitter.svg",
         url: "https://twitter.com/mahad",
       },
       linkedin: {
-        icon: "../icons/linkedin-gray.svg",
         url: "https://linkedin.com/in/mahad",
       },
       other: {
-        icon: "../icons/social icon3.svg",
         url: "https://social3.com/mahad",
       },
     },
   },
   {
     name: "Moiz Ahmad",
-    role: "Full Stack Developer",
+    designation: "Full Stack Developer",
     bio: "Lead engineering teams at Figma, Pitch, and Protocol Labs.",
     image: getImagePath("Moiz-ahmad.jpg"),
     social: {
       twitter: {
-        icon: "../icons/twitter.svg",
         url: "https://twitter.com/Moiz",
       },
       linkedin: {
-        icon: "../icons/linkedin-gray.svg",
         url: "https://linkedin.com/in/Moiz",
       },
       other: {
-        icon: "../icons/social icon3.svg",
         url: "https://social3.com/Moiz",
       },
     },
   },
   {
     name: "Zeeshan Bajwa",
-    role: "Frontend Developer",
-    bio: "Former PM for Linear, Lambda School, and On Deck.",
-    image: getImagePath("default-member.png"),
+    designation: "Frontend Developer",
+    bio: "Lead engineering teams at Figma, Pitch, and Protocol Labs.",
+    image: getImagePath("zeshan.jpg"),
     social: {
       twitter: {
-        icon: "../icons/twitter.svg",
         url: "https://twitter.com/Zeeshan",
       },
       linkedin: {
-        icon: "../icons/linkedin-gray.svg",
         url: "https://linkedin.com/in/Zeeshan",
       },
       other: {
-        icon: "../icons/social icon3.svg",
         url: "https://social3.com/Zeeshan",
       },
     },
   },
   {
     name: "Imran Baig",
-    role: "Frontend Developer",
+    designation: "Frontend Developer",
     bio: "Former co-founder of Opendoor. Early staff at Spotify and Clearbit.",
     image: getImagePath("Imran-baig2.jpg"),
     social: {
       twitter: {
-        icon: "../icons/twitter.svg",
         url: "https://twitter.com/Imran",
       },
       linkedin: {
-        icon: "../icons/linkedin-gray.svg",
         url: "https://linkedin.com/in/Imran",
       },
       other: {
-        icon: "../icons/social icon3.svg",
         url: "https://social3.com/Imran",
       },
     },
   },
   {
     name: "Ibad Baig",
-    role: "Business Developer",
+    designation: "Business Developer",
     bio: "Former co-founder of Opendoor. Early staff at Spotify and Clearbit.",
     image: getImagePath("Ibad-baig2.jpg"),
     social: {
       twitter: {
-        icon: "../icons/twitter.svg",
         url: "https://twitter.com/Ibad",
       },
       linkedin: {
-        icon: "../icons/linkedin-gray.svg",
         url: "https://linkedin.com/in/Ibad",
       },
       other: {
-        icon: "../icons/social icon3.svg",
         url: "https://social3.com/Ibad",
       },
     },
   },
   {
     name: "Ahmed Khursheed",
-    role: "Backend Developer",
+    designation: "Backend Developer",
     bio: "Former co-founder of Opendoor. Early staff at Spotify and Clearbit.",
     image: getImagePath("Ahmad-khursheed.jpeg"),
     social: {
       twitter: {
-        icon: "../icons/twitter.svg",
         url: "https://twitter.com/Ahmed",
       },
       linkedin: {
-        icon: "../icons/linkedin-gray.svg",
         url: "https://linkedin.com/in/Ahmed",
       },
       other: {
-        icon: "../icons/social icon3.svg",
         url: "https://social3.com/Ahmed",
       },
     },
   },
   {
     name: "Hamza",
-    role: "Frontend Developer",
+    designation: "Frontend Developer",
     bio: "Former co-founder of Opendoor. Early staff at Spotify and Clearbit.",
     image: getImagePath("Hamza.jpg"),
     social: {
       twitter: {
-        icon: "../icons/twitter.svg",
         url: "https://twitter.com/Hamza",
       },
       linkedin: {
-        icon: "../icons/linkedin-gray.svg",
         url: "https://linkedin.com/in/Hamza",
       },
       other: {
-        icon: "../icons/social icon3.svg",
         url: "https://social3.com/Hamza",
       },
     },
   },
   {
     name: "Haseeb Hamza",
-    role: "FrontEnd Developer",
+    designation: "FrontEnd Developer",
     bio: "Former co-founder of Opendoor. Early staff at Spotify and Clearbit.",
     image: getImagePath("Haseeb2.jpg"),
     social: {
       twitter: {
-        icon: "../icons/twitter.svg",
         url: "https://twitter.com/Haseeb",
       },
       linkedin: {
-        icon: "../icons/linkedin-gray.svg",
         url: "https://linkedin.com/in/Haseeb",
       },
       other: {
-        icon: "../icons/social icon3.svg",
         url: "https://social3.com/Haseeb",
       },
     },
   },
   {
     name: "Muhammad Ehsan",
-    role: "Frontend Developer",
+    designation: "Frontend Developer",
     bio: "Former co-founder of Opendoor. Early staff at Spotify and Clearbit.",
     image: getImagePath("ehsan2.jpg"),
     social: {
       twitter: {
-        icon: "../icons/twitter.svg",
         url: "https://twitter.com/Ehsan",
       },
       linkedin: {
-        icon: "../icons/linkedin-gray.svg",
         url: "https://linkedin.com/in/Ehsan",
       },
       other: {
-        icon: "../icons/social icon3.svg",
         url: "https://social3.com/Ehsan",
       },
     },
   },
   {
     name: "Ahmad Sheikh",
-    role: "FrontEnd Developer",
+    designation: "FrontEnd Developer",
     bio: "Former co-founder of Opendoor. Early staff at Spotify and Clearbit.",
     image: getImagePath("Ahmad-sheikh2.jpg"),
     social: {
       twitter: {
-        icon: "../icons/twitter.svg",
         url: "https://twitter.com/Ahmad",
       },
       linkedin: {
-        icon: "../icons/linkedin-gray.svg",
         url: "https://linkedin.com/in/Ahmad",
       },
       other: {
-        icon: "../icons/social icon3.svg",
         url: "https://social3.com/Ahmad",
       },
     },
   },
   {
     name: "Muaz Mughal",
-    role: "Backend Developer",
+    designation: "Backend Developer",
     bio: "Former co-founder of Opendoor. Early staff at Spotify and Clearbit.",
     image: getImagePath("muaz.jpeg"),
     social: {
       twitter: {
-        icon: "../icons/twitter.svg",
         url: "https://twitter.com/Muaz",
       },
       linkedin: {
-        icon: "../icons/linkedin-gray.svg",
         url: "https://linkedin.com/in/Muaz",
       },
       other: {
-        icon: "../icons/social icon3.svg",
         url: "https://social3.com/Muaz",
       },
     },
   },
   {
     name: "Abaad Ali",
-    role: "Frontend Developer",
+    designation: "Frontend Developer",
     bio: "Former co-founder of Opendoor. Early staff at Spotify and Clearbit.",
     image: getImagePath("Abaad-ali.jpeg"),
     social: {
       twitter: {
-        icon: "../icons/twitter.svg",
         url: "https://twitter.com/Abaad",
       },
       linkedin: {
-        icon: "../icons/linkedin-gray.svg",
         url: "https://linkedin.com/in/Abaad",
       },
       other: {
-        icon: "../icons/social icon3.svg",
         url: "https://social3.com/Abaad",
       },
     },
   },
   {
     name: "Samiullah",
-    role: "Business Developer",
+    designation: "Business Developer",
     bio: "Former co-founder of Opendoor. Early staff at Spotify and Clearbit.",
-    image: getImagePath("default-member.png"),
+    image: getImagePath("samiullah.jpg"),
     social: {
       twitter: {
-        icon: "../icons/twitter.svg",
         url: "https://twitter.com/Samiullah",
       },
       linkedin: {
-        icon: "../icons/linkedin-gray.svg",
         url: "https://linkedin.com/in/Samiullah",
       },
       other: {
-        icon: "../icons/social icon3.svg",
         url: "https://social3.com/Samiullah",
       },
     },
@@ -310,7 +271,7 @@ export default function OurTeam2() {
                       {member.name}
                     </span>
                     <span className="text-[#0693EB] text-center font-normal text-[17.83px] leading-[26.74px]">
-                      {member.role}
+                      {member.designation}
                     </span>
                     <p className="text-center font-normal text-[#667085] text-[17.83px] leading-[26.74px]">
                       {member.bio}
@@ -322,21 +283,21 @@ export default function OurTeam2() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <img src={member.social.twitter.icon} alt="Twitter" />
+                      <img src="../icons/twitter.svg" alt="Twitter" />
                     </a>
                     <a
                       href={member.social.linkedin.url}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <img src={member.social.linkedin.icon} alt="LinkedIn" />
+                      <img src="../icons/linkedin-gray.svg" alt="LinkedIn" />
                     </a>
                     <a
                       href={member.social.other.url}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <img src={member.social.other.icon} alt="Other" />
+                      <img src="../icons/social icon3.svg" alt="Other" />
                     </a>
                   </div>
                 </div>

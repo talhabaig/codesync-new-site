@@ -3,7 +3,7 @@ import { getImagePath } from "./utils.js";
 export default function OurTeam() {
   const teamMembers = [
     {
-      src: getImagePath("default-member.png"),
+      src: getImagePath("mahad.jpg"),
       name: "Mahad Khursheed",
       designation: "Frontend Developer",
     },
@@ -13,7 +13,7 @@ export default function OurTeam() {
       designation: "Full Stack Developer",
     },
     {
-      src: getImagePath("default-member.png"),
+      src: getImagePath("zeshan.jpg"),
       name: "Zeeshan Bajwa",
       designation: "Frontend Developer",
     },
@@ -58,12 +58,12 @@ export default function OurTeam() {
       designation: "Backend Developer",
     },
     {
-      src: getImagePath("default-member.png"),
+      src: getImagePath("Abaad-ali.jpeg"),
       name: "Abaad Ali",
       designation: "Frontend Developer",
     },
     {
-      src: getImagePath("default-member.png"),
+      src: getImagePath("samiullah.jpg"),
       name: "Samiullah",
       designation: "Business Developer",
     },
