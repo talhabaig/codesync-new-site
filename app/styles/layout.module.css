@@ -52,22 +52,23 @@
 .shadow-white {
   box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.7);
 }
-.link {
-  /* color: #00F0FF; */
+.link:hover {
+  color: #00f0ff;
+  text-decoration: none;
 }
 
 .link.active {
   /* text-decoration: underline; */
-  color: #00F0FF;
+  color: #00f0ff;
 }
 .navMenu {
   position: absolute;
   top: 60px;
   left: 0;
-  right:0;
+  right: 0;
   /* padding-bottom: 20px; */
   width: 100%;
-  background-color: #0B4383 !important;
+  background-color: #0b4383 !important;
   overflow: hidden;
   transition: max-height 0.5s ease-in-out;
   max-height: 0;
@@ -97,7 +98,7 @@
     padding: 10px 15px;
   }
 }
-@media(min-width:992px){
+@media (min-width: 992px) {
   .navMenu {
     gap: 45px;
   }

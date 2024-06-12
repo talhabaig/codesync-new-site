@@ -6,8 +6,8 @@ export default function Team() {
   return (
     <>
     <Hero/>
-    <OurTeam2/>
-    {/* <OurTeam/> */}
+    {/* <OurTeam2/> */}
+    <OurTeam/>
     </>
   )
 }
