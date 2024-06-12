@@ -1,7 +1,7 @@
 import React from 'react'
 import Hero from './Hero'
 import ContactUs from './ContactUs'
-import ContactUs2 from './ContactUs2'
+import ContactUs2 from './ContactUs-second-template'
 export default function Contact() {
   return (
     <>
