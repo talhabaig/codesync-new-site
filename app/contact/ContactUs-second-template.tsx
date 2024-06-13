@@ -1,6 +1,97 @@
-import React from "react";
-
+"use client";
+import axios from "axios";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 export default function ContactUs2() {
+  const routes = useRouter();
+  const [inputVal, setInputVal] = useState({
+    firstname: "",
+    email: "",
+    PhoneNumber: "",
+    message: "",
+  });
+  const [inputCheck, setInputCheck] = useState({
+    web: false,
+    mobile: false,
+    design: false,
+    others: false,
+  });
+  const [emailError, setEmailError] = useState(false);
+  const [phoneError, setPhoneError] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const validateEmail = (email: string) => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+  };
+
+  const validatePhone = (phone: string) => {
+    const phonePattern = /^\d{10,}$/;
+    return phonePattern.test(phone);
+  };
+  const handleChange = (e: any) => {
+    const { name, value, type, checked } = e.target;
+    if (type === "checkbox") {
+      setInputCheck((prev) => ({
+        ...prev,
+        [name]: checked,
+      }));
+    } else {
+      setInputVal((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
+  };
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+
+    if (!validateEmail(inputVal.email)) {
+      setEmailError(true);
+      return;
+    }
+
+    if (!validatePhone(inputVal.PhoneNumber)) {
+      setPhoneError(true);
+      return;
+    }
+
+    setIsSending(true);
+
+    const data = {
+      service_id: "service_lrbfgto",
+      template_id: "template_8rl61km",
+      user_id: "1H1lVLszHQKK8Rwn0",
+      template_params: {
+        userName: inputVal.firstname,
+        userEmail: inputVal.email,
+        phoneNumber: inputVal.PhoneNumber,
+        message: inputVal.message,
+        web: inputCheck.web,
+        mobile: inputCheck.mobile,
+        design: inputCheck.design,
+        others: inputCheck.others,
+      },
+    };
+
+    try {
+      const res = await axios.post(
+        "https://api.emailjs.com/api/v1.0/email/send",
+        data
+      );
+      setInputVal({
+        firstname: "",
+        email: "",
+        PhoneNumber: "",
+        message: "",
+      });
+      routes.push("/thankyou");
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsSending(false);
+    }
+  };
+
   return (
     <div className="w-full bg-gradient-to-r from-customLightBlue to-customVeryLightBlue">
       <div className="p-12 xl:px-24 xl:pb-16 xl:pt-24">
@@ -45,9 +136,63 @@ export default function ContactUs2() {
           </div>
         </div>
 
-        <div className="basis-full md:basis-1/2 bg-[#ECEEF0] p-12 xl:p-24">
-          <form className="">
+        <div className="basis-full md:basis-1/2 bg-[#ECEEF0] px-12 py-6 xl:px-24 xl:py-12">
+          <form onSubmit={handleSubmit} className="">
             <div className="flex flex-col gap-4">
+              <div className="flex gap-4">
+                <div className="flex gap-1">
+                  <input
+                    type="checkbox"
+                    name="web"
+                    checked={inputCheck.web}
+                    id="web"
+                    onChange={handleChange}
+                    className="min-w-5 min-h-5"
+                  />
+                  <label htmlFor="web" className="select-none">
+                    <span>WEB</span>
+                  </label>
+                </div>
+                <div className="flex gap-1">
+                  <input
+                    type="checkbox"
+                    name="mobile"
+                    checked={inputCheck.mobile}
+                    id="mobile"
+                    onChange={handleChange}
+                    className="min-w-5 min-h-5"
+                  />
+                  <label htmlFor="mobile" className="select-none">
+                    <span>MOBILE</span>
+                  </label>
+                </div>
+                <div className="flex gap-1">
+                  <input
+                    type="checkbox"
+                    name="design"
+                    checked={inputCheck.design}
+                    id="design"
+                    onChange={handleChange}
+                    className="min-w-5 min-h-5"
+                  />
+                  <label htmlFor="design" className="select-none">
+                    <span>DESIGN</span>
+                  </label>
+                </div>
+                <div className="flex gap-1">
+                  <input
+                    type="checkbox"
+                    name="others"
+                    checked={inputCheck.others}
+                    id="others"
+                    onChange={handleChange}
+                    className="min-w-5 min-h-5"
+                  />
+                  <label htmlFor="others" className="select-none">
+                    <span>OTHERS</span>
+                  </label>
+                </div>
+              </div>
               <div className="flex flex-col gap-1">
                 <label
                   className="block text-[16px] leading-[22px] text-[#333333] font-medium"
@@ -61,6 +206,7 @@ export default function ContactUs2() {
                   id="firstname"
                   name="firstname"
                   placeholder="Enter your full name"
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -77,6 +223,7 @@ export default function ContactUs2() {
                   id="email"
                   name="email"
                   placeholder="Enter your email address "
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -89,10 +236,11 @@ export default function ContactUs2() {
                 </label>
                 <input
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
-                  type="number"
+                  type="tel"
                   id="num"
                   name="PhoneNumber"
                   placeholder="Enter your phone number"
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -108,6 +256,7 @@ export default function ContactUs2() {
                   id="message"
                   name="message"
                   placeholder="Write your message here"
+                  onChange={handleChange}
                   rows={10}
                   required
                 ></textarea>
@@ -115,10 +264,28 @@ export default function ContactUs2() {
             </div>
             <div className="text-end">
               <button
-                className="bg-customBlue1 text-[#F8F9FA] px-12 py-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600 text-[14px] leading-[21px]"
+                className={`bg-customBlue1 text-[#F8F9FA] px-12 py-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600 text-[14px] leading-[21px] ${
+                  isSending ||
+                  !inputVal.firstname ||
+                  !inputVal.email ||
+                  !inputVal.PhoneNumber ||
+                  !inputVal.message ||
+                  emailError ||
+                  phoneError
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : ""
+                }`}
                 type="submit"
+                disabled={
+                  !inputVal.firstname ||
+                  !inputVal.email ||
+                  !inputVal.PhoneNumber ||
+                  !inputVal.message ||
+                  emailError ||
+                  phoneError
+                }
               >
-                Send Messages
+                {isSending ? "Sending..." : "Send Message"}
               </button>
             </div>
           </form>
