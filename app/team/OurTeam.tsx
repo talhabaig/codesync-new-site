@@ -1,5 +1,9 @@
+"use client";
 import React from "react";
 import { getImagePath } from "./utils.js";
+import { useKeenSlider } from "keen-slider/react";
+import "keen-slider/keen-slider.min.css";
+
 export default function OurTeam() {
   const teamMembers = [
     {
@@ -64,11 +68,46 @@ export default function OurTeam() {
     },
     {
       src: getImagePath("samiullah.jpg"),
-      name: "Samiullah",
+      name: "Samiullah Baig",
       designation: "Business Developer",
     },
   ];
-
+  const animation = { duration: 20000, easing: (t: number) => t };
+  const [ref] = useKeenSlider<HTMLDivElement>({
+    loop: true,
+    renderMode: "performance",
+    // drag: false,
+    slides: {
+      perView: 4,
+      origin: "auto",
+    },
+    breakpoints: {
+      "(max-width: 767px)": {
+        slides: { perView: 2, spacing: 30 },
+      },
+      "(min-width: 768px)": {
+        slides: { perView: 3, spacing: 35 },
+      },
+      "(min-width: 1024px)": {
+        slides: { perView: 4, spacing: 40 },
+      },
+      "(min-width: 1730px)": {
+        slides: { perView: 4, spacing: 50 },
+      },
+      "(min-width: 2100px)": {
+        slides: { perView: 6, spacing: 50 },
+      },
+    },
+    created(s) {
+      s.moveToIdx(5, true, animation);
+    },
+    updated(s) {
+      s.moveToIdx(s.track.details.abs + 5, true, animation);
+    },
+    animationEnded(s) {
+      s.moveToIdx(s.track.details.abs + 5, true, animation);
+    },
+  });
   return (
     <div className="w-full bg-gradient-to-r from-customLightBlue to-customVeryLightBlue">
       <div className="pt-12 xl:pt-24">
@@ -98,18 +137,20 @@ export default function OurTeam() {
         <div className="py-12 xl:py-24 bg-[#BEF3FF]">
           <div className="py-12 md:py-24 bg-[#BEF3FF]">
             <div className="overflow-hidden">
-              <div className="flex animate-marquee gap-[50px]">
+              <div ref={ref} className="keen-slider flex px-[50px]">
                 {teamMembers.map((member, index) => (
                   <div
                     key={index}
-                    className="flex-none w-1/2 md:w-1/5 relative rounded-[22px] cursor-pointer"
+                    className={`keen-slider__slide max-h-[516px] max-w-[330px] flex-none relative rounded-[22px] cursor-pointer number-slide${
+                      index + 1
+                    }`}
                   >
                     <img
                       src={member.src}
                       alt={`Our team ${member.name}`}
                       className="w-full h-full object-cover rounded-[22px] z-10"
                     />
-                    <div className="absolute top-0 left-0 w-full h-full rounded-[22px] bg-gradient-to-t from-[#0693EB] to-[rgba(255, 255, 255, 0)] to-[45.01%]"/>
+                    <div className="absolute top-0 left-0 w-full h-full rounded-[22px] bg-gradient-to-t from-[#0693EB] to-[rgba(255, 255, 255, 0)] to-[45.01%]" />
                     <div className="absolute bottom-5 md:bottom-6 left-0 w-full bg-transparent bg-opacity-50 p-2 rounded-b-[22px] text-center">
                       <div className="font-semibold text-center text-[18px] leading-[22px] md:text-[25px] md:leading-[31.19px] text-white">
                         {member.name}

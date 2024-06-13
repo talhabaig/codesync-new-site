@@ -1,0 +1,318 @@
+[
+  {
+    "id": 1,
+    "image": "pos.webp",
+    "title": "Dreams POS",
+    "year": "2023",
+    "type": "Point of Sale System",
+    "description": "We are excited to present our Point of Sale (POS) system project, a robust and user-friendly solution designed to streamline and enhance the retail experience.",
+    "details": {
+      "projectName": "Dreams POS",
+      "date": "2023",
+      "type": "Point of Sale System",
+      "description": "We are committed to further improving this POS system by implementing additional features, such as customer relationship management (CRM) tools, loyalty programs, and support for multiple languages.",
+      "subDescription": "The Point of Sale project showcases our skills in full-stack web development, and We are proud to present it as a testament to our dedication to creating practical and efficient software solutions for businesses. If you are interested in learning more about this project or exploring potential collaborations, please don't hesitate to contact us.",
+      "image1": "pos2.webp",
+      "image2": "pos3.webp",
+      "image3": "pos4.webp",
+      "siteName": "Visit Our Website",
+      "siteLink": "https://pos.kitshoes.com.pk/#/login"
+    }
+  },
+  {
+    "id": 2,
+    "image": "Emboldadmin1.webp",
+    "title": "Embold",
+    "year": "2023",
+    "type": "Influencers",
+    "description": "We had the privilege of creating a dynamic website for prominent influencers. This website is a vibrant reflection of the influencer's personal brand and online presence.",
+    "details": {
+      "projectName": "Embold",
+      "date": "2023",
+      "type": "Influencers",
+      "description": "It's designed to captivate visitors from the moment they land, with a visually appealing layout that showcases the influencer's content, collaborations, and personality.",
+      "subDescription": "Through this website, the influencer can amplify their online influence and leave a lasting impression on visitors, both fans and potential partners alike.",
+      "image1": "Emboldadmin2.webp",
+      "image2": "Emboldadmin3.webp",
+      "image3": "Emboldadmin4.webp",
+      "siteName": "Visit Our Website",
+      "siteLink": "https://www.embold.co/"
+    }
+  },
+  {
+    "id": 3,
+    "image": "IBAclient1.webp",
+    "title": "IBA",
+    "year": "2022",
+    "type": "Healthcare Management",
+    "description": "We designed a comprehensive healthcare management system that streamlined patient records, appointment scheduling, and billing processes.",
+    "details": {
+      "projectName": "IBA",
+      "date": "2022",
+      "type": "Healthcare Management",
+      "description": "We integrated advanced security measures to ensure HIPAA compliance and implemented data analytics tools to help healthcare providers make informed decisions.",
+      "subDescription": "This solution greatly improved the clinic's operational efficiency and patient care.",
+      "image1": "IBAclient2.webp",
+      "image2": "IBAclient3.webp",
+      "image3": "IBAclient4.webp",
+      "siteName": "Visit Our Website",
+      "siteLink": "http://iba.rootpointers.net/"
+    }
+  },
+  {
+    "id": 4,
+    "image": "aukomodashboard.webp",
+    "title": "AOKUMO",
+    "year": "2021",
+    "type": "GPT Based",
+    "description": "Visit our digital sanctuary, where creativity meets innovation in an AI-driven symphony. Dive into a realm where every pixel tells a story, crafted by our GPT-inspired platform.",
+    "details": {
+      "projectName": "AOKUMO",
+      "date": "2021",
+      "type": "GPT Based",
+      "description": "At AKOMO, innovation knows no bounds. Dive into a universe where every pixel is infused with purpose, every interaction is an opportunity, and every moment is an expression of limitless possibility. Immerse yourself in a world where AKOMO's cutting-edge algorithms seamlessly blend artistry with technology, crafting personalized content experiences that resonate on a profound level.",
+      "subDescription": "This Site come up with the digital haven where AI-powered ingenuity converges with bespoke creativity, redefining the landscape of digital storytelling.",
+      "image1": "akomostatics.webp",
+      "image2": "akomocalender.webp",
+      "image3": "akomoadd.webp",
+      "siteName": "Visit Our Website",
+      "siteLink": "https://dotted-ranger-363617.web.app/dashboards"
+    }
+  },
+  {
+    "id": 5,
+    "image": "IBA1.webp",
+    "title": "IBA Admin",
+    "year": "2022",
+    "type": "Healthcare Management",
+    "description": "My team and I designed a comprehensive healthcare management system that streamlined patient records, appointment scheduling, and billing processes.",
+    "details": {
+      "projectName": "IBA Admin",
+      "date": "2022",
+      "type": "Healthcare Management",
+      "description": "We integrated advanced security measures to ensure HIPAA compliance and implemented data analytics tools to help healthcare providers make informed decisions.",
+      "subDescription": "This solution greatly improved the clinic's operational efficiency and patient care.",
+      "image1": "IBA2.webp",
+      "image2": "IBA3.webp",
+      "image3": "IBA4.webp",
+      "siteName": "Visit Our Website",
+      "siteLink": "http://ibaadmin.rootpointers.net/"
+    }
+  },
+  {
+    "id": 6,
+    "image": "autoprosperhomepage.webp",
+    "title": "Autoprosper",
+    "year": "2023",
+    "type": "Cars Sale Center",
+    "description": "Step into the future of car shopping with Autoprosper, where cutting-edge AI algorithms match you with your dream vehicle.",
+    "details": {
+      "projectName": "Autoprosper",
+      "date": "2023",
+      "type": "Cars Sale Center",
+      "description": "At Autoprosper explore a virtual showroom like no other, where every car is meticulously curated to ensure quality, reliability, and unmatched performance.",
+      "subDescription": "Experience the pinnacle of convenience with Autoprosper's seamless online car-buying experience, where browsing, financing, and purchasing your next vehicle are all just a click away.",
+      "image1": "servicehomepage.webp",
+      "image2": "firsttimebuyerhomepage.webp",
+      "image3": "unveilyouridealridehomepage.webp",
+      "siteName": "Visit Our Website",
+      "siteLink": "https://stellardriveway.vercel.app/"
+    }
+  },
+  {
+    "id": 7,
+    "image": "otrdashboard.webp",
+    "title": "OTR",
+    "year": "2021",
+    "type": "Provide Working Machines Data",
+    "description": "Join the revolution in industrial analytics with OTR, where our platform harnesses the wealth of data generated by working machinery to drive operational excellence.",
+    "details": {
+      "projectName": "OTR",
+      "date": "2021",
+      "type": "Provide Working Machines Data",
+      "description": "We understand that uptime is critical. That's why we provide detailed reports on machinery utilization, highlighting trends, identifying areas for improvement, and ultimately minimizing downtime for enhanced productivity.",
+      "subDescription": "Experience the power of predictive maintenance with OTR's comprehensive monitoring system, which tracks every mile traveled by your machinery, detects anomalies, and alerts you to potential issues before they escalate.",
+      "image1": "otranalaytics.webp",
+      "image2": "otrcommerce.webp",
+      "image3": "otrapp.webp",
+      "siteName": "Visit Our Website",
+      "siteLink": "https://load-id-tawny.vercel.app/dashboard"
+    }
+  },
+  {
+    "id": 8,
+    "image": "LEC1.webp",
+    "title": "LEC",
+    "year": "2022",
+    "type": "Online Learning Platform",
+    "description": "We played a pivotal role in developing an interactive e-learning platform, integrating features such as video streaming, quizzes, and progress tracking.",
+    "details": {
+      "projectName": "LEC",
+      "date": "2022",
+      "type": "Online Learning Platform",
+      "description": "Our goal was to create a versatile educational tool that catered to both students and instructors.",
+      "subDescription": "The platform's success was evident in increased course enrollment and positive feedback from educators and learners alike.",
+      "image1": "LEC2.webp",
+      "image2": "LEC3.webp",
+      "image3": "LEC4.webp",
+      "siteName": "Visit Our Website",
+      "siteLink": "https://lecweb.web.app/#/sign-in"
+    }
+  },
+  {
+    "id": 9,
+    "image": "Lummoshop1.webp",
+    "title": "LummoShop",
+    "year": "2022",
+    "type": "E-commerce Website",
+    "description": "We spearheaded the development of a robust e-commerce platform from scratch, incorporating user-friendly interfaces and secure payment gateways.",
+    "details": {
+      "projectName": "LummoShop",
+      "date": "2023",
+      "type": "E-commerce Website",
+      "description": "This project involved creating a dynamic product catalog, implementing a personalized recommendation engine, and optimizing the site for mobile responsiveness.",
+      "subDescription": "The result was a significant boost in our client's online sales and customer engagement.",
+      "image1": "lummoshop2.webp",
+      "image2": "lummoshop3.webp",
+      "image3": "lummoshop4.webp",
+      "siteName": "Visit Our Website",
+      "siteLink": "https://mylummoshop.web.app/"
+    }
+  },
+  {
+    "id": 10,
+    "image": "Artnoion.webp",
+    "title": "Artonion",
+    "year": "2021",
+    "type": "Designer",
+    "description": "Your gateway to a world of endless creativity, where imagination knows no bounds and every design tells a unique story.",
+    "details": {
+      "projectName": "Artonion",
+      "date": "2021",
+      "type": "Designer",
+      "description": "The site of like-minded creators, where collaboration flourishes, feedback flows, and every design journey is a shared adventure in artistic expression.",
+      "subDescription": "Where the creativity blossoms into unique designs. Immerse yourself in a world where innovation and imagination collide to craft visually stunning and one-of-a-kind creations.",
+      "image1": "Aetonion2.webp",
+      "image2": "Artonion3.webp",
+      "image3": "Artonion4.webp",
+      "siteName": "Visit Our Website",
+      "siteLink": "https://artonion.ro/"
+    }
+  },
+  {
+    "id": 11,
+    "image": "Next-Bank-Landing-Page.png",
+    "title": "Next Bank",
+    "year": "2021",
+    "type": "Banking Management",
+    "description": "Explore a world of possibilities with Next Bank, where our AI-powered solutions anticipate your needs, streamline your finances, and pave the way for a brighter financial future",
+    "details": {
+      "projectName": "Next Bank",
+      "date": "2021",
+      "type": "Banking Management",
+      "description": "The design prioritizes visual aesthetics and user experience, featuring a clean and intuitive layout that elegantly presents the designer's portfolio pieces. It includes interactive galleries, case studies, and a blog section to highlight the designer's design process and insights.",
+      "subDescription": "Next Bank isn't just a bank; it's a financial partner, committed to empowering you with intuitive tools and expert guidance to navigate your financial journey with confidence.",
+      "image1": "Dashboardnextbank.webp",
+      "image2": "Debit-Cardsnextbank.png",
+      "image3": "Identitynextbank.webp",
+      "siteName": "Visit Our Website",
+      "siteLink": "https://nextbanka-ec745.web.app/"
+    }
+  },
+  {
+    "id": 12,
+    "image": "Profileavnak.webp",
+    "title": "Avank",
+    "year": "2023",
+    "type": "Banking",
+    "description": "At Avank Our user-friendly interface makes managing your money effortless, whether you're saving for the future.",
+    "details": {
+      "projectName": "Avank",
+      "date": "2021",
+      "type": "Banking",
+      "description": "We prioritize your peace of mind. With robust encryption and advanced security measures, your money is stored with the utmost care, ensuring your financial well-being is always protected.",
+      "subDescription": "Experience personalized banking at its finest with Avank Our dedicated team of experts is here to guide you every step of the way, offering tailored advice and solutions to help you make the most of your money.",
+      "image1": "Cardavnak.webp",
+      "image2": "Exchangeavanak.webp",
+      "image3": "Receiveavanak.webp",
+      "siteName": "Visit Our Website",
+      "siteLink": "https://load-id-tawny.vercel.app/dashboard"
+    }
+  },
+  {
+    "id": 13,
+    "image": "wevozregister.webp",
+    "title": "WeVoz",
+    "year": "2024",
+    "type": "Admin Panel",
+    "description": "At Wevoz, we understand that time is precious. That's why our admin panel is engineered for efficiency, allowing you to accomplish tasks with ease and focus.",
+    "details": {
+      "projectName": "WeVoz",
+      "date": "2021",
+      "type": "Graphic Designer",
+      "description": "The power of simplicity with Wevoz's admin panel, designed with you in mind. From updating content to analyzing user data, our user-friendly interface puts the tools you need right at your fingertips.",
+      "subDescription": "Join the ranks of satisfied users who rely on Wevoz's admin panel for seamless website management. With real-time updates, comprehensive analytics, and robust security measures, we empower you to take charge of your online presence and unlock your full potential.",
+      "image1": "wevozconfigration.webp",
+      "image2": "wevozprivacy.webp",
+      "image3": "wevozroleandmanagement.webp",
+      "siteName": "Visit Our Website",
+      "siteLink": "https://wevoz-fronted.web.app/add-abuse"
+    }
+  },
+  {
+    "id": 14,
+    "image": "rootpointerhome.webp",
+    "title": "RootPointers",
+    "year": "2023",
+    "type": "Company Site",
+    "description": "RootPointers delivers comprehensive IT solutions, providing a hassle-free experience from start to deployment and beyond.",
+    "details": {
+      "projectName": "RootPointers",
+      "date": "2021",
+      "type": "Company Site",
+      "description": "Explore the company portfolio to witness a diverse array of successful projects, each a testament to our commitment to innovation and excellence in web and app development.",
+      "subDescription": "This website help you to optimize your business operations, and focus on your core competencies through our project-based outsourcing model.",
+      "image1": "rootservice.webp",
+      "image2": "ourteamrootpointer.webp",
+      "image3": "contactusroot.webp",
+      "siteName": "Visit Our Website",
+      "siteLink": "https://www.rootpointers.com/"
+    }
+  },
+  {
+    "id": 15,
+    "image": "pollyahome.webp",
+    "title": "Pollya",
+    "year": "2023",
+    "type": "News",
+    "description": "Pollya: Your trusted companion in the ever-evolving world of news, delivering timely updates and insightful analysis with a commitment to accuracy and integrity.",
+    "details": {
+      "projectName": "Pollya",
+      "date": "2021",
+      "type": "News",
+      "description": "At Pollya, we're more than just a news platform; we're a catalyst for change. Our mission is to empower readers with knowledge, spark curiosity, and inspire action for a better tomorrow.",
+      "subDescription": "Join the conversation on Pollya, where diverse voices converge to explore the complexities of our times, challenge assumptions, and seek common ground in pursuit of truth and understanding. Delve into the political landscape with Pollya, where we offer a nuanced perspective on the policies, personalities, and power dynamics shaping our world.",
+      "image1": "pollya2.webp",
+      "image2": "pollyamypolls.webp",
+      "image3": "pollyastatic.webp"
+    }
+  },
+  {
+    "id": 16,
+    "image": "norswap1.webp",
+    "title": "Norswap",
+    "year": "2023",
+    "type": "Crypto Currency",
+    "description": "We thrilled to present a recent collaboration where I developed a cutting-edge cryptocurrency website for a valued client..",
+    "details": {
+      "projectName": "Norswap",
+      "date": "2023",
+      "type": "Crypto Currency",
+      "description": "This project involved creating an informative and user-friendly platform dedicated to cryptocurrency enthusiasts.",
+      "subDescription": "From designing an intuitive user interface to implementing real-time market data, this project showcases my skills in web development and my commitment to delivering solutions that empower clients in the world of cryptocurrencies..",
+      "image1": "norswap2.webp",
+      "image2": "norswap3.webp",
+      "image3": "norswap4.webp"
+    }
+  }
+]
