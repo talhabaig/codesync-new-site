@@ -10,32 +10,70 @@ export function Footer() {
           <div className="basis-1/3 flex flex-col gap-4 xl:gap-8">
             <div className="flex flex-col md:gap-4 lg:mb-4">
               <div className="md:pt-1">
-                <img src="/CodeSyncLogo.svg" alt="Logo" className="h-[64px] w-[329.16px] md:h-[39px] md:w-[210px] xl:h-[64px] xl:w-[329.16px]"></img>
+                <img
+                  src="/CodeSyncLogo.svg"
+                  alt="Logo"
+                  className="h-[64px] w-[329.16px] md:h-[39px] md:w-[210px] xl:h-[64px] xl:w-[329.16px]"
+                ></img>
               </div>
-              <div className="font-poppins font-light text-18px lg:text-[20px] leading-[32.78px] tracking-[2%]">(C) IT Solution</div>
+              <div className="font-poppins font-light text-18px lg:text-[20px] leading-[32.78px] tracking-[2%]">
+                (C) IT Solution
+              </div>
             </div>
             <div className="flex flex-col gap-[15px] font-poppins font-light text-18px 2xl:text-[22px] leading-[32.78px] tracking-[2%]">
               <div className="flex items-center gap-2">
                 <div>
-                  <img src="/icons/mdi_phone.svg" className="h-[20px] w-[20px] lg:h-[30px] lg:w-[30px]" alt="" />
+                  <img
+                    src="/icons/mdi_phone.svg"
+                    className="h-[20px] w-[20px] lg:h-[30px] lg:w-[30px]"
+                    alt=""
+                  />
                 </div>
                 <div>+ 92 331 9660156</div>
               </div>
               <div className="flex items-center gap-2">
                 <div>
-                  <img src="/icons/entypo_email.svg" className="h-[20px] w-[20px] lg:h-[27px] lg:w-[27px]" alt="" />
+                  <img
+                    src="/icons/entypo_email.svg"
+                    className="h-[20px] w-[20px] lg:h-[27px] lg:w-[27px]"
+                    alt=""
+                  />
                 </div>
-                <div><a href="mailto:contact@codesync.com">contact@codesync.com</a></div>
+                <div>
+                  <a href="mailto:hr@codesyncs.com" target="_blank">hr@codesyncs.com</a>
+                </div>
               </div>
             </div>
             <div className="flex gap-2">
-              <img src="/icons/insta.svg" className="h-[42px] w-[42px] lg:h-[52px] lg:w-[52px] cursor-pointer" alt="" />
-              <img src="/icons/linkedin.svg" className="h-[42px] w-[42px] lg:h-[52px] lg:w-[52px] cursor-pointer" alt="" />
-              <img src="/icons/fb.svg" className="h-[42px] w-[42px] lg:h-[52px] lg:w-[52px] cursor-pointer" alt="" />
+            <a href="https://www.instagram.com/codesync.12/?igsh=YjgwZjE0YXhuYzlh" target="_blank" rel="noopener noreferrer">
+                <img
+                  src="/icons/insta.svg"
+                  className="h-[42px] w-[42px] lg:h-[52px] lg:w-[52px] cursor-pointer"
+                  alt=""
+                />
+              </a>
+              
+              <a href="https://www.linkedin.com/company/codessync/" target="_blank" rel="noopener noreferrer">
+              <img
+                src="/icons/linkedin.svg"
+                className="h-[42px] w-[42px] lg:h-[52px] lg:w-[52px] cursor-pointer"
+                alt=""
+              />
+               </a>
+                <a href="https://www.facebook.com/people/CodeSync/61556573407579/" target="_blank" rel="noopener noreferrer">
+                  <img
+                    src="/icons/fb.svg"
+                    className="h-[42px] w-[42px] lg:h-[52px] lg:w-[52px] cursor-pointer"
+                    alt=""
+                  />
+                </a>
+         
             </div>
           </div>
           <div className="basis-1/3 flex flex-col gap-4 md:gap-[28px]">
-            <span className="font-poppins font-semibold text-[26.48px] leading-[39.72px] tracking-[6%] uppercase">Our services</span>
+            <span className="font-poppins font-semibold text-[26.48px] leading-[39.72px] tracking-[6%] uppercase">
+              Our services
+            </span>
             <div className="flex text-[#FFFFFF] flex-col gap-[15px] font-poppins font-light text-18px 2xl:text-[20px] leading-[32.78px] tracking-[2%]">
               <span>Web/Mobile development</span>
               <span>Web design</span>
@@ -46,7 +84,9 @@ export function Footer() {
             </div>
           </div>
           <div className="flex flex-col gap-4 xl:gap-[28px] bg-none xl:bg-cover xl:bg-center xl:bg-[url('/footer-bg.png')] xl:min-w-[500px] xl:min-h-[400px] xl:max-w-[500px] xl:max-h-[400px]">
-            <span className="uppercase font-poppins font-semibold text-[26.48px] leading-[39.72px] tracking-[6%]">Information</span>
+            <span className="uppercase font-poppins font-semibold text-[26.48px] leading-[39.72px] tracking-[6%]">
+              Information
+            </span>
             <div className="flex flex-col gap-[15px] font-poppins font-light text-18px 2xl:text-[20px] leading-[32.78px] tracking-[2%]">
               <Link href="/verify" className={` ${pathname === "/verify"}`}>
                 <span className="">Services</span>
