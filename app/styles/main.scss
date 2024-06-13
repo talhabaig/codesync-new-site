@@ -5,7 +5,7 @@
  @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
  body {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   font-family: "Poppins", sans-serif;
  }
 .font-poppins {
@@ -26,54 +26,4 @@
   font-style: normal;
 }
 
-@keyframes marquee {
-  from { transform: translateX(0%); }
-  to { transform: translateX(-100%); }
-}
-
-.animate-marquee {
-  display: flex;
-  animation: marquee 10s linear infinite;
-}
-
-
-.slideshow {
-  height: 516px;
-  margin: 0 auto;
-  position: relative;
-  transform: translate3d(0, 0, 0);
-  display: flex;
-  width: 100%;
-  overflow: hidden;
-}
-
-.move {
-  transform: translate3d(0, 0, 0);
-  display: flex;
-  animation: moveSlideshow 10s linear infinite;
-}
-
-// .move:nth-child(2) img {
-//   opacity: 0.4;
-
-// }
-// .move > img {
-//   height: 150px;
-//   width: auto;
-// }
-
-
-// .slideshow:hover .move {
-//   animation-play-state: paused;
-// }
-
-@keyframes moveSlideshow {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%);
-    /*The width of the page needs to be taken into consideration*/
-  }
-}
 

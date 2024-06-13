@@ -1,8 +1,10 @@
-
+"use client";
 import React from "react";
 import Button from "../components/common/Button";
-
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 export default function Hero() {
+  const pathname = usePathname();
   return (
     <div className="w-full text-white max-h-[818px] bg-gradient-to-b md:bg-gradient-to-r from-customBlue1 to-customMint">
       <div className="flex flex-col md:flex-row justify-center md:pt-8 lg:pt-9 xl:pt-12 2xl:pt-24">
@@ -14,15 +16,16 @@ export default function Hero() {
               </span>
             </div>
             <p className="mb-4 md:mb-2 lg:mb-4 2xl:mb-[25px] font-poppins font-light text-[16px] md:text-[13.3px] lg:text-[16px] xl:text-[18px] 2xl:text-[22px] leading-[24px] md:leading-[24px] xl:leading-[32.78px] tracking-[2%]">
-            Explore our diverse portfolio showcasing innovative IT solutions and transformative digital experiences.
+              Explore our diverse portfolio showcasing innovative IT solutions
+              and transformative digital experiences.
             </p>
             <div className="xl:mb-8">
-              {/* <button className="text-white font-medium text-[21.72px] leading-[32.58px] py-2 px-4 bg-gradient-to-t from-customBlue2 to-customBlue3 h-[55.26px] rounded-[8.45px]">
-              Hire us now
-            </button> */}
-              <Button customClass="text-white font-medium text-[21.72px] leading-[32.58px] py-2 px-4 bg-gradient-to-t from-customBlue2 to-customBlue3 h-[55.26px] rounded-[8.45px]">
-                Hire us now
-              </Button>
+             
+              <Link href="/hireus" className={` ${pathname === "/hireus"}`}>
+                <Button customClass="text-white font-medium text-[21.72px] leading-[32.58px] py-2 px-4 bg-gradient-to-t from-customBlue2 to-customBlue3 h-[55.26px] rounded-[8.45px]">
+                  Hire us now
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
