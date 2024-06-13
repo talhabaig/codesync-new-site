@@ -32,7 +32,7 @@ function GraphicDesign() {
         <div className="md:w-[50%]">
           {GraphicDesignDetails.map((detail, index) => (
             <div key={index} className="basis-[46%] lg:flex lg:flex-col ">
-              <img src={detail.img} alt="" />
+              <img className="min-w-[129px] max-w-[129px] min-h-[131px] max-h-[131px]"  src={detail.img} alt="" />
               <p className="my-4">
                 <span className="font-bold text-2xl 2xl:text-[28.25px] 2xl:leading-[47.04px] tracking-[4%] text-[#0693EB]">
                   {detail.heading}{" "}
