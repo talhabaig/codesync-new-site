@@ -1,10 +1,9 @@
 "use client"
-import React from "react";
-import Button from "../components/common/Button";
+import React from 'react'
+import Button from '../components/common/Button'
+import Icon from '../components/common/icon'
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Icon from '../components/common/icon'
-
 export default function Hero() {
   const pathname = usePathname();
   return (
@@ -30,7 +29,7 @@ export default function Hero() {
             </div>
           </div>
         </div>
-        <div className="basis-full md:basis-[55%] lg:basis-1/2">
+        {/* <div className="basis-full md:basis-[55%] lg:basis-1/2">
           <div className="flex flex-col justify-end items-end">
             <img
               src="/services-hero.svg"
@@ -38,17 +37,17 @@ export default function Hero() {
               alt="Header Image"
             />
           </div>
-        </div>
-      </div>
-      <div className='basis-full md:basis-[55%] lg:basis-1/2'>
+        </div> */}
+        <div className='basis-full md:basis-[55%] lg:basis-1/2'>
         <div className="flex flex-col justify-end items-end">
           <div className='relative'>
           <img src="/services-hero.svg" className="w-full 2xl:w-[] 2xl:h-[580px]" alt="Header Image" />
-          <Icon name='animated-icons/gear' className='rotate-infinite absolute top-2 right-[28%] w-[34px] lg:w-[54px] '/>
-          <Icon name='animated-icons/big-gear'  className='reverse-rotate-infinite absolute top-8 right-[18%] w-[45px] lg:w-[64px]'/>
-          <Icon name='animated-icons/light-gear' className='rotate-infinite absolute top-8 right-[8%] w-[34px] lg:w-[54px]'/>
+          <Icon name='animated-icons/gear' className='rotate-infinite absolute top-1 sm:top-2 lg:top-0 right-[28%] w-[25px] sm:w-[30px] md:w-[34px] lg:w-[40px] xl:w-[54px] '/>
+          <Icon name='animated-icons/big-gear'  className='reverse-rotate-infinite absolute top-4 md:top-8 right-[18%] w-[35px] md:w-[45px] lg:w-[64px]'/>
+          <Icon name='animated-icons/light-gear' className='rotate-infinite absolute top-4 md:top-8 right-[8%] w-[25px] md:w-[34px] lg:w-[54px]'/>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
