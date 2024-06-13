@@ -2,13 +2,12 @@
 import React, { useEffect } from "react";
 import Hero from "./Hero";
 import data from "portfolio.json";
-import { useRouter } from "next/router";
+
 
 export default function ProjectDetails() {
-  const router = useRouter();
+
   useEffect (()=>{
     const item = data.find((item) => item.id)
-    console.log("hdhdsds", router)
   },[])
   return (
     <>
