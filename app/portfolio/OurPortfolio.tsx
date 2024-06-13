@@ -154,9 +154,7 @@ function OurPortfolio() {
     return pageNumbers;
   };
   const pathname = usePathname();
-  // useEffect(() => {
-  //   // console.log(data.map((item)=> item));
-  // }, []);
+  
   return (
     <div className="w-full pt-12 xl:pt-24 bg-gradient-to-r from-customLightBlue to-customVeryLightBlue">
       <div className="text-center font-poppins">
