@@ -47,43 +47,58 @@ export default function ContactUs2() {
 
         <div className="basis-full md:basis-1/2 bg-[#ECEEF0] p-12 xl:p-24">
           <form className="">
-            <div className="">
-              <div className="">
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-1">
                 <label
-                  className="block text-[16px] leading-[22px] text-[#333333] font-medium mb-4"
+                  className="block text-[16px] leading-[22px] text-[#333333] font-medium"
                   htmlFor="firstname"
                 >
                   Full Name
                 </label>
                 <input
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 mb-8"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
                   type="text"
                   id="firstname"
                   name="firstname"
-                  placeholder="Enter your full name here"
+                  placeholder="Enter your full name"
                   required
                 />
               </div>
-
-              <div className="">
+              <div className="flex flex-col gap-1">
                 <label
-                  className="block text-[16px] leading-[22px] text-[#333333] font-medium mb-4"
+                  className="block text-[16px] leading-[22px] text-[#333333] font-medium"
                   htmlFor="email"
                 >
                   Email
                 </label>
                 <input
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 mb-6"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
                   type="email"
                   id="email"
                   name="email"
-                  placeholder="Enter your email address here"
+                  placeholder="Enter your email address "
                   required
                 />
               </div>
-              <div className="">
+              <div className="flex flex-col gap-1">
                 <label
-                  className="block text-[16px] leading-[22px] text-[#333333] font-medium mb-4"
+                  className="block text-[16px] leading-[22px] text-[#333333] font-medium"
+                  htmlFor="num"
+                >
+                  Phone Number
+                </label>
+                <input
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                  type="number"
+                  id="num"
+                  name="PhoneNumber"
+                  placeholder="Enter your phone number"
+                  required
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <label
+                  className="block text-[16px] leading-[22px] text-[#333333] font-medium "
                   htmlFor="message"
                 >
                   Message

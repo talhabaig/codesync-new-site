@@ -48,11 +48,11 @@ export default function WhatWeDo() {
               </div>
             </div>
           </div>
-          <div className="flex justify-center">
+          {/* <div className="flex justify-center">
             <button className="text-white font-poppins font-light text-[24.7px] leading-[37.05px] py-2 px-4 md:px-2 lg:px-4 rounded-[9.61px] bg-gradient-to-b from-customBrightBlue to-customLightBlue2 md:w-[140px] lg:w-[208px] lg:h-[62.85px]">
               See More
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
