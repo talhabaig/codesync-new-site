@@ -88,16 +88,16 @@ export function Footer() {
               Information
             </span>
             <div className="flex flex-col gap-[15px] font-poppins font-light text-18px 2xl:text-[20px] leading-[32.78px] tracking-[2%]">
-              <Link href="/verify" className={` ${pathname === "/verify"}`}>
+              <Link href="/services" className={` ${pathname === "/services"}`}>
                 <span className="">Services</span>
               </Link>
-              <Link href="/quotes" className={` ${pathname === "/quotes"}`}>
+              <Link href="/portfolio" className={` ${pathname === "/portfolio"}`}>
                 <span className="">Portfolio</span>
               </Link>
-              <Link href="/team" className={` ${pathname === "/"}`}>
+              <Link href="/team" className={` ${pathname === "/team"}`}>
                 <span className="">About Us</span>
               </Link>
-              <Link href="/" className={` ${pathname === "/"}`}>
+              <Link href="/contact" className={` ${pathname === "/contact"}`}>
                 <span className="">Contact</span>
               </Link>
             </div>
