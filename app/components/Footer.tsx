@@ -48,16 +48,16 @@ export function Footer() {
           <div className="flex flex-col gap-4 xl:gap-[28px] bg-none xl:bg-cover xl:bg-center xl:bg-[url('/footer-bg.png')] xl:min-w-[500px] xl:min-h-[400px] xl:max-w-[500px] xl:max-h-[400px]">
             <span className="uppercase font-poppins font-semibold text-[26.48px] leading-[39.72px] tracking-[6%]">Information</span>
             <div className="flex flex-col gap-[15px] font-poppins font-light text-18px 2xl:text-[20px] leading-[32.78px] tracking-[2%]">
-              <Link href="/verify" className={` ${pathname === "/verify"}`}>
+              <Link href="/services" className={` ${pathname === "/services"}`}>
                 <span className="">Services</span>
               </Link>
-              <Link href="/quotes" className={` ${pathname === "/quotes"}`}>
+              <Link href="/portfolio" className={` ${pathname === "/portfolio"}`}>
                 <span className="">Portfolio</span>
               </Link>
-              <Link href="/team" className={` ${pathname === "/"}`}>
+              <Link href="/team" className={` ${pathname === "/team"}`}>
                 <span className="">About Us</span>
               </Link>
-              <Link href="/" className={` ${pathname === "/"}`}>
+              <Link href="/contact" className={` ${pathname === "/contact"}`}>
                 <span className="">Contact</span>
               </Link>
             </div>

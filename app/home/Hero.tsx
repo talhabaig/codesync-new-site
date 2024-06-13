@@ -1,6 +1,9 @@
+"use client"
 import Button from '@/app/components/common/Button';
-
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 export default function Hero() {
+  const pathname = usePathname();
   return (
     <div className="w-full text-white max-h-[818px] bg-gradient-to-b md:bg-gradient-to-r from-customBlue1 to-customMint">
       <div className="flex flex-col md:flex-row justify-center items-center md:pt-8 lg:pt-9 xl:pt-12 2xl:pt-16">
@@ -16,10 +19,10 @@ export default function Hero() {
               testing, and continuous improvement
             </p>
             <div className='xl:mb-8'>
-              {/* <button className="text-white font-medium text-[21.72px] leading-[32.58px] py-2 px-4 bg-gradient-to-t from-customBlue2 to-customBlue3 h-[55.26px] rounded-[8.45px]">
-                Hire us now
-              </button> */}
-              <Button customClass="text-white font-medium text-[21.72px] leading-[32.58px] py-2 px-4 bg-gradient-to-t from-customBlue2 to-customBlue3 h-[55.26px] rounded-[8.45px]" >Hire us now</Button>
+              
+              <Link href="/hireus" className={` ${pathname === "/hireus"}`}>
+                <Button customClass="text-white font-medium text-[21.72px] leading-[32.58px] py-2 px-4 bg-gradient-to-t from-customBlue2 to-customBlue3 h-[55.26px] rounded-[8.45px]" >Hire us now</Button>
+              </Link>
             </div>
           </div>
         </div>

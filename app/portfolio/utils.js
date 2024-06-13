@@ -1,4 +1,3 @@
 import React from 'react'
 
-export const getImagePath = (imageName) => `../portfolio-images/${imageName}`;
-export const getImagePath2 = (imageName) => `../images/portfolio/${imageName}`;
+export const getImagePath = (imageName) => `../images/portfolio/${imageName}`;

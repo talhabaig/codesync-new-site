@@ -15,6 +15,9 @@
       "image1": "pos2.webp",
       "image2": "pos3.webp",
       "image3": "pos4.webp",
+      "image1Desc":"We have made a shop sale management page where we can see product details like product image, available quantity of product, discount and some other details.",
+      "image2Desc":"We have made a Article management page where we can add, edit or delete an article.",
+      "image3Desc":"We have made a customer group management page for admin where we can change status of existing group, add new group, edit or delete a existing group.",
       "siteName": "Visit Our Website",
       "siteLink": "https://pos.kitshoes.com.pk/#/login"
     }
@@ -35,6 +38,9 @@
       "image1": "Emboldadmin2.webp",
       "image2": "Emboldadmin3.webp",
       "image3": "Emboldadmin4.webp",
+      "image1Desc":"We have made a compaigns page where all active compaigns are displayed to the admin.",
+      "image2Desc":"We have made a settings page for admin where he can change setting of support tickets, compensation, billing, influencer verification and some other settings.",
+      "image3Desc":"We have made a search page where admin can search a user and see his profile with all details.",
       "siteName": "Visit Our Website",
       "siteLink": "https://www.embold.co/"
     }
@@ -52,9 +58,12 @@
       "type": "Healthcare Management",
       "description": "We integrated advanced security measures to ensure HIPAA compliance and implemented data analytics tools to help healthcare providers make informed decisions.",
       "subDescription": "This solution greatly improved the clinic's operational efficiency and patient care.",
-      "image1": "IBAclient2.webp",
-      "image2": "IBAclient3.webp",
+      "image1": "IBA2.png",
+      "image2": "IBA3.png",
       "image3": "IBAclient4.webp",
+      "image1Desc":"We have made a Membership page for users to choose plan which is suitable for the user. User can access this page while signing up on the website while choosing membership.",
+      "image2Desc":"We have made a blog page to showcase our 6 main positioned blogs and other blogs are shown below of these 6 positioned blogs.",
+      "image3Desc":"We have made a Store page to showcase our products. User can Add to cart and purchase any of the product.",
       "siteName": "Visit Our Website",
       "siteLink": "http://iba.rootpointers.net/"
     }
@@ -75,6 +84,9 @@
       "image1": "akomostatics.webp",
       "image2": "akomocalender.webp",
       "image3": "akomoadd.webp",
+      "image1Desc":"We have made a admin dashboard for overview of transactions, sales, new projects, Total profit and some graphs.",
+      "image2Desc":"We have made a activity page where we can add events and see recent activities about our business, family etc.",
+      "image3Desc":"We have made a invoice page to showcase all invoices or create a new one where we can see clients balance etc.",
       "siteName": "Visit Our Website",
       "siteLink": "https://dotted-ranger-363617.web.app/dashboards"
     }
@@ -95,6 +107,9 @@
       "image1": "IBA2.webp",
       "image2": "IBA3.webp",
       "image3": "IBA4.webp",
+      "image1Desc":"We have made a admin login page with login form where a admin have to input email and password to login.",
+      "image2Desc":"We have made a admin dashboard to see new members, expired members, sales, total members with some graph representation.",
+      "image3Desc":"We have made a blog page where we can add, edit or delete blogs and can organize first 6 blogs positions which is reflecting to the web.",
       "siteName": "Visit Our Website",
       "siteLink": "http://ibaadmin.rootpointers.net/"
     }
@@ -115,6 +130,9 @@
       "image1": "servicehomepage.webp",
       "image2": "firsttimebuyerhomepage.webp",
       "image3": "unveilyouridealridehomepage.webp",
+      "image1Desc":"",
+      "image2Desc":"",
+      "image3Desc":"",
       "siteName": "Visit Our Website",
       "siteLink": "https://stellardriveway.vercel.app/"
     }
@@ -135,6 +153,9 @@
       "image1": "otranalaytics.webp",
       "image2": "otrcommerce.webp",
       "image3": "otrapp.webp",
+      "image1Desc":"",
+      "image2Desc":"",
+      "image3Desc":"",
       "siteName": "Visit Our Website",
       "siteLink": "https://load-id-tawny.vercel.app/dashboard"
     }
@@ -155,6 +176,9 @@
       "image1": "LEC2.webp",
       "image2": "LEC3.webp",
       "image3": "LEC4.webp",
+      "image1Desc":"",
+      "image2Desc":"",
+      "image3Desc":"",
       "siteName": "Visit Our Website",
       "siteLink": "https://lecweb.web.app/#/sign-in"
     }
@@ -175,6 +199,9 @@
       "image1": "lummoshop2.webp",
       "image2": "lummoshop3.webp",
       "image3": "lummoshop4.webp",
+      "image1Desc":"",
+      "image2Desc":"",
+      "image3Desc":"",
       "siteName": "Visit Our Website",
       "siteLink": "https://mylummoshop.web.app/"
     }
@@ -195,6 +222,9 @@
       "image1": "Aetonion2.webp",
       "image2": "Artonion3.webp",
       "image3": "Artonion4.webp",
+      "image1Desc":"",
+      "image2Desc":"",
+      "image3Desc":"",
       "siteName": "Visit Our Website",
       "siteLink": "https://artonion.ro/"
     }
@@ -215,6 +245,9 @@
       "image1": "Dashboardnextbank.webp",
       "image2": "Debit-Cardsnextbank.png",
       "image3": "Identitynextbank.webp",
+      "image1Desc":"",
+      "image2Desc":"",
+      "image3Desc":"",
       "siteName": "Visit Our Website",
       "siteLink": "https://nextbanka-ec745.web.app/"
     }
@@ -235,6 +268,9 @@
       "image1": "Cardavnak.webp",
       "image2": "Exchangeavanak.webp",
       "image3": "Receiveavanak.webp",
+      "image1Desc":"",
+      "image2Desc":"",
+      "image3Desc":"",
       "siteName": "Visit Our Website",
       "siteLink": "https://load-id-tawny.vercel.app/dashboard"
     }
@@ -255,6 +291,9 @@
       "image1": "wevozconfigration.webp",
       "image2": "wevozprivacy.webp",
       "image3": "wevozroleandmanagement.webp",
+      "image1Desc":"",
+      "image2Desc":"",
+      "image3Desc":"",
       "siteName": "Visit Our Website",
       "siteLink": "https://wevoz-fronted.web.app/add-abuse"
     }
@@ -275,6 +314,9 @@
       "image1": "rootservice.webp",
       "image2": "ourteamrootpointer.webp",
       "image3": "contactusroot.webp",
+      "image1Desc":"",
+      "image2Desc":"",
+      "image3Desc":"",
       "siteName": "Visit Our Website",
       "siteLink": "https://www.rootpointers.com/"
     }
@@ -294,7 +336,10 @@
       "subDescription": "Join the conversation on Pollya, where diverse voices converge to explore the complexities of our times, challenge assumptions, and seek common ground in pursuit of truth and understanding. Delve into the political landscape with Pollya, where we offer a nuanced perspective on the policies, personalities, and power dynamics shaping our world.",
       "image1": "pollya2.webp",
       "image2": "pollyamypolls.webp",
-      "image3": "pollyastatic.webp"
+      "image3": "pollyastatic.webp",
+      "image1Desc":"",
+      "image2Desc":"",
+      "image3Desc":""
     }
   },
   {
@@ -312,7 +357,10 @@
       "subDescription": "From designing an intuitive user interface to implementing real-time market data, this project showcases my skills in web development and my commitment to delivering solutions that empower clients in the world of cryptocurrencies..",
       "image1": "norswap2.webp",
       "image2": "norswap3.webp",
-      "image3": "norswap4.webp"
+      "image3": "norswap4.webp",
+      "image1Desc":"",
+      "image2Desc":"",
+      "image3Desc":""
     }
   }
 ]
