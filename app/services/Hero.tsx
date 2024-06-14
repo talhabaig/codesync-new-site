@@ -22,7 +22,7 @@ export default function Hero() {
             <div className="xl:mb-8">
               
               <Link href="/hireus" className={` ${pathname === "/hireus"}`}>
-                <Button customClass="text-white font-medium text-[21.72px] leading-[32.58px] py-2 px-4 bg-gradient-to-t from-customBlue2 to-customBlue3 h-[55.26px] rounded-[8.45px]">
+                <Button customClass="text-white font-medium text-[21.72px] leading-[32.58px] py-2 px-4 bg-gradient-to-t from-customBlue2 to-customBlue3 h-[55.26px] rounded-[8.45px] hover:transform hover:transition-transform hover:duration-300 hover:ease-in-out hover:scale-105 hover:shadow-[0_0_15px_#005BA1]">
                   Hire us now
                 </Button>
               </Link>
@@ -42,9 +42,9 @@ export default function Hero() {
         <div className="flex flex-col justify-end items-end">
           <div className='relative'>
           <img src="/services-hero.svg" className="w-full 2xl:w-[] 2xl:h-[580px]" alt="Header Image" />
-          <Icon name='animated-icons/gear' className='rotate-infinite absolute top-1 sm:top-2 lg:top-0 right-[28%] w-[25px] sm:w-[30px] md:w-[34px] lg:w-[40px] xl:w-[54px] '/>
-          <Icon name='animated-icons/big-gear'  className='reverse-rotate-infinite absolute top-4 md:top-8 right-[18%] w-[35px] md:w-[45px] lg:w-[64px]'/>
-          <Icon name='animated-icons/light-gear' className='rotate-infinite absolute top-4 md:top-8 right-[8%] w-[25px] md:w-[34px] lg:w-[54px]'/>
+          <Icon name='animated-icons/gear' className='rotate-infinite absolute top-1 sm:top-2 md:top-1 lg:top-3 xl:top-0 right-[28%] w-[25px] sm:w-[30px] md:w-[34px] xl:w-[40px] 2xl:w-[54px] '/>
+          <Icon name='animated-icons/big-gear'  className='reverse-rotate-infinite absolute top-4 md:top-6 lg:top-8 right-[18%] w-[35px] md:w-[43px] xl:w-[64px]'/>
+          <Icon name='animated-icons/light-gear' className='rotate-infinite absolute top-4 md:top-8 right-[8%] w-[25px] md:w-[34px] xl:w-[54px]'/>
           </div>
         </div>
       </div>

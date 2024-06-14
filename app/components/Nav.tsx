@@ -60,7 +60,7 @@ export const Nav = () => {
             <img
               src="/CodeSyncLogo.svg"
               alt="Logo"
-              className="w-[150px] md:w-[200px] lg[265px]"
+              className="w-[150px] md:w-[170px] lg:w-[200px]"
             />
           </Link>
         </div>
@@ -86,7 +86,7 @@ export const Nav = () => {
           ref={menuRef}
           className={`${styles.navMenu} ${isOpen ? styles.open : ""}`}
         >
-          <div className="flex flex-col md:flex-row md:gap-2 md:items-center lg:gap-3 xl:gap-3 p-[10px] md:p-0">
+          <div className="flex flex-col md:flex-row md:gap-1 md:items-center lg:gap-3 xl:gap-3 p-[10px] md:p-0">
             <Link
               href="/"
               className={`${styles.link} ${
@@ -140,7 +140,7 @@ export const Nav = () => {
               </div>
             </Link>
           </div>
-          <div className="px-[20px] md:px-[0px] md:mt-0">
+          <div className="px-[20px] md:px-[1px] md:mt-0">
             <Link
               href="/contact"
               className={`${styles.link} ${
@@ -149,7 +149,7 @@ export const Nav = () => {
             >
               <button
                 onClick={handleClose}
-                className="text-white mb-5 md:mb-0 font-normal py-2 px-4 md:px-2 lg:px-4 rounded bg-gradient-to-b from-customBlue4 to-customSky hover:from-[#156fba] hover:to-[#4ba5ea] lg:w-[135px] lg:h-[46px]"
+                className="text-white mb-5 md:mb-0 font-normal py-2 px-4 md:px-2 lg:px-4 rounded bg-gradient-to-b from-customBlue4 to-customSky hover:from-[#156fba] hover:to-[#4ba5ea] lg:w-[135px] lg:h-[46px] hover:transform hover:transition-transform hover:duration-300 hover:ease-out hover:scale-105 hover:shadow-[0_0_15px_#156fba]"
               >
                 Contact Us
               </button>
