@@ -1,8 +1,22 @@
 "use client";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
+
 export function Footer() {
+  const [loading, setLoading] = useState("");
+
+  const handleLinkClick = (path: string) => {
+    setLoading(path);
+    setTimeout(() => {
+      window.location.href = path;
+    }, 500);
+  };
+
   const pathname = usePathname();
+
   return (
     <div className="w-full bg-[#012959] text-white">
       <div className="p-12 lg:p-16 lg:pr-2 xl:p-28 ">
@@ -40,34 +54,47 @@ export function Footer() {
                   />
                 </div>
                 <div>
-                  <a href="mailto:hr@codesyncs.com" target="_blank">hr@codesyncs.com</a>
+                  <a href="mailto:hr@codesyncs.com" target="_blank">
+                    hr@codesyncs.com
+                  </a>
                 </div>
               </div>
             </div>
             <div className="flex gap-2">
-            <a href="https://www.instagram.com/codesync.12/?igsh=YjgwZjE0YXhuYzlh" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://www.instagram.com/codesync.12/?igsh=YjgwZjE0YXhuYzlh"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <img
                   src="/icons/insta.svg"
                   className="h-[42px] w-[42px] lg:h-[52px] lg:w-[52px] cursor-pointer"
                   alt=""
                 />
               </a>
-              
-              <a href="https://www.linkedin.com/company/codessync/" target="_blank" rel="noopener noreferrer">
-              <img
-                src="/icons/linkedin.svg"
-                className="h-[42px] w-[42px] lg:h-[52px] lg:w-[52px] cursor-pointer"
-                alt=""
-              />
-               </a>
-                <a href="https://www.facebook.com/people/CodeSync/61556573407579/" target="_blank" rel="noopener noreferrer">
-                  <img
-                    src="/icons/fb.svg"
-                    className="h-[42px] w-[42px] lg:h-[52px] lg:w-[52px] cursor-pointer"
-                    alt=""
-                  />
-                </a>
-         
+
+              <a
+                href="https://www.linkedin.com/company/codessync/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="/icons/linkedin.svg"
+                  className="h-[42px] w-[42px] lg:h-[52px] lg:w-[52px] cursor-pointer"
+                  alt=""
+                />
+              </a>
+              <a
+                href="https://www.facebook.com/people/CodeSync/61556573407579/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="/icons/fb.svg"
+                  className="h-[42px] w-[42px] lg:h-[52px] lg:w-[52px] cursor-pointer"
+                  alt=""
+                />
+              </a>
             </div>
           </div>
           <div className="basis-1/3 flex flex-col gap-4 md:gap-[28px]">
@@ -88,17 +115,51 @@ export function Footer() {
               Information
             </span>
             <div className="flex flex-col gap-[15px] font-poppins font-light text-18px 2xl:text-[20px] leading-[32.78px] tracking-[2%]">
-              <Link href="/services" className={` ${pathname === "/services"}`}>
-                <span className="">Services</span>
-              </Link>
+              <span
+                className={`cursor-pointer ${loading === "/services" ? "font-medium" : ""}`}
+                onClick={() => handleLinkClick("/services")}
+              >
+                {loading === "/services" ? (
+                  <FontAwesomeIcon icon={faSpinner} spin />
+                ) : (
+                  "Services"
+                )}
+              </span>
               <Link href="/portfolio" className={` ${pathname === "/portfolio"}`}>
-                <span className="">Portfolio</span>
+                <span
+                  className={`cursor-pointer ${loading === "/portfolio" ? "font-medium" : ""}`}
+                  onClick={() => handleLinkClick("/portfolio")}
+                >
+                  {loading === "/portfolio" ? (
+                    <FontAwesomeIcon icon={faSpinner} spin />
+                  ) : (
+                    "Portfolio"
+                  )}
+                </span>
               </Link>
               <Link href="/team" className={` ${pathname === "/team"}`}>
-                <span className="">About Us</span>
+                <span
+                  className={`cursor-pointer ${loading === "/team" ? "font-medium" : ""}`}
+                  onClick={() => handleLinkClick("/team")}
+                >
+                  {loading === "/team" ? (
+                    <FontAwesomeIcon icon={faSpinner} spin />
+                  ) : (
+                    "About Us"
+                  )}
+                </span>
               </Link>
               <Link href="/contact" className={` ${pathname === "/contact"}`}>
-                <span className="">Contact</span>
+                <span
+                  className={`cursor-pointer ${loading === "/contact" ? "font-medium" : ""}`}
+                  onClick={() => handleLinkClick("/contact")}
+                >
+                  {loading === "/contact" ? (
+                    <FontAwesomeIcon icon={faSpinner} spin />
+                  ) : (
+                    "Contact"
+                  )}
+                </span>
               </Link>
             </div>
           </div>

@@ -2,15 +2,30 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+
+type InputValues = {
+  firstname: string;
+  email: string;
+  PhoneNumber: string;
+  message: string;
+};
+
+type Interests = {
+  web: boolean;
+  mobile: boolean;
+  design: boolean;
+  others: boolean;
+};
+
 export default function ContactUs2() {
   const routes = useRouter();
-  const [inputVal, setInputVal] = useState({
+  const [inputVal, setInputVal] = useState<InputValues>({
     firstname: "",
     email: "",
     PhoneNumber: "",
     message: "",
   });
-  const [inputCheck, setInputCheck] = useState({
+  const [inputCheck, setInputCheck] = useState<Interests>({
     web: false,
     mobile: false,
     design: false,
@@ -19,6 +34,7 @@ export default function ContactUs2() {
   const [emailError, setEmailError] = useState(false);
   const [phoneError, setPhoneError] = useState(false);
   const [isSending, setIsSending] = useState(false);
+
   const validateEmail = (email: string) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailPattern.test(email);
@@ -28,12 +44,14 @@ export default function ContactUs2() {
     const phonePattern = /^\d{10,}$/;
     return phonePattern.test(phone);
   };
-  const handleChange = (e: any) => {
-    const { name, value, type, checked } = e.target;
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value, type } = e.target;
     if (type === "checkbox") {
+      const target = e.target as HTMLInputElement;
       setInputCheck((prev) => ({
         ...prev,
-        [name]: checked,
+        [name]: target.checked,
       }));
     } else {
       setInputVal((prev) => ({
@@ -42,7 +60,8 @@ export default function ContactUs2() {
       }));
     }
   };
-  const handleSubmit = async (e: any) => {
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!validateEmail(inputVal.email)) {
@@ -57,6 +76,10 @@ export default function ContactUs2() {
 
     setIsSending(true);
 
+    const selectedInterests = Object.keys(inputCheck).filter(
+      (key) => inputCheck[key as keyof Interests]
+    );
+
     const data = {
       service_id: "service_lrbfgto",
       template_id: "template_8rl61km",
@@ -66,10 +89,7 @@ export default function ContactUs2() {
         userEmail: inputVal.email,
         phoneNumber: inputVal.PhoneNumber,
         message: inputVal.message,
-        web: inputCheck.web,
-        mobile: inputCheck.mobile,
-        design: inputCheck.design,
-        others: inputCheck.others,
+        interests: selectedInterests.join(", "),
       },
     };
 
@@ -83,6 +103,12 @@ export default function ContactUs2() {
         email: "",
         PhoneNumber: "",
         message: "",
+      });
+      setInputCheck({
+        web: false,
+        mobile: false,
+        design: false,
+        others: false,
       });
       routes.push("/thankyou");
     } catch (error) {
@@ -201,10 +227,11 @@ export default function ContactUs2() {
                   Full Name
                 </label>
                 <input
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                  className="w-full px-3 py-3 border border-gray-300 rounded-[4px] focus:outline-none focus:border-blue-500"
                   type="text"
                   id="firstname"
                   name="firstname"
+                  value={inputVal.firstname}
                   placeholder="Enter your full name"
                   onChange={handleChange}
                   required
@@ -218,10 +245,11 @@ export default function ContactUs2() {
                   Email
                 </label>
                 <input
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                  className="w-full px-3 py-3 border border-gray-300 rounded-[4px] focus:outline-none focus:border-blue-500"
                   type="email"
                   id="email"
                   name="email"
+                  value={inputVal.email}
                   placeholder="Enter your email address "
                   onChange={handleChange}
                   required
@@ -235,9 +263,10 @@ export default function ContactUs2() {
                   Phone Number
                 </label>
                 <input
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
-                  type="tel"
+                  className="w-full px-3 py-3 border border-gray-300 rounded-[4px] focus:outline-none focus:border-blue-500"
+                  type="number"
                   id="num"
+                  value={inputVal.PhoneNumber}
                   name="PhoneNumber"
                   placeholder="Enter your phone number"
                   onChange={handleChange}
@@ -252,9 +281,10 @@ export default function ContactUs2() {
                   Message
                 </label>
                 <textarea
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 mb-3"
+                  className="w-full px-3 py-3 border border-gray-300 rounded-[4px] focus:outline-none focus:border-blue-500 mb-3"
                   id="message"
                   name="message"
+                  value={inputVal.message}
                   placeholder="Write your message here"
                   onChange={handleChange}
                   rows={10}
@@ -264,7 +294,7 @@ export default function ContactUs2() {
             </div>
             <div className="text-end">
               <button
-                className={`bg-customBlue1 text-[#F8F9FA] px-12 py-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600 text-[14px] leading-[21px] ${
+                className={`bg-customBlue1 text-[#F8F9FA] px-12 py-4 rounded-[4px] hover:bg-blue-600 focus:outline-none focus:bg-blue-600 text-[14px] leading-[21px] ${
                   isSending ||
                   !inputVal.firstname ||
                   !inputVal.email ||
