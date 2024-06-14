@@ -230,13 +230,13 @@ export default function ContactUs2() {
               <div className="flex flex-col gap-1">
                 <label
                   className="block text-[16px] leading-[22px] text-[#333333] font-medium"
-                  htmlFor="num"
+                  htmlFor="num" 
                 >
                   Phone Number
                 </label>
                 <input
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
-                  type="tel"
+                  type="num"
                   id="num"
                   name="PhoneNumber"
                   placeholder="Enter your phone number"
