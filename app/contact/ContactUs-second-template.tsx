@@ -258,7 +258,7 @@ export default function ContactUs2() {
               <div className="flex flex-col gap-1">
                 <label
                   className="block text-[16px] leading-[22px] text-[#333333] font-medium"
-                  htmlFor="num"
+                  htmlFor="num" 
                 >
                   Phone Number
                 </label>
