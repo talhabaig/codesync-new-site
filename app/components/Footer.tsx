@@ -1,8 +1,22 @@
 "use client";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
+
 export function Footer() {
+  const [loading, setLoading] = useState("");
+
+  const handleLinkClick = (path: string) => {
+    setLoading(path);
+    setTimeout(() => {
+      window.location.href = path;
+    }, 500);
+  };
+
   const pathname = usePathname();
+
   return (
     <div className="w-full bg-[#012959] text-white">
       <div className="p-12 lg:p-16 lg:pr-2 xl:p-28 ">
@@ -103,20 +117,51 @@ export function Footer() {
               Information
             </span>
             <div className="flex flex-col gap-[15px] font-poppins font-light text-18px 2xl:text-[20px] leading-[32.78px] tracking-[2%]">
-              <Link href="/services" className={` ${pathname === "/services"}`}>
-                <span className="">Services</span>
-              </Link>
-              <Link
-                href="/portfolio"
-                className={` ${pathname === "/portfolio"}`}
+              <span
+                className={`cursor-pointer ${loading === "/services" ? "font-medium" : ""}`}
+                onClick={() => handleLinkClick("/services")}
               >
-                <span className="">Portfolio</span>
+                {loading === "/services" ? (
+                  <FontAwesomeIcon icon={faSpinner} spin />
+                ) : (
+                  "Services"
+                )}
+              </span>
+              <Link href="/portfolio" className={` ${pathname === "/portfolio"}`}>
+                <span
+                  className={`cursor-pointer ${loading === "/portfolio" ? "font-medium" : ""}`}
+                  onClick={() => handleLinkClick("/portfolio")}
+                >
+                  {loading === "/portfolio" ? (
+                    <FontAwesomeIcon icon={faSpinner} spin />
+                  ) : (
+                    "Portfolio"
+                  )}
+                </span>
               </Link>
               <Link href="/team" className={` ${pathname === "/team"}`}>
-                <span className="">About Us</span>
+                <span
+                  className={`cursor-pointer ${loading === "/team" ? "font-medium" : ""}`}
+                  onClick={() => handleLinkClick("/team")}
+                >
+                  {loading === "/team" ? (
+                    <FontAwesomeIcon icon={faSpinner} spin />
+                  ) : (
+                    "About Us"
+                  )}
+                </span>
               </Link>
               <Link href="/contact" className={` ${pathname === "/contact"}`}>
-                <span className="">Contact</span>
+                <span
+                  className={`cursor-pointer ${loading === "/contact" ? "font-medium" : ""}`}
+                  onClick={() => handleLinkClick("/contact")}
+                >
+                  {loading === "/contact" ? (
+                    <FontAwesomeIcon icon={faSpinner} spin />
+                  ) : (
+                    "Contact"
+                  )}
+                </span>
               </Link>
             </div>
           </div>
