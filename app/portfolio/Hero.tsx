@@ -34,7 +34,6 @@ export default function Hero() {
             <div className="flex flex-col justify-center items-center md:pt-[10.5rem] md:pr-[3rem] lg:pt-[6.9rem]">
               <img
                 src="/icons/portfolio-hero-section.svg"
-                className="z-[999] "
                 alt="Team Image"
               />
 

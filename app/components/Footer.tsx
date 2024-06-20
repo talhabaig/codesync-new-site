@@ -139,18 +139,7 @@ export function Footer() {
                   )}
                 </span>
               </Link>
-              <Link href="/team" className={` ${pathname === "/team"}`}>
-                <span
-                  className={`cursor-pointer ${loading === "/team" ? "font-medium" : ""}`}
-                  onClick={() => handleLinkClick("/team")}
-                >
-                  {loading === "/team" ? (
-                    <FontAwesomeIcon icon={faSpinner} spin />
-                  ) : (
-                    "About Us"
-                  )}
-                </span>
-              </Link>
+
               <Link href="/contact" className={` ${pathname === "/contact"}`}>
                 <span
                   className={`cursor-pointer ${loading === "/contact" ? "font-medium" : ""}`}
@@ -159,7 +148,7 @@ export function Footer() {
                   {loading === "/contact" ? (
                     <FontAwesomeIcon icon={faSpinner} spin />
                   ) : (
-                    "Contact"
+                    "Contact Us"
                   )}
                 </span>
               </Link>

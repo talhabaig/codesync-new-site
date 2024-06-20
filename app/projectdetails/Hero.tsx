@@ -22,7 +22,7 @@ export default function Hero({ title, description,sitename,sitelink }: propstype
             </span>&nbsp;
               <a
                 href={sitelink}
-                target="_blank" className="underline hover:text-red-500 font-medium"
+                target="_blank" className="underline hover:text-customBlue1 font-medium"
               >{sitename}</a>
           </p>
         </div>
