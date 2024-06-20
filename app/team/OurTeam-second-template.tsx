@@ -124,7 +124,7 @@ const teamMembers = [
     name: "Haseeb Hamza",
     designation: "FrontEnd Developer",
     bio: "Former co-founder of Opendoor. Early staff at Spotify and Clearbit.",
-    image: getImagePath("Haseeb2.jpg"),
+    image: getImagePath("haseeb2.jpg"),
     social: {
       twitter: {
         url: "https://twitter.com/Haseeb",

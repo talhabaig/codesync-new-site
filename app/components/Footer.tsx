@@ -23,13 +23,15 @@ export function Footer() {
         <div className="flex flex-col md:flex-row md:justify-center gap-8 md:gap-3 lg:gap-8">
           <div className="basis-1/3 flex flex-col gap-4 xl:gap-8">
             <div className="flex flex-col md:gap-4 lg:mb-4">
-              <div className="md:pt-1">
-                <img
-                  src="/CodeSyncLogo.svg"
-                  alt="Logo"
-                  className="h-[64px] w-[329.16px] md:h-[39px] md:w-[210px] xl:h-[64px] xl:w-[329.16px]"
-                ></img>
-              </div>
+              <Link href="/">
+                <div className="md:pt-1">
+                  <img
+                    src="/CodeSyncLogo.svg"
+                    alt="Logo"
+                    className="h-[64px] w-[329.16px] md:h-[39px] md:w-[210px] xl:h-[64px] xl:w-[329.16px] cursor-pointer"
+                  ></img>
+                </div>
+              </Link>
               <div className="font-poppins font-light text-18px lg:text-[20px] leading-[32.78px] tracking-[2%]">
                 (C) IT Solution
               </div>
@@ -68,7 +70,7 @@ export function Footer() {
               >
                 <img
                   src="/icons/insta.svg"
-                  className="h-[42px] w-[42px] lg:h-[52px] lg:w-[52px] cursor-pointer"
+                  className="h-[42px] w-[42px] lg:h-[52px] lg:w-[52px] cursor-pointer footer-social-icon hover:translate-y-[-6px]"
                   alt=""
                 />
               </a>
@@ -80,7 +82,7 @@ export function Footer() {
               >
                 <img
                   src="/icons/linkedin.svg"
-                  className="h-[42px] w-[42px] lg:h-[52px] lg:w-[52px] cursor-pointer"
+                  className="h-[42px] w-[42px] lg:h-[52px] lg:w-[52px] cursor-pointer footer-social-icon hover:translate-y-[-6px]"
                   alt=""
                 />
               </a>
@@ -91,7 +93,7 @@ export function Footer() {
               >
                 <img
                   src="/icons/fb.svg"
-                  className="h-[42px] w-[42px] lg:h-[52px] lg:w-[52px] cursor-pointer"
+                  className="h-[42px] w-[42px] lg:h-[52px] lg:w-[52px] cursor-pointer footer-social-icon hover:translate-y-[-6px]"
                   alt=""
                 />
               </a>

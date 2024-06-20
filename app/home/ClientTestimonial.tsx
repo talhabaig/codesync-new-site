@@ -18,7 +18,7 @@ export default function ClientTestimonial() {
         </div>
 
         <div>
-          <div className="mx-auto mb-12 p-6 md:p-12 bg-gradient-to-b from-[#0D86FF] to-[#17BABA] max-w-[950px] rounded-[23px] relative">
+          <div className="mx-auto mb-12 polygon p-6 md:p-12 bg-gradient-to-b from-[#0D86FF] to-[#17BABA] max-w-[950px] rounded-[23px] relative">
             <div className="flex gap-2 sm:gap-6 xl:gap-12 items-center mb-8">
               <img src="/testimonial-images/Asset1.png" className="h-[20px] w-[20px] md:h-auto md:w-auto" alt="" />
               <div className="font-normal font-poppins text-sm md:text-xl lg:text-2xl leading-6 md:leading-9 text-[#FFFFFF]">
@@ -33,17 +33,17 @@ export default function ClientTestimonial() {
           </div>
           
           <div className="flex justify-center gap-7 md:gap-20">
-            <div className="">
-              <img src="/testimonial-images/Ellipse1.png" className="rounded-[50%] shadow-[0_0_30px_#0E78E1]" alt="" />
+            <div className="cursor-pointer">
+              <img src="/testimonial-images/Ellipse1.png" className="rounded-[50%] shadow-[0_0_20px_#0E78E1] hover:shadow-[0_0_40px_#0E78E1] footer-social-icon hover:translate-y-[-6px]" alt="" />
             </div>
-            <div>
-              <img src="/testimonial-images/Ellipse2.png" className="rounded-[50%] shadow-[0_0_50px_#0E78E1]" alt="" />
+            <div className="cursor-pointer">
+              <img src="/testimonial-images/Ellipse2.png" className="rounded-[50%] shadow-[0_0_20px_#0E78E1] hover:shadow-[0_0_40px_#0E78E1] footer-social-icon hover:translate-y-[-6px]" alt="" />
             </div>
-            <div>
-              <img src="/testimonial-images/Ellipse3.png" className="rounded-[50%] shadow-[0_0_30px_#0E78E1]" alt="" />
+            <div className="cursor-pointer">
+              <img src="/testimonial-images/Ellipse3.png" className="rounded-[50%] shadow-[0_0_20px_#0E78E1] hover:shadow-[0_0_40px_#0E78E1] footer-social-icon hover:translate-y-[-6px]" alt="" />
             </div>
-            <div>
-              <img src="/testimonial-images/Ellipse4.png" className="rounded-[50%] shadow-[0_0_30px_#0E78E1]" alt="" />
+            <div className="cursor-pointer">
+              <img src="/testimonial-images/Ellipse4.png" className="rounded-[50%] shadow-[0_0_20px_#0E78E1] hover:shadow-[0_0_40px_#0E78E1] footer-social-icon hover:translate-y-[-6px]" alt="" />
             </div>
           </div>
         </div>

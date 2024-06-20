@@ -27,7 +27,7 @@ export default function WhyCodesync() {
         </div>
 
         <div className="">
-          <div className="flex flex-col md:flex-row">
+          <div className="flex flex-col md:flex-row md:items-center">
             <div className="lg:px-12 2xl:px-6 basis-[55%] md:basis-[45%] 2xl:basis-[52%] flex justify-center">
               <div className="max-w-lg mx-auto relative overflow-hidden">
                 <div className="carousel flex transition-transform ease-in-out duration-300">
@@ -44,7 +44,7 @@ export default function WhyCodesync() {
                       currentIndex === 1 ? "" : "hidden"
                     }`}
                   >
-                    <img src="/carousel-img-2.svg" alt="" className="w-[75%] md:w-[70%] md:h-[320px]" />
+                    <img src="/carousel-img-2.svg" alt="" className="w-[75%] md:w-[70%] xl:h-[320px]" />
                   </div>
                 </div>
                 <div className="flex justify-center mt-8">

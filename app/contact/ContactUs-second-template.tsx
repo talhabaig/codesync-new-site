@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 type InputValues = {
@@ -162,62 +162,62 @@ export default function ContactUs2() {
           </div>
         </div>
 
-        <div className="basis-full md:basis-1/2 bg-[#ECEEF0] px-12 py-6 xl:px-24 xl:py-12">
+        <div className="basis-full md:basis-1/2 bg-[#ECEEF0] px-8 py-10 lg:px-12 xl:px-16 xl:py-12 2xl:px-24">
           <form onSubmit={handleSubmit} className="">
-            <div className="flex flex-col gap-4">
-              <div className="flex gap-4">
-                <div className="flex gap-1">
+            <div className="flex flex-col gap-4 ">
+              <div className="info-request-option flex gap-[6px] md:gap-1 lg:gap-2 xl:gap-3 mb-2">
+                {/* <div className="flex gap-1"> */}
                   <input
                     type="checkbox"
                     name="web"
                     checked={inputCheck.web}
                     id="web"
                     onChange={handleChange}
-                    className="min-w-5 min-h-5"
+                    className="hidden"
                   />
-                  <label htmlFor="web" className="select-none">
-                    <span>WEB</span>
+                  <label htmlFor="web" className="">
+                    <span className={`rounded-[12px] md:rounded-[16px] text-center font-normal leading-[25px] text-[10px] md:text-[13px] lg:text-[14px] xl:text-[15px] text-customBlue1 shadow-inset border-customBlue1 border-[1px] transition-all duration-200 ease-linear py-[3px] px-[12px] sm:px-[20px] md:px-[12px] lg:py-1 lg:px-[20px] 2xl:px-6 hover:cursor-pointer hover:text-white hover:bg-customBlue1 ${inputCheck.web ? "bg-customBlue1 text-white":""}`}>WEB</span>
                   </label>
-                </div>
-                <div className="flex gap-1">
+                {/* </div> */}
+                {/* <div className="flex gap-1"> */}
                   <input
                     type="checkbox"
                     name="mobile"
                     checked={inputCheck.mobile}
                     id="mobile"
                     onChange={handleChange}
-                    className="min-w-5 min-h-5"
+                    className=" hidden"
                   />
-                  <label htmlFor="mobile" className="select-none">
-                    <span>MOBILE</span>
+                  <label htmlFor="mobile" className="">
+                    <span className={`rounded-[12px] md:rounded-[16px] text-center font-normal leading-[25px] text-[10px] md:text-[13px] lg:text-[14px] xl:text-[15px] text-customBlue1 border-customBlue1 shadow-inset border-[1px] transition-all duration-200 ease-linear py-[3px] px-[12px] sm:px-[20px] md:px-[12px] lg:py-1 lg:px-[20px] hover:cursor-pointer hover:text-white hover:bg-customBlue1 ${inputCheck.mobile ? "bg-customBlue1 text-white":""}`}>MOBILE</span>
                   </label>
-                </div>
-                <div className="flex gap-1">
+                {/* </div> */}
+                {/* <div className="flex gap-1"> */}
                   <input
                     type="checkbox"
                     name="design"
                     checked={inputCheck.design}
                     id="design"
                     onChange={handleChange}
-                    className="min-w-5 min-h-5"
+                    className="hidden"
                   />
-                  <label htmlFor="design" className="select-none">
-                    <span>DESIGN</span>
+                  <label htmlFor="design" className="">
+                    <span className={`rounded-[12px] md:rounded-[16px] text-center font-normal leading-[25px] text-[10px] md:text-[13px] lg:text-[14px] xl:text-[15px] text-customBlue1 shadow-inset border-customBlue1 border-[1px] transition-all duration-200 ease-linear py-[3px] px-[12px] sm:px-[20px] md:px-[12px] lg:py-1 lg:px-[20px] hover:cursor-pointer hover:text-white hover:bg-customBlue1 ${inputCheck.design ? "bg-customBlue1 text-white":""}`}>DESIGN</span>
                   </label>
-                </div>
-                <div className="flex gap-1">
+                {/* </div> */}
+                {/* <div className="flex gap-1"> */}
                   <input
                     type="checkbox"
                     name="others"
                     checked={inputCheck.others}
                     id="others"
                     onChange={handleChange}
-                    className="min-w-5 min-h-5"
+                    className="hidden"
                   />
-                  <label htmlFor="others" className="select-none">
-                    <span>OTHERS</span>
+                  <label htmlFor="others" className="">
+                    <span className={`rounded-[12px] md:rounded-[16px] text-center font-normal leading-[25px] text-[10px] md:text-[13px] lg:text-[14px] xl:text-[15px] text-customBlue1 shadow-inset border-customBlue1 border-[1px] transition-all duration-200 ease-linear py-[3px] px-[12px] sm:px-[20px] md:px-[12px] lg:py-1 lg:px-[20px] hover:cursor-pointer hover:text-white hover:bg-customBlue1 ${inputCheck.others ? "bg-customBlue1 text-white":""}`}>OTHERS</span>
                   </label>
-                </div>
+                {/* </div> */}
               </div>
               <div className="flex flex-col gap-1">
                 <label
@@ -227,7 +227,7 @@ export default function ContactUs2() {
                   Full Name
                 </label>
                 <input
-                  className="w-full px-3 py-3 border border-gray-300 rounded-[4px] focus:outline-none focus:border-blue-500"
+                  className="shadow-inset w-full px-3 py-3 border border-gray-300 rounded-[4px] focus:outline-none focus:border-blue-500"
                   type="text"
                   id="firstname"
                   name="firstname"
@@ -245,11 +245,12 @@ export default function ContactUs2() {
                   Email
                 </label>
                 <input
-                  className="w-full px-3 py-3 border border-gray-300 rounded-[4px] focus:outline-none focus:border-blue-500"
+                  className="shadow-inset w-full px-3 py-3 border border-gray-300 rounded-[4px] focus:outline-none focus:border-blue-500"
                   type="email"
                   id="email"
                   name="email"
                   value={inputVal.email}
+                  disabled={!inputVal.firstname}
                   placeholder="Enter your email address "
                   onChange={handleChange}
                   required
@@ -263,11 +264,12 @@ export default function ContactUs2() {
                   Phone Number
                 </label>
                 <input
-                  className="w-full px-3 py-3 border border-gray-300 rounded-[4px] focus:outline-none focus:border-blue-500"
+                  className="shadow-inset w-full px-3 py-3 border border-gray-300 rounded-[4px] focus:outline-none focus:border-blue-500"
                   type="number"
                   id="num"
-                  value={inputVal.PhoneNumber}
                   name="PhoneNumber"
+                  value={inputVal.PhoneNumber}
+                  disabled={!inputVal.email || emailError}
                   placeholder="Enter your phone number"
                   onChange={handleChange}
                   required
@@ -281,7 +283,8 @@ export default function ContactUs2() {
                   Message
                 </label>
                 <textarea
-                  className="w-full px-3 py-3 border border-gray-300 rounded-[4px] focus:outline-none focus:border-blue-500 mb-3"
+                  className="shadow-inset w-full px-3 py-3 border border-gray-300 rounded-[4px] focus:outline-none focus:border-blue-500 mb-3"
+                  disabled={!inputVal.PhoneNumber || phoneError}
                   id="message"
                   name="message"
                   value={inputVal.message}
