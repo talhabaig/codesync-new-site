@@ -18,9 +18,9 @@ export default function Hero() {
         setTimeout(() => {
           setText('');
           index = 0;
-        }, 10000); // Adjust delay before restarting typing
+        }, 10000);
       }
-    }, 200); // Adjust typing speed here (milliseconds per character)
+    }, 200); 
     return () => clearInterval(interval);
   }, []);
 
