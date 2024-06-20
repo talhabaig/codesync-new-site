@@ -67,8 +67,8 @@ export default function WhyCodesync() {
               <div className="flex items-center basis-[25%] md:basis-[35%]">
                 <img src="/whycodesynline.svg" className="" alt="" />
               </div>
-              <div className="basis-[75%] md:basis-[65%] py-8 flex flex-col items-center justify-between">
-                <div>
+              <div className="basis-[75%]  md:basis-[65%] py-8 flex flex-col items-center justify-between">
+                <div className="mb-6">
                   <span className="font-poppins font-medium text-[18px] md:text-[26.48px] leading-[39.72px]tracking-[6%]">Tailored Solutions</span>
                   <p className="font-Chenla text-[14px] leading-[22px] md:leading-[25.75px] ">We offers industry-specific software solutions tailored to diverse business needs, emphasizing customization for optimal fit.</p>
                 </div>
