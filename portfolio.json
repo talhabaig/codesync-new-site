@@ -38,7 +38,7 @@
       "image1": "Emboldadmin2.webp",
       "image2": "Emboldadmin3.webp",
       "image3": "Emboldadmin4.webp",
-      "image1Desc":"We have made a compaigns page where all active compaigns are displayed to the admin.",
+      "image1Desc":"We have made campaign pages like active, past and draft where user can access them by clicking on sidebar.",
       "image2Desc":"We have made a settings page for admin where he can change setting of support tickets, compensation, billing, influencer verification and some other settings.",
       "image3Desc":"We have made a search page where admin can search a user and see his profile with all details.",
       "siteName": "Visit Our Website",
@@ -61,9 +61,9 @@
       "image1": "IBA2.png",
       "image2": "IBA3.png",
       "image3": "IBAclient4.webp",
-      "image1Desc":"We have made a Membership page for users to choose plan which is suitable for the user. User can access this page while signing up on the website while choosing membership.",
-      "image2Desc":"We have made a blog page to showcase our 6 main positioned blogs and other blogs are shown below of these 6 positioned blogs.",
-      "image3Desc":"We have made a Store page to showcase our products. User can Add to cart and purchase any of the product.",
+      "image1Desc":"We have created a Membership page for users to choose a plan that best suits them according to its benefits.",
+      "image2Desc":"We have made a blog page to show blogs.",
+      "image3Desc":"We've developed a store page where users can explore our products, add them to their cart, and make purchases.",
       "siteName": "Visit Our Website",
       "siteLink": "http://iba.rootpointers.net/"
     }
@@ -84,9 +84,9 @@
       "image1": "akomostatics.webp",
       "image2": "akomocalender.webp",
       "image3": "akomoadd.webp",
-      "image1Desc":"We have made a admin dashboard for overview of transactions, sales, new projects, Total profit and some graphs.",
+      "image1Desc":"We have developed an admin dashboard for an overview of transactions, sales, new projects, total profit, and various graphs.",
       "image2Desc":"We have made a activity page where we can add events and see recent activities about our business, family etc.",
-      "image3Desc":"We have made a invoice page to showcase all invoices or create a new one where we can see clients balance etc.",
+      "image3Desc":"We've developed an invoice page where all existing invoices are showcased, and new ones can be created. This page also provides insights into client balances and related details.",
       "siteName": "Visit Our Website",
       "siteLink": "https://dotted-ranger-363617.web.app/dashboards"
     }
@@ -107,9 +107,9 @@
       "image1": "IBA1.webp",
       "image2": "IBA3.webp",
       "image3": "IBA4.webp",
-      "image1Desc":"We have made a admin login page with login form where a admin have to input email and password to login.",
-      "image2Desc":"We have made a admin dashboard to see new members, expired members, sales, total members with some graph representation.",
-      "image3Desc":"We have made a blog page where we can add, edit or delete blogs and can organize first 6 blogs positions which is reflecting to the web.",
+      "image1Desc":"We've developed a secure login page reserved for admin use",
+      "image2Desc":"We've developed an admin dashboard that provides insights into new and expired memberships, sales, total member count, all represented graphically.",
+      "image3Desc":"We've developed a blog page with functionality to add, edit, or delete blogs. The page also allows us to arrange the positions of the first six blogs, which are then reflected on the website.",
       "siteName": "Visit Our Website",
       "siteLink": "http://ibaadmin.rootpointers.net/"
     }
@@ -130,9 +130,9 @@
       "image1": "servicehomepage.webp",
       "image2": "firsttimebuyerhomepage.webp",
       "image3": "unveilyouridealridehomepage.webp",
-      "image1Desc":"",
-      "image2Desc":"",
-      "image3Desc":"",
+      "image1Desc":"Simplify our car service experience with our new approach. Explore our homepage designed to enhance your journey.",
+      "image2Desc":"Introducing our buyer's page, meticulously crafted to enhance customer shopping experience.",
+      "image3Desc":"We've developed a page to showcase your ideal ride.",
       "siteName": "Visit Our Website",
       "siteLink": "https://stellardriveway.vercel.app/"
     }
@@ -153,9 +153,9 @@
       "image1": "otranalaytics.webp",
       "image2": "otrcommerce.webp",
       "image3": "otrapp.webp",
-      "image1Desc":"",
-      "image2Desc":"",
-      "image3Desc":"",
+      "image1Desc":"We've crafted an analytics page to display website visits, current visits, conversion rates, current subjects, order timelines, and news.",
+      "image2Desc":"We've designed an e-commerce page to showcase product sales, total balance, sales profit, current sales by gender timeline, yearly sales, sales overview, and the best salesman.",
+      "image3Desc":"We've developed an e-commerce page that displays total active users, total installations, total downloads, trajectory, current downloads, top installed countries, and top related applications.",
       "siteName": "Visit Our Website",
       "siteLink": "https://load-id-tawny.vercel.app/dashboard"
     }

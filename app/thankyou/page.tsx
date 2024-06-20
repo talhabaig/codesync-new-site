@@ -3,7 +3,7 @@ import React from 'react';
 const ThankYouPage = () => {
   return (
     <div className="container min-vh-100 d-flex justify-content-center align-items-center ">
-      <div className="col-md-8 ">
+      <div className="col-md-8 px-4">
         <div className="shadow-lg max-w-[800px] mx-auto py-14 my-6">
           <h3 className="font-bold text-lg mb-3 text-center">Thank You For Contacting Us</h3>
           <p className='px-8'>
