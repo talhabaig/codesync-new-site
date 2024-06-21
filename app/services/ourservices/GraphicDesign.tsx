@@ -38,7 +38,7 @@ function GraphicDesign() {
                   {detail.heading}{" "}
                 </span>
               </p>
-              <p className="font-normal text-lg 2xl:text-[22px] 2xl:leading-[35.86px] mb-[7rem] tracking-[2%] text-[#454545]">
+              <p className="font-normal text-lg 2xl:text-[22px] 2xl:leading-[35.86px] tracking-[2%] text-[#454545]">
                 {detail.content}
               </p>
             </div>

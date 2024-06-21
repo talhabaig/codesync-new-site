@@ -84,7 +84,7 @@ function OurPortfolio() {
           Building exceptional stuff
         </div>
       </div>
-      <div className="bg-[#BEF3FF] p-[2rem] xl:p-[4rem] xl:px-[5rem]">
+      <div className="bg-[#BEF3FF] p-8 pl-4 lg:pl-8 xl:pl-8 2xl:pl-20">
         <div className="flex flex-col md:justify-between md:flex-row md:flex-wrap">
           {currentProjects.map((project, index) => (
             <div

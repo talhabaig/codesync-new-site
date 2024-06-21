@@ -68,7 +68,7 @@ export default function OurServices() {
         </div>
 
         <ServicesTab tabs={serviceTab} setSelectedTab={setSelectedTab} />
-        <div className="w-full bg-info">
+        <div className="w-full">
           {transitions((style, item) =>
             item ? <animated.div style={style}>{item}</animated.div> : null
           )}

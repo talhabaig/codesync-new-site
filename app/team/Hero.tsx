@@ -7,9 +7,9 @@ export default function Hero() {
   const pathname = usePathname();
   return (
     <div className="w-full text-white max-h-[818px] bg-gradient-to-b md:bg-gradient-to-r from-customBlue1 to-customMint">
-      <div className="flex flex-col md:flex-row justify-center md:pt-8 lg:pt-9 xl:pt-12 2xl:pt-24">
-        <div className="flex justify-center items-start md:items-center 2xl:items-start md:basis-[45%] lg:basis-1/2">
-          <div className="py-8 md:py-12 2xl:pt-44 flex flex-col basis-[90%] md:basis-[86%] md:pl-4 2xl:basis-[80%]">
+      <div className="flex flex-col md:flex-row justify-center ">
+        <div className="flex justify-start pl-4 md:pl-8 lg:pl-12 xl:pl-[3rem] 2xl:pl-[6rem] items-start md:items-center 2xl:items-start md:basis-[45%] lg:basis-1/2">
+          <div className=" md:pl-0 md:py-12 2xl:pt-44 flex flex-col basis-[90%] md:basis-[86%] 2xl:basis-[80%]">
             <div className="uppercase font-poppins font-bold text-2xl md:text-xl lg:text-3xl xl:text-4xl 2xl:text-[50px] leading-[35px] md:leading-[30px] lg:leading-[40px] lg:mb-2 xl:leading-[45px] 2xl:leading-[69px] tracking-[1.5%]">
               <span className="text-[#ffffff]">
                 Meet Our Dynamic <span className="text-[#00FFFF]">Team</span> of
@@ -32,7 +32,7 @@ export default function Hero() {
         </div>
         <div className="basis-full md:basis-[55%] lg:basis-1/2">
           <div className="flex flex-col">
-            <div className="flex flex-col justify-center items-center md:pt-[10.5rem] md:pr-[3rem] lg:pt-[6.9rem]">
+            <div className="flex flex-col justify-center items-center pt-[5rem] md:pr-[3rem]">
               <img
                 src="/icons/Team-hero.svg"
                 alt="Team Image"
