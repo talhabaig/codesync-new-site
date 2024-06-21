@@ -23,7 +23,7 @@ function MobileDevelopment() {
   ];
   return (
     <div className="px-8 py-12 sm:p-12 xl:px-36 xl:py-24 2xl:px-48">
-      <div className="mb-12 md:mb-16 xl:mb-24">
+      <div className="">
         <p className="">
           <span className="text-[#0693EB] uppercase font-bold text-[25px] md:text-[40px] 2xl:text-[48.6px] leading-[40px] md:leading-[50px] 2xl:leading-[60.51px]">
             MOBILE APP DEVELOPMENT
@@ -44,7 +44,7 @@ function MobileDevelopment() {
                 {detail.heading}{" "}
               </span>
             </p>
-            <p className="font-normal text-lg 2xl:text-[22px] 2xl:leading-[35.86px] mb-[7rem] tracking-[2%] text-[#454545]">
+            <p className="font-normal text-lg 2xl:text-[22px] 2xl:leading-[35.86px] tracking-[2%] text-[#454545]">
               {detail.content}
             </p>
           </div>
