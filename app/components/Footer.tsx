@@ -41,7 +41,7 @@ export function Footer() {
                 <div>
                   <img
                     src="/icons/mdi_phone.svg"
-                    className="h-[20px] w-[20px] lg:h-[30px] lg:w-[30px]"
+                    className="h-[20px] w-[20px] lg:h-[27px] lg:w-[27px]"
                     alt=""
                   />
                 </div>
