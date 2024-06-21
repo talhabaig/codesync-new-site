@@ -22,12 +22,12 @@ export default function WhatWeDo() {
       <div className="2xl:container 2xl:mx-auto py-12 px-8 md:p-12 xl:p-24 2xl:px-12 2xl:pb-32">
         <div className="text-center font-poppins">
           <div className="flex items-center gap-2 mb-2 2xl:mb-3 md:gap-8 justify-center uppercase font-bold text-lg md:text-2xl lg:text-3xl xl:text-5xl 2xl:leading-[69px] tracking-[1.5%]">
-            <img src="/hori-line.svg" className='w-[85px] h-[9px] md:w-[120px] md:h-[12px] lg:w-auto lg:h-auto' alt="" />
+            <img src="/hori-line.svg" className='w-[70px] sm:w-[90px] h-[9px] md:w-[120px] md:h-[12px] lg:w-auto lg:h-auto' alt="" />
             <div>
               <span className="text-customBlue1">What</span>{" "}
               <span className="text-customDarkGray">we do?</span>
             </div>
-            <img src="/hori-line2.svg" className='w-[85px] h-[9px] md:w-[120px] md:h-[12px] lg:w-auto lg:h-auto' alt="" />
+            <img src="/hori-line2.svg" className='w-[70px] sm:w-[90px] h-[9px] md:w-[120px] md:h-[12px] lg:w-auto lg:h-auto' alt="" />
           </div>
           <div className="mb-4 md:mb-[25px] text-[18px] md:text-[20px] lg:text-[22px] font-light leading-[32.78px] tracking-[2%] text-customDarkGray">
             We let our ideas grow!

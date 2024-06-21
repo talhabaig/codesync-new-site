@@ -24,7 +24,7 @@ export default function OurProcess() {
               <div className="text-center md:text-left font-poppins font-semibold text-[27.3px] leading-[45.5px] tracking-[4%] text-[#000000]">
                 REQUIREMENTS
               </div>
-              <p className="text-center md:text-left font-poppins font-light text-[26px] md:text-[20px] xl:text-[26px] leading-[43.29px] md:leading-[34px] xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000]">
+              <p className="text-center md:text-left font-poppins font-light text-[22px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] leading-[34px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000]">
                 Benefit from the experience, knowledge, unique perspective, and efficiency that our experts bring to each project.
               </p>
             </div>
@@ -43,7 +43,7 @@ export default function OurProcess() {
               <div className="text-center md:text-left font-poppins font-semibold text-[27.3px] leading-[45.5px] tracking-[4%] text-[#000000]">
                 DESIGN
               </div>
-              <p className="text-center md:text-left font-poppins font-light text-[26px] md:text-[20px] xl:text-[26px] leading-[43.29px] md:leading-[34px] xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000]">
+              <p className="text-center md:text-left font-poppins font-light text-[22px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] leading-[34px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000]">
                 Benefit from the experience, knowledge, unique perspective, and efficiency that our experts bring to each project.
               </p>
             </div>
@@ -63,7 +63,7 @@ export default function OurProcess() {
               <div className="text-center md:text-left font-poppins font-semibold text-[27.3px] leading-[45.5px] tracking-[4%] text-[#000000]">
                 DEVELOPMENT
               </div>
-              <p className="text-center md:text-left font-poppins font-light text-[26px] md:text-[20px] xl:text-[26px] leading-[43.29px] md:leading-[34px] xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000]">
+              <p className="text-center md:text-left font-poppins font-light text-[22px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] leading-[34px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000]">
                 Benefit from the experience, knowledge, unique perspective, and efficiency that our experts bring to each project.
               </p>
             </div>
@@ -82,7 +82,7 @@ export default function OurProcess() {
               <div className="text-center md:text-left font-poppins font-semibold text-[27.3px] leading-[45.5px] tracking-[4%] text-[#000000]">
                 TESTING
               </div>
-              <p className="text-center md:text-left font-poppins font-light text-[26px] md:text-[20px] xl:text-[26px] leading-[43.29px] md:leading-[34px] xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000]">
+              <p className="text-center md:text-left font-poppins font-light text-[22px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] leading-[34px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000]">
                 Benefit from the experience, knowledge, unique perspective, and efficiency that our experts bring to each project.
               </p>
             </div>
@@ -102,7 +102,7 @@ export default function OurProcess() {
               <div className="text-center md:text-left font-poppins font-semibold text-[27.3px] leading-[45.5px] tracking-[4%] text-[#000000]">
                 LAUNCH
               </div>
-              <p className="text-center md:text-left font-poppins font-light text-[26px] md:text-[20px] xl:text-[26px] leading-[43.29px] md:leading-[34px] xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000]">
+              <p className="text-center md:text-left font-poppins font-light text-[22px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] leading-[34px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000]">
                 Benefit from the experience, knowledge, unique perspective, and efficiency that our experts bring to each project.
               </p>
             </div>
