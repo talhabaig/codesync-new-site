@@ -148,7 +148,7 @@ export default function ContactUs2() {
       </div>
       <div className="flex flex-wrap">
         <div className="basis-full md:basis-1/2 bg-gradient-to-b from-customBlue1 to-[#00B2FF] py-12 px-8 2xl:p-24 flex flex-col gap-12 items-center justify-center">
-          <div className="flex justify-center">
+          <div className=" flex justify-start items-start md:items-center 2xl:items-start md:basis-[45%] lg:basis-1/2">
             <div className="lg:basis-[86%] xl:basis-[77%]">
               <div className="font-poppins font-bold text-[#FFFFFF] text-[30px] lg:text-[45px] xl:text-[48px] leading-[40px] lg:leading-[63px] mb-2 xl:leading-[63.98px]">
                 Let's talk with Us
