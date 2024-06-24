@@ -84,6 +84,13 @@ input[type=number] {
 .fly-in-right {
   animation: flyInRight 1s forwards;
 }
+.animate-slide-from-left {
+  animation: flyInLeft 1s ease-in-out;
+}
+
+.animate-slide-from-right {
+  animation: flyInRight 1s ease-in-out;
+}
 
 @keyframes flyInLeft {
   from {
