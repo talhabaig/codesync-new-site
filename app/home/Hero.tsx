@@ -61,9 +61,7 @@ export default function Hero() {
             </p>
             <div className='xl:mb-8'>
               <Link href="/hireus" className={` ${pathname === "/hireus"}`}>
-                <Button customClass="text-white font-medium text-[21.72px] leading-[32.58px] py-2 px-4 bg-gradient-to-t from-customBlue2 to-customBlue3 h-[55.26px] rounded-[8.45px] hover:transform hover:transition-transform hover:duration-300 hover:ease-in-out hover:scale-105 hover:shadow-[0_0_15px_#005BA1]">
-                  Hire us now
-                </Button>
+                <Button customClass="text-white font-medium text-[21.72px] leading-[32.58px] py-2 px-4 bg-gradient-to-t from-customBlue2 to-customBlue3 h-[55.26px] rounded-[8.45px] hover:transition-transform hover:duration-300 hover:ease-in-out  hover:shadow-[0_0_15px_#005BA1]" >Hire us now</Button>
               </Link>
             </div>
           </div>
