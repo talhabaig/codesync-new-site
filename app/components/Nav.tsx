@@ -1,25 +1,21 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import styles from "../styles/layout.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+
 
 export const Nav = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const [isLoading, setIsLoading] = useState(false);
   const handleToggle = () => {
     setIsOpen(!isOpen);
   };
 
   const handleClose = () => {
     setIsOpen(false);
-    setIsLoading(true);
   };
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -44,13 +40,6 @@ export const Nav = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isOpen]);
-  useEffect(() => {
-    if (isLoading) {
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 500);
-    }
-  }, [isLoading]);
 
   return (
     <nav className="bg-customNavy text-white relative p-[16px] md:py-[18px] md:px-[2rem] lg:py-[15px] lg:px-[3rem] 2xl:py-[24px] 2xl:px-[6rem]">
@@ -144,15 +133,7 @@ export const Nav = () => {
             </Link>
           </div>
         </div>
-        {isLoading && (
-          <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex justify-center items-center">
-            <FontAwesomeIcon
-              icon={faSpinner}
-              spin
-              className="text-white text-4xl"
-            />
-          </div>
-        )}
+       
       </div>
     </nav>
   );
