@@ -120,7 +120,6 @@ function OurPortfolio() {
           ))}
         </div>
 
-        {/* Pagination */}
         <div className="flex justify-center md:p-4 items-center mt-8">
           <div className="bg-[#E0F3FF] rounded-[16px] flex items-center p-1 md:p-3 border-[1px] border-[#0693EB]">
             <button

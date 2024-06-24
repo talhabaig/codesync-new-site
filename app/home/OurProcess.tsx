@@ -1,7 +1,6 @@
 export default function OurProcess() {
   return (
     <div className="w-full bg-white bg-gradient-to-tr from-[#a0b4e5] from-0% via-white via-50% to-[#a0b4e5] to-100%">
-      {/* <div className="absolute bottom-0 left-0 shadow-[0_0_200px_#6D95FC] rounded-[50%] h-[100px] w-[100px]"></div> */}
       <div className="2xl:container 2xl:mx-auto p-12 lg:p-20 xl:p-24">
         <div className="mb-16 md:mb-20 2xl:mb-28 lg-32 mt-12">
           <div className="text-center font-poppins font-semibold text-[18px] md:text-[21px] leading-[31.5px] tracking-[14.5%] uppercase">
