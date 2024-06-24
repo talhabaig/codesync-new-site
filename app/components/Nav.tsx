@@ -48,7 +48,7 @@ export const Nav = () => {
     if (isLoading) {
       setTimeout(() => {
         setIsLoading(false);
-      }, 1000);
+      }, 500);
     }
   }, [isLoading]);
 

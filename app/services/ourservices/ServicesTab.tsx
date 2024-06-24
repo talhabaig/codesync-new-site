@@ -17,7 +17,7 @@ function ServicesTab({ tabs, setSelectedTab }: any) {
             <div className="w-[140px] h-[140px] xl:w-[160px] xl:h-[160px] 2xl:h-[229px] 2xl:w-[229px] group-hover:w-[150px] group-hover:h-[150px] md:group-hover:h-[140px] md:group-hover:w-[140px] xl:group-hover:h-[170px] xl:group-hover:w-[170px] 2xl:group-hover:h-[235px] 2xl:group-hover:w-[235px] rounded-[28.2px] bg-gradient-to-b from-customDarkBlue to-customMediumBlue flex justify-center items-center group-hover:shadow-[0_0_30px_#15a7c5] group-hover:outline group-hover:outline-4 group-hover:outline-white ">
               <img
                 src={tab.icon}
-                alt=""
+                alt="icon"
                 className="h-[100px] w-[100px] 2xl:h-auto 2xl:w-auto"
               />
             </div>
