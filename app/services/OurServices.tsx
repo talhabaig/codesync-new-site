@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useTransition, animated } from "react-spring";
 import WebDevelopment from "./ourservices/WebDevelopment";
 import GraphicDesign from "./ourservices/GraphicDesign";
@@ -36,12 +36,21 @@ const serviceTab = [
 
 export default function OurServices() {
   const [selectedTab, setSelectedTab] = useState(serviceTab[0].tab);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   const transitions = useTransition(selectedTab, {
     from: { opacity: 0, transform: "rotateY(90deg)" },
     enter: { opacity: 1, transform: "rotateY(0deg)" },
     leave: { opacity: 0, transform: "rotateY(-90deg)" },
   });
+
+  const handleTabClick = (tabContent: any) => {
+    setSelectedTab(tabContent);
+    if (contentRef.current) {
+      contentRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="w-full bg-gradient-to-r from-customLightBlue to-customVeryLightBlue">
       <div className="py-12 xl:py-24 2xl:pb-32">
@@ -67,8 +76,8 @@ export default function OurServices() {
           </div>
         </div>
 
-        <ServicesTab tabs={serviceTab} setSelectedTab={setSelectedTab} />
-        <div className="w-full">
+        <ServicesTab tabs={serviceTab} setSelectedTab={handleTabClick} />
+        <div ref={contentRef} className="w-full">
           {transitions((style, item) =>
             item ? <animated.div style={style}>{item}</animated.div> : null
           )}

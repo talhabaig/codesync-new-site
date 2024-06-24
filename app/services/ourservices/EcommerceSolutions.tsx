@@ -5,8 +5,8 @@ function EcommerceSolutions() {
     <div className="px-8 py-12 sm:p-12 xl:px-36 xl:py-24 2xl:px-48">
       <div className="mb-12 md:mb-16 xl:mb-24">
         <p className="">
-          <span className="text-[#0693EB] uppercase font-bold text-[25px] md:text-[40px] 2xl:text-[48.6px] leading-[40px] md:leading-[50px] 2xl:leading-[60.51px]">
-            e-cOMMERCE SOLUTIONS
+          <span className="text-[#0693EB] font-bold text-[25px] md:text-[40px] 2xl:text-[48.6px] leading-[40px] md:leading-[50px] 2xl:leading-[60.51px]">
+            E-COMMERCE SOLUTIONS
           </span>
         </p>
         <p className="font-Chenla text-[16px] md:text-xl 2xl:text-2xl leading-[20px] md:leading-[25px] 2xl:leading-[39.96px] mb-[17.2px] tracking-[4%] 2xl:w-[80%]">
