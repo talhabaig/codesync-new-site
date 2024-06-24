@@ -37,32 +37,54 @@ export default function ClientTestimonial() {
   );
 
   const [basePosition, setBasePosition] = useState(15);
+  const [gap, setGap] = useState(20.5);
+  const [windowWidth, setWindowWidth] = useState(0);
 
   useEffect(() => {
-    const updateBasePosition = () => {
-      if (window.innerWidth < 576) {
-        setBasePosition(11);
-      } else {
-        setBasePosition(15);
+    const updateBasePositionAndGap = () => {
+      if (typeof window !== "undefined") {
+        if (window.innerWidth < 375) {
+          setBasePosition(10);
+          setGap(22);
+        } else if (window.innerWidth >= 375 && window.innerWidth < 425) {
+          setBasePosition(13);
+          setGap(21);
+        } else if (window.innerWidth >= 425 && window.innerWidth < 576) {
+          setBasePosition(15);
+          setGap(20);
+        } else if (window.innerWidth >= 576 && window.innerWidth < 768) {
+          setBasePosition(16);
+          setGap(20);
+        } else if (window.innerWidth >= 768 && window.innerWidth < 1400) {
+          setBasePosition(14);
+          setGap(22);
+        } else if (window.innerWidth >= 1400) {
+          setBasePosition(17);
+          setGap(20);
+        }
+        setWindowWidth(window.innerWidth);
       }
     };
 
-    updateBasePosition();
-    window.addEventListener("resize", updateBasePosition);
+    const handleResize = () => {
+      updateBasePositionAndGap();
+    };
+
+    updateBasePositionAndGap(); // Initial call
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("resize", updateBasePosition);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   const calculateArrowPosition = (index: number): number => {
-    const gap = 20;
     return basePosition + gap * index;
   };
 
   return (
     <div className="w-full text-white bg-gradient-to-b from-[#04396A] to-[#074a88]">
-      <div className="2xl:container 2xl:mx-auto py-12 px-8 md:p-12 xl:p-24 2xl:px-12">
+      <div className="2xl:container 2xl:mx-auto py-12 px-6 md:p-12 xl:p-24 2xl:px-12">
         <div className="text-center font-poppins mb-12 md:mb-24">
           <div className="flex items-center gap-2 md:gap-8 justify-center uppercase font-bold text-lg md:text-2xl lg:text-3xl xl:text-5xl leading-[20px] md:leading-[50px] lg:leading-[69px] tracking-[1.5%] mb-4">
             <img
@@ -87,7 +109,7 @@ export default function ClientTestimonial() {
         </div>
 
         <div>
-          <div className="mx-auto mb-12 polygon p-6 md:p-12 bg-gradient-to-b from-[#0D86FF] to-[#17BABA] max-w-[950px] rounded-[23px] relative">
+          <div className="mx-auto mb-12 lg:mb-14 polygon p-6 md:p-12 bg-gradient-to-b from-[#0D86FF] to-[#17BABA] xs:max-w-[377px] sm:max-w-[480px] md:max-w-[650px] lg:max-w-[800px] xl:max-w-[860px] 2xl:max-w-[950px] rounded-[23px] relative">
             <div className="flex gap-2 sm:gap-6 xl:gap-12 items-center mb-8">
               <img
                 src="/testimonial-images/Asset1.png"
@@ -118,7 +140,7 @@ export default function ClientTestimonial() {
             />
           </div>
 
-          <div className="flex justify-center gap-3 sm:gap-6 md:gap-10 lg:gap-20">
+          <div className="flex justify-center gap-[14px] xs:gap-[18px] sm:gap-6 md:gap-10 lg:gap-16 xl:gap-20">
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
@@ -127,7 +149,7 @@ export default function ClientTestimonial() {
               >
                 <img
                   src={testimonial.image}
-                  className={`rounded-[50%] h-[50px] w-[50px] sm:h-[70px] sm:w-[70px] md:h-[100px] md:w-[100px] lg:h-[112px] lg:w-[112px] hover:shadow-[0_0_40px_#0E78E1] footer-social-icon hover:translate-y-[-6px] ${
+                  className={`rounded-[50%] h-[50px] w-[50px] xs:h-[60px] xs:w-[60px] sm:h-[70px] sm:w-[70px] md:h-[100px] md:w-[100px] lg:h-[112px] lg:w-[112px] hover:shadow-[0_0_40px_#0E78E1] footer-social-icon hover:translate-y-[-6px] ${
                     selectedTestimonial.image === testimonial.image
                       ? "translate-y-[-6px] shadow-[0_0_40px_#0E78E1]"
                       : ""
