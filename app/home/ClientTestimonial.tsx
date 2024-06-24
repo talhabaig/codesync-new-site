@@ -38,11 +38,11 @@ export default function ClientTestimonial() {
 
   const [basePosition, setBasePosition] = useState(15);
   const [gap, setGap] = useState(20.5);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState(0);
 
   useEffect(() => {
     const updateBasePositionAndGap = () => {
-      if (typeof window !== "undefined") { // Check if window is defined
+      if (typeof window !== "undefined") {
         if (window.innerWidth < 375) {
           setBasePosition(10);
           setGap(22);
@@ -67,11 +67,10 @@ export default function ClientTestimonial() {
     };
 
     const handleResize = () => {
-      setWindowWidth(window.innerWidth);
       updateBasePositionAndGap();
     };
 
-    updateBasePositionAndGap();
+    updateBasePositionAndGap(); // Initial call
     window.addEventListener("resize", handleResize);
 
     return () => {
