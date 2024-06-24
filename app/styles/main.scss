@@ -74,6 +74,12 @@ input[type=number] {
 .fly-in-left {
   animation: flyInLeft 1s forwards;
 }
+.fly-in-1-5s {
+  animation: flyInLeft 1.5s forwards;
+}
+.fly-in-2s {
+  animation: flyInLeft 2s forwards;
+}
 
 .fly-in-right {
   animation: flyInRight 1s forwards;
