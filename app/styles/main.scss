@@ -104,3 +104,36 @@ input[type=number] {
   }
 }
 // end of code for keen slider in why codesync section
+
+.typing-container {
+  display: inline;
+  border-right: 3px solid;
+  // animation: blink 0.75s step-end infinite;
+}
+
+@keyframes blink {
+  from, to { border-color: transparent; }
+  50% { border-color: white; }
+}
+.nav-link {
+  position: relative;
+  display: inline-block;
+}
+.nav-link::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 0;
+  height: 5px;
+  background-color: #00f0ff;
+  transition: all 0.5s ease;
+  border-radius: 1rem;
+}
+
+.nav-link:hover::before,
+.nav-link.active::before {
+  width: 70%;
+}
