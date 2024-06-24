@@ -49,7 +49,7 @@ export default function Hero() {
       <div className="flex flex-col md:flex-row justify-center items-center md:pt-8 lg:pt-9 xl:pt-12 2xl:pt-16">
         <div className='basis-full md:basis-[45%] lg:basis-1/2 flex justify-center md:justify-end items-start pt-12 md:pt-0'>
           <div className="flex flex-col basis-[70%] md:basis-[86%] 2xl:basis-[85%]">
-            <div className="uppercase font-poppins font-bold text-2xl md:text-xl lg:text-3xl xl:text-3xl 2xl:text-[50px]  leading-[35px] md:leading-[30px] lg:leading-[40px] lg:mb-2 xl:leading-[45px] 2xl:leading-[4Z5px] tracking-[15%] max-h-[8.4rem] min-h-[8.4rem] md:max-h-[4rem] md:min-h-[4rem] lg:max-h-[7rem] lg:min-h-[7rem] 2xl:max-h-[12rem] 2xl:min-h-[12rem]">
+            <div className="uppercase font-poppins font-bold text-2xl md:text-xl lg:text-3xl xl:text-3xl 2xl:text-[50px]  leading-[35px] md:leading-[30px] lg:leading-[40px] lg:mb-2 xl:leading-[45px] 2xl:leading-[4Z5px] tracking-[15%] max-h-[10.4rem] min-h-[10.4rem] md:max-h-[6rem] md:min-h-[6rem] lg:max-h-[7rem] lg:min-h-[7rem] 2xl:max-h-[12rem] 2xl:min-h-[12rem]">
               <span className="typing-container">
                 <span className='text-customCyan'>{getFirstWord(dataText[loopNum % dataText.length])}</span> {text}
               </span>
@@ -61,9 +61,7 @@ export default function Hero() {
             </p>
             <div className='xl:mb-8'>
               <Link href="/hireus" className={` ${pathname === "/hireus"}`}>
-
                 <Button customClass="text-white font-medium text-[21.72px] leading-[32.58px] py-2 px-4 bg-gradient-to-t from-customBlue2 to-customBlue3 h-[55.26px] rounded-[8.45px] hover:transition-transform hover:duration-300 hover:ease-in-out  hover:shadow-[0_0_15px_#005BA1]" >Hire us now</Button>
-
               </Link>
             </div>
           </div>

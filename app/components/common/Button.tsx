@@ -2,8 +2,8 @@
 import React from 'react';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'danger'; // Example custom prop for styling
-  isLoading?: boolean; // Example custom prop for loading state
+  variant?: 'primary' | 'secondary' | 'danger'; 
+  isLoading?: boolean;
   customClass?: string;
 }
 
