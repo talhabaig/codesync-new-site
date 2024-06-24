@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import { FeedReadMore } from "../components/common/readMore";
 import { getImagePath } from "./utils.js";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 const portfolioItems = [
   {
     id: 1,
@@ -135,6 +137,7 @@ const portfolioItems = [
 
 export default function OurPortfolio2() {
   const [currentPage, setCurrentPage] = useState(1);
+  const pathname = usePathname();
   const itemsPerPage = 4;
   const totalPages = Math.ceil(portfolioItems.length / itemsPerPage);
 
@@ -209,46 +212,53 @@ export default function OurPortfolio2() {
           </div>
         </div>
         <div className="my-12 max-w-[1520px] 2xl:mx-auto">
-          {currentPortfolioItems.map((item, index) => (
+          {currentPortfolioItems.map((project, index) => (
             <div
               className={`flex flex-col md:flex-row mb-16 lg:mb-24 xl:mb-32 ${
                 index % 2 === 1
                   ? "flex-col md:flex-row"
                   : "flex-col md:flex-row-reverse"
               }`}
-              key={item.id}
+              key={project.id}
             >
               <div
-                className={`md:basis-[55%] lg:basis-[52%] xl:basis-[55%] ${item.order}`}
+                className={`md:basis-[55%] lg:basis-[52%] xl:basis-[55%] ${project.order}`}
               >
                 <div className="flex justify-center">
-                  <div className="relative">
-                    <img
-                      src="../portfolio-images/polygon-sky-blue.svg"
-                      alt=""
-                      className="w-[250px] h-[160px] sm:w-[300px] sm:h-[200px] lg:w-[320px] lg:h-[200px] xl:w-[520px] xl:h-[300px] 2xl:w-[644px] 2xl:h-[384px]"
-                    />
-                    <img
-                      src="../portfolio-images/polygon-blue.svg"
-                      className="absolute top-3 right-3 sm:top-4 sm:right-4 lg:top-5 lg:right-6 xl:top-8 xl:right-8 z-20 w-[250px] h-[160px] sm:w-[300px] sm:h-[200px] lg-w-[300px] lg:h-[200px] xl:w-[520px] xl:h-[300px] 2xl:w-[644px] 2xl:h-[384px]"
-                      alt=""
-                    />
-                    <img
-                      src={item.imageSrc}
-                      className="absolute top-7 right-6 sm:top-11 sm:right-8 lg:top-12 lg:right-12 xl:top-16 xl:right-20 2xl:top-16 2xl:right-16 [clip-path:polygon(0_0,_100%_0,_100%_87%,_0_100%)] z-30 rounded-[24px] lg:rounded-[24px] xl:rounded-[35px] w-[250px] h-[160px] sm:w-[300px] sm:h-[180px] lg:w-[320px] lg:h-[200px] xl:w-[520px] xl:h-[300px] 2xl:w-[644px] 2xl:h-[384px]"
-                      alt=""
-                    />
-                  </div>
+                  <Link
+                    href={`/projectdetails/${project.id}`}
+                    className={` ${
+                      pathname === `/projectdetails/${project.id}`
+                    }`}
+                  >
+                    <div className="relative">
+                      <img
+                        src="../portfolio-images/polygon-sky-blue.svg"
+                        alt="img"
+                        className="w-[250px] h-[160px] sm:w-[300px] sm:h-[200px] lg:w-[320px] lg:h-[200px] xl:w-[520px] xl:h-[300px] 2xl:w-[644px] 2xl:h-[384px]"
+                      />
+                      <img
+                        src="../portfolio-images/polygon-blue.svg"
+                        className="absolute top-3 right-3 sm:top-4 sm:right-4 lg:top-5 lg:right-6 xl:top-8 xl:right-8 z-20 w-[250px] h-[160px] sm:w-[300px] sm:h-[200px] lg-w-[300px] lg:h-[200px] xl:w-[520px] xl:h-[300px] 2xl:w-[644px] 2xl:h-[384px]"
+                        alt="img"
+                      />
+                      <img
+                        src={project.imageSrc}
+                        className="absolute top-7 right-6 sm:top-11 sm:right-8 lg:top-12 lg:right-12 xl:top-16 xl:right-20 2xl:top-16 2xl:right-16 [clip-path:polygon(0_0,_100%_0,_100%_100%,_0_100%)] z-30 rounded-[24px] lg:rounded-[24px] xl:rounded-[35px] w-[250px] h-[160px] sm:w-[300px] sm:h-[180px] lg:w-[320px] lg:h-[200px] xl:w-[520px] xl:h-[300px] 2xl:w-[644px] 2xl:h-[384px]"
+                        alt="img"
+                      />
+                    </div>
+                  </Link>
                 </div>
               </div>
               <div className="md:basis-[45%] lg:basis-[48%] xl:basis-[45%] flex items-center">
                 <div className="md:p-4 lg:p-8 md:basis-full xl:basis-[90%] 2xl:basis-[85%]">
                   <span className="text-[30px] md:text-[35px] lg:text-[45px] xl:text-[50px] 2xl:text-[64px] font-semibold text-[#0693EB] leading-[50px] md:leading-[60px] lg:leading-[75px] xl:leading-[80px] 2xl:leading-[96px] uppercase">
-                    {item.title}
+                    {project.title}
                   </span>
                   <div className="text-[#454545] font-work-sans leading-[30.25px] font-light text-[25px] mb-2 xl:mb-0">
                     <FeedReadMore maxLength={150}>
-                      {item.description}
+                      {project.description}
                     </FeedReadMore>
                   </div>
                 </div>
