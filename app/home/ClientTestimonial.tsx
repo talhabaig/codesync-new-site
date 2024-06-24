@@ -42,24 +42,27 @@ export default function ClientTestimonial() {
 
   useEffect(() => {
     const updateBasePositionAndGap = () => {
-      if (window.innerWidth < 375) {
-        setBasePosition(10);
-        setGap(22);
-      } else if (window.innerWidth >= 375 && window.innerWidth < 425) {
-        setBasePosition(13);
-        setGap(21);
-      } else if (window.innerWidth >= 425 && window.innerWidth < 576) {
-        setBasePosition(15);
-        setGap(20);
-      } else if (window.innerWidth >= 576 && window.innerWidth < 768 ) {
-        setBasePosition(16);
-        setGap(20);
-      } else if (window.innerWidth >= 768 && window.innerWidth < 1400) {
-        setBasePosition(14);
-        setGap(22);
-      } else if (window.innerWidth >= 1400) {
-        setBasePosition(17);
-        setGap(20);
+      if (typeof window !== "undefined") { // Check if window is defined
+        if (window.innerWidth < 375) {
+          setBasePosition(10);
+          setGap(22);
+        } else if (window.innerWidth >= 375 && window.innerWidth < 425) {
+          setBasePosition(13);
+          setGap(21);
+        } else if (window.innerWidth >= 425 && window.innerWidth < 576) {
+          setBasePosition(15);
+          setGap(20);
+        } else if (window.innerWidth >= 576 && window.innerWidth < 768) {
+          setBasePosition(16);
+          setGap(20);
+        } else if (window.innerWidth >= 768 && window.innerWidth < 1400) {
+          setBasePosition(14);
+          setGap(22);
+        } else if (window.innerWidth >= 1400) {
+          setBasePosition(17);
+          setGap(20);
+        }
+        setWindowWidth(window.innerWidth);
       }
     };
 

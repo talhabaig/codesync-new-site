@@ -1,7 +1,56 @@
+"use client";
+import { useEffect, useRef } from "react";
+
 export default function OurProcess() {
+  const airplaneRefs = useRef<(HTMLImageElement | null)[]>([]);
+  const titleRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const paragraphRefs = useRef<(HTMLParagraphElement | null)[]>([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (entry.target.classList.contains('right')) {
+              entry.target.classList.add("fly-in-right");
+            } else {
+              entry.target.classList.add("fly-in-left");
+            }
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    titleRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    paragraphRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    airplaneRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => {
+      titleRefs.current.forEach((ref) => {
+        if (ref) observer.unobserve(ref);
+      });
+
+      paragraphRefs.current.forEach((ref) => {
+        if (ref) observer.unobserve(ref);
+      });
+
+      airplaneRefs.current.forEach((ref) => {
+        if (ref) observer.unobserve(ref);
+      });
+    };
+  }, []);
+
   return (
     <div className="w-full bg-white bg-gradient-to-tr from-[#a0b4e5] from-0% via-white via-50% to-[#a0b4e5] to-100%">
-      {/* <div className="absolute bottom-0 left-0 shadow-[0_0_200px_#6D95FC] rounded-[50%] h-[100px] w-[100px]"></div> */}
       <div className="2xl:container 2xl:mx-auto p-12 lg:p-20 xl:p-24">
         <div className="mb-16 md:mb-20 2xl:mb-28 lg-32 mt-12">
           <div className="text-center font-poppins font-semibold text-[18px] md:text-[21px] leading-[31.5px] tracking-[14.5%] uppercase">
@@ -21,10 +70,10 @@ export default function OurProcess() {
               <img src="/OurProcess1.svg" alt="" className="" />
             </div>
             <div className="md:basis-[60%] xl:basis-[57%]">
-              <div className="text-center md:text-left font-poppins font-semibold text-[27.3px] leading-[45.5px] tracking-[4%] text-[#000000]">
+              <div ref={(el) => (titleRefs.current[0] = el)} className="text-center md:text-left font-poppins font-semibold text-[27.3px] leading-[45.5px] tracking-[4%] text-[#000000] right">
                 REQUIREMENTS
               </div>
-              <p className="text-center md:text-left font-poppins font-light text-[22px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] leading-[34px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000]">
+              <p ref={(el) => (paragraphRefs.current[0] = el)} className="text-center md:text-left font-poppins font-light text-[22px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] leading-[34px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000] right">
                 Benefit from the experience, knowledge, unique perspective, and efficiency that our experts bring to each project.
               </p>
             </div>
@@ -33,37 +82,36 @@ export default function OurProcess() {
             <div>
               <img src="/OurProcessline.svg" alt="" className="mx-auto h-[80px] lg:h-[127.07px] w-[75%] xl:w-[80%]" />
             </div>
-            <img src="/airoplane.svg" className="absolute top-[12px] left-[220px] lg:top-[30px] xl:left-[350px]" alt="" />
+            <img ref={(el) => (airplaneRefs.current[0] = el)} src="/airoplane.svg" className="absolute top-[12px] left-[220px] lg:top-[30px] xl:left-[350px]" alt="" />
           </div>
           <div className="flex flex-col md:flex-row md:justify-between md:items-center">
             <div className="md:basis-[25%] xl:basis-[35%] flex justify-center md:order-2 md:justify-end">
               <img src="/OurProcess2.svg" alt="" className="" />
             </div>
             <div className="md:basis-[60%] xl:basis-[57%] md:order-1">
-              <div className="text-center md:text-left font-poppins font-semibold text-[27.3px] leading-[45.5px] tracking-[4%] text-[#000000]">
+              <div ref={(el) => (titleRefs.current[1] = el)} className="text-center md:text-left font-poppins font-semibold text-[27.3px] leading-[45.5px] tracking-[4%] text-[#000000] left">
                 DESIGN
               </div>
-              <p className="text-center md:text-left font-poppins font-light text-[22px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] leading-[34px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000]">
+              <p ref={(el) => (paragraphRefs.current[1] = el)} className="text-center md:text-left font-poppins font-light text-[22px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] leading-[34px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000] left">
                 Benefit from the experience, knowledge, unique perspective, and efficiency that our experts bring to each project.
               </p>
             </div>
-            
           </div>
           <div className="hidden md:block relative">
             <div>
               <img src="/OurProcessline2.svg" alt="" className="mx-auto h-[80px] lg:h-[127.07px] w-[75%] xl:w-[80%]" />
             </div>
-            <img src="/airoplane2.svg" className="absolute top-[12px] right-[220px] lg:top-[30px] xl:right-[350px]" alt="" />
+            <img ref={(el) => (airplaneRefs.current[1] = el)} src="/airoplane2.svg" className="absolute top-[12px] right-[220px] lg:top-[30px] xl:right-[350px] right" alt="" />
           </div>
           <div className="flex flex-col md:flex-row md:justify-between md:items-center">
             <div className="md:basis-[25%] xl:basis-[35%] flex justify-center md:justify-start">
               <img src="/OurProcess3.svg" alt="" className="" />
             </div>
             <div className="md:basis-[60%] xl:basis-[57%]">
-              <div className="text-center md:text-left font-poppins font-semibold text-[27.3px] leading-[45.5px] tracking-[4%] text-[#000000]">
+              <div ref={(el) => (titleRefs.current[2] = el)} className="text-center md:text-left font-poppins font-semibold text-[27.3px] leading-[45.5px] tracking-[4%] text-[#000000] right">
                 DEVELOPMENT
               </div>
-              <p className="text-center md:text-left font-poppins font-light text-[22px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] leading-[34px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000]">
+              <p ref={(el) => (paragraphRefs.current[2] = el)} className="text-center md:text-left font-poppins font-light text-[22px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] leading-[34px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000] right">
                 Benefit from the experience, knowledge, unique perspective, and efficiency that our experts bring to each project.
               </p>
             </div>
@@ -72,37 +120,36 @@ export default function OurProcess() {
             <div>
               <img src="/OurProcessline.svg" alt="" className="mx-auto h-[80px] lg:h-[127.07px] w-[75%] xl:w-[80%]" />
             </div>
-            <img src="/airoplane.svg" className="absolute top-[12px] left-[220px] lg:top-[30px] xl:left-[350px]" alt="" />
+            <img ref={(el) => (airplaneRefs.current[2] = el)} src="/airoplane.svg" className="absolute top-[12px] left-[220px] lg:top-[30px] xl:left-[350px]" alt="" />
           </div>
           <div className="flex flex-col md:flex-row md:justify-between md:items-center">
             <div className="md:basis-[25%] xl:basis-[35%] flex justify-center md:order-2 md:justify-end">
               <img src="/OurProcess4.svg" alt="" className="" />
             </div>
             <div className="md:basis-[60%] xl:basis-[57%] md:order-1">
-              <div className="text-center md:text-left font-poppins font-semibold text-[27.3px] leading-[45.5px] tracking-[4%] text-[#000000]">
+              <div ref={(el) => (titleRefs.current[3] = el)} className="text-center md:text-left font-poppins font-semibold text-[27.3px] leading-[45.5px] tracking-[4%] text-[#000000] left">
                 TESTING
               </div>
-              <p className="text-center md:text-left font-poppins font-light text-[22px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] leading-[34px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000]">
+              <p ref={(el) => (paragraphRefs.current[3] = el)} className="text-center md:text-left font-poppins font-light text-[22px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] leading-[34px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000] left">
                 Benefit from the experience, knowledge, unique perspective, and efficiency that our experts bring to each project.
               </p>
             </div>
-            
           </div>
           <div className="relative hidden md:block ">
             <div>
               <img src="/OurProcessline2.svg" alt="" className="mx-auto h-[80px] lg:h-[127.07px] w-[75%] xl:w-[80%]" />
             </div>
-            <img src="/airoplane2.svg" className="absolute top-[12px] right-[220px] lg:top-[30px] xl:right-[350px]" alt="" />
+            <img ref={(el) => (airplaneRefs.current[3] = el)} src="/airoplane2.svg" className="absolute top-[12px] right-[220px] lg:top-[30px] xl:right-[350px] right" alt="" />
           </div>
           <div className="flex flex-col md:flex-row md:justify-between md:items-center">
             <div className="md:basis-[25%] xl:basis-[35%] flex justify-center md:justify-start">
               <img src="/OurProcess5.svg" alt="" className="" />
             </div>
             <div className="md:basis-[60%] xl:basis-[57%]">
-              <div className="text-center md:text-left font-poppins font-semibold text-[27.3px] leading-[45.5px] tracking-[4%] text-[#000000]">
+              <div ref={(el) => (titleRefs.current[4] = el)} className="text-center md:text-left font-poppins font-semibold text-[27.3px] leading-[45.5px] tracking-[4%] text-[#000000] right">
                 LAUNCH
               </div>
-              <p className="text-center md:text-left font-poppins font-light text-[22px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] leading-[34px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000]">
+              <p ref={(el) => (paragraphRefs.current[4] = el)} className="text-center md:text-left font-poppins font-light text-[22px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] leading-[34px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000] right">
                 Benefit from the experience, knowledge, unique perspective, and efficiency that our experts bring to each project.
               </p>
             </div>
@@ -110,5 +157,5 @@ export default function OurProcess() {
         </div>
       </div>
     </div>
-  )
+  );
 }
