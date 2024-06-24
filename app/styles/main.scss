@@ -68,9 +68,42 @@ input[type=number] {
   box-shadow: inset 0 0 2px #1C7CD4;
 }
 .footer-social-icon{
-  // transform: translateY(0px);
   transition: all 0.5s ease;
 }
+
+// start of styling for keen slider in why codesync section
+.scene {
+  height: 300px;
+  perspective: 1000px;
+  // position: relative;
+}
+.scene .carousel.keen-slider {
+  width: 100%;
+  height: 100%;
+  // position: absolute;
+  overflow: visible;
+  transform: translateZ(-288px);
+  transform-style: preserve-3d;
+}
+.carousel__cell {
+  // position: absolute;
+  // left: 10px; 
+  display: flex;
+  justify-content: center;
+}
+@media(min-width:768px){
+  .scene {
+    position: relative;
+  }
+  .scene .carousel.keen-slider {
+    position: absolute;
+  }
+  .carousel__cell {
+    position: absolute;
+    left: 10px;
+  }
+}
+// end of code for keen slider in why codesync section
 
 .typing-container {
   display: inline;
