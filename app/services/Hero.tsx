@@ -33,8 +33,8 @@ export default function Hero() {
         <div className="flex flex-col justify-end items-end">
           <div className='relative'>
           <img src="/services-hero.svg" className="w-full 2xl:h-[580px] mt-16" alt="Header Image" />
-          <Icon name='animated-icons/gear' className='rotate-infinite absolute top-[3.25rem] sm:top-[3.5rem] md:top-[3.5rem] lg:top-[3.5rem] xl:top-[25px] right-[28%] w-[25px] sm:w-[30px] md:w-[34px] xl:w-[40px] 2xl:w-[54px] '/>
-          <Icon name='animated-icons/big-gear'  className='reverse-rotate-infinite absolute top-16 md:top-18 lg:top-18 right-[18%] w-[35px] md:w-[43px] xl:w-[64px]'/>
+          <Icon name='animated-icons/gear' className='rotate-infinite absolute top-[3.25rem] sm:top-[3.5rem] md:top-[3.5rem] lg:top-[3.5rem] xl:top-[40px] right-[28%] w-[25px] sm:w-[30px] md:w-[34px] xl:w-[40px] 2xl:w-[54px] '/>
+          <Icon name='animated-icons/big-gear'  className='reverse-rotate-infinite absolute top-16 md:top-[72px] lg:top-[72px] right-[18%] w-[35px] md:w-[43px] xl:w-[64px]'/>
           <Icon name='animated-icons/light-gear' className='rotate-infinite absolute top-16 md:top-20 right-[8%] w-[25px] md:w-[34px] xl:w-[54px]'/>
           </div>
         </div>
