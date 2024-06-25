@@ -114,7 +114,7 @@ export function Footer() {
               <span>Support and maintenance</span>
             </div>
           </div>
-          <div className="flex flex-col gap-4 xl:gap-[28px] bg-none xl:bg-cover xl:bg-center xl:bg-[url('/footer-bg.png')] xl:min-w-[500px] xl:min-h-[400px] xl:max-w-[500px] xl:max-h-[400px]">
+          <div className="flex flex-col gap-4 xl:gap-[28px] bg-none 2xl:bg-cover 2xl:bg-center 2xl:bg-[url('/footer-bg.png')] 2xl:min-w-[500px] 2xl:min-h-[400px] 2xl:max-w-[500px] 2xl:max-h-[400px]">
             <span className="uppercase font-poppins font-semibold text-[26.48px] leading-[39.72px] tracking-[6%]">
               Information
             </span>

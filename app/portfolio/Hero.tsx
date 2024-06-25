@@ -8,21 +8,21 @@ export default function Hero() {
   return (
     <div className="w-full text-white max-h-[818px] bg-gradient-to-b md:bg-gradient-to-r from-customBlue1 to-customMint">
       <div className="flex flex-col md:flex-row justify-center">
-        <div className="pl-4 lg:pl-8 xl:pl-8 2xl:pl-20 flex justify-start items-start md:items-center 2xl:items-start md:basis-[45%] lg:basis-1/2">
-          <div className="py-8 md:py-12 2xl:pt-44 flex flex-col basis-[90%] md:basis-[86%] md:pl-4 2xl:basis-[80%]">
-            <div className="uppercase font-poppins font-bold text-2xl md:text-xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-[50px] leading-[35px] md:leading-[30px] lg:leading-[40px] lg:mb-2 xl:leading-[45px] 2xl:leading-[52px] 3xl:leading-[69px] tracking-[1.5%]">
+        <div className="pl-4 lg:pl-8 xl:pl-8 2xl:pl-20 flex justify-start items-start md:items-center md:basis-[45%] lg:basis-1/2">
+          <div className="py-8 md:py-0 flex flex-col basis-[90%] md:basis-[86%] md:pl-4 2xl:basis-[80%]">
+            <div className="fly-in-left uppercase font-poppins font-bold text-2xl md:text-xl lg:text-3xl xl:text-4xl 2xl:text-[45px] 3xl:text-[50px] leading-[35px] md:leading-[30px] lg:leading-[40px] lg:mb-2 xl:leading-[45px] 2xl:leading-[60px] 3xl:leading-[69px] tracking-[1.5%]">
               <span className="text-[#ffffff]">
                 Explore Our <span className="text-[#00FFFF]">Portfolio</span>
               </span>
             </div>
-            <p className="mb-4 md:mb-2 lg:mb-4 2xl:mb-[25px] font-poppins font-light text-[16px] md:text-[13.3px] lg:text-[16px] xl:text-[18px] 2xl:text-[22px] leading-[24px] md:leading-[24px] xl:leading-[32.78px] tracking-[2%]">
+            <p className="fly-in-1-5s mb-4 md:mb-2 lg:mb-4 2xl:mb-[25px] font-poppins font-light text-[16px] md:text-[13.3px] lg:text-[16px] xl:text-[18px] 2xl:text-[22px] leading-[24px] md:leading-[24px] xl:leading-[32.78px] tracking-[2%]">
               Explore our diverse portfolio showcasing innovative IT solutions
               and transformative digital experiences.
             </p>
-            <div className="xl:mb-8">
+            <div className="fly-in-2s xl:mb-8">
              
               <Link href="/hireus" className={` ${pathname === "/hireus"}`}>
-                <Button customClass="text-white font-medium text-[21.72px] leading-[32.58px] py-2 px-4 bg-gradient-to-t from-customBlue2 to-customBlue3 h-[55.26px] rounded-[8.45px] hover:transform hover:transition-transform hover:duration-300 hover:ease-in-out hover:shadow-[0_0_15px_#005BA1]">
+                <Button customClass="text-white font-medium text-[21.72px] leading-[32.58px] py-2 px-4 bg-gradient-to-t from-customBlue2 to-customBlue3 h-[55.26px] rounded-[8.45px] hover:transition-transform hover:duration-300 hover:ease-in-out hover:shadow-[0_0_15px_#005BA1]">
                   Hire us now
                 </Button>
               </Link>
@@ -31,15 +31,15 @@ export default function Hero() {
         </div>
         <div className="basis-full md:basis-[55%] lg:basis-1/2">
           <div className="flex flex-col">
-            <div className="flex flex-col justify-center items-center md:pt-[10.5rem] md:pr-[3rem] lg:pt-[6.9rem]">
+            <div className="fly-in-right flex flex-col justify-center items-center md:pt-[3.5rem] md:pr-[3rem] lg:pt-[6.9rem]">
               <img
                 src="/icons/portfolio-hero-section.svg"
-                alt="Team Image"
+                alt="Team Image" className="xl:mt-[-2rem]"
               />
 
               <img
                 src="/icons/portfolio-hero-section2.svg"
-                className=" mt-[-25px] sm:mt-[-3rem] md:mt-[-4rem] lg:mt-[-1.8rem]"
+                className="mt-[-25px] sm:mt-[-3rem] md:mt-[-4rem] lg:mt-[-1.8rem]"
                 alt="Team Image"
               />
             </div>
