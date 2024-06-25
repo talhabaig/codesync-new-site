@@ -75,7 +75,7 @@ export const Nav = () => {
           ref={menuRef}
           className={`${styles.navMenu} ${isOpen ? styles.open : ""}`}
         >
-          <div className="flex flex-col md:flex-row md:gap-1 md:items-center lg:gap-3 xl:gap-3 p-[10px] md:p-0">
+          <div className="flex flex-col md:flex-row md:gap-1 md:items-center lg:gap-3 xl:gap-3 py-4 px-6 md:p-0">
             <Link href="/">
               <div
                 onClick={handleClose}

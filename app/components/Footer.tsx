@@ -19,9 +19,9 @@ export function Footer() {
 
   return (
     <div className="w-full bg-[#012959] text-white">
-      <div className="p-12 lg:p-16 lg:pr-2 xl:p-28 ">
+      <div className="p-12 lg:p-16 lg:pr-2 xl:px-28 xl:pt-28 xl:pr-0">
         <div className="flex flex-col md:flex-row md:justify-center gap-8 md:gap-3 lg:gap-8">
-          <div className="basis-1/3 flex flex-col gap-4 xl:gap-8">
+          <div className="xl:p-4 basis-1/3 flex flex-col gap-4 xl:gap-8">
             <div className="flex flex-col md:gap-4 lg:mb-4">
               <Link href="/">
                 <div className="md:pt-1">
@@ -101,20 +101,20 @@ export function Footer() {
               </a>
             </div>
           </div>
-          <div className="basis-1/3 flex flex-col gap-4 md:gap-[28px]">
+          <div className="xl:p-4 basis-1/3 flex flex-col gap-4 md:gap-[28px]">
             <span className="font-poppins font-semibold text-[26.48px] leading-[39.72px] tracking-[6%] uppercase">
               Our services
             </span>
             <div className="flex text-[#FFFFFF] flex-col gap-[15px] font-poppins font-light text-18px 2xl:text-[20px] leading-[32.78px] tracking-[2%]">
-              <span>Web/Mobile development</span>
-              <span>Web design</span>
-              <span>E-commerce solutions</span>
-              <span>Responsive design</span>
-              <span>Quality assurance and testing</span>
-              <span>Support and maintenance</span>
+              <span><span className="cursor-pointer">Web/Mobile development</span></span>
+              <span><span className="cursor-pointer">Web design</span></span>
+              <span><span className="cursor-pointer">E-commerce solutions</span></span>
+              <span><span className="cursor-pointer">Responsive design</span></span>
+              <span><span className="cursor-pointer">Quality assurance and testing</span></span>
+              <span><span className="cursor-pointer">Support and maintenance</span></span>
             </div>
           </div>
-          <div className="flex flex-col gap-4 xl:gap-[28px] bg-none 2xl:bg-cover 2xl:bg-center 2xl:bg-[url('/footer-bg.png')] 2xl:min-w-[500px] 2xl:min-h-[400px] 2xl:max-w-[500px] 2xl:max-h-[400px]">
+          <div className="xl:p-4 basis-1/3 flex flex-col gap-4 xl:gap-[28px] bg-none xl:bg-contain xl:bg-no-repeat xl:bg-top xl:bg-[url('/footer-bg.png')]">
             <span className="uppercase font-poppins font-semibold text-[26.48px] leading-[39.72px] tracking-[6%]">
               Information
             </span>
