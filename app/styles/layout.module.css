@@ -57,6 +57,7 @@
   width: 100%;
   background-color: #0b4383 !important;
   overflow: hidden;
+  z-index: 10;
   transition: max-height 0.5s ease-in-out;
   max-height: 0;
 }

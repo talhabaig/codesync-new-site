@@ -12,7 +12,7 @@ export default function OurTeam() {
       designation: "Frontend Developer",
     },
     {
-      src: getImagePath("Moiz-ahmad.jpg"),
+      src: getImagePath("moiz.jpg"),
       name: "Moiz Ahmad",
       designation: "Full Stack Developer",
     },
