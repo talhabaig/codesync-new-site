@@ -46,7 +46,7 @@ export default function Hero() {
 
   return (
     <div className="w-full text-white max-h-[818px] bg-gradient-to-b md:bg-gradient-to-r from-customBlue1 to-customMint">
-      <div className="flex flex-col md:flex-row justify-center items-center md:pt-8 lg:pt-9 xl:pt-12 2xl:pt-16">
+      <div className="flex flex-col md:flex-row justify-center items-center md:pt-8 lg:pt-16">
         <div className='basis-full md:basis-[45%] lg:basis-1/2 flex justify-center md:justify-end items-start pt-12 md:pt-0'>
           <div className="flex flex-col basis-[70%] md:basis-[86%] 2xl:basis-[85%]">
             <div className="uppercase font-poppins font-bold text-2xl md:text-xl lg:text-3xl xl:text-3xl 2xl:text-[43px] 3xl:text-[50px] lg:mb-2 2xl:leading-[60px] 3xl:leading-[69px] tracking-[15%] max-h-[10.4rem] min-h-[10.4rem] md:max-h-[6rem] md:min-h-[6rem] lg:max-h-[7rem] lg:min-h-[7rem] 2xl:max-h-[12rem] 2xl:min-h-[12rem]">
@@ -67,7 +67,7 @@ export default function Hero() {
           </div>
         </div>
         <div className='basis-full md:basis-[55%] lg:basis-1/2'>
-          <div className="flex flex-col justify-end items-end">
+          <div className="flex flex-col md:flex-row justify-end items-end lg:h-[330px] xl:h-[400px] 2xl:h-[490px] 3xl:h-[515px]">
             <img src="/home-header.svg" className="w-full" alt="Header Image" />
           </div>
         </div>

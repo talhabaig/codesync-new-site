@@ -19,7 +19,7 @@ export default function WhatWeDo() {
 
   return (
     <div className="w-full bg-gradient-to-r from-customLightBlue to-customVeryLightBlue">
-      <div className="2xl:container 2xl:mx-auto py-12 px-8 md:p-12 xl:p-24 2xl:px-12 2xl:pb-32">
+      <div className="2xl:container 2xl:mx-auto py-12 px-8 md:px-12 md:py-20 xl:px-24 xl:py-28 2xl:px-12 2xl:pb-32">
         <div className="text-center font-poppins">
           <div className="flex items-center gap-2 mb-2 2xl:mb-3 md:gap-8 justify-center uppercase font-bold text-lg md:text-2xl lg:text-3xl xl:text-5xl 2xl:leading-[69px] tracking-[1.5%]">
             <img src="/hori-line.svg" className='w-[70px] sm:w-[90px] h-[9px] md:w-[120px] md:h-[12px] lg:w-auto lg:h-auto' alt="" />

@@ -61,7 +61,7 @@ function OurPortfolio() {
 
   
   return (
-    <div className="w-full pt-12 xl:pt-24 bg-gradient-to-r from-customLightBlue to-customVeryLightBlue">
+    <div className="w-full pt-12 md:pt-20 xl:pt-28 bg-gradient-to-r from-customLightBlue to-customVeryLightBlue">
       <div className="text-center font-poppins">
         <div className="flex items-center gap-2 md:gap-8 justify-center uppercase font-bold text-lg md:text-2xl lg:text-3xl xl:text-5xl leading-[20px] md:leading-[50px] lg:leading-[69px] tracking-[1.5%]">
           <img

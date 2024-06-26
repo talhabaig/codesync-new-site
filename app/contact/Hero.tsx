@@ -8,8 +8,8 @@ export default function Hero() {
   return (
     <div className="w-full text-white max-h-[818px] bg-gradient-to-b md:bg-gradient-to-r from-customBlue1 to-customMint">
       <div className="flex flex-col md:flex-row justify-center">
-        <div className=" flex justify-start items-start md:items-center 2xl:items-start md:basis-[45%] lg:basis-1/2 2xl:px-[5rem] lg:px-[2rem] md:px-[1rem]">
-          <div className="px-[16px] py-8 md:py-8 2xl:pt-44 flex flex-col basis-[90%] md:basis-[86%] xl:pl-4 3xl:basis-[66%]">
+        <div className=" flex justify-start items-start md:items-center md:basis-[45%] lg:basis-1/2 2xl:px-[5rem] lg:px-[2rem] md:px-[1rem]">
+          <div className="px-[16px] py-8 md:py-0 2xl:pt-12 xl:pl-4  flex flex-col basis-[90%] md:basis-[86%] 2xl:basis-[92%]">
             <div className="fly-in-left uppercase font-poppins font-bold text-2xl md:text-xl lg:text-3xl xl:text-4xl 2xl:text-[45px] 3xl:text-[50px] leading-[35px] md:leading-[30px] lg:leading-[40px] lg:mb-2 xl:leading-[45px] 2xl:leading-[60px] 3xl:leading-[69px] tracking-[1.5%]">
               <span className="text-[#ffffff]">
                 Reach Out <br /><span className="text-[#00FFFF]">Contact</span> Us
@@ -29,17 +29,17 @@ export default function Hero() {
             </div>
           </div>
         </div>
-        <div className="basis-full md:basis-[55%] lg:basis-1/2">
-          <div className="flex flex-col">
-            <div className="flex flex-col justify-center items-center md:pt-[10.5rem] md:pr-[3rem] lg:pt-[2rem]">
+        <div className="basis-full md:basis-[55%] lg:basis-1/2 3xl:pr-8">
+          <div className="flex flex-col md:flex-row justify-end md:justify-center items-center 3xl:justify-end">
+            <div className="flex flex-col justify-center items-center pt-[3rem] md:pt-[56px] md:pr-[3rem] xl:pt-[6rem] 2xl:pt-[6.9rem]">
               <img
                 src="/contact-hero.svg"
-                alt="Team Image"
+                alt="Team Image" className="md:w-[360px] md:h-[174px] lg:w-[300px] lg:h-[240px] xl:w-[410px] xl:h-[238px] 2xl:w-[430px] 2xl:h-[297px] 3xl:w-[430px] 3xl:h-[325px]"
               />
 
               <img
                 src="/icons/portfolio-hero-section2.svg"
-                className=" mt-[-25px] sm:mt-[-3rem] md:mt-[-4rem] lg:mt-[-4.5rem]"
+                className="mt-[-25px] sm:mt-[-3rem] md:mt-[-1.5rem] lg:mt-[-2.5rem] xl:mt-[-2.4rem] 2xl:mt-[-2.7rem] 3xl:mt-[-3.2rem] md:w-[420px] md:h-[120px] lg:w-[420px] lg:h-[138px] xl:w-[430px] xl:h-[160px] 2xl:w-[440px] 2xl:h-[190px] 3xl:w-[450px] 3xl:h-[195px]"
                 alt="Team Image"
               />
             </div>

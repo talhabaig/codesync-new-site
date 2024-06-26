@@ -3,8 +3,8 @@ import { useEffect, useRef } from "react";
 
 export default function OurProcess() {
   const airplaneRefs = useRef<(HTMLImageElement | null)[]>([]);
-  const titleRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const paragraphRefs = useRef<(HTMLParagraphElement | null)[]>([]);
+  // const titleRefs = useRef<(HTMLDivElement | null)[]>([]);
+  // const paragraphRefs = useRef<(HTMLParagraphElement | null)[]>([]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -16,32 +16,38 @@ export default function OurProcess() {
             } else {
               entry.target.classList.add("fly-in-left");
             }
+          } else {
+            if (entry.target.classList.contains('right')) {
+              entry.target.classList.remove("fly-in-right");
+            } else {
+              entry.target.classList.remove("fly-in-left");
+            }
           }
         });
       },
       { threshold: 0.5 }
     );
 
-    titleRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref);
-    });
+    // titleRefs.current.forEach((ref) => {
+    //   if (ref) observer.observe(ref);
+    // });
 
-    paragraphRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref);
-    });
+    // paragraphRefs.current.forEach((ref) => {
+    //   if (ref) observer.observe(ref);
+    // });
 
     airplaneRefs.current.forEach((ref) => {
       if (ref) observer.observe(ref);
     });
 
     return () => {
-      titleRefs.current.forEach((ref) => {
-        if (ref) observer.unobserve(ref);
-      });
+      // titleRefs.current.forEach((ref) => {
+      //   if (ref) observer.unobserve(ref);
+      // });
 
-      paragraphRefs.current.forEach((ref) => {
-        if (ref) observer.unobserve(ref);
-      });
+      // paragraphRefs.current.forEach((ref) => {
+      //   if (ref) observer.unobserve(ref);
+      // });
 
       airplaneRefs.current.forEach((ref) => {
         if (ref) observer.unobserve(ref);
@@ -70,10 +76,12 @@ export default function OurProcess() {
               <img src="/OurProcess1.svg" alt="" className="" />
             </div>
             <div className="md:basis-[60%] xl:basis-[57%]">
-              <div ref={(el) => (titleRefs.current[0] = el)} className="text-center md:text-left font-poppins font-semibold text-[27.3px] leading-[45.5px] tracking-[4%] text-[#000000] right">
+              {/* ref={(el) => (titleRefs.current[0] = el)} */}
+              <div className="text-center md:text-left font-poppins font-semibold text-[27.3px] leading-[45.5px] tracking-[4%] text-[#000000] right">
                 REQUIREMENTS
               </div>
-              <p ref={(el) => (paragraphRefs.current[0] = el)} className="text-center md:text-left font-poppins font-light text-[22px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] leading-[34px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000] right">
+              {/* ref={(el) => (paragraphRefs.current[0] = el)} */}
+              <p className="text-center md:text-left font-poppins font-light text-[22px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] leading-[34px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000] right">
                 Benefit from the experience, knowledge, unique perspective, and efficiency that our experts bring to each project.
               </p>
             </div>
@@ -89,10 +97,10 @@ export default function OurProcess() {
               <img src="/OurProcess2.svg" alt="" className="" />
             </div>
             <div className="md:basis-[60%] xl:basis-[57%] md:order-1">
-              <div ref={(el) => (titleRefs.current[1] = el)} className="text-center md:text-left font-poppins font-semibold text-[27.3px] leading-[45.5px] tracking-[4%] text-[#000000] left">
+              <div className="text-center md:text-left font-poppins font-semibold text-[27.3px] leading-[45.5px] tracking-[4%] text-[#000000] left">
                 DESIGN
               </div>
-              <p ref={(el) => (paragraphRefs.current[1] = el)} className="text-center md:text-left font-poppins font-light text-[22px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] leading-[34px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000] left">
+              <p className="text-center md:text-left font-poppins font-light text-[22px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] leading-[34px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000] left">
                 Benefit from the experience, knowledge, unique perspective, and efficiency that our experts bring to each project.
               </p>
             </div>
@@ -108,10 +116,10 @@ export default function OurProcess() {
               <img src="/OurProcess3.svg" alt="" className="" />
             </div>
             <div className="md:basis-[60%] xl:basis-[57%]">
-              <div ref={(el) => (titleRefs.current[2] = el)} className="text-center md:text-left font-poppins font-semibold text-[27.3px] leading-[45.5px] tracking-[4%] text-[#000000] right">
+              <div className="text-center md:text-left font-poppins font-semibold text-[27.3px] leading-[45.5px] tracking-[4%] text-[#000000] right">
                 DEVELOPMENT
               </div>
-              <p ref={(el) => (paragraphRefs.current[2] = el)} className="text-center md:text-left font-poppins font-light text-[22px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] leading-[34px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000] right">
+              <p className="text-center md:text-left font-poppins font-light text-[22px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] leading-[34px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000] right">
                 Benefit from the experience, knowledge, unique perspective, and efficiency that our experts bring to each project.
               </p>
             </div>
@@ -127,10 +135,10 @@ export default function OurProcess() {
               <img src="/OurProcess4.svg" alt="" className="" />
             </div>
             <div className="md:basis-[60%] xl:basis-[57%] md:order-1">
-              <div ref={(el) => (titleRefs.current[3] = el)} className="text-center md:text-left font-poppins font-semibold text-[27.3px] leading-[45.5px] tracking-[4%] text-[#000000] left">
+              <div className="text-center md:text-left font-poppins font-semibold text-[27.3px] leading-[45.5px] tracking-[4%] text-[#000000] left">
                 TESTING
               </div>
-              <p ref={(el) => (paragraphRefs.current[3] = el)} className="text-center md:text-left font-poppins font-light text-[22px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] leading-[34px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000] left">
+              <p className="text-center md:text-left font-poppins font-light text-[22px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] leading-[34px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000] left">
                 Benefit from the experience, knowledge, unique perspective, and efficiency that our experts bring to each project.
               </p>
             </div>
@@ -146,10 +154,10 @@ export default function OurProcess() {
               <img src="/OurProcess5.svg" alt="" className="" />
             </div>
             <div className="md:basis-[60%] xl:basis-[57%]">
-              <div ref={(el) => (titleRefs.current[4] = el)} className="text-center md:text-left font-poppins font-semibold text-[27.3px] leading-[45.5px] tracking-[4%] text-[#000000] right">
+              <div className="text-center md:text-left font-poppins font-semibold text-[27.3px] leading-[45.5px] tracking-[4%] text-[#000000] right">
                 LAUNCH
               </div>
-              <p ref={(el) => (paragraphRefs.current[4] = el)} className="text-center md:text-left font-poppins font-light text-[22px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] leading-[34px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000] right">
+              <p className="text-center md:text-left font-poppins font-light text-[22px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] leading-[34px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000] right">
                 Benefit from the experience, knowledge, unique perspective, and efficiency that our experts bring to each project.
               </p>
             </div>
