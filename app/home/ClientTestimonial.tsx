@@ -110,23 +110,23 @@ export default function ClientTestimonial() {
 
         <div>
           <div className="mx-auto mb-12 lg:mb-14 polygon p-6 md:p-12 bg-gradient-to-b from-[#0D86FF] to-[#17BABA] xs:max-w-[377px] sm:max-w-[480px] md:max-w-[650px] lg:max-w-[800px] xl:max-w-[860px] 2xl:max-w-[950px] rounded-[23px] relative">
-            <div className="flex gap-2 sm:gap-6 xl:gap-12 items-center mb-8">
+            <div className="flex gap-2 sm:gap-6 xl:gap-12 min-h-[216px] max-h-[216px] xs:min-h-[120px] xs:max-h-[120px] sm:min-h-[130px] sm:max-h-[130px] md:min-h-[140px] md:max-h-[140px] items-center mb-8">
               <img
                 src="/testimonial-images/Asset1.png"
-                className="h-[20px] w-[20px] md:h-auto md:w-auto"
+                className="h-[20px] w-[30px] md:h-[30px] md:w-[40px] lg:h-auto lg:w-auto"
                 alt=""
               />
-              <div className="font-normal font-poppins text-sm md:text-xl lg:text-2xl leading-6 md:leading-9 text-[#FFFFFF]">
+              <div className="font-normal font-poppins text-sm md:text-lg lg:text-xl leading-6 xl:leading-9 text-[#FFFFFF]">
                 {selectedTestimonial.text}
               </div>
               <img
                 src="/testimonial-images/Asset2.png"
-                className="h-[20px] w-[20px] md:h-auto md:w-auto"
+                className="h-[20px] w-[30px] md:h-[30px] md:w-[40px] lg:h-auto lg:w-auto"
                 alt=""
               />
             </div>
             <div className="flex justify-end">
-              <span className="text-xl md:text-2xl tracking-[1.5%]">
+              <span className="text-sm xs:text-lg md:text-xl lg:text-2xl tracking-[1.5%]">
                 <span className="font-bold">{selectedTestimonial.author}</span>
                 <br />
                 <span>{selectedTestimonial.position}</span>
