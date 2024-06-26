@@ -32,7 +32,7 @@ export default function Hero() {
         </div>
         <div className="basis-full md:basis-[55%] lg:basis-1/2">
           <div className="flex flex-col">
-            <div className="fly-in-right flex flex-col justify-center items-center pt-[5rem] md:pr-[3rem]">
+            <div className=" flex flex-col justify-center items-center pt-[5rem] md:pr-[3rem]">
               <img
                 src="/icons/Team-hero.svg"
                 alt="Team Image"
