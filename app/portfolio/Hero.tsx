@@ -31,7 +31,7 @@ export default function Hero() {
         </div>
         <div className="basis-full md:basis-[55%] lg:basis-1/2">
           <div className="flex flex-col">
-            <div className="fly-in-right flex flex-col justify-center items-center md:pt-[3.5rem] md:pr-[3rem] lg:pt-[6.9rem]">
+            <div className="flex flex-col justify-center items-center md:pt-[3.5rem] md:pr-[3rem] lg:pt-[6.9rem]">
               <img
                 src="/icons/portfolio-hero-section.svg"
                 alt="Team Image" className="xl:mt-[-2rem]"

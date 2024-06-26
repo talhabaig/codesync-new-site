@@ -30,7 +30,7 @@ export default function Hero() {
           </div>
         </div>
         <div className='basis-full md:basis-[55%] lg:basis-1/2'>
-        <div className="fly-in-right flex flex-col justify-end items-end">
+        <div className="flex flex-col justify-end items-end">
           <div className='relative'>
             <img src="/services-hero.svg" className="w-full 2xl:h-[580px] mt-16" alt="Header Image" />
             <Icon name='animated-icons/gear' className='rotate-infinite absolute top-[3.25rem] sm:top-[3.5rem] md:top-[3.5rem] lg:top-[3.5rem] xl:top-[40px] right-[28%] w-[25px] sm:w-[30px] md:w-[34px] xl:w-[40px] 2xl:w-[54px] '/>
