@@ -53,15 +53,15 @@ export default function OurServices() {
 
   return (
     <div className="w-full bg-gradient-to-r from-customLightBlue to-customVeryLightBlue">
-      <div className="py-12 xl:py-24 2xl:pb-32">
+      <div className="py-12 md:py-20 xl:py-28 2xl:pb-32">
         <div className="text-center font-poppins">
-          <div className="flex items-center gap-2 md:gap-8 justify-center uppercase font-bold text-lg md:text-2xl lg:text-3xl xl:text-5xl leading-[20px] md:leading-[50px] lg:leading-[69px] tracking-[1.5%]">
+          <div className="flex items-center gap-2 mb-2 md:gap-8 justify-center uppercase font-bold text-lg md:text-2xl lg:text-3xl xl:text-5xl leading-[20px] md:leading-[50px] lg:leading-[69px] tracking-[1.5%]">
             <img
               src="/hori-line.svg"
               className="w-[110px] h-[9px] md:w-auto md:h-auto"
               alt=""
             />
-            <div className="font-bold 2xl:text-[50px] 2xl:leading-[69px] tracking-[1.5%]">
+            <div className="font-bold text-lg md:text-2xl lg:text-3xl xl:text-5xl 2xl:text-[50px] 2xl:leading-[69px] tracking-[1.5%]">
               <span className="text-customBlue1">Our </span>{" "}
               <span className="text-customDarkGray">services</span>
             </div>
