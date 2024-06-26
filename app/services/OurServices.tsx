@@ -58,7 +58,7 @@ export default function OurServices() {
           <div className="flex items-center gap-2 mb-2 md:gap-8 justify-center uppercase font-bold text-lg md:text-2xl lg:text-3xl xl:text-5xl leading-[20px] md:leading-[50px] lg:leading-[69px] tracking-[1.5%]">
             <img
               src="/hori-line.svg"
-              className="w-[110px] h-[9px] md:w-auto md:h-auto"
+              className="w-[70px] sm:w-[90px] h-[9px] md:w-[120px] md:h-[12px] lg:w-auto lg:h-auto"
               alt=""
             />
             <div className="font-bold text-lg md:text-2xl lg:text-3xl xl:text-5xl 2xl:text-[50px] 2xl:leading-[69px] tracking-[1.5%]">
@@ -67,7 +67,7 @@ export default function OurServices() {
             </div>
             <img
               src="/hori-line2.svg"
-              className="w-[110px] h-[9px] md:w-auto md:h-auto"
+              className="w-[70px] sm:w-[90px] h-[9px] md:w-[120px] md:h-[12px] lg:w-auto lg:h-auto"
               alt=""
             />
           </div>
