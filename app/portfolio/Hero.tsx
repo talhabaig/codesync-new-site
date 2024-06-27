@@ -34,12 +34,12 @@ export default function Hero() {
             <div className="flex flex-col justify-center items-center md:pt-[3.5rem] md:pr-[3rem] xl:pt-[6rem] 2xl:pt-[6.9rem]">
               <img
                 src="/icons/portfolio-hero-section.svg"
-                alt="Team Image" className="xl:mt-[-2rem] h-[200px] md:w-[360px] md:h-[189px] lg:w-[400px] lg:h-[227px] xl:w-[420px] xl:h-[260px] 2xl:w-[430px] 2xl:h-[305px] 3xl:w-[430px] 3xl:h-[320px]"
+                alt="Team Image" className="flex z-10 xl:mt-[-2rem] h-[200px] md:w-[360px] md:h-[189px] lg:w-[400px] lg:h-[227px] xl:w-[420px] xl:h-[260px] 2xl:w-[430px] 2xl:h-[305px] 3xl:w-[430px] 3xl:h-[320px]"
               />
 
               <img
                 src="/icons/portfolio-hero-section2.svg"
-                className="mt-[-25px] sm:mt-[-3rem] h-[130px] md:mt-[-1.8rem] lg:mt-[-1.8rem] md:w-[420px] md:h-[110px] lg:w-[420px] lg:h-[140px] xl:w-[430px] xl:h-[170px] 2xl:w-[440px] 2xl:h-[200px] 3xl:w-[450px] 3xl:h-[210px]"
+                className="mt-[-25px] sm:mt-[-1.5rem] h-[130px] md:mt-[-1.8rem] lg:mt-[-1.8rem] md:w-[420px] md:h-[135px] lg:w-[420px] lg:h-[140px] xl:w-[430px] xl:h-[170px] 2xl:w-[440px] 2xl:h-[200px] 3xl:w-[450px] 3xl:h-[210px]"
                 alt="Team Image"
               />
             </div>
