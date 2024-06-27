@@ -1,12 +1,17 @@
 "use client"
-import React, { useEffect, Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import Hero from './Hero';
 import OurServices from './OurServices';
 
 export default function Services() {
-  const searchParams = useSearchParams();
-  const selectedTab = searchParams.get('tab');
+  const router = useRouter();
+  const [selectedTab, setSelectedTab] = useState<string | null>(null);
+
+  useEffect(() => {
+    const { tab } = router.query;
+    setSelectedTab(tab as string);
+  }, [router.query]);
 
   useEffect(() => {
     if (selectedTab) {
@@ -17,9 +22,7 @@ export default function Services() {
   return (
     <>
       <Hero />
-      <Suspense fallback={<div>Loading...</div>}>
-        <OurServices selectedTab={selectedTab} />
-      </Suspense>
+      <OurServices selectedTab={selectedTab} />
     </>
   );
 }
