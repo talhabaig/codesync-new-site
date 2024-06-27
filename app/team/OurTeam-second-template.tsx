@@ -19,23 +19,6 @@ const teamMembers = [
     },
   },
   {
-    name: "Moiz Ahmad",
-    designation: "Full Stack Developer",
-    bio: "Lead engineering teams at Figma, Pitch, and Protocol Labs.",
-    image: getImagePath("Moiz-ahmad.jpg"),
-    social: {
-      twitter: {
-        url: "https://twitter.com/Moiz",
-      },
-      linkedin: {
-        url: "https://linkedin.com/in/Moiz",
-      },
-      other: {
-        url: "https://social3.com/Moiz",
-      },
-    },
-  },
-  {
     name: "Zeeshan Bajwa",
     designation: "Frontend Developer",
     bio: "Lead engineering teams at Figma, Pitch, and Protocol Labs.",
