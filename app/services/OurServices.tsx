@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useTransition, animated } from "react-spring";
 import WebDevelopment from "./ourservices/WebDevelopment";
 import GraphicDesign from "./ourservices/GraphicDesign";
@@ -13,43 +13,60 @@ const serviceTab = [
     title: "Web Development",
     icon: "./icons/OurServices-icon2.svg",
     tab: <WebDevelopment />,
+    name: "web-development"
   },
   {
     id: 2,
     title: "WEB & GRAPHIC DESIGNING",
     icon: "./icons/OurServices-icon2.svg",
     tab: <GraphicDesign />,
+    name: "graphic-design"
   },
   {
     id: 3,
     title: "E-COMMERCE SOLUTIONS",
     icon: "./icons/OurServices-icon2.svg",
     tab: <EcommerceSolutions />,
+    name: "ecommerce"
   },
   {
     id: 4,
     title: "MOBILE APP DEVELOPMENT",
     icon: "./icons/OurServices-icon2.svg",
     tab: <MobileDevelopment />,
+    name: "mobile-development"
   },
 ];
 
-export default function OurServices() {
-  const [selectedTab, setSelectedTab] = useState(serviceTab[0].tab);
+interface OurServicesProps {
+  selectedTab: string | null;
+}
+
+export default function OurServices({ selectedTab }: OurServicesProps) {
+  const [currentTab, setCurrentTab] = useState(serviceTab[0].tab);
   const contentRef = useRef<HTMLDivElement>(null);
 
-  const transitions = useTransition(selectedTab, {
+  const transitions = useTransition(currentTab, {
     from: { opacity: 0, transform: "rotateY(90deg)" },
     enter: { opacity: 1, transform: "rotateY(0deg)" },
     leave: { opacity: 0, transform: "rotateY(-90deg)" },
   });
 
   const handleTabClick = (tabContent: any) => {
-    setSelectedTab(tabContent);
+    setCurrentTab(tabContent);
     if (contentRef.current) {
       contentRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  useEffect(() => {
+    if (selectedTab) {
+      const tab = serviceTab.find((tab) => tab.name === selectedTab);
+      if (tab) {
+        setCurrentTab(tab.tab);
+      }
+    }
+  }, [selectedTab]);
 
   return (
     <div className="w-full bg-gradient-to-r from-customLightBlue to-customVeryLightBlue">
