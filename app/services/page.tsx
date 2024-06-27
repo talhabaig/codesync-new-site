@@ -1,26 +1,25 @@
 "use client"
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Hero from './Hero';
 import OurServices from './OurServices';
 
 export default function Services() {
   const searchParams = useSearchParams();
-  const selectedTab: string | null = searchParams.get('tab');
+  const selectedTab = searchParams.get('tab');
 
   useEffect(() => {
-    if (typeof document !== 'undefined' && selectedTab) {
-      const element = document.getElementById(selectedTab);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+    if (selectedTab) {
+      document.getElementById(selectedTab)?.scrollIntoView({ behavior: 'smooth' });
     }
   }, [selectedTab]);
 
   return (
     <>
       <Hero />
-      <OurServices selectedTab={selectedTab} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <OurServices selectedTab={selectedTab} />
+      </Suspense>
     </>
   );
 }

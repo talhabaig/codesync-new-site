@@ -48,8 +48,8 @@ export default function Hero() {
     <div className="w-full text-white max-h-[818px] bg-gradient-to-b md:bg-gradient-to-r from-customBlue1 to-customMint">
       <div className="flex flex-col md:flex-row justify-center items-center md:pt-8 lg:pt-16">
         <div className='basis-full md:basis-[45%] lg:basis-1/2 flex justify-start items-start md:items-center pl-4 md:pl-8 lg:pl-12 xl:pl-[3rem] 2xl:pl-[6rem]  pt-12 md:pt-0'>
-          <div className="flex flex-col basis-[70%] md:basis-[88%] lg:basis-[94%] 2xl:basis-[92%] 3xl:basis-[94%]">
-            <div className="uppercase font-poppins font-bold text-2xl md:text-xl lg:text-3xl xl:text-3xl 2xl:text-[40px] 3xl:text-[45px] lg:mb-2 2xl:leading-[60px] 3xl:leading-[60px] tracking-[15%] max-h-[10.4rem] min-h-[10.4rem] md:max-h-[6rem] md:min-h-[6rem] lg:max-h-[7rem] lg:min-h-[7rem] 2xl:max-h-[12rem] 2xl:min-h-[12rem]">
+          <div className="flex flex-col basis-[70%] md:basis-[86%] 2xl:basis-[85%]">
+            <div className="uppercase font-poppins font-bold text-2xl md:text-xl lg:text-3xl xl:text-3xl 2xl:text-[43px] 3xl:text-[50px] lg:mb-2 2xl:leading-[60px] 3xl:leading-[69px] tracking-[15%] max-h-[10.4rem] min-h-[10.4rem] md:max-h-[6rem] md:min-h-[6rem] lg:max-h-[7rem] lg:min-h-[7rem] 2xl:max-h-[14.2rem] 2xl:min-h-[14.2rem]">
               <span className="typing-container">
                 <span className='text-customCyan'>{getFirstWord(dataText[loopNum % dataText.length])}</span> {text}
               </span>
