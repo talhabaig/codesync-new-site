@@ -2,9 +2,9 @@ import React from 'react';
 
 const ThankYouPage = () => {
   return (
-    <div className="container min-vh-100 d-flex justify-content-center align-items-center ">
+    <div className="container min-h-[60vh] d-flex justify-content-center align-items-center ">
       <div className="col-md-8 px-4">
-        <div className="shadow-lg max-w-[800px] mx-auto py-14 my-6">
+        <div className="shadow-lg max-w-[800px] mx-auto py-14 my-6 lg:my-[6rem]">
           <h3 className="font-bold text-lg mb-3 text-center">Thank You For Contacting Us</h3>
           <p className='px-8'>
             We have received your message. Someone from our team will contact you
