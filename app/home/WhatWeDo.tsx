@@ -32,17 +32,17 @@ export default function WhatWeDo() {
     {
       imgSrc: "/wwd-web.svg",
       title: "Web Development",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit amet, consectetur adipiscing labore et Lorem ipsum dolor sit",
+      description: "We specialize in providing comprehensive e-commerce solutions that cater to the diverse needs of businesses in the digital marketplace. Our expertise spans from creating user-friendly online stores to implementing secure payment gateways, ensuring a seamless shopping experience for your customers. With our innovative approach and cutting-edge technology, we help businesses optimize their online presence, increase sales, and build lasting customer relationships. Trust us to transform your e-commerce vision into a thriving reality.",
     },
     {
       imgSrc: "/wwd-E-comerce.svg",
       title: "E-Commerce Solutions",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit amet, consectetur adipiscing labore et Lorem ipsum dolor sit",
+      description: "Our web development team is dedicated to building robust, scalable, and high-performing websites that drive business growth. We pride ourselves on delivering custom web solutions tailored to meet the unique needs of each client. From front-end design to back-end development, our skilled developers use the latest technologies and best practices to create websites that are not only visually appealing but also highly functional and responsive. Let us help you establish a powerful online presence that stands out in today’s competitive digital landscape.",
     },
     {
       imgSrc: "/wwd-graphic.svg",
       title: "Web & Graphic Designing",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit amet, consectetur adipiscing labore et Lorem ipsum dolor sit",
+      description: "Our web and graphic design services are crafted to elevate your brand and captivate your audience. Our talented designers combine creativity with technical expertise to produce visually stunning designs that communicate your brand's message effectively. Whether it’s designing a logo, creating a brand identity, or developing a website layout, we ensure that every design element aligns with your business goals and resonates with your target audience. Partner with us to bring your creative vision to life and make a lasting impression in the digital world.",
     },
   ];
 
