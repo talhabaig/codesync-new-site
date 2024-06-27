@@ -30,11 +30,11 @@ export default function Hero() {
           </div>
         </div>
         <div className="basis-full md:basis-[55%] lg:basis-1/2 3xl:pr-8">
-          <div className="flex flex-col md:flex-row justify-end md:justify-center items-center 3xl:justify-end">
+          <div className="px-4 flex flex-col md:flex-row justify-end md:justify-center items-center 3xl:justify-end">
             <div className="flex flex-col justify-center items-center pt-[3rem] md:pt-[56px] md:pr-[3rem] xl:pt-[6rem] 2xl:pt-[6.9rem]">
               <img
                 src="/contact-hero.svg"
-                alt="Team Image" className="md:w-[360px] md:h-[174px] lg:w-[300px] lg:h-[240px] xl:w-[410px] xl:h-[238px] 2xl:w-[430px] 2xl:h-[297px] 3xl:w-[430px] 3xl:h-[325px]"
+                alt="Team Image" className="flex z-10 md:w-[360px] md:h-[174px] lg:w-[300px] lg:h-[240px] xl:w-[410px] xl:h-[238px] 2xl:w-[430px] 2xl:h-[297px] 3xl:w-[430px] 3xl:h-[325px]"
               />
 
               <img
