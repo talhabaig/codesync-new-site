@@ -32,10 +32,10 @@ export default function Hero() {
         </div>
         <div className="basis-full md:basis-[55%] lg:basis-1/2 3xl:pr-8">
           <div className="flex flex-col md:flex-row justify-end md:justify-center items-center 3xl:justify-end">
-            <div className=" flex flex-col justify-center items-center pt-[5rem] md:pt-[56px] xl:pt-[5rem] md:pr-[3rem]">
+            <div className="px-4 flex flex-col justify-center items-center pt-[5rem] md:pt-[56px] xl:pt-[5rem] md:pr-[3rem]">
               <img
                 src="/icons/Team-hero.svg"
-                alt="Team Image" className="md:w-[360px] md:h-[148px] lg:w-[300px] lg:h-[220px] xl:w-[410px] xl:h-[238px] 2xl:w-[430px] 2xl:h-[302px] 3xl:w-[430px] 3xl:h-[318px]"
+                alt="Team Image" className="flex z-10  md:w-[360px] md:h-[148px] lg:w-[300px] lg:h-[220px] xl:w-[410px] xl:h-[238px] 2xl:w-[430px] 2xl:h-[302px] 3xl:w-[430px] 3xl:h-[318px]"
               />
 
               <img
