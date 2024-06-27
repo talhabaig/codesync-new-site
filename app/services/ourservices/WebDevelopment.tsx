@@ -6,7 +6,7 @@ function WebDevelopment() {
       img: "/OurServices-img1.svg",
       heading: "FRONT-END",
       content:
-        "Codesync Company delivers top-notch Frontend Development Services, ensuring UI excellence, robust frameworks (REACT, ANGULAR, or VUE.JS), and seamless user experiences across devices. From design to maintenance, we elevate your web presence for lasting impact.",
+        "Codesync Company delivers top-notch Frontend Development Services, ensuring UI excellence, robust frameworks (REACT, ANGULAR, VUE.JS or Next Js), and seamless user experiences across devices. From design to maintenance, we elevate your web presence for lasting impact.",
     },
     {
       img: "/OurServices-img2.svg",

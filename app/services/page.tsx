@@ -1,17 +1,12 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react'
 import { useRouter } from 'next/router';
-import Hero from './Hero';
-import OurServices from './OurServices';
-
+import Hero from './Hero'
+import OurServices from './OurServices'
 export default function Services() {
   const router = useRouter();
-  const [selectedTab, setSelectedTab] = useState<string | null>(null);
-
-  useEffect(() => {
-    const { tab } = router.query;
-    setSelectedTab(tab as string);
-  }, [router.query]);
+  const { tab } = router.query;
+  const selectedTab = typeof tab === 'string' ? tab : null;
 
   useEffect(() => {
     if (selectedTab) {
@@ -23,6 +18,6 @@ export default function Services() {
     <>
       <Hero />
       <OurServices selectedTab={selectedTab} />
-    </>
-  );
+    </>
+  );
 }
