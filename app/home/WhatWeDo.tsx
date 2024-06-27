@@ -1,4 +1,33 @@
+"use client";
+import { useEffect, useRef } from "react";
+
 export default function WhatWeDo() {
+  const whatwedoRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("fly-in-top");
+          } else {
+            entry.target.classList.remove("fly-in-top");
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    whatwedoRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => {
+      whatwedoRefs.current.forEach((ref) => {
+        if (ref) observer.unobserve(ref);
+      });
+    };
+  }, []);
   const services = [
     {
       imgSrc: "/wwd-web.svg",
@@ -19,7 +48,7 @@ export default function WhatWeDo() {
 
   return (
     <div className="w-full bg-gradient-to-r from-customLightBlue to-customVeryLightBlue">
-      <div className="2xl:container 2xl:mx-auto py-12 px-8 md:px-12 md:py-20 xl:px-24 xl:py-28 2xl:px-12 2xl:pb-32">
+      <div className="py-12 px-0 md:px-0 md:py-20 xl:px-0 xl:py-28 2xl:px-0 2xl:pb-32">
         <div className="text-center font-poppins">
           <div className="flex items-center gap-2 mb-2 2xl:mb-3 md:gap-8 justify-center uppercase font-bold text-lg md:text-2xl lg:text-3xl xl:text-5xl 2xl:leading-[69px] tracking-[1.5%]">
             <img src="/hori-line.svg" className='w-[70px] sm:w-[90px] h-[9px] md:w-[120px] md:h-[12px] lg:w-auto lg:h-auto' alt="" />
@@ -34,11 +63,11 @@ export default function WhatWeDo() {
           </div>
         </div>
 
-        <div className="pt-12 lg:pt-16">
-          <div className="flex flex-wrap flex-col md:flex-row gap-8 md:gap-6 2xl:gap-12 3xl:gap-[110px] md:px-2 xl:px-0 mb-12 md:mb-16 lg:mb-24">
+        <div className="pt-12 lg:pt-16 px-4 xs:px-8 md:px-12 lg:px-[56px] xl:px-24" style={{ backgroundImage: 'url("/Frame2.svg")' }}>
+          <div className="flex flex-wrap flex-col md:flex-row gap-8 md:gap-6 2xl:gap-12 3xl:gap-[100px] md:px-2 xl:px-0 pb-12 pd:mb-16 lg:pb-24">
             {services.map((service, index) => (
-              <div key={index} className="md:basis-[48%] lg:basis-[30%] 3xl:basis-[28%] flex flex-col justify-center items-center md:items-start md:justify-start gap-[30px]">
-                <div className="h-[108px] w-[108px] rounded-[13.3px] bg-gradient-to-b from-customDarkBlue to-customMediumBlue flex justify-center items-center">
+              <div ref={(el) => (whatwedoRefs.current[index] = el)} key={index} className="md:basis-[48%] lg:basis-[31%] xl:basis-[30%] 3xl:basis-[28%] flex flex-col justify-center items-center md:items-start md:justify-start gap-[30px] fly-in-top">
+                <div className="h-[108px] w-[108px] rounded-[13.3px] bg-gradient-to-b from-customDarkBlue to-customMediumBlue flex justify-center items-center hover:shadow-[0_0_30px_#5ba5f9] hover:outline hover:outline-4 hover:outline-white cursor-pointer">
                   <img src={service.imgSrc} alt="" className="" />
                 </div>
                 <div className="flex flex-col items-center justify-center md:justify-start md:items-start">

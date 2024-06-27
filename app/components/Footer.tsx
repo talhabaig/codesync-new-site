@@ -1,19 +1,22 @@
 "use client";
-import {
-  faFaceSmileBeam,
-  faLocationDot,
-  faPhone,
-  faSpinner,
-} from "@fortawesome/free-solid-svg-icons";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
 export function Footer() {
   const [loading, setLoading] = useState("");
+  const router = useRouter();
+  
+  const handleLinkClick = (path: string, tab: string) => {
+    setLoading(tab);
+    setTimeout(() => {
+      router.push(`${path}?tab=${tab}`);
+    }, 500);
+  };
 
-  const handleLinkClick = (path: string) => {
+  const handleSimpleLinkClick = (path: string) => {
     setLoading(path);
     setTimeout(() => {
       window.location.href = path;
@@ -29,7 +32,7 @@ export function Footer() {
           <div className="xl:p-4 basis-1/3 flex flex-col gap-4 xl:gap-8">
             <div className="flex flex-col md:gap-4 lg:mb-4">
               <Link href="/">
-                <div>
+                <div className="md:pt-1">
                   <img
                     src="/CodeSyncLogo.svg"
                     alt="Logo"
@@ -44,37 +47,27 @@ export function Footer() {
             <div className="flex flex-col gap-[15px] font-poppins font-light text-18px 2xl:text-[22px] leading-[32.78px] tracking-[2%]">
               <div className="flex items-center gap-2">
                 <div>
-                  <FontAwesomeIcon icon={faPhone} />
+                  <img
+                    src="/icons/mdi_phone.svg"
+                    className="h-[20px] w-[20px] lg:h-[27px] lg:w-[27px]"
+                    alt=""
+                  />
                 </div>
                 <div>
-                  <a href="tel:+923319660156">+ 92 331 9660156</a>
+                <a href="tel:+923319660156">+ 92 331 9660156</a>
                 </div>
               </div>
               <div className="flex items-center gap-2">
                 <div>
                   <img
                     src="/icons/entypo_email.svg"
-                    className="h-[20px] w-[20px] lg:h-[22px] lg:w-[22px]"
+                    className="h-[20px] w-[20px] lg:h-[27px] lg:w-[27px]"
                     alt=""
                   />
                 </div>
                 <div>
                   <a href="mailto:hr@codesyncs.com" target="_blank">
                     hr@codesyncs.com
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-2">
-                <div>
-                  <FontAwesomeIcon icon={faLocationDot} />
-                </div>
-                <div>
-                  <a
-                    href="https://goo.gl/maps/6x5jkDZgode7pP4v6"
-                    target="_blank"
-                  >
-                    House# 14 SubhanAllah Garden Welfare Society Lahore
                   </a>
                 </div>
               </div>
@@ -116,31 +109,15 @@ export function Footer() {
               </a>
             </div>
           </div>
-          <div className="xl:p-4 basis-1/3 flex flex-col gap-4 xl:gap-[28px]">
+          <div className="xl:p-4 basis-1/3 flex flex-col gap-4 md:gap-[28px]">
             <span className="font-poppins font-semibold text-[26.48px] leading-[39.72px] tracking-[6%] uppercase">
               Our services
             </span>
             <div className="flex text-[#FFFFFF] flex-col gap-[15px] font-poppins font-light text-18px 2xl:text-[20px] leading-[32.78px] tracking-[2%]">
-              <span>
-                <span className="cursor-pointer">Web/Mobile development</span>
-              </span>
-              <span>
-                <span className="cursor-pointer">Web design</span>
-              </span>
-              <span>
-                <span className="cursor-pointer">E-commerce solutions</span>
-              </span>
-              <span>
-                <span className="cursor-pointer">Responsive design</span>
-              </span>
-              <span>
-                <span className="cursor-pointer">
-                  Quality assurance and testing
-                </span>
-              </span>
-              <span>
-                <span className="cursor-pointer">Support and maintenance</span>
-              </span>
+              <span onClick={() => handleLinkClick("/services", "web-development")} className="cursor-pointer">Web Development</span>
+              <span onClick={() => handleLinkClick("/services", "graphic-design")} className="cursor-pointer">WEB & GRAPHIC DESIGNING</span>
+              <span onClick={() => handleLinkClick("/services", "ecommerce")} className="cursor-pointer">E-COMMERCE SOLUTIONS</span>
+              <span onClick={() => handleLinkClick("/services", "mobile-development")} className="cursor-pointer">MOBILE APP DEVELOPMENT</span>
             </div>
           </div>
           <div className="xl:p-4 basis-1/3 flex flex-col gap-4 xl:gap-[28px] bg-none xl:bg-contain xl:bg-no-repeat xl:bg-top xl:bg-[url('/footer-bg.png')]">
@@ -149,10 +126,8 @@ export function Footer() {
             </span>
             <div className="flex flex-col gap-[15px] font-poppins font-light text-18px 2xl:text-[20px] leading-[32.78px] tracking-[2%]">
               <span
-                className={`cursor-pointer ${
-                  loading === "/services" ? "font-medium" : ""
-                }`}
-                onClick={() => handleLinkClick("/services")}
+                className={`cursor-pointer ${loading === "/info-services" ? "font-medium" : ""}`}
+                onClick={() => handleSimpleLinkClick("/services")}
               >
                 {loading === "/services" ? (
                   <FontAwesomeIcon icon={faSpinner} spin />
@@ -160,15 +135,10 @@ export function Footer() {
                   "Services"
                 )}
               </span>
-              <Link
-                href="/portfolio"
-                className={` ${pathname === "/portfolio"}`}
-              >
+              <Link href="/portfolio" className={` ${pathname === "/portfolio"}`}>
                 <span
-                  className={`cursor-pointer ${
-                    loading === "/portfolio" ? "font-medium" : ""
-                  }`}
-                  onClick={() => handleLinkClick("/portfolio")}
+                  className={`cursor-pointer ${loading === "/portfolio" ? "font-medium" : ""}`}
+                  onClick={() => handleSimpleLinkClick("/portfolio")}
                 >
                   {loading === "/portfolio" ? (
                     <FontAwesomeIcon icon={faSpinner} spin />
@@ -180,10 +150,8 @@ export function Footer() {
 
               <Link href="/contact" className={` ${pathname === "/contact"}`}>
                 <span
-                  className={`cursor-pointer ${
-                    loading === "/contact" ? "font-medium" : ""
-                  }`}
-                  onClick={() => handleLinkClick("/contact")}
+                  className={`cursor-pointer ${loading === "/contact" ? "font-medium" : ""}`}
+                  onClick={() => handleSimpleLinkClick("/contact")}
                 >
                   {loading === "/contact" ? (
                     <FontAwesomeIcon icon={faSpinner} spin />
