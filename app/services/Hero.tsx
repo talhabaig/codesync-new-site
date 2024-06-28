@@ -11,7 +11,7 @@ export default function Hero() {
       <div className="flex flex-col md:flex-row justify-center">
         <div className="pl-4 lg:pl-8 xl:pl-8 2xl:pl-20 flex justify-start items-start md:items-center md:basis-[45%] lg:basis-1/2">
           <div className="py-8 md:py-0 flex flex-col basis-[90%] md:basis-[90%] md:pl-4 2xl:basis-[85%] 3xl:basis-[80%]">
-            <div className="fly-in-left uppercase font-poppins font-bold text-2xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-[45px] 3xl:text-[50px] lg:mb-2 2xl:leading-[58px] 3xl:leading-[69px] tracking-[1.5%]">
+            <div className="fly-in-1s uppercase font-poppins font-bold text-2xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-[45px] 3xl:text-[50px] lg:mb-2 2xl:leading-[58px] 3xl:leading-[69px] tracking-[1.5%]">
               <span className="text-[#ffffff]">Our Diverse Range of IT</span>{" "}
               <span className="text-[#00FFFF]">Services</span>
             </div>

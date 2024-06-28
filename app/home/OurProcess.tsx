@@ -63,25 +63,25 @@ export default function OurProcess() {
             What's the process?
           </div>
           <hr className="w-20 md:w-24 mx-auto border-b-[3px] mt-3 border-[#1C7CD4]" />
-          <div className="text-center font-poppins font-bold text-[40px] md:text-[55px] leading-[48px] md:leading-[68.48px] mb-3">
+          <div className="text-center font-poppins font-bold text-2xl md:text-[55px] md:leading-[68.48px] mb-3">
             <span className="text-[#323232]">Our</span> <span className="text-[#1C7CD4]">Process</span>
           </div>
-          <div className="text-center">
+          <div className="text-center text-#323232 font-light text-lg md:text-[21px] md:leading-[34.96px] tracking-[4%]">
             POWERED BY CREATIVITY, INNOVATION AND EXCELLENCE
           </div>
         </div>
         <div className="max-w-[1200px] mx-auto xl:px-12 2xl:px-0">
-          <div className="flex flex-col md:flex-row md:justify-between md:items-center">
+          <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-4 md:mb-0">
             <div className="md:basis-[25%] xl:basis-[35%] flex justify-center md:justify-start">
-              <img src="/OurProcess1.svg" alt="" className="" />
+              <img src="/OurProcess1.svg" alt="" className="h-[128px] w-[130px] sm:h-auto sm:w-auto" />
             </div>
             <div className="md:basis-[60%] xl:basis-[57%]">
               {/* ref={(el) => (titleRefs.current[0] = el)} */}
-              <div className="text-center md:text-left font-poppins font-semibold text-[27.3px] leading-[45.5px] tracking-[4%] text-[#000000] right">
+              <div className="text-center md:text-left font-poppins font-semibold text-[24px] md:text-[27.3px] leading-[36px] md:leading-[45.5px] tracking-[4%] text-[#000000] right">
                 REQUIREMENTS
               </div>
               {/* ref={(el) => (paragraphRefs.current[0] = el)} */}
-              <p className="text-center md:text-left font-poppins font-light text-[22px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] leading-[34px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000] right">
+              <p className="text-center md:text-left font-poppins font-light text-[16px] leading-[24px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000] right">
                 Benefit from the experience, knowledge, unique perspective, and efficiency that our experts bring to each project.
               </p>
             </div>
@@ -92,15 +92,15 @@ export default function OurProcess() {
             </div>
             <img ref={(el) => (airplaneRefs.current[0] = el)} src="/airoplane.svg" className="absolute top-[12px] left-[220px] lg:top-[30px] xl:left-[350px]" alt="" />
           </div>
-          <div className="flex flex-col md:flex-row md:justify-between md:items-center">
+          <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-4 md:mb-0">
             <div className="md:basis-[25%] xl:basis-[35%] flex justify-center md:order-2 md:justify-end">
-              <img src="/OurProcess2.svg" alt="" className="" />
+              <img src="/OurProcess2.svg" alt="" className="h-[128px] w-[130px] sm:h-auto sm:w-auto" />
             </div>
             <div className="md:basis-[60%] xl:basis-[57%] md:order-1">
-              <div className="text-center md:text-left font-poppins font-semibold text-[27.3px] leading-[45.5px] tracking-[4%] text-[#000000] left">
+              <div className="text-center md:text-left font-poppins font-semibold text-[24px] md:text-[27.3px] leading-[36px] md:leading-[45.5px] tracking-[4%] text-[#000000] left">
                 DESIGN
               </div>
-              <p className="text-center md:text-left font-poppins font-light text-[22px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] leading-[34px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000] left">
+              <p className="text-center md:text-left font-poppins font-light text-[16px] leading-[24px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000] left">
                 Benefit from the experience, knowledge, unique perspective, and efficiency that our experts bring to each project.
               </p>
             </div>
@@ -111,15 +111,15 @@ export default function OurProcess() {
             </div>
             <img ref={(el) => (airplaneRefs.current[1] = el)} src="/airoplane2.svg" className="absolute top-[12px] right-[220px] lg:top-[30px] xl:right-[350px] right" alt="" />
           </div>
-          <div className="flex flex-col md:flex-row md:justify-between md:items-center">
+          <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-4 md:mb-0">
             <div className="md:basis-[25%] xl:basis-[35%] flex justify-center md:justify-start">
-              <img src="/OurProcess3.svg" alt="" className="" />
+              <img src="/OurProcess3.svg" alt="" className="h-[128px] w-[130px] sm:h-auto sm:w-auto" />
             </div>
             <div className="md:basis-[60%] xl:basis-[57%]">
-              <div className="text-center md:text-left font-poppins font-semibold text-[27.3px] leading-[45.5px] tracking-[4%] text-[#000000] right">
+              <div className="text-center md:text-left font-poppins font-semibold text-[24px] md:text-[27.3px] leading-[36px] md:leading-[45.5px] tracking-[4%] text-[#000000] right">
                 DEVELOPMENT
               </div>
-              <p className="text-center md:text-left font-poppins font-light text-[22px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] leading-[34px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000] right">
+              <p className="text-center md:text-left font-poppins font-light text-[16px] leading-[24px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000] right">
                 Benefit from the experience, knowledge, unique perspective, and efficiency that our experts bring to each project.
               </p>
             </div>
@@ -130,15 +130,15 @@ export default function OurProcess() {
             </div>
             <img ref={(el) => (airplaneRefs.current[2] = el)} src="/airoplane.svg" className="absolute top-[12px] left-[220px] lg:top-[30px] xl:left-[350px]" alt="" />
           </div>
-          <div className="flex flex-col md:flex-row md:justify-between md:items-center">
+          <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-4 md:mb-0">
             <div className="md:basis-[25%] xl:basis-[35%] flex justify-center md:order-2 md:justify-end">
-              <img src="/OurProcess4.svg" alt="" className="" />
+              <img src="/OurProcess4.svg" alt="" className="h-[128px] w-[130px] sm:h-auto sm:w-auto" />
             </div>
             <div className="md:basis-[60%] xl:basis-[57%] md:order-1">
-              <div className="text-center md:text-left font-poppins font-semibold text-[27.3px] leading-[45.5px] tracking-[4%] text-[#000000] left">
+              <div className="text-center md:text-left font-poppins font-semibold text-[24px] md:text-[27.3px] leading-[36px] md:leading-[45.5px] tracking-[4%] text-[#000000] left">
                 TESTING
               </div>
-              <p className="text-center md:text-left font-poppins font-light text-[22px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] leading-[34px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000] left">
+              <p className="text-center md:text-left font-poppins font-light text-[16px] leading-[24px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000] left">
                 Benefit from the experience, knowledge, unique perspective, and efficiency that our experts bring to each project.
               </p>
             </div>
@@ -149,15 +149,15 @@ export default function OurProcess() {
             </div>
             <img ref={(el) => (airplaneRefs.current[3] = el)} src="/airoplane2.svg" className="absolute top-[12px] right-[220px] lg:top-[30px] xl:right-[350px] right" alt="" />
           </div>
-          <div className="flex flex-col md:flex-row md:justify-between md:items-center">
+          <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-4 md:mb-0">
             <div className="md:basis-[25%] xl:basis-[35%] flex justify-center md:justify-start">
-              <img src="/OurProcess5.svg" alt="" className="" />
+              <img src="/OurProcess5.svg" alt="" className="h-[128px] w-[130px] sm:h-auto sm:w-auto" />
             </div>
             <div className="md:basis-[60%] xl:basis-[57%]">
-              <div className="text-center md:text-left font-poppins font-semibold text-[27.3px] leading-[45.5px] tracking-[4%] text-[#000000] right">
+              <div className="text-center md:text-left font-poppins font-semibold text-[24px] md:text-[27.3px] leading-[36px] md:leading-[45.5px] tracking-[4%] text-[#000000] right">
                 LAUNCH
               </div>
-              <p className="text-center md:text-left font-poppins font-light text-[22px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] leading-[34px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000] right">
+              <p className="text-center md:text-left font-poppins font-light text-[16px] leading-[24px] md:text-[20px] xl:text-[22px] 3xl:text-[26px] md:leading-[34px] xl:leading-[38px] 3xl:leading-[43.29px] tracking-[4%] mb-[21.65px] text-[#000000] right">
                 Benefit from the experience, knowledge, unique perspective, and efficiency that our experts bring to each project.
               </p>
             </div>
