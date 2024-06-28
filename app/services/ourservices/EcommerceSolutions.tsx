@@ -16,7 +16,7 @@ function EcommerceSolutions() {
         </p>
       </div>
       <div className="flex flex-col md:flex-row gap-8 md:gap-0 md:justify-between md:items-center">
-        <div className="md:basis-[46%] 2xl:basis-[42%] flex items-center">
+        <div className="md:basis-[46%] 2xl:basis-[49%] flex items-center">
           <div className="">
             <img src="/EcommerceSolution.svg" alt="" />
             <p className="my-4">
@@ -25,16 +25,7 @@ function EcommerceSolutions() {
               </span>
             </p>
             <p className="font-normal text-lg 2xl:text-[22px] 2xl:leading-[35.86px] mb-[19.11px] tracking-[2%] text-[#454545]">
-              Codesync company provide you an E-Commerce solution that is a
-              comprehensive set of tools and technologies designed to facilitate
-              the buying and selling of goods and services online. in our
-              company you learn about E-Commerce solutions that allow you to
-              easily add, edit, and organize your product catalog. you can set
-              product attributes such as price, availability, variations, size,
-              color, and inventory levels. e-commerce includes search engine
-              optimization (SEO) tools, email marketing integration, social
-              media sharing, discount codes, loyalty programs, and product
-              recommendations.
+            Codesync company offers an E-Commerce solution designed to streamline online transactions for buying and selling goods and services. Our solution includes a robust set of tools and technologies that simplify product catalog management, allowing easy addition, editing, and organization. You can customize product attributes such as price, availability, variations, size, color, and inventory levels. Additionally, our E-Commerce solution features comprehensive functionalities such as search engine optimization (SEO), seamless email marketing integration, social media sharing capabilities, discount code management, loyalty programs, and personalized product recommendations.
             </p>
           </div>
         </div>

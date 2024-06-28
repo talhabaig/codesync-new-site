@@ -48,7 +48,7 @@ function GraphicDesign() {
           <img
             src="/services-graphicDesign.png"
             alt=""
-            className="lg:max-w-[40rem] "
+            // className="lg:max-w-[40rem] "
           />
         </div>
       </div>

@@ -6,7 +6,7 @@ function MobileDevelopment() {
       img: "/OurServices-img1.svg",
       heading: "FRONT-END",
       content:
-        "Codesync Company delivers top-notch Frontend Development Services, ensuring UI excellence, robust frameworks (REACT, ANGULAR, VUE.JS, Next Js), and seamless user experiences across devices. From design to maintenance, we elevate your web presence for lasting impact.",
+        "Codesync Company offers exceptional Frontend Development Services, focusing on achieving UI excellence and seamless user experiences across all devices. Our expertise spans robust frameworks including React, Angular, Vue.js, and Next.js. From initial design through to ongoing maintenance, we enhance your web presence to leave a lasting impact.",
     },
     {
       img: "/OurServices-img2.svg",
@@ -35,7 +35,7 @@ function MobileDevelopment() {
           for exceptional user experiences.
         </p>
       </div>
-      <div className="flex flex-col md:flex-row md:justify-between md:flex-wrap mb-6 md:mb-12">
+      <div className="flex flex-col md:flex-row md:justify-between md:flex-wrap gap-12 mb-6 md:mb-12">
         {MobileDevelopmentDetail.map((detail, index) => (
           <div key={index} className="basis-[46%]">
             <img src={detail.img} alt="" />
