@@ -103,9 +103,21 @@ input[type=number] {
 .fly-in-right {
   animation: flyInRight 1s forwards;
 }
-.fly-in-top {
-  animation: flyInTop 1s forwards;
+
+// styling for animation from bottom to top 
+.initial-hidden {
+  opacity: 0;
+  transform: translateY(20%);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
+
+.fly-in-top {
+  opacity: 1;
+  transform: translateY(0%);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+// end of styling for animation from bottom to top 
 .animate-slide-from-left {
   animation: flyInLeft 1s ease-in-out;
 }
@@ -132,16 +144,6 @@ input[type=number] {
   }
   to {
     transform: translateX(0);
-    opacity: 1;
-  }
-}
-@keyframes flyInTop {
-  from {
-    transform: translateY(50%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(-10%);
     opacity: 1;
   }
 }
