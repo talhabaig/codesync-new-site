@@ -11,7 +11,7 @@ const serviceTab = [
   {
     id: 1,
     title: "Web Development",
-    icon: "./icons/OurServices-icon2.svg",
+    icon: "./icons/OurServices-icon1.svg",
     tab: <WebDevelopment />,
     name: "web-development"
   },
@@ -25,14 +25,14 @@ const serviceTab = [
   {
     id: 3,
     title: "E-COMMERCE SOLUTIONS",
-    icon: "./icons/OurServices-icon2.svg",
+    icon: "./icons/OurServices-icon3.svg",
     tab: <EcommerceSolutions />,
     name: "ecommerce"
   },
   {
     id: 4,
     title: "MOBILE APP DEVELOPMENT",
-    icon: "./icons/OurServices-icon2.svg",
+    icon: "./icons/OurServices-icon4.svg",
     tab: <MobileDevelopment />,
     name: "mobile-development"
   },

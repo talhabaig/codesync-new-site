@@ -93,11 +93,14 @@ input[type=number] {
 .fly-in-left {
   animation: flyInLeft 1s forwards;
 }
+.fly-in-1s {
+  animation: flyInLeft 0.5s forwards;
+}
 .fly-in-1-5s {
-  animation: flyInLeft 1.5s forwards;
+  animation: flyInLeft 1s forwards;
 }
 .fly-in-2s {
-  animation: flyInLeft 2s forwards;
+  animation: flyInLeft 1.2s forwards;
 }
 
 .fly-in-right {

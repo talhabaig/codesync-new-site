@@ -15,7 +15,7 @@ export default function WhatWeDo() {
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0 }
     );
 
     whatwedoRefs.current.forEach((ref) => {
@@ -66,7 +66,7 @@ export default function WhatWeDo() {
         <div className="pt-12 lg:pt-16 px-4 xs:px-8 md:px-12 lg:px-[56px] xl:px-24" style={{ backgroundImage: 'url("/Frame2.svg")' }}>
           <div className="flex flex-wrap flex-col md:flex-row gap-8 md:gap-6 2xl:gap-12 3xl:gap-[100px] md:px-2 xl:px-0 pb-12 pd:mb-16 lg:pb-24">
             {services.map((service, index) => (
-              <div ref={(el) => (whatwedoRefs.current[index] = el)} key={index} className="md:basis-[48%] lg:basis-[31%] xl:basis-[30%] 3xl:basis-[28%] flex flex-col justify-center items-center md:items-start md:justify-start gap-[30px] initial-hidden">
+              <div ref={(el) => (whatwedoRefs.current[index] = el)} key={index} className="md:basis-[30.5%] lg:basis-[31%] xl:basis-[30%] 3xl:basis-[28%] flex flex-col justify-center items-center md:items-start md:justify-start gap-[30px] initial-hidden">
                 <div className="h-[108px] w-[108px] rounded-[13.3px] bg-gradient-to-b from-customDarkBlue to-customMediumBlue flex justify-center items-center hover:shadow-[0_0_30px_#5ba5f9] hover:outline hover:outline-4 hover:outline-white cursor-pointer">
                   <img src={service.imgSrc} alt="" className="" />
                 </div>
