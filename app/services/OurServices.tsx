@@ -39,9 +39,10 @@ export default function OurServices() {
   const contentRef = useRef<HTMLDivElement>(null);
 
   const transitions = useTransition(selectedTab, {
-    from: { opacity: 0, transform: "rotateY(90deg)" },
-    enter: { opacity: 1, transform: "rotateY(0deg)" },
-    leave: { opacity: 0, transform: "rotateY(-90deg)" },
+    from: { opacity: 0, transform: "scale(0.9)" },
+    enter: { opacity: 1, transform: "scale(1)" },
+    leave: { opacity: 0, transform: "scale(0.9)" },
+    config: { duration: 300 },
   });
 
   const handleTabClick = (tabContent: any) => {
