@@ -171,23 +171,23 @@ const teamMembers = [
       },
     },
   },
-  {
-    name: "Abaad Ali",
-    designation: "Frontend Developer",
-    bio: "Former co-founder of Opendoor. Early staff at Spotify and Clearbit.",
-    image: getImagePath("Abaad-ali.jpeg"),
-    social: {
-      twitter: {
-        url: "https://twitter.com/Abaad",
-      },
-      linkedin: {
-        url: "https://linkedin.com/in/Abaad",
-      },
-      other: {
-        url: "https://social3.com/Abaad",
-      },
-    },
-  },
+  // {
+  //   name: "Abaad Ali",
+  //   designation: "Frontend Developer",
+  //   bio: "Former co-founder of Opendoor. Early staff at Spotify and Clearbit.",
+  //   image: getImagePath("Abaad-ali.jpeg"),
+  //   social: {
+  //     twitter: {
+  //       url: "https://twitter.com/Abaad",
+  //     },
+  //     linkedin: {
+  //       url: "https://linkedin.com/in/Abaad",
+  //     },
+  //     other: {
+  //       url: "https://social3.com/Abaad",
+  //     },
+  //   },
+  // },
   {
     name: "Samiullah",
     designation: "Business Developer",

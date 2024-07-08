@@ -37,7 +37,7 @@ export default function OurTeam() {
       designation: "Frontend Developer",
     },
     {
-      src: getImagePath("Haseeb.jpg"),
+      src: getImagePath("haseeb7.jpg"),
       name: "Haseeb Hamza",
       designation: "Frontend Developer",
     },
@@ -56,11 +56,11 @@ export default function OurTeam() {
       name: "Muaz Mughal",
       designation: "Backend Developer",
     },
-    {
-      src: getImagePath("Abaad-ali.jpeg"),
-      name: "Abaad Ali",
-      designation: "Frontend Developer",
-    },
+    // {
+    //   src: getImagePath("Abaad-ali.jpeg"),
+    //   name: "Abaad Ali",
+    //   designation: "Frontend Developer",
+    // },
     {
       src: getImagePath("samiullah.jpg"),
       name: "Samiullah Baig",
