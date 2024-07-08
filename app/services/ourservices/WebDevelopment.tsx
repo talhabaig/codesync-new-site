@@ -50,7 +50,7 @@ function WebDevelopment() {
             </p>
           </div>
         ))}
-        <div className="md:basis-[46%] 2xl:basis-[42%]">
+        <div className="md:basis-[46%] 2xl:basis-[42%] flex justify-center items-center">
           <img src="/Ourservices-img.png" alt="" />
         </div>
       </div>
