@@ -19,6 +19,23 @@ const teamMembers = [
     },
   },
   {
+    name: "Moiz Ahmad",
+    designation: "Full Stack Developer",
+    bio: "Former co-founder of Opendoor. Early staff at Spotify and Clearbit.",
+    image: getImagePath("moiz.jpg"),
+    social: {
+      twitter: {
+        url: "https://twitter.com/mahad",
+      },
+      linkedin: {
+        url: "https://linkedin.com/in/mahad",
+      },
+      other: {
+        url: "https://social3.com/mahad",
+      },
+    },
+  },
+  {
     name: "Zeeshan Bajwa",
     designation: "Frontend Developer",
     bio: "Lead engineering teams at Figma, Pitch, and Protocol Labs.",

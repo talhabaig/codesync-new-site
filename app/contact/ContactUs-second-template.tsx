@@ -124,13 +124,13 @@ export default function ContactUs2() {
     <div className="w-full bg-gradient-to-r from-customLightBlue to-customVeryLightBlue">
       <div className="py-12 px-4 xs:p-12 md:pt-20 xl:px-24 xl:pb-16 xl:pt-28">
         <div className="text-center font-poppins mb-12 md:mb-4 3xl:mb-20">
-          <div className="flex items-center gap-2 md:gap-8 justify-center uppercase font-bold text-lg md:text-2xl lg:text-3xl xl:text-5xl leading-[20px] md:leading-[50px] lg:leading-[69px] tracking-[1.5%] mb-2">
+          <div className="flex items-center gap-2 md:gap-8 justify-center uppercase font-bold text-lg md:text-2xl lg:text-3xl xl:text-5xl leading-[20px] md:leading-[50px] lg:leading-[69px] tracking-[1.5%] mb-4">
             <img
               src="/hori-line.svg"
               className="w-[70px] sm:w-[90px] h-[9px] md:w-[120px] md:h-[12px] lg:w-auto lg:h-auto"
               alt=""
             />
-            <div className="font-bold text-xl md:text-[30px] lg:text-[40px] md:leading-[35px] lg:leading-[50px] 2xl:text-[50px] 2xl:leading-[69px] tracking-[1.5%] md:mb-2">
+            <div className="font-bold text-xl md:text-[30px] lg:text-[40px] md:leading-[35px] lg:leading-[50px] 2xl:text-[50px] 2xl:leading-[69px] tracking-[1.5%]">
               <span className="text-customBlue1">Contact </span>{" "}
               <span className="text-customDarkGray">Us</span>
             </div>
@@ -167,7 +167,7 @@ export default function ContactUs2() {
         <div className="basis-full md:basis-1/2 bg-[#ECEEF0] px-8 py-10 lg:px-12 xl:px-16 xl:py-12 2xl:px-24">
           <form onSubmit={handleSubmit} className="">
             <div className="flex flex-col gap-4 ">
-              <span className="font-semibold text-4xl text-customBlue1">REQUEST A CALL</span>
+              <span className="font-semibold text-3xl md:text-4xl text-customBlue1">REQUEST A CALL</span>
               <span className="font-semibold">I’m interested in...</span>
               <div className="info-request-option flex gap-[6px] md:gap-1 lg:gap-2 xl:gap-3 mb-2">
                 <input
