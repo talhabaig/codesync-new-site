@@ -56,11 +56,6 @@ export default function OurTeam() {
       name: "Muaz Mughal",
       designation: "Backend Developer",
     },
-    // {
-    //   src: getImagePath("Abaad-ali.jpeg"),
-    //   name: "Abaad Ali",
-    //   designation: "Frontend Developer",
-    // },
     {
       src: getImagePath("samiullah.jpg"),
       name: "Samiullah Baig",
