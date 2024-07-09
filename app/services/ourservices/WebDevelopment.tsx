@@ -22,7 +22,7 @@ function WebDevelopment() {
     },
   ];
   return (
-    <div className="flex flex-col gap-12 p-12 xl:px-36 xl:py-24">
+    <div className="flex flex-col gap-12 py-12 px-8 xs:px-12 xl:px-36 xl:py-24">
       {" "}
       <div className="">
         <p className="">

@@ -28,7 +28,7 @@ const teamMembers = [
         url: "https://twitter.com/mahad",
       },
       linkedin: {
-        url: "https://linkedin.com/in/mahad",
+        url: "https://www.linkedin.com/in/moiz-ahmad-81086a218/",
       },
       other: {
         url: "https://social3.com/mahad",
@@ -147,7 +147,7 @@ const teamMembers = [
         url: "https://twitter.com/Ehsan",
       },
       linkedin: {
-        url: "https://linkedin.com/in/Ehsan",
+        url: "https://www.linkedin.com/in/muhammad-ehsan-206798247/",
       },
       other: {
         url: "https://social3.com/Ehsan",
@@ -211,30 +211,30 @@ export default function OurTeam2() {
     <div className="w-full bg-gradient-to-r from-customLightBlue to-customVeryLightBlue">
       <div className="pt-12 xl:pt-24">
         <div className="text-center font-poppins">
-          <div className="flex items-center gap-2 md:gap-8 justify-center uppercase font-bold text-lg md:text-2xl lg:text-3xl xl:text-5xl leading-[20px] md:leading-[50px] lg:leading-[69px] tracking-[1.5%]">
+          <div className="flex items-center gap-2 md:gap-8 justify-center md:mb-2">
             <img
               src="/hori-line.svg"
-              className="w-[90px] h-[9px] md:w-auto md:h-auto"
+              className="w-[70px] sm:w-[90px] h-[9px] md:w-[120px] md:h-[12px] lg:w-auto lg:h-auto"
               alt=""
             />
-            <div className="font-bold text-[30px] leading-[35px] 2xl:text-[50px] 2xl:leading-[69px] tracking-[1.5%]">
+            <div className="text-[30px] leading-[35px] font-bold text-xl md:text-[30px] lg:text-[40px] md:leading-[35px] lg:leading-[50px] 2xl:text-[50px] 2xl:leading-[69px] tracking-[1.5%] uppercase">
               <span className="text-customBlue1">Our </span>{" "}
               <span className="text-customDarkGray">Team</span>
             </div>
             <img
               src="/hori-line2.svg"
-              className="w-[90px] h-[9px] md:w-auto md:h-auto"
+              className="w-[70px] sm:w-[90px] h-[9px] md:w-[120px] md:h-[12px] lg:w-auto lg:h-auto"
               alt=""
             />
           </div>
           <div className="px-4 md:px-0 mb-4 md:mb-[25px] text-[16px] md:text-[20px] lg:text-[22px] font-light leading-[25px] md:leading-[32.78px] tracking-[2%] md:w-[70%] xl:w-1/2 2xl:w-[43%] md:mx-auto">
+            {/* flex justify-center */}
             Our dynamic team blends expertise with creativity, delivering
             cutting-edge solutions tailored to your needs
           </div>
         </div>
 
         <div className="py-12 md:p-16 lg:py-12 lg:px-8 2xl:py-24 2xl:px-20 bg-[#BEF3FF]">
-          
           <div className="py-0 px-[30px] md:px-[25px] lg:px-[20px] 2xl:px-[35.68px] flex flex-col md:flex-row flex-wrap gap-4 lg:gap-3 2xl:gap-8 justify-center">
             {teamMembers.map((member, index) => (
               <div
@@ -253,10 +253,10 @@ export default function OurTeam2() {
                     <span className="text-center font-medium text-[20.05px] leading-[31.19px]">
                       {member.name}
                     </span>
-                    <span className="text-[#0693EB] text-center font-normal text-[17.83px] leading-[26.74px]">
+                    <div className="mb-2 text-[#0693EB] text-center font-normal text-[17.83px] leading-[26.74px]">
                       {member.designation}
-                    </span>
-                    <p className="text-center font-normal text-[#667085] text-[17.83px] leading-[26.74px]">
+                    </div>
+                    <p className="text-center font-normal text-[#667085] text-[17.83px] leading-[26.74px] min-h-[80.2px] max-h-[80.2px]">
                       {member.bio}
                     </p>
                   </div>

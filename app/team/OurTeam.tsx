@@ -124,14 +124,14 @@ export default function OurTeam() {
             />
           </div>
           <div className="px-4 md:px-0 mb-4 md:mb-[25px] text-[16px] md:text-[20px] lg:text-[22px] font-light leading-[25px] md:leading-[32.78px] tracking-[2%] flex justify-center">
-            <div className="basis-[80%]">
+            <div className="md:basis-[70%] xl:basis-1/2 2xl:basis-[43%]">
               Our dynamic team blends expertise with creativity, delivering
               cutting-edge solutions tailored to your needs
             </div>
           </div>
         </div>
 
-        <div className="py-12 xl:py-24 bg-[#BEF3FF]">
+        <div className="py-8 sm:py-12 xl:py-24 bg-[#BEF3FF]">
           <div className="py-12 md:py-24 bg-[#BEF3FF]">
             <div className="overflow-hidden">
               <div ref={ref} className="keen-slider flex px-[50px]">
