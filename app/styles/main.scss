@@ -214,5 +214,11 @@ input[type=number] {
 
 .nav-link:hover::before,
 .nav-link.active::before {
-  width: 70%;
+  width: 100%;
+}
+@media(min-width:768px){
+  .nav-link:hover::before,
+  .nav-link.active::before {
+    width: 70%;
+  }
 }

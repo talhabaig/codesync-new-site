@@ -190,7 +190,7 @@ export default function OurPortfolio2() {
     <div className="w-full bg-gradient-to-r from-customLightBlue to-customVeryLightBlue">
       <div className="py-12 px-8 md:px-12 md:py-20 xl:px-24 xl:py-28">
         <div className="text-center font-poppins mb-12 md:mb-24 2xl:mb-36">
-          <div className="flex items-center gap-2 md:gap-8 justify-center uppercase font-bold text-lg md:text-2xl lg:text-3xl xl:text-5xl leading-[20px] md:leading-[50px] lg:leading-[69px] tracking-[1.5%]">
+          <div className="flex items-center gap-2 md:gap-8 justify-center uppercase font-bold text-lg md:text-2xl lg:text-3xl xl:text-5xl leading-[20px] md:leading-[50px] lg:leading-[69px] tracking-[1.5%] mb-2">
             <img
               src="/hori-line.svg"
               className="w-[70px] sm:w-[90px] h-[9px] md:w-[120px] md:h-[12px] lg:w-auto lg:h-auto"

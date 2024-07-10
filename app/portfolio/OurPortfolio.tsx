@@ -63,13 +63,13 @@ function OurPortfolio() {
   return (
     <div className="w-full pt-12 md:pt-20 xl:pt-28 bg-gradient-to-r from-customLightBlue to-customVeryLightBlue">
       <div className="text-center font-poppins">
-        <div className="flex items-center gap-2 md:gap-8 justify-center uppercase font-bold text-lg md:text-2xl lg:text-3xl xl:text-5xl leading-[20px] md:leading-[50px] lg:leading-[69px] tracking-[1.5%]">
+        <div className="flex items-center gap-2 md:gap-8 justify-center uppercase font-bold text-lg md:text-2xl lg:text-3xl xl:text-5xl leading-[20px] md:leading-[50px] lg:leading-[69px] tracking-[1.5%] mb-2">
           <img
             src="/hori-line.svg"
             className="w-[85px] h-[9px] md:w-auto md:h-auto"
             alt=""
           />
-          <div className="font-bold text-[23px] md:text-[30px] leading-[30px] md:leading-[35px] 2xl:text-[50px] 2xl:leading-[69px] tracking-[1.5%]">
+          <div className="font-bold text-lg md:text-[30px] lg:text-[40px] md:leading-[35px] lg:leading-[50px] 2xl:text-[50px] 2xl:leading-[69px] tracking-[1.5%] md:mb-2">
             <span className="text-customBlue1">Our </span>{" "}
             <span className="text-customDarkGray">Portfolio</span>
           </div>

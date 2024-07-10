@@ -17,8 +17,8 @@ function GraphicDesign() {
   return (
     <div className="px-8 py-12 sm:p-12 xl:px-36 xl:py-24 2xl:px-48">
       <div className="mb-12 md:mb-16 xl:mb-24">
-        <p className="">
-          <span className="text-[#0693EB] uppercase font-bold text-[25px] md:text-[40px] 2xl:text-[48.6px] leading-[40px] md:leading-[50px] 2xl:leading-[60.51px]">
+        <p className="mb-2">
+          <span className="text-[#0693EB] uppercase font-bold text-[25px] md:text-[40px] 2xl:text-[48.6px] leading-[35px] md:leading-[50px] 2xl:leading-[60.51px]">
             WEB & GRAPHIC DESIGNING
           </span>
         </p>
