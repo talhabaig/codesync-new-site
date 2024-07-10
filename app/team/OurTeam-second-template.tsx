@@ -25,13 +25,13 @@ const teamMembers = [
     image: getImagePath("moiz.jpg"),
     social: {
       twitter: {
-        url: "https://twitter.com/mahad",
+        url: "https://twitter.com/moiz",
       },
       linkedin: {
         url: "https://www.linkedin.com/in/moiz-ahmad-81086a218/",
       },
       other: {
-        url: "https://social3.com/mahad",
+        url: "https://social3.com/moiz",
       },
     },
   },
