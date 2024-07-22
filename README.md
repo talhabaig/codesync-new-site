@@ -1,4 +1,4 @@
-# Redux Toolkit TypeScript Example
+# Redux Toolkit TypeScript Example 
 
 # npm i
 To install node modules
