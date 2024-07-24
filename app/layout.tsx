@@ -15,18 +15,20 @@ export default function RootLayout({ children }: Props) {
   return (
     <StoreProvider>
       <html lang="en">
-      <head>
-  <title>CodeSyncs - Contact Us</title>
-  <meta name="description" content="Contact CodeSyncs for any questions or remarks. Just write us a message, our team member will contact you shortly!" />
-  <link rel="icon" href="/icon.png" />
-  <link rel="canonical" href="https://www.codesyncs.com/contact" />
-
-  <meta property="og:title" content="CodeSyncs - Contact Us" />
-  <meta property="og:description" content="Contact CodeSyncs for any questions or remarks. Just write us a message , our team member will contact you shortly!" />
-  <meta property="og:url" content="https://www.codesyncs.com/contact" />
-  <meta property="og:site_name" content="CodeSyncs" />
-  <meta property="og:type" content="website" />
-</head>
+     <head>
+        <title>Codesync</title>
+        <html lang="en" />
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta 
+          name="description" 
+          content="Welcome to our premier software solutions company, where excellence meets innovation. We specialize in developing top-tier solutions for intricate web projects, harnessing an array of frameworks, platforms, and cutting-edge tools." 
+        />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="keywords" content="Code Sync" />
+        <meta property="og:site_name" content="Code Sync" />
+        <link rel="icon" type="image/x-icon" href="/icon.png" />
+      </head>
         <body>
           <NextTopLoader
             color="#49B8FD"
