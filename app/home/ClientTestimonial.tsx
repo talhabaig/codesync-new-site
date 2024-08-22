@@ -93,9 +93,9 @@ export default function ClientTestimonial() {
               alt=""
             />
             <div>
-              <span className="font-poppins font-bold text-xl md:text-2xl lg:text-3xl 2xl:text-[50px] md:leading-[30px] 2xl:leading-[69px] text-[#FFFFFF] tracking-[1.5%]">
+              <h1 className="font-poppins font-bold text-xl md:text-2xl lg:text-3xl 2xl:text-[50px] md:leading-[30px] 2xl:leading-[69px] text-[#FFFFFF] tracking-[1.5%]">
                 Client Testimonial
-              </span>
+              </h1>
             </div>
             <img
               src="/hori-line2.svg"
@@ -103,9 +103,9 @@ export default function ClientTestimonial() {
               alt=""
             />
           </div>
-          <div className="text-white mb-4 md:mb-[25px] text-[18px] md:text-[20px] lg:text-[22px] font-light leading-[32.78px] tracking-[2%]">
+          <h2 className="text-white mb-4 md:mb-[25px] text-[18px] md:text-[20px] lg:text-[22px] font-light leading-[32.78px] tracking-[2%]">
             We love our clients
-          </div>
+          </h2>
         </div>
 
         <div>
@@ -127,8 +127,8 @@ export default function ClientTestimonial() {
             </div>
             <div className="flex justify-end">
               <span className="text-sm xs:text-lg md:text-xl lg:text-2xl tracking-[1.5%]">
-                <span className="font-bold">{selectedTestimonial.author}</span>
-                <br />
+                <h3 className="font-bold">{selectedTestimonial.author}</h3>
+                {/* <br /> */}
                 <span>{selectedTestimonial.position}</span>
               </span>
             </div>

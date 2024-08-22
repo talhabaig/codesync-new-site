@@ -130,20 +130,20 @@ export default function ContactUs2() {
               className="w-[70px] sm:w-[90px] h-[9px] md:w-[120px] md:h-[12px] lg:w-auto lg:h-auto"
               alt=""
             />
-            <div className="font-bold text-xl md:text-[30px] lg:text-[40px] md:leading-[35px] lg:leading-[50px] 2xl:text-[50px] 2xl:leading-[69px] tracking-[1.5%]">
+            <h1 className="font-bold text-xl md:text-[30px] lg:text-[40px] md:leading-[35px] lg:leading-[50px] 2xl:text-[50px] 2xl:leading-[69px] tracking-[1.5%]">
               <span className="text-customBlue1">Contact </span>{" "}
               <span className="text-customDarkGray">Us</span>
-            </div>
+            </h1>
             <img
               src="/hori-line2.svg"
               className="w-[70px] sm:w-[90px] h-[9px] md:w-[120px] md:h-[12px] lg:w-auto lg:h-auto"
               alt=""
             />
           </div>
-          <div className="mb-4 md:mb-0 3xl:mb-5 text-[16px] lg:text-[22px] font-light leading-[25px] lg:leading-[32.78px] tracking-[2%] md:w-[70%] xl:w-1/2 2xl:w-[45%] md:mx-auto">
+          <h2 className="mb-4 md:mb-0 3xl:mb-5 text-[16px] lg:text-[22px] font-light leading-[25px] lg:leading-[32.78px] tracking-[2%] md:w-[70%] xl:w-1/2 2xl:w-[45%] md:mx-auto">
             Get in touch with us to discuss your projects, explore
             opportunities, and collaborate for success.
-          </div>
+          </h2>
         </div>
       </div>
       <div className="flex flex-wrap">

@@ -124,9 +124,9 @@ export function Footer() {
             </div>
           </div>
           <div className="xl:p-4 basis-1/3 flex flex-col gap-4 xl:gap-[28px]">
-            <span className="font-poppins font-semibold text-[26.48px] leading-[39.72px] tracking-[6%] uppercase">
+            <h3 className="font-poppins font-semibold text-[26.48px] leading-[39.72px] tracking-[6%] uppercase">
               Our services
-            </span>
+            </h3>
             <div className="flex text-[#FFFFFF] flex-col gap-[15px] font-poppins font-light text-18px 2xl:text-[20px] leading-[32.78px] tracking-[2%]">
               <span onClick={() => handleLinkClick("/services", "web-development")} className="cursor-pointer">Web Development</span>
               <span onClick={() => handleLinkClick("/services", "graphic-design")} className="cursor-pointer">WEB & GRAPHIC DESIGNING</span>
@@ -135,9 +135,9 @@ export function Footer() {
             </div>
           </div>
           <div className="xl:p-4 basis-1/3 flex flex-col gap-4 xl:gap-[28px] bg-none xl:bg-contain xl:bg-no-repeat xl:bg-top xl:bg-[url('/footer-bg.png')]">
-            <span className="uppercase font-poppins font-semibold text-[26.48px] leading-[39.72px] tracking-[6%]">
+            <h3 className="uppercase font-poppins font-semibold text-[26.48px] leading-[39.72px] tracking-[6%]">
               Information
-            </span>
+            </h3>
             <div className="flex flex-col gap-[15px] font-poppins font-light text-18px 2xl:text-[20px] leading-[32.78px] tracking-[2%]">
               <span
                 className={`cursor-pointer ${loading === "/info-services" ? "font-medium" : ""}`}

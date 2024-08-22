@@ -22,9 +22,9 @@ function ServicesTab({ tabs, setSelectedTab }: any) {
               />
             </div>
             <div className="flex flex-col items-center justify-center md:justify-start md:items-start">
-              <span className="font-poppins text-[#3F3F3F] text-center uppercase text-[26.48px] md:text-[18px] xl:text-[22px] 2xl:text-[26.48px] font-bold leading-[39.72px] md:leading-[30px] xl:leading-[32px] 2xl:leading-[39.72px] tracking-[6%] group-hover:text-customBlue1">
+              <h3 className="font-poppins text-[#3F3F3F] text-center uppercase text-[26.48px] md:text-[18px] xl:text-[22px] 2xl:text-[26.48px] font-bold leading-[39.72px] md:leading-[30px] xl:leading-[32px] 2xl:leading-[39.72px] tracking-[6%] group-hover:text-customBlue1">
                 {tab.title}
-              </span>
+              </h3>
             </div>
           </div>
         ))}

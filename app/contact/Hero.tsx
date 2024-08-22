@@ -10,12 +10,12 @@ export default function Hero() {
       <div className="flex flex-col md:flex-row justify-center">
         <div className=" flex justify-start items-start md:items-center md:basis-[45%] lg:basis-1/2 2xl:px-[5rem] lg:px-[2rem] md:px-[1rem]">
           <div className="px-[16px] py-8 md:py-0 2xl:pt-12 xl:pl-4  flex flex-col basis-[90%] md:basis-[86%] 2xl:basis-[92%]">
-            <div className="fly-in-1s uppercase font-poppins font-bold text-2xl md:text-xl lg:text-3xl xl:text-4xl 2xl:text-[45px] 3xl:text-[50px] leading-[35px] md:leading-[30px] lg:leading-[40px] lg:mb-2 xl:leading-[45px] 2xl:leading-[60px] 3xl:leading-[69px] tracking-[1.5%]">
+            <h1 className="fly-in-1s uppercase font-poppins font-bold text-2xl md:text-xl lg:text-3xl xl:text-4xl 2xl:text-[45px] 3xl:text-[50px] leading-[35px] md:leading-[30px] lg:leading-[40px] lg:mb-2 xl:leading-[45px] 2xl:leading-[60px] 3xl:leading-[69px] tracking-[1.5%]">
               <span className="text-[#ffffff]">
                 Reach Out <br /><span className="text-[#00FFFF]">Contact</span> Us
                 Today
               </span>
-            </div>
+            </h1>
             <p className="fly-in-1-5s mb-4 md:mb-2 lg:mb-4 2xl:mb-[25px] font-poppins font-light text-[16px] md:text-[13.3px] lg:text-[16px] xl:text-[18px] 2xl:text-[22px] leading-[24px] md:leading-[24px] xl:leading-[32.78px] tracking-[2%]">
               Connect with us to explore possibilities and discuss your project
               needs.

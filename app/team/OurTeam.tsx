@@ -61,11 +61,6 @@ export default function OurTeam() {
       name: "Muaz Mughal",
       designation: "Backend Developer",
     },
-    {
-      src: getImagePath("samiullah.jpg"),
-      name: "Samiullah Baig",
-      designation: "Business Developer",
-    },
   ];
   const animation = { duration: 20000, easing: (t: number) => t };
   const [ref] = useKeenSlider<HTMLDivElement>({
@@ -113,10 +108,10 @@ export default function OurTeam() {
               className="w-[70px] sm:w-[90px] h-[9px] md:w-[120px] md:h-[12px] lg:w-auto lg:h-auto"
               alt=""
             />
-            <div className="font-bold text-xl md:text-[30px] lg:text-[40px] md:leading-[35px] lg:leading-[50px] 2xl:text-[50px] 2xl:leading-[69px] tracking-[1.5%] md:mb-2">
+            <h1 className="font-bold text-xl md:text-[30px] lg:text-[40px] md:leading-[35px] lg:leading-[50px] 2xl:text-[50px] 2xl:leading-[69px] tracking-[1.5%] md:mb-2">
               <span className="text-customBlue1">Our </span>{" "}
               <span className="text-customDarkGray">Team</span>
-            </div>
+            </h1>
             <img
               src="/hori-line2.svg"
               className="w-[70px] sm:w-[90px] h-[9px] md:w-[120px] md:h-[12px] lg:w-auto lg:h-auto"
@@ -124,10 +119,10 @@ export default function OurTeam() {
             />
           </div>
           <div className="px-4 md:px-0 mb-4 md:mb-[25px] text-[16px] md:text-[20px] lg:text-[22px] font-light leading-[25px] md:leading-[32.78px] tracking-[2%] flex justify-center">
-            <div className="md:basis-[70%] xl:basis-1/2 2xl:basis-[43%]">
+            <h2 className="md:basis-[70%] xl:basis-1/2 2xl:basis-[43%]">
               Our dynamic team blends expertise with creativity, delivering
               cutting-edge solutions tailored to your needs
-            </div>
+            </h2>
           </div>
         </div>
 
@@ -149,9 +144,9 @@ export default function OurTeam() {
                     />
                     <div className="absolute top-0 left-0 w-full h-full rounded-[22px] bg-gradient-to-t from-[#0693EB] to-[rgba(255, 255, 255, 0)] to-[45.01%]" />
                     <div className="absolute bottom-5 md:bottom-6 left-0 w-full bg-transparent bg-opacity-50 p-2 rounded-b-[22px] text-center">
-                      <div className="font-semibold text-center text-[18px] leading-[22px] md:text-[25px] md:leading-[31.19px] text-white">
+                      <h3 className="font-semibold text-center text-[18px] leading-[22px] md:text-[25px] md:leading-[31.19px] text-white">
                         {member.name}
-                      </div>
+                      </h3>
                       <div className="text-[15px] md:text-[17.83px] font-normal leading-[20px] md:leading-[26.74px] text-center">
                         {member.designation}
                       </div>
