@@ -48,14 +48,14 @@ export default function WhyCodesync() {
         <div className="text-center font-poppins mb-12 xl:mb-24">
           <div className="flex items-center gap-2 md:gap-8 justify-center uppercase font-bold text-xl md:text-2xl lg:text-3xl xl:text-5xl lg:leading-[69px] tracking-[1.5%] mb-4">
             <img src="/hori-line.svg" className='w-[70px] h-[9px] sm:w-[90px] md:w-auto md:h-auto' alt="" />
-            <div>
+            <h1>
               <span className="text-white">Why CodeSyncs?</span>{" "}
-            </div>
+            </h1>
             <img src="/hori-line2.svg" className='w-[70px] h-[9px] sm:w-[90px] md:w-auto md:h-auto' alt="" />
           </div>
-          <div className="text-white mb-4 md:mb-[25px] text-[18px] md:text-[20px] lg:text-[22px] font-light leading-[32.78px] tracking-[2%]">
+          <h2 className="text-white mb-4 md:mb-[25px] text-[18px] md:text-[20px] lg:text-[22px] font-light leading-[32.78px] tracking-[2%]">
             Codesync is the partner of choice
-          </div>
+          </h2>
         </div>
 
         <div className="flex flex-col md:flex-row md:items-center md:justify-center">
@@ -79,11 +79,11 @@ export default function WhyCodesync() {
             </div>
             <div className="md:basis-[65%] py-8 flex flex-col items-center justify-between">
               <div className="mb-6">
-                <span className="font-poppins font-medium text-[18px] md:text-[26.48px] leading-[39.72px]tracking-[6%]">Tailored Solutions</span>
+                <h3 className="font-poppins font-medium text-[18px] md:text-[26.48px] leading-[39.72px]tracking-[6%]">Tailored Solutions</h3>
                 <p className="font-Chenla text-[14px] leading-[22px] md:leading-[25.75px] ">We offer industry-specific software solutions tailored to diverse business needs, emphasizing customization for optimal fit.</p>
               </div>
               <div>
-                <span className="font-poppins font-medium text-[18px] md:text-[26.48px] leading-[39.72px]tracking-[6%]">Work with Experts</span>
+                <h3 className="font-poppins font-medium text-[18px] md:text-[26.48px] leading-[39.72px]tracking-[6%]">Work with Experts</h3>
                 <p className="font-Chenla text-[14px] leading-[22px] md:leading-[25.75px] text-[#FFFFFF]">Benefit from the experience, knowledge, unique perspective, and efficiency that our experts bring to each project.</p>
               </div>
             </div>

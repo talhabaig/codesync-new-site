@@ -188,23 +188,6 @@ const teamMembers = [
       },
     },
   },
-  {
-    name: "Samiullah",
-    designation: "Business Developer",
-    bio: "Former co-founder of Opendoor. Early staff at Spotify and Clearbit.",
-    image: getImagePath("samiullah.jpg"),
-    social: {
-      twitter: {
-        url: "https://twitter.com/Samiullah",
-      },
-      linkedin: {
-        url: "https://linkedin.com/in/Samiullah",
-      },
-      other: {
-        url: "https://social3.com/Samiullah",
-      },
-    },
-  },
 ];
 export default function OurTeam2() {
   return (

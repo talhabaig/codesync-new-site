@@ -1,9 +1,9 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FeedReadMore } from "../components/common/readMore";
 import { getImagePath } from "./utils.js";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams  } from "next/navigation";
 const portfolioItems = [
   {
     id: 1,
@@ -138,22 +138,29 @@ const portfolioItems = [
 export default function OurPortfolio2() {
   const [currentPage, setCurrentPage] = useState(1);
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const itemsPerPage = 4;
   const totalPages = Math.ceil(portfolioItems.length / itemsPerPage);
 
+  useEffect(() => {
+    const page = searchParams.get("page");
+    setCurrentPage(page ? parseInt(page) : 1);
+  }, [searchParams]);
+
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
+    window.history.pushState(null, "", `?page=${page}`);
   };
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
+      handlePageChange(currentPage + 1);
     }
   };
 
   const handlePreviousPage = () => {
     if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
+      handlePageChange(currentPage - 1);
     }
   };
 
@@ -196,20 +203,20 @@ export default function OurPortfolio2() {
               className="w-[70px] sm:w-[90px] h-[9px] md:w-[120px] md:h-[12px] lg:w-auto lg:h-auto"
               alt=""
             />
-            <div className="font-bold text-lg md:text-[30px] lg:text-[40px] md:leading-[35px] lg:leading-[50px] 2xl:text-[50px] 2xl:leading-[69px] tracking-[1.5%] md:mb-2">
+            <h1 className="font-bold text-lg md:text-[30px] lg:text-[40px] md:leading-[35px] lg:leading-[50px] 2xl:text-[50px] 2xl:leading-[69px] tracking-[1.5%] md:mb-2">
               <span className="text-customBlue1">Our </span>{" "}
               <span className="text-customDarkGray">Portfolio</span>
-            </div>
+            </h1>
             <img
               src="/hori-line2.svg"
               className="w-[70px] sm:w-[90px] h-[9px] md:w-[120px] md:h-[12px] lg:w-auto lg:h-auto"
               alt=""
             />
           </div>
-          <div className="mb-4 md:mb-[25px] text-[16px] md:text-[20px] lg:text-[22px] font-light leading-[25px] md:leading-[32.78px] tracking-[2%] md:w-[70%] xl:w-1/2 2xl:w-[43%] md:mx-auto">
+          <h2 className="mb-4 md:mb-[25px] text-[16px] md:text-[20px] lg:text-[22px] font-light leading-[25px] md:leading-[32.78px] tracking-[2%] md:w-[70%] xl:w-1/2 2xl:w-[43%] md:mx-auto">
             FULL STACK WEB DEVELOPMENT <br />
             Building exceptional stuff
-          </div>
+          </h2>
         </div>
         <div className="my-12 max-w-[1520px] 2xl:mx-auto">
           {currentPortfolioItems.map((project, index) => (
@@ -253,9 +260,9 @@ export default function OurPortfolio2() {
               </div>
               <div className="md:basis-[45%] lg:basis-[48%] xl:basis-[45%] flex items-center">
                 <div className="md:p-4 lg:p-8 md:basis-full xl:basis-[90%] 2xl:basis-[85%]">
-                  <span className="text-[30px] md:text-[35px] lg:text-[45px] xl:text-[50px] 2xl:text-[64px] font-semibold text-[#0693EB] leading-[50px] md:leading-[60px] lg:leading-[75px] xl:leading-[80px] 2xl:leading-[96px] uppercase">
+                  <h3 className="text-[30px] md:text-[35px] lg:text-[45px] xl:text-[50px] 2xl:text-[64px] font-semibold text-[#0693EB] leading-[50px] md:leading-[60px] lg:leading-[75px] xl:leading-[80px] 2xl:leading-[96px] uppercase">
                     {project.title}
-                  </span>
+                  </h3>
                   <div className="text-[#454545] font-work-sans leading-[30.25px] font-light text-[25px] mb-2 xl:mb-0">
                     <FeedReadMore maxLength={150}>
                       {project.description}

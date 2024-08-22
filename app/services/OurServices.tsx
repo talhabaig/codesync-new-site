@@ -79,19 +79,19 @@ export default function OurServices({ selectedTab }: OurServicesProps) {
               className="w-[70px] sm:w-[90px] h-[9px] md:w-[120px] md:h-[12px] lg:w-auto lg:h-auto"
               alt=""
             />
-            <div className="font-bold text-lg md:text-2xl lg:text-3xl xl:text-5xl 2xl:text-[50px] 2xl:leading-[69px] tracking-[1.5%]">
+            <h1 className="font-bold text-lg md:text-2xl lg:text-3xl xl:text-5xl 2xl:text-[50px] 2xl:leading-[69px] tracking-[1.5%]">
               <span className="text-customBlue1">Our </span>{" "}
               <span className="text-customDarkGray">services</span>
-            </div>
+            </h1>
             <img
               src="/hori-line2.svg"
               className="w-[70px] sm:w-[90px] h-[9px] md:w-[120px] md:h-[12px] lg:w-auto lg:h-auto"
               alt=""
             />
           </div>
-          <div className="mb-4 md:mb-[25px] text-[18px] md:text-[20px] lg:text-[22px] font-light leading-[32.78px] tracking-[2%]">
+          <h2 className="mb-4 md:mb-[25px] text-[18px] md:text-[20px] lg:text-[22px] font-light leading-[32.78px] tracking-[2%]">
             We let our ideas grow!
-          </div>
+          </h2>
         </div>
 
         <ServicesTab tabs={serviceTab} setSelectedTab={handleTabClick} />
