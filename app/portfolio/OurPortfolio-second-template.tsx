@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense  } from "react";
 import { FeedReadMore } from "../components/common/readMore";
 import { getImagePath } from "./utils.js";
 import Link from "next/link";
@@ -134,8 +134,7 @@ const portfolioItems = [
     order: "order-2",
   },
 ];
-
-export default function OurPortfolio2() {
+function PortfolioContent() {
   const [currentPage, setCurrentPage] = useState(1);
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -307,5 +306,12 @@ export default function OurPortfolio2() {
         </div>
       </div>
     </div>
+  );
+}
+export default function OurPortfolio2() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <PortfolioContent />
+    </Suspense>
   );
 }
