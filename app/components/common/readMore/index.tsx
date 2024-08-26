@@ -36,7 +36,7 @@ export const FeedReadMore: React.FC<ReadMoreProps> = ({
       {text.length > maxLength && (
         <button onClick={handleToggleReadMore}>
           <Caption1Semibold className="cursor-pointer text-[#0693EB] flex items-center">
-            {isExpanded ? (readMore ? "Read Less" : "less") : (readMore ? "Read More" : "View work")}
+            {isExpanded ? (readMore ? "Read Less" : "less") : (readMore ? "Read More" : "View more")}
             <Icon name="right-arrow" size="md" />
           </Caption1Semibold>
         </button>
