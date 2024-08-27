@@ -173,6 +173,18 @@ export function Footer() {
                   )}
                 </span>
               </Link>
+              <Link href="/career" className={` ${pathname === "/career"}`}>
+                <span
+                  className={`cursor-pointer ${loading === "/career" ? "font-medium" : ""}`}
+                  onClick={() => handleSimpleLinkClick("/career")}
+                >
+                  {loading === "/career" ? (
+                    <FontAwesomeIcon icon={faSpinner} spin />
+                  ) : (
+                    "Career"
+                  )}
+                </span>
+              </Link>
 
               <Link href="/contact" className={` ${pathname === "/contact"}`}>
                 <span
