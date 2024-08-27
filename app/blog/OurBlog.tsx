@@ -142,25 +142,33 @@ function OurBlog() {
       <div className="p-4 md:p-8">
         <div className="flex justify-center">
           <div className="basis-[90%] md:basis-[85%] flex flex-col md:flex-row md:flex-wrap gap-5">
-          {currentBlogs.map((project) => (
-            <div className=" md:basis-[48%] 2xl:basis-[32%] flex flex-col gap-5 md:flex-row md:items-center justify-between">
-              <div className="shadow-2xl rounded-2xl overflow-hidden transition-all duration-400 transform hover:shadow-2xl w-full">
-                <div className="overflow-hidden">
-                  <img
-                    className="h-[180px] lg:h-[230px] w-full transition-all duration-500 transform hover:scale-110 "
-                    src={project.image}
-                    alt={project.alt}
-                  ></img>
+          {currentBlogs.map((blog, index) => (
+            <div className=" md:basis-[48%] 2xl:basis-[32%] flex flex-col gap-5 md:flex-row md:items-center justify-between" key={blog.id}>
+              
+                <div className="shadow-2xl rounded-2xl overflow-hidden transition-all duration-400 transform hover:shadow-2xl w-full group">
+                <Link
+                href={`/blogdetails/${blog.id}`}
+                className={`w-full ${
+                  pathname === `/blogdetails/${blog.id}`
+                }`}
+              >
+                  <div className="overflow-hidden ">
+                    <img
+                      className="h-[180px] lg:h-[230px] w-full transition-all duration-500 transform group-hover:scale-110"
+                      src={blog.image}
+                      alt={blog.alt}
+                    ></img>
+                  </div></Link>
+                  <div className="p-6 bg-white h-auto md:h-[120px] lg:h-[140px]">
+                    
+                    <div className="text-[#454545] font-work-sans leading-[23px] md:leading-[20px] lg:leading-[22px] xl:leading-[26.62px] font-bold text-[20px] md:text-[18px] lg:text-[20px] 2xl:text-[22px] mb-2 xl:mb-0">
+                      <FeedReadMore maxLength={50} className="font-bold" readMore>
+                        {blog.title}
+                      </FeedReadMore>
+                    </div>
+                  </div>
                 </div>
-                <div className="p-6 bg-white h-auto md:h-[120px] lg:h-[140px]">
-                  
-                  <div className="text-[#454545] font-work-sans leading-[23px] md:leading-[20px] lg:leading-[22px] xl:leading-[26.62px] font-bold text-[20px] md:text-[18px] lg:text-[20px] 2xl:text-[22px] mb-2 xl:mb-0">
-                  <FeedReadMore maxLength={50} className="font-bold">
-                    {project.title}
-                  </FeedReadMore>
-                </div>
-                </div>
-              </div>
+              
             </div>
             ))}
           </div>
