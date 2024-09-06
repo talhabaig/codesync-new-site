@@ -1,14 +1,49 @@
 "use client";
 import React, { useState } from 'react';
+import {signInWithEmailAndPassword} from 'firebase/auth'
+import {auth} from '@/app/firebase/config'
+import {useRouter} from 'next/navigation'
 
-export default function AdminLogin() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const AdminLogin =()=> {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Email validation function using regex
+  const isValidEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const handleSignin = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle login logic here, e.g., authenticate the admin with an API
-    console.log('Admin Login:', { email, password });
+    setError(null); // Reset error message before validation
+
+    // Frontend validation
+    if (!isValidEmail(email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters long.");
+      return;
+    }
+
+  
+    try {
+      const res = await signInWithEmailAndPassword(auth, email, password);
+      console.log("Sign-in successfully", { res });
+      router.push("/admin/admindashboard");
+      setEmail("");
+      setPassword("");
+    } catch (e) {
+      console.error("sign-in error. please enter valid credentials", e);
+      setError("Invalid email or password. Please try again.");
+    } finally {
+      
+    }
   };
 
   return (
@@ -16,8 +51,8 @@ export default function AdminLogin() {
       <div className="flex items-center justify-center bg-gray-100 p-4 md:p-12 max-w-[500px]">
         <div className="w-full bg-white p-6 sm:p-8 rounded-lg shadow-md">
           <h2 className="text-2xl font-semibold text-center mb-6">Admin Login</h2>
-
-          <form onSubmit={handleSubmit}>
+          {error && <p className="text-red-600 text-center mb-4">{error}</p>}
+          <form onSubmit={handleSignin}>
             <div className="mb-4">
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                 Email
@@ -57,4 +92,5 @@ export default function AdminLogin() {
       </div>
     </div>
   );
-}
+};
+export default AdminLogin
