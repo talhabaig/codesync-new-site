@@ -12,21 +12,21 @@ const AddCareer: React.FC<AddCareerProps> = ({ newCareer, setNewCareer, handleAd
       <input
         type="text"
         placeholder="Position"
-        value={newCareer.position}
+        value={newCareer?.position}
         onChange={(e) => setNewCareer({ ...newCareer, position: e.target.value })}
         className="block w-full mb-2 p-2 border border-gray-300 rounded"
       />
       <input
         type="text"
         placeholder="Department"
-        value={newCareer.department}
+        value={newCareer?.department}
         onChange={(e) => setNewCareer({ ...newCareer, department: e.target.value })}
         className="block w-full mb-2 p-2 border border-gray-300 rounded"
       />
       <input
         type="text"
         placeholder="Location"
-        value={newCareer.location}
+        value={newCareer?.location}
         onChange={(e) => setNewCareer({ ...newCareer, location: e.target.value })}
         className="block w-full mb-4 p-2 border border-gray-300 rounded"
       />

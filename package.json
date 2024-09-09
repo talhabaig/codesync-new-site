@@ -12,6 +12,7 @@
     "@headlessui/react": "^2.1.5",
     "@react-spring/web": "^9.7.3",
     "@reduxjs/toolkit": "^2.2.0",
+    "@tanstack/react-table": "^8.20.5",
     "axios": "^1.7.2",
     "firebase": "^10.13.1",
     "keen-slider": "^6.8.6",

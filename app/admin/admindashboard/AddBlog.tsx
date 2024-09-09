@@ -25,21 +25,21 @@ const AddBlog: React.FC<AddBlogProps> = ({ newBlog, setNewBlog, handleAddBlog })
       <input
         type="text"
         placeholder="Title"
-        value={newBlog.title}
+        value={newBlog?.title}
         onChange={(e) => setNewBlog({ ...newBlog, title: e.target.value })}
         className="block w-full mb-2 p-2 border border-gray-300 rounded"
       />
       <input
         type="text"
         placeholder="Author"
-        value={newBlog.author}
+        value={newBlog?.author}
         onChange={(e) => setNewBlog({ ...newBlog, author: e.target.value })}
         className="block w-full mb-2 p-2 border border-gray-300 rounded"
       />
       <input
         type="text"
         placeholder="Date (YYYY-MM-DD)"
-        value={newBlog.date}
+        value={newBlog?.date}
         onChange={(e) => setNewBlog({ ...newBlog, date: e.target.value })}
         className="block w-full mb-4 p-2 border border-gray-300 rounded"
       />
