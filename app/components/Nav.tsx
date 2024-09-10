@@ -42,7 +42,7 @@ export const Nav = () => {
   }, [isOpen]);
 
   return (
-    <nav className="bg-customNavy text-white relative p-[16px] md:py-[18px] md:px-[2rem] lg:py-[15px] lg:px-[3rem] 2xl:py-[24px] 2xl:px-[6rem]">
+    <nav className="bg-customNavy text-white relative p-[16px] md:py-[18px] md:px-[2rem] lg:py-[15px] lg:px-[3rem] z-20 2xl:py-[24px] 2xl:px-[6rem]">
       <div className=" h-full flex justify-between items-center">
         <div className="flex items-center">
           <Link href="/">
