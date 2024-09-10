@@ -18,7 +18,7 @@ const BlogEditor: React.FC<BlogEditorProps> = ({ onChange, value }) => {
       onChange={onChange} 
       theme="snow" 
       placeholder="Write your blog here..." 
-      className="h-[200px] mb-4"
+      className="h-[200px] mb-4 "
     />
   );
 }
