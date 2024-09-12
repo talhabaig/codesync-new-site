@@ -1,5 +1,6 @@
-"use client";
 import React, { useState } from 'react';
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { storage } from '@/app/firebase/config';
 import BlogEditor from '@/app/components/blogEditor';
 
 interface AddBlogProps {
@@ -11,21 +12,32 @@ interface AddBlogProps {
 const AddBlog: React.FC<AddBlogProps> = ({ newBlog, setNewBlog, handleAddBlog }) => {
   const [editorContent, setEditorContent] = useState('');
   const [coverImage, setCoverImage] = useState<File | null>(null);
-  
+  const [isUploading, setIsUploading] = useState(false);
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
       setCoverImage(file);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setNewBlog((prev) => ({ ...prev, coverImage: reader.result as string }));
-      };
-      reader.readAsDataURL(file);
     }
+  };
+
+  const uploadImageToFirebase = async () => {
+    if (!coverImage) return;
+    setIsUploading(true);
+    const storageRef = ref(storage, `blog_covers/${coverImage.name}`);
+    const snapshot = await uploadBytes(storageRef, coverImage);
+    const downloadURL = await getDownloadURL(snapshot.ref);
+    setNewBlog((prev) => ({ ...prev, coverImage: downloadURL }));
+    setIsUploading(false);
   };
 
   const handleEditorChange = (content: string) => {
     setEditorContent(content);
+  };
+  const handleSubmit = async () => {
+    if (coverImage) {
+      await uploadImageToFirebase();
+    }
+    handleAddBlog();
   };
 
   return (
@@ -51,6 +63,8 @@ const AddBlog: React.FC<AddBlogProps> = ({ newBlog, setNewBlog, handleAddBlog })
         onChange={(e) => setNewBlog({ ...newBlog, date: e.target.value })}
         className="block w-full mb-4 p-2 border border-gray-300 rounded"
       />
+
+      {/* Image upload */}
       <div className="mb-4">
         <label className="block mb-2">Upload Cover Image: </label>
         <input
@@ -59,20 +73,18 @@ const AddBlog: React.FC<AddBlogProps> = ({ newBlog, setNewBlog, handleAddBlog })
           onChange={handleImageUpload}
           className="block w-full p-2 border border-gray-300 rounded"
         />
-        {coverImage && (
-          <p className="mt-2 text-sm text-gray-600">
-            {`Selected image: ${coverImage.name}`}
-          </p>
-        )}
+        {coverImage && <p className="mt-2 text-sm text-gray-600">{`Selected image: ${coverImage.name}`}</p>}
       </div>
       <div className='mb-20 md:mb-12'>
         <BlogEditor value={editorContent} onChange={handleEditorChange}/>
       </div>
+
       <button
-        onClick={handleAddBlog}
+        onClick={handleSubmit}
         className="px-4 py-2 my-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
+        disabled={isUploading}
       >
-        Submit
+        {isUploading ? 'Uploading...' : 'Submit'}
       </button>
     </div>
   );
