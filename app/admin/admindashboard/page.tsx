@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from '@/app/firebase/config';
 import AddBlog from "./AddBlog";
 import AddCareer from "./AddCareer";
 import { faEdit, faTrash, faClose } from "@fortawesome/free-solid-svg-icons";
@@ -217,13 +219,24 @@ export default function AdminDashboard() {
     setIsDialogOpen(false);
   };
 
-  // Handle adding a new blog
-  const handleAddBlog = () => {
+  const handleAddBlog = async () => {
     const { title, author, date, coverImage } = newBlog;
     if (title && author && date && coverImage) {
-      const nextId = blogs.length > 0 ? blogs[blogs.length - 1].id + 1 : 1;
-      setBlogs([...blogs, { id: nextId, title, author, date, coverImage }]);
-      closeDialog();
+      try {
+        await addDoc(collection(db, "blogs"), {
+          title,
+          author,
+          date,
+          coverImage,
+        });
+
+        const nextId = blogs.length > 0 ? blogs[blogs.length - 1].id + 1 : 1;
+        setBlogs([...blogs, { id: nextId, title, author, date, coverImage }]);
+        
+        closeDialog();
+      } catch (error) {
+        console.error("Error adding blog:", error);
+      }
     }
   };
 
