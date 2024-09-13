@@ -1,8 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
-import { collection, addDoc } from "firebase/firestore";
-import { db } from '@/app/firebase/config';
+import { collection, addDoc, onSnapshot, query, deleteDoc, doc } from "firebase/firestore";
+import { db } from "@/app/firebase/config";
 import AddBlog from "./AddBlog";
 import AddCareer from "./AddCareer";
 import { faEdit, faTrash, faClose } from "@fortawesome/free-solid-svg-icons";
@@ -16,7 +16,7 @@ import {
 } from "@tanstack/react-table";
 
 type Blog = {
-  id: number;
+  id: string;
   title: string;
   author: string;
   date: string;
@@ -49,30 +49,7 @@ export default function AdminDashboard() {
     department: "",
     location: "",
   });
-  const [blogs, setBlogs] = useState<Blog[]>([
-    {
-      id: 1,
-      title: "How to Start Blogging",
-      author: "John Doe",
-      date: "2024-09-01",
-      coverImage: "/images/blog/blog4.jpg",
-    },
-    {
-      id: 2,
-      title: "SEO Tips and Tricks",
-      author: "Jane Smith",
-      date: "2024-08-28",
-      coverImage: "/images/blog/blog4.jpg",
-    },
-    {
-      id: 3,
-      title: "Building a Website",
-      author: "Bob Brown",
-      date: "2024-08-15",
-      coverImage: "/images/blog/blog4.jpg",
-    },
-    { id: 4, title: "Building a WordPress Website", author: "Ehsan", date: "2024-08-15", coverImage: '/images/blog/blog4.jpg' },
-  ]);
+  const [blogs, setBlogs] = useState<Blog[]>([]);
 
   const [careers, setCareers] = useState<Career[]>([
     {
@@ -88,6 +65,20 @@ export default function AdminDashboard() {
       location: "New York",
     },
   ]);
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      const q = query(collection(db, "blogs"));
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const blogsData: Blog[] = [];
+        querySnapshot.forEach((doc) => {
+          blogsData.push({ id: doc.id, ...doc.data() } as Blog);
+        });
+        setBlogs(blogsData);
+      });
+      return unsubscribe;
+    };
+    fetchBlogs();
+  }, []);
 
   // Define columns for the blog table
   const blogColumns: ColumnDef<Blog, any>[] = [
@@ -112,6 +103,7 @@ export default function AdminDashboard() {
     }),
     blogColumnHelper.accessor("date", {
       header: "Date",
+      cell: (info) => new Date(info.getValue() as string).toLocaleDateString(), 
     }),
     {
       id: 'actions',
@@ -193,8 +185,15 @@ export default function AdminDashboard() {
     }
   };
 
-  const handleDeleteBlog = (blog: Blog) => {
-    setBlogs((prevBlogs) => prevBlogs.filter((b) => b.id !== blog.id));
+  // const handleDeleteBlog = (blog: Blog) => {
+  //   setBlogs((prevBlogs) => prevBlogs.filter((b) => b.id !== blog.id));
+  // };
+  const handleDeleteBlog = async (blog: Blog) => {
+    try {
+      await deleteDoc(doc(db, "blogs", blog.id));
+    } catch (error) {
+      console.error("Error deleting blog:", error);
+    }
   };
 
   const handleEditCareer = (career: Career) => {
@@ -219,8 +218,10 @@ export default function AdminDashboard() {
     setIsDialogOpen(false);
   };
 
+  // Handle adding a new career
   const handleAddBlog = async () => {
-    const { title, author, date, coverImage } = newBlog;
+    const { title, author, coverImage } = newBlog;
+    const date = new Date().toLocaleDateString();
     if (title && author && date && coverImage) {
       try {
         await addDoc(collection(db, "blogs"), {
@@ -229,18 +230,12 @@ export default function AdminDashboard() {
           date,
           coverImage,
         });
-
-        const nextId = blogs.length > 0 ? blogs[blogs.length - 1].id + 1 : 1;
-        setBlogs([...blogs, { id: nextId, title, author, date, coverImage }]);
-        
         closeDialog();
       } catch (error) {
         console.error("Error adding blog:", error);
       }
     }
   };
-
-  // Handle adding a new career
   const handleAddCareer = () => {
     const { position, department, location } = newCareer;
     if (position && department && location) {
@@ -348,27 +343,27 @@ export default function AdminDashboard() {
       <Dialog open={isDialogOpen} onClose={closeDialog}>
         <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
         <div className="fixed inset-0 flex items-center justify-center p-4 z-20">
-        <DialogPanel className="fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center">
-          <div className="bg-white p-6 rounded shadow-lg w-full max-w-2xl lg:max-w-3xl max-h-[400px] lg:max-h-[550px] overflow-y-auto">
-            <DialogTitle className="text-xl font-semibold">
-              <div className="flex justify-between"> {dialogType === "blog" ? "Add New Blog" : "Add New Career"}
-              <button
-                onClick={closeDialog}
-              >
-                <FontAwesomeIcon icon={faClose} />
-              </button>
+          <DialogPanel className="fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center">
+            <div className="bg-white p-6 rounded shadow-lg w-full max-w-2xl lg:max-w-3xl max-h-[400px] lg:max-h-[550px] overflow-y-auto">
+              <DialogTitle className="text-xl font-semibold">
+                <div className="flex justify-between"> {dialogType === "blog" ? "Add New Blog" : "Add New Career"}
+                <button
+                  onClick={closeDialog}
+                >
+                  <FontAwesomeIcon icon={faClose} />
+                </button>
+              </div>
+              </DialogTitle>
+              <div className="mt-4">
+                {dialogType === "blog" ? (
+                  <AddBlog newBlog={newBlog} setNewBlog={setNewBlog} handleAddBlog={handleAddBlog} />
+                ) : (
+                  <AddCareer newCareer={newCareer} setNewCareer={setNewCareer} handleAddCareer={handleAddCareer} />
+                )}
+              </div>
+              
             </div>
-            </DialogTitle>
-            <div className="mt-4">
-              {dialogType === "blog" ? (
-                <AddBlog newBlog={newBlog} setNewBlog={setNewBlog} handleAddBlog={handleAddBlog} />
-              ) : (
-                <AddCareer newCareer={newCareer} setNewCareer={setNewCareer} handleAddCareer={handleAddCareer} />
-              )}
-            </div>
-            
-          </div>
-        </DialogPanel>
+          </DialogPanel>
         </div>
       </Dialog>
     </div>

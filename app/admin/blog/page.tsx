@@ -1,9 +1,12 @@
 import React from 'react'
-
-export default function page() {
+import Hero from "./Hero";
+import OurBlog from "./OurBlog"
+export default function Blog() {
   return (
-    <div>
-      Hello Blog
-    </div>
+    <>
+      <Hero />
+      <OurBlog />
+    </>
   )
 }
+

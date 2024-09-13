@@ -2,72 +2,37 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FeedReadMore } from "../components/common/readMore";
-import data from "portfolio.json";
+import { FeedReadMore } from "../../components/common/readMore";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase/config";
 
+interface Blog {
+  id: string;
+  title: string;
+  coverImage: string;
+  alt: string;
+}
 
 function OurBlog() {
-
-  const data = [
-    {
-      id: 1,
-      title: "Top Trends Shaping Business Transformation Initiatives in 2024",
-      image: "/images/blog/blog1.jpg",
-      alt: "Japanese Gyozas",
-    },
-    {
-      id: 2,
-      title: "The Future of AI in Everyday Applications",
-      image: "/images/blog/blog4.jpg",
-      alt: "AI in Applications",
-    },
-    {
-      id: 3,
-      title: "Effective Strategies for Remote Work. ",
-      image: "/images/blog/blog2.jpg",
-      alt: "Remote Work Strategies",
-    },
-    {
-      id: 4,
-      title: "The Future of AI in Everyday Applications",
-      image: "/images/blog/blog3.jpg",
-      alt: "Japanese Gyozas",
-    },
-    {
-      id: 5,
-      title: "The Future of AI in Everyday Applications",
-      image: "/images/blog/blog2.jpg",
-      alt: "AI in Applications",
-    },
-    {
-      id: 6,
-      title: "Effective Strategies for Remote Work. ",
-      image: "/images/blog/blog1.jpg",
-      alt: "Remote Work Strategies",
-    },
-    {
-      id: 7,
-      title: "Top Trends Shaping Business Transformation Initiatives in 2024",
-      image: "/images/blog/blog3.jpg",
-      alt: "Japanese Gyozas",
-    },
-    {
-      id: 8,
-      title: "The Future of AI in Everyday Applications",
-      image: "/images/blog/blog2.jpg",
-      alt: "AI in Applications",
-    },
-    {
-      id: 9,
-      title: "Effective Strategies for Remote Work. ",
-      image: "/images/blog/blog1.jpg",
-      alt: "Remote Work Strategies",
-    },
-  ];
-
+  const [blogs, setBlogs] = useState<Blog[]>([]);  // State to store blogs from Firebase
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
-  const totalPages = Math.ceil(data.length / itemsPerPage);
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      const blogCollection = collection(db, "blogs");  // Adjust 'blogs' to your actual collection name
+      const blogSnapshot = await getDocs(blogCollection);
+      const blogList = blogSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      })) as Blog[];
+      setBlogs(blogList); 
+    };
+    
+    fetchBlogs();
+  }, []);
+
+  const totalPages = Math.ceil(blogs.length / itemsPerPage);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -85,7 +50,7 @@ function OurBlog() {
     }
   };
 
-  const currentBlogs = data.slice(
+  const currentBlogs = blogs.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
@@ -112,10 +77,10 @@ function OurBlog() {
       }
     }
     return pageNumbers;
-    };
+  };
+
   const pathname = usePathname();
 
-  
   return (
     <div className="w-full pt-12 md:pt-20 xl:pt-28 bg-gradient-to-r from-customLightBlue to-customVeryLightBlue">
       <div className="text-center font-poppins">
@@ -141,38 +106,34 @@ function OurBlog() {
       </div>
       <div className="p-4 md:p-8">
         <div className="flex justify-center">
-          <div className="basis-[90%] md:basis-[85%] flex flex-col md:flex-row md:flex-wrap gap-5">
-          {currentBlogs.map((blog, index) => (
-            <div className=" md:basis-[48%] 2xl:basis-[32%] flex flex-col gap-5 md:flex-row md:items-center justify-between" key={blog.id}>
-              
+          <div className="basis-[90%] md:basis-[85%] lg:basis-[90%] flex flex-col md:flex-row md:flex-wrap gap-5">
+            {currentBlogs.map((blog) => (
+              <div className="md:basis-[48%] lg:basis-[30%] xl:basis-[32%] flex flex-col gap-5 md:flex-row md:items-center justify-between" key={blog.id}>
                 <div className="shadow-2xl rounded-2xl overflow-hidden transition-all duration-400 transform hover:shadow-2xl w-full group">
-                <Link
-                href={`/blogdetails/${blog.id}`}
-                className={`w-full ${
-                  pathname === `/blogdetails/${blog.id}`
-                }`}
-              >
-                  <div className="overflow-hidden ">
-                    <img
-                      className="h-[180px] lg:h-[230px] w-full transition-all duration-500 transform group-hover:scale-110"
-                      src={blog.image}
-                      alt={blog.alt}
-                    ></img>
-                  </div></Link>
-                  <div className="p-6 bg-white h-auto md:h-[120px] lg:h-[140px]">
-                    
-                    <div className="text-[#454545] font-work-sans leading-[23px] md:leading-[20px] lg:leading-[22px] xl:leading-[26.62px] font-bold text-[20px] md:text-[18px] lg:text-[20px] 2xl:text-[22px] mb-2 xl:mb-0">
-                      <FeedReadMore maxLength={50} className="font-bold" readMore>
-                        {blog.title}
-                      </FeedReadMore>
+                  <Link
+                    href={`/blogdetails/${blog.id}`}
+                    className={`w-full ${pathname === `/blogdetails/${blog.id}`}`}
+                  >
+                    <div className="overflow-hidden">
+                      <img
+                        className="h-[170px] xl:h-[180px] 2xl:h-[220px] w-full transition-all duration-500 transform group-hover:scale-110"
+                        src={blog.coverImage}
+                        alt={blog.alt}
+                      />
+                    </div>
+                  </Link>
+                  <div className="p-4 md:p-5 bg-white h-auto md:h-[100px]">
+                    <div className="text-[#454545] font-work-sans leading-[23px] md:leading-[20px] lg:leading-[22px] xl:leading-[26.62px] font-semibold text-[20px] md:text-[18px] 2xl:text-[22px] mb-2 xl:mb-0">
+                      {/* <FeedReadMore maxLength={50} className="font-bold" readMore> */}
+                        {blog.title} 
+                      {/* </FeedReadMore> */}
                     </div>
                   </div>
                 </div>
-              
-            </div>
+              </div>
             ))}
           </div>
-       </div>
+        </div>
 
         <div className="flex justify-center md:p-4 items-center mt-8">
           <div className="bg-[#E0F3FF] rounded-[16px] flex items-center p-1 md:p-3 border-[1px] border-[#0693EB]">
@@ -181,13 +142,13 @@ function OurBlog() {
               disabled={currentPage === 1}
               className="px-2 md:px-3 py-1 mx-1 text-[#0693EB] disabled:opacity-50"
             >
-              <img src="../icons/left-pagination.svg" className="" alt="" />
+              <img src="../icons/left-pagination.svg" alt="" />
             </button>
             {getVisiblePages().map((page) => (
               <button
                 key={page}
                 onClick={() => handlePageChange(page)}
-                className={`flex items-center justify-center mx-1 md:mx-4 xl:mx-6 h-[28px] w-[28px] rounded-[50%] ${
+                className={`flex items-center justify-center mx-1 md:mx-4 xl:mx-3 h-[28px] w-[28px] rounded-[50%] ${
                   currentPage === page
                     ? "bg-[#0693EB] text-white"
                     : "text-[#000] w-[14px] h-[13px]"
@@ -201,7 +162,7 @@ function OurBlog() {
               disabled={currentPage === totalPages}
               className="px-2 md:px-3 py-1 mx-1 text-[#0693EB] disabled:opacity-50"
             >
-              <img src="../icons/right-pagination.svg" className="" alt="" />
+              <img src="../icons/right-pagination.svg" alt="" />
             </button>
           </div>
         </div>

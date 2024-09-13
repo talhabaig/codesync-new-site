@@ -39,16 +39,25 @@ const AddBlog: React.FC<AddBlogProps> = ({ newBlog, setNewBlog, handleAddBlog })
     }
     handleAddBlog();
   };
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (value.length <= 50) {
+      setNewBlog({ ...newBlog, title: value });
+    }
+  };
 
   return (
     <div>
       <input
         type="text"
-        placeholder="Title"
+        placeholder="Title (max 50 characters)"
         value={newBlog.title}
-        onChange={(e) => setNewBlog({ ...newBlog, title: e.target.value })}
+        onChange={handleTitleChange}
         className="block w-full mb-2 p-2 border border-gray-300 rounded"
       />
+      <p className="text-sm text-gray-500">
+        {newBlog.title.length}/50 characters
+      </p>
       <input
         type="text"
         placeholder="Author"
@@ -56,13 +65,13 @@ const AddBlog: React.FC<AddBlogProps> = ({ newBlog, setNewBlog, handleAddBlog })
         onChange={(e) => setNewBlog({ ...newBlog, author: e.target.value })}
         className="block w-full mb-2 p-2 border border-gray-300 rounded"
       />
-      <input
+      {/* <input
         type="text"
         placeholder="Date (YYYY-MM-DD)"
         value={newBlog.date}
         onChange={(e) => setNewBlog({ ...newBlog, date: e.target.value })}
         className="block w-full mb-4 p-2 border border-gray-300 rounded"
-      />
+      /> */}
 
       {/* Image upload */}
       <div className="mb-4">
