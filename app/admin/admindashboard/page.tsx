@@ -21,6 +21,7 @@ type Blog = {
   author: string;
   date: string;
   coverImage: string;
+  content: string;
 };
 
 type Career = {
@@ -43,6 +44,7 @@ export default function AdminDashboard() {
     author: "",
     date: "",
     coverImage: "",
+    content: "",
   });
   const [newCareer, setNewCareer] = useState({
     position: "",
@@ -220,15 +222,16 @@ export default function AdminDashboard() {
 
   // Handle adding a new career
   const handleAddBlog = async () => {
-    const { title, author, coverImage } = newBlog;
+    const { title, author, coverImage, content } = newBlog;
     const date = new Date().toLocaleDateString();
-    if (title && author && date && coverImage) {
+    if (title && author && date && coverImage && content) {
       try {
         await addDoc(collection(db, "blogs"), {
           title,
           author,
           date,
           coverImage,
+          content,
         });
         closeDialog();
       } catch (error) {

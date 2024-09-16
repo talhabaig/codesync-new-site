@@ -4,8 +4,8 @@ import { storage } from '@/app/firebase/config';
 import BlogEditor from '@/app/components/blogEditor';
 
 interface AddBlogProps {
-  newBlog: { title: string; author: string; date: string; coverImage: string };
-  setNewBlog: React.Dispatch<React.SetStateAction<{ title: string; author: string; date: string; coverImage: string }>>;
+  newBlog: { title: string; author: string; date: string; coverImage: string; content: string };
+  setNewBlog: React.Dispatch<React.SetStateAction<{ title: string; author: string; date: string; coverImage: string; content: string }>>;
   handleAddBlog: () => void;
 }
 
@@ -13,6 +13,7 @@ const AddBlog: React.FC<AddBlogProps> = ({ newBlog, setNewBlog, handleAddBlog })
   const [editorContent, setEditorContent] = useState('');
   const [coverImage, setCoverImage] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
+
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -32,13 +33,20 @@ const AddBlog: React.FC<AddBlogProps> = ({ newBlog, setNewBlog, handleAddBlog })
 
   const handleEditorChange = (content: string) => {
     setEditorContent(content);
+    setNewBlog((prev) => ({ ...prev, content }));
   };
+
   const handleSubmit = async () => {
+    if (!newBlog.title || !newBlog.author || !editorContent || !coverImage) {
+      alert("All fields are required.");
+      return;
+    }
     if (coverImage) {
       await uploadImageToFirebase();
     }
     handleAddBlog();
   };
+
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     if (value.length <= 50) {
@@ -85,7 +93,7 @@ const AddBlog: React.FC<AddBlogProps> = ({ newBlog, setNewBlog, handleAddBlog })
         {coverImage && <p className="mt-2 text-sm text-gray-600">{`Selected image: ${coverImage.name}`}</p>}
       </div>
       <div className='mb-20 md:mb-12'>
-        <BlogEditor value={editorContent} onChange={handleEditorChange}/>
+        <BlogEditor value={editorContent} onChange={handleEditorChange} />
       </div>
 
       <button

@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FeedReadMore } from "../../components/common/readMore";
+// import { FeedReadMore } from "../../components/common/readMore";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../firebase/config";
+import { db } from "../firebase/config";
 
 interface Blog {
   id: string;
@@ -118,7 +118,7 @@ function OurBlog() {
                       <img
                         className="h-[170px] xl:h-[180px] 2xl:h-[220px] w-full transition-all duration-500 transform group-hover:scale-110"
                         src={blog.coverImage}
-                        alt={blog.alt}
+                        alt="cover"
                       />
                     </div>
                   </Link>
