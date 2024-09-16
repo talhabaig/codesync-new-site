@@ -191,7 +191,7 @@ export default function AdminDashboard() {
       await deleteDoc(doc(db, "blogs", blog.id));
     } catch (error) {
       console.error("Error deleting blog:", error);
-    } 
+    }  
   };
 
   const handleEditCareer = (career: Career) => {
