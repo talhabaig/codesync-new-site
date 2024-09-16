@@ -186,10 +186,6 @@ export default function AdminDashboard() {
       );
     }
   };
-
-  // const handleDeleteBlog = (blog: Blog) => {
-  //   setBlogs((prevBlogs) => prevBlogs.filter((b) => b.id !== blog.id));
-  // };
   const handleDeleteBlog = async (blog: Blog) => {
     try {
       await deleteDoc(doc(db, "blogs", blog.id));
