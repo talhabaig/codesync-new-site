@@ -73,15 +73,6 @@ const AddBlog: React.FC<AddBlogProps> = ({ newBlog, setNewBlog, handleAddBlog })
         onChange={(e) => setNewBlog({ ...newBlog, author: e.target.value })}
         className="block w-full mb-2 p-2 border border-gray-300 rounded"
       />
-      {/* <input
-        type="text"
-        placeholder="Date (YYYY-MM-DD)"
-        value={newBlog.date}
-        onChange={(e) => setNewBlog({ ...newBlog, date: e.target.value })}
-        className="block w-full mb-4 p-2 border border-gray-300 rounded"
-      /> */}
-
-      {/* Image upload */}
       <div className="mb-4">
         <label className="block mb-2">Upload Cover Image: </label>
         <input
