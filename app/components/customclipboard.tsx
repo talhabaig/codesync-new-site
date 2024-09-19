@@ -1,6 +1,6 @@
 // This component is for getting plane text from clipboard in blog editor (no formatting/styles of coppied text)
 "use client";
-import { useEffect } from 'react';
+import React, { useEffect } from "react";
 import Quill from 'quill';
 class CustomClipboard extends Quill.import('modules/clipboard') {
   onPaste(e: ClipboardEvent) {
