@@ -15,20 +15,20 @@ export default function RootLayout({ children }: Props) {
   return (
     <StoreProvider>
       <html lang="en">
-     <head>
-        <title>Codesync</title>
-        <html lang="en" />
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta 
-          name="description" 
-          content="Welcome to our premier software solutions company, where excellence meets innovation. We specialize in developing top-tier solutions for intricate web projects, harnessing an array of frameworks, platforms, and cutting-edge tools." 
-        />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="keywords" content="Code Sync" />
-        <meta property="og:site_name" content="Code Sync" />
-        <link rel="icon" type="image/x-icon" href="/icon.png" />
-      </head>
+        <head>
+          <title>Codesync</title>
+          {/* <html lang="en" /> */}
+          <meta charSet="utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta 
+            name="description" 
+            content="Welcome to our premier software solutions company, where excellence meets innovation. We specialize in developing top-tier solutions for intricate web projects, harnessing an array of frameworks, platforms, and cutting-edge tools." 
+          />
+          <meta name="format-detection" content="telephone=no" />
+          <meta name="keywords" content="Code Sync" />
+          <meta property="og:site_name" content="Code Sync" />
+          <link rel="icon" type="image/x-icon" href="/icon.png" />
+        </head>
         <body>
           <NextTopLoader
             color="#49B8FD"
