@@ -358,7 +358,7 @@ export default function AdminDashboard() {
                   <AddBlog newBlog={newBlog} setNewBlog={setNewBlog} handleAddBlog={handleAddBlog} />
                 ) : (
                   <AddCareer newCareer={newCareer} setNewCareer={setNewCareer} handleAddCareer={handleAddCareer} />
-                )}
+                )} 
               </div>
               
             </div>
