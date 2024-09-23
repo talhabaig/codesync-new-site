@@ -77,6 +77,7 @@ export default function AdminDashboard() {
         querySnapshot.forEach((doc) => {
           blogsData.push({ id: doc.id, ...doc.data() } as Blog);
         });
+        blogsData.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
         setBlogs(blogsData);
       });
       return unsubscribe;
@@ -107,7 +108,7 @@ export default function AdminDashboard() {
     }),
     blogColumnHelper.accessor("date", {
       header: "Date",
-      cell: (info) => new Date(info.getValue() as string).toLocaleDateString(), 
+      // cell: (info) => new Date(info.getValue() as string).toLocaleDateString(), 
     }),
     {
       id: 'actions',
