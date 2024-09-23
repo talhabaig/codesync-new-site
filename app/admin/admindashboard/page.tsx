@@ -218,6 +218,15 @@ export default function AdminDashboard() {
   const openDialog = (type: "blog" | "career") => {
     setDialogType(type);
     setIsDialogOpen(true);
+    if (type === "blog") {
+      setNewBlog({
+        title: "",
+        author: "",
+        date: "",
+        coverImage: "",
+        content: "",
+      });
+    }
   };
 
   const closeDialog = () => {
