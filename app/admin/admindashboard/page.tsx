@@ -1,9 +1,10 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
-import { collection, addDoc, onSnapshot, query, deleteDoc, doc } from "firebase/firestore";
+import { collection, addDoc, onSnapshot, query, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "@/app/firebase/config";
 import AddBlog from "./AddBlog";
+import EditBlog from "./EditBlog";
 import AddCareer from "./AddCareer";
 import { faEdit, faTrash, faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -38,7 +39,7 @@ const careerColumnHelper = createColumnHelper<Career>();
 export default function AdminDashboard() {
   const [view, setView] = useState<"blog" | "career" | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [dialogType, setDialogType] = useState<"blog" | "career" | null>(null);
+  const [dialogType, setDialogType] = useState<"blog" | "career" | "editBlog" | null>(null);
   const [newBlog, setNewBlog] = useState({
     title: "",
     author: "",
@@ -46,6 +47,7 @@ export default function AdminDashboard() {
     coverImage: "",
     content: "",
   });
+  const [editingBlog, setEditingBlog] = useState<Blog | null>(null); 
   const [newCareer, setNewCareer] = useState({
     position: "",
     department: "",
@@ -177,14 +179,10 @@ export default function AdminDashboard() {
     getCoreRowModel: getCoreRowModel(),
   });
 
-  // Functions for edit and delete actions
   const handleEditBlog = (blog: Blog) => {
-    const updatedTitle = prompt("Edit Blog Title:", blog.title);
-    if (updatedTitle) {
-      setBlogs((prevBlogs) =>
-        prevBlogs.map((b) => (b.id === blog.id ? { ...b, title: updatedTitle } : b))
-      );
-    }
+    setEditingBlog(blog);
+    setDialogType("editBlog");
+    setIsDialogOpen(true);
   };
   const handleDeleteBlog = async (blog: Blog) => {
     try {
@@ -206,6 +204,16 @@ export default function AdminDashboard() {
   const handleDeleteCareer = (career: Career) => {
     setCareers((prevCareers) => prevCareers.filter((c) => c.id !== career.id));
   };
+  const handleUpdateBlog = async (updatedBlog: Blog) => {
+    if (editingBlog) {
+      try {
+        await updateDoc(doc(db, "blogs", editingBlog.id), updatedBlog);
+        setIsDialogOpen(false);
+      } catch (error) {
+        console.error("Error updating blog:", error);
+      }
+    }
+  };
 
   const openDialog = (type: "blog" | "career") => {
     setDialogType(type);
@@ -214,9 +222,9 @@ export default function AdminDashboard() {
 
   const closeDialog = () => {
     setIsDialogOpen(false);
+    setEditingBlog(null);
   };
 
-  // Handle adding a new career
   const handleAddBlog = async () => {
     const { title, author, coverImage, content } = newBlog;
     const date = new Date().toLocaleDateString();
@@ -338,7 +346,6 @@ export default function AdminDashboard() {
 
       {!view && <p className="text-gray-500">Please select an option to view data.</p>}
 
-      {/* Dialog for adding new blog or career */}
       <Dialog open={isDialogOpen} onClose={closeDialog}>
         <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
         <div className="fixed inset-0 flex items-center justify-center p-4 z-20">
@@ -354,11 +361,13 @@ export default function AdminDashboard() {
               </div>
               </DialogTitle>
               <div className="mt-4">
-                {dialogType === "blog" ? (
+                {dialogType === "editBlog" && editingBlog ? (
+                  <EditBlog blogData={editingBlog} handleUpdateBlog={handleUpdateBlog} />
+                ) : dialogType === "blog" ? (
                   <AddBlog newBlog={newBlog} setNewBlog={setNewBlog} handleAddBlog={handleAddBlog} />
                 ) : (
                   <AddCareer newCareer={newCareer} setNewCareer={setNewCareer} handleAddCareer={handleAddCareer} />
-                )} 
+                )}
               </div>
               
             </div>
