@@ -5,20 +5,20 @@ import { storage } from '@/app/firebase/config';
 import BlogEditor from '@/app/components/blogEditor';
 
 interface EditBlogProps {
-  blog: { title: string; author: string; date: string; coverImage: string; content: string };
-  setBlog: React.Dispatch<React.SetStateAction<{ title: string; author: string; date: string; coverImage: string; content: string }>>;
-  handleEditBlog: (blog: { title: string; author: string; date: string; coverImage: string; content: string }) => void;
-  setIsDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  blogData: { id:string; title: string; author: string; date: string; coverImage: string; content: string };
+  handleUpdateBlog: (updatedBlog: { id:string; title: string; author: string; date: string; coverImage: string; content: string }) => void;
 }
 
-const EditBlog: React.FC<EditBlogProps> = ({ blog, setBlog, handleEditBlog }) => {
-  const [editorContent, setEditorContent] = useState('');
+const EditBlog: React.FC<EditBlogProps> = ({ blogData, handleUpdateBlog }) => {
+  const [editorContent, setEditorContent] = useState(blogData.content);
   const [coverImage, setCoverImage] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
+  const [updatedBlog, setUpdatedBlog] = useState(blogData);
 
   useEffect(() => {
-    setEditorContent(blog.content);
-  }, [blog]);
+    setUpdatedBlog(blogData);
+    setCoverImage(null); // Reset coverImage state when blogData changes
+  }, [blogData]);
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -33,40 +33,58 @@ const EditBlog: React.FC<EditBlogProps> = ({ blog, setBlog, handleEditBlog }) =>
     const storageRef = ref(storage, `blog_covers/${coverImage.name}`);
     const snapshot = await uploadBytes(storageRef, coverImage);
     const downloadURL = await getDownloadURL(snapshot.ref);
-    setBlog((prev) => ({ ...prev, coverImage: downloadURL }));
+    if (downloadURL) {
+      setUpdatedBlog((prev) => ({ ...prev, coverImage: downloadURL }));
+    } else {
+      console.error("Failed to get download URL.");
+    }
     setIsUploading(false);
+    return downloadURL;
   };
 
   const handleEditorChange = (content: string) => {
     setEditorContent(content);
-    setBlog((prev) => ({ ...prev, content }));
+    setUpdatedBlog((prev) => ({ ...prev, content }));
   };
 
   const handleSubmit = async () => {
-    if (!blog.title || !blog.author || !editorContent) {
+    if (!updatedBlog.title || !updatedBlog.author || !editorContent) {
       alert("All fields are required.");
       return;
     }
+      
+    let newCoverImageURL = updatedBlog.coverImage || '';
+    
     if (coverImage) {
-      await uploadImageToFirebase();
+      newCoverImageURL = await uploadImageToFirebase() || '';
     }
-    handleEditBlog(blog);
+    handleUpdateBlog({ ...updatedBlog, coverImage: newCoverImageURL });
+  };
+
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (value.length <= 50) {
+      setUpdatedBlog({ ...updatedBlog, title: value });
+    }
   };
 
   return (
     <div>
       <input
         type="text"
-        placeholder="Title"
-        value={blog.title}
-        onChange={(e) => setBlog({ ...blog, title: e.target.value })}
+        placeholder="Title (max 50 characters)"
+        value={updatedBlog.title}
+        onChange={handleTitleChange}
         className="block w-full mb-2 p-2 border border-gray-300 rounded"
       />
+      <p className="text-sm text-gray-500">
+        {updatedBlog.title.length}/50 characters
+      </p>
       <input
         type="text"
         placeholder="Author"
-        value={blog.author}
-        onChange={(e) => setBlog({ ...blog, author: e.target.value })}
+        value={updatedBlog.author}
+        onChange={(e) => setUpdatedBlog({ ...updatedBlog, author: e.target.value })}
         className="block w-full mb-2 p-2 border border-gray-300 rounded"
       />
       <div className="mb-4">
@@ -75,9 +93,29 @@ const EditBlog: React.FC<EditBlogProps> = ({ blog, setBlog, handleEditBlog }) =>
           type="file"
           accept="image/*"
           onChange={handleImageUpload}
-          className="block w-full p-2 border border-gray-300 rounded"
+          className="hidden"
+          id="coverImageInput"
         />
-        {coverImage && <p className="mt-2 text-sm text-gray-600">{`Selected image: ${coverImage.name}`}</p>}
+        <div
+          onClick={() => document.getElementById('coverImageInput')?.click()}
+          className="cursor-pointer border border-gray-300 rounded p-2 mb-2"
+        >
+          {coverImage ? (
+            <img
+              src={URL.createObjectURL(coverImage)} // Show the selected image
+              alt="Cover Preview"
+              className="w-full h-auto rounded"
+            />
+          ) : (
+            updatedBlog.coverImage && (
+              <img
+                src={updatedBlog.coverImage}
+                alt="Current Cover"
+                className="w-full h-auto rounded"
+              />
+            )
+          )}
+        </div>
       </div>
       <div className='mb-20 md:mb-12'>
         <BlogEditor value={editorContent} onChange={handleEditorChange} />
@@ -88,7 +126,7 @@ const EditBlog: React.FC<EditBlogProps> = ({ blog, setBlog, handleEditBlog }) =>
         className="px-4 py-2 my-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
         disabled={isUploading}
       >
-        {isUploading ? 'Uploading...' : 'Save Changes'}
+        {isUploading ? 'Uploading...' : 'Update'}
       </button>
     </div>
   );
