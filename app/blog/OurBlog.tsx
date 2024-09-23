@@ -114,9 +114,9 @@ function OurBlog() {
                     href={`/blogdetails/${blog.id}`}
                     className={`w-full ${pathname === `/blogdetails/${blog.id}`}`}
                   >
-                    <div className="overflow-hidden">
+                    <div className="overflow-hidden h-[170px] xl:h-[180px] 2xl:h-[220px] w-full transition-all duration-500 transform group-hover:scale-110">
                       <img
-                        className="h-[170px] xl:h-[180px] 2xl:h-[220px] w-full transition-all duration-500 transform group-hover:scale-110"
+                        className="cover "
                         src={blog.coverImage}
                         alt="cover"
                       />
