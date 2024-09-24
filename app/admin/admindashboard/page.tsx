@@ -102,10 +102,7 @@ export default function AdminDashboard() {
       ),
     }),
     blogColumnHelper.accessor("title", {
-      header: () => <div className="w-[200px]">Title</div>,
-      cell: (info) => (
-        <div className="w-[200px]">{info.getValue()}</div>
-      ),
+      header: "Title",
     }),
     blogColumnHelper.accessor("author", {
       header: "Author",
