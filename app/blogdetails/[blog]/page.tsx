@@ -55,8 +55,8 @@ const BlogDetailPage: React.FC<Props> = ({ params }) => {
               <h1 className="font-poppins font-bold text-[18px] md:text-[22px] lg:text-[26px] leading-[22px] md:leading-[25px] lg:leading-[31.46px] mb-4">
                 {blog.title}
               </h1>
-              <div className="h-[420px] w-full">
-                <img src={blog.coverImage} alt={blog.title} className="w-full h-full object-cover object-top" />
+              <div className="h-[420px] w-full rounded-lg">
+                <img src={blog.coverImage} alt={blog.title} className="w-full h-full object-cover object-top rounded-lg" />
               </div>
             </div>
             <div className="px-[15px]">
