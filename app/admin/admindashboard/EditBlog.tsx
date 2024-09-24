@@ -5,8 +5,8 @@ import { storage } from '@/app/firebase/config';
 import BlogEditor from '@/app/components/blogEditor';
 
 interface EditBlogProps {
-  blogData: { id:string; title: string; author: string; date: string; coverImage: string; content: string };
-  handleUpdateBlog: (updatedBlog: { id:string; title: string; author: string; date: string; coverImage: string; content: string }) => void;
+  blogData: { id:string; title: string; author: string; date: string; coverImage: string; content: string;createdAt: string; };
+  handleUpdateBlog: (updatedBlog: { id:string; title: string; author: string; date: string; coverImage: string; content: string;createdAt: string; }) => void;
 }
 
 const EditBlog: React.FC<EditBlogProps> = ({ blogData, handleUpdateBlog }) => {
