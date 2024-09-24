@@ -237,21 +237,20 @@ export default function AdminDashboard() {
     setIsDialogOpen(false);
     setEditingBlog(null);
   };
-
-  const handleAddBlog = async () => {
-    const { title, author, coverImage, content } = newBlog;
+  const handleAddBlog = async (coverImageUrl: string) => {
+    const { title, author, content } = newBlog;
     const date = new Date().toLocaleDateString("en-GB", {
       year: "numeric",
       month: "2-digit",
       day: "2-digit",
     });
-    if (title && author && date && coverImage && content) {
+    if (title && author && date && coverImageUrl && content) {
       try {
         await addDoc(collection(db, "blogs"), {
           title,
           author,
           date,
-          coverImage,
+          coverImage: coverImageUrl,
           content,
           createdAt: serverTimestamp(),
         });

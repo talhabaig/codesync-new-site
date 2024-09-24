@@ -98,11 +98,11 @@ const EditBlog: React.FC<EditBlogProps> = ({ blogData, handleUpdateBlog }) => {
         />
         <div
           onClick={() => document.getElementById('coverImageInput')?.click()}
-          className="cursor-pointer border border-gray-300 rounded p-2 mb-2"
+          className="cursor-pointer border border-gray-300 rounded p-2 mb-2 w-[50%]"
         >
           {coverImage ? (
             <img
-              src={URL.createObjectURL(coverImage)} // Show the selected image
+              src={URL.createObjectURL(coverImage)}
               alt="Cover Preview"
               className="w-full h-auto rounded"
             />
