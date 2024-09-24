@@ -31,6 +31,7 @@ type Career = {
   position: string;
   department: string;
   location: string;
+  type: string;
 };
 
 // Define column helpers for each type
@@ -53,6 +54,7 @@ export default function AdminDashboard() {
     position: "",
     department: "",
     location: "",
+    type:"",
   });
   const [blogs, setBlogs] = useState<Blog[]>([]);
 
@@ -62,12 +64,14 @@ export default function AdminDashboard() {
       position: "Frontend Developer",
       department: "Engineering",
       location: "Remote",
+      type: "Full Time"
     },
     {
       id: 2,
       position: "Backend Developer",
       department: "Engineering",
       location: "New York",
+      type:"Part Time",
     },
   ]);
   useEffect(() => {
@@ -142,6 +146,9 @@ export default function AdminDashboard() {
     }),
     careerColumnHelper.accessor("department", {
       header: "Department",
+    }),
+    careerColumnHelper.accessor("type", {
+      header: "Type",
     }),
     careerColumnHelper.accessor("location", {
       header: "Location",
@@ -258,9 +265,9 @@ export default function AdminDashboard() {
     }
   };
   const handleAddCareer = () => {
-    const { position, department, location } = newCareer;
-    if (position && department && location) {
-      setCareers([...careers, { id: Date.now(), position, department, location }]);
+    const { position, department, location, type } = newCareer;
+    if (position && department && location && type) {
+      setCareers([...careers, { id: Date.now(), position, department, location, type }]);
       closeDialog();
     }
   };

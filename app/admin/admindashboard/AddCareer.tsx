@@ -1,8 +1,8 @@
 import React from 'react';
 
 interface AddCareerProps {
-  newCareer: { position: string; department: string; location: string };
-  setNewCareer: React.Dispatch<React.SetStateAction<{ position: string; department: string; location: string }>>;
+  newCareer: { position: string; department: string; location: string; type: string; };
+  setNewCareer: React.Dispatch<React.SetStateAction<{ position: string; department: string; location: string; type:string; }>>;
   handleAddCareer: () => void;
 }
 
@@ -21,6 +21,13 @@ const AddCareer: React.FC<AddCareerProps> = ({ newCareer, setNewCareer, handleAd
         placeholder="Department"
         value={newCareer?.department}
         onChange={(e) => setNewCareer({ ...newCareer, department: e.target.value })}
+        className="block w-full mb-2 p-2 border border-gray-300 rounded"
+      />
+      <input
+        type="text"
+        placeholder="Type"
+        value={newCareer?.type}
+        onChange={(e) => setNewCareer({ ...newCareer, type: e.target.value })}
         className="block w-full mb-2 p-2 border border-gray-300 rounded"
       />
       <input
