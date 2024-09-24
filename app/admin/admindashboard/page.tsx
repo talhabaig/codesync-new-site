@@ -237,30 +237,6 @@ export default function AdminDashboard() {
     setIsDialogOpen(false);
     setEditingBlog(null);
   };
-
-  // const handleAddBlog = async () => {
-  //   const { title, author, coverImage, content } = newBlog;
-  //   const date = new Date().toLocaleDateString("en-GB", {
-  //     year: "numeric",
-  //     month: "2-digit",
-  //     day: "2-digit",
-  //   });
-  //   if (title && author && date && coverImage && content) {
-  //     try {
-  //       await addDoc(collection(db, "blogs"), {
-  //         title,
-  //         author,
-  //         date,
-  //         coverImage,
-  //         content,
-  //         createdAt: serverTimestamp(),
-  //       });
-  //       closeDialog();
-  //     } catch (error) {
-  //       console.error("Error adding blog:", error);
-  //     }
-  //   }
-  // };
   const handleAddBlog = async (coverImageUrl: string) => {
     const { title, author, content } = newBlog;
     const date = new Date().toLocaleDateString("en-GB", {
@@ -274,7 +250,7 @@ export default function AdminDashboard() {
           title,
           author,
           date,
-          coverImage: coverImageUrl, // Use the uploaded image URL
+          coverImage: coverImageUrl,
           content,
           createdAt: serverTimestamp(),
         });
