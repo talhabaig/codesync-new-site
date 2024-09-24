@@ -7,7 +7,7 @@ import BlogEditor from '@/app/components/blogEditor';
 interface AddBlogProps {
   newBlog: { title: string; author: string; date: string; coverImage: string; content: string };
   setNewBlog: React.Dispatch<React.SetStateAction<{ title: string; author: string; date: string; coverImage: string; content: string }>>;
-  handleAddBlog: () => void;
+  handleAddBlog: (coverImageUrl: string) => Promise<void>; // Update the type
 }
 
 const AddBlog: React.FC<AddBlogProps> = ({ newBlog, setNewBlog, handleAddBlog }) => {
@@ -23,13 +23,13 @@ const AddBlog: React.FC<AddBlogProps> = ({ newBlog, setNewBlog, handleAddBlog })
   };
 
   const uploadImageToFirebase = async () => {
-    if (!coverImage) return;
-    setIsUploading(true);
+    if (!coverImage) return '';
+    
     const storageRef = ref(storage, `blog_covers/${coverImage.name}`);
     const snapshot = await uploadBytes(storageRef, coverImage);
     const downloadURL = await getDownloadURL(snapshot.ref);
-    setNewBlog((prev) => ({ ...prev, coverImage: downloadURL }));
-    setIsUploading(false);
+    
+    return downloadURL;
   };
 
   const handleEditorChange = (content: string) => {
@@ -42,10 +42,12 @@ const AddBlog: React.FC<AddBlogProps> = ({ newBlog, setNewBlog, handleAddBlog })
       alert("All fields are required.");
       return;
     }
-    if (coverImage) {
-      await uploadImageToFirebase();
+    setIsUploading(true);
+    const coverImageUrl = await uploadImageToFirebase();
+    if (coverImageUrl) {
+      await handleAddBlog(coverImageUrl);
     }
-    handleAddBlog();
+    setIsUploading(false);
   };
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
