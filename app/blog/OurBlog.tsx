@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 // import { FeedReadMore } from "../../components/common/readMore";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import { db } from "../firebase/config";
 
 interface Blog {
@@ -11,22 +11,24 @@ interface Blog {
   title: string;
   coverImage: string;
   alt: string;
+  createdAt: string;
 }
 
 function OurBlog() {
-  const [blogs, setBlogs] = useState<Blog[]>([]);  // State to store blogs from Firebase
+  const [blogs, setBlogs] = useState<Blog[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
 
   useEffect(() => {
     const fetchBlogs = async () => {
-      const blogCollection = collection(db, "blogs");  // Adjust 'blogs' to your actual collection name
-      const blogSnapshot = await getDocs(blogCollection);
+      const blogCollection = collection(db, "blogs");
+      const blogQuery = query(blogCollection, orderBy("createdAt", "desc"));
+      const blogSnapshot = await getDocs(blogQuery);
       const blogList = blogSnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       })) as Blog[];
-      setBlogs(blogList); 
+      setBlogs(blogList);
     };
     
     fetchBlogs();

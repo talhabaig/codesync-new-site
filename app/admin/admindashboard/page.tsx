@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
-import { collection, addDoc, onSnapshot, query, deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { collection, addDoc, onSnapshot, query, deleteDoc, doc, updateDoc, serverTimestamp, orderBy } from "firebase/firestore";
 import { db } from "@/app/firebase/config";
 import AddBlog from "./AddBlog";
 import EditBlog from "./EditBlog";
@@ -23,6 +23,7 @@ type Blog = {
   date: string;
   coverImage: string;
   content: string;
+  createdAt: string;
 };
 
 type Career = {
@@ -71,7 +72,7 @@ export default function AdminDashboard() {
   ]);
   useEffect(() => {
     const fetchBlogs = async () => {
-      const q = query(collection(db, "blogs"));
+      const q = query(collection(db, "blogs"), orderBy("createdAt", "desc"));
       const unsubscribe = onSnapshot(q, (querySnapshot) => {
         const blogsData: Blog[] = [];
         querySnapshot.forEach((doc) => {
@@ -87,28 +88,30 @@ export default function AdminDashboard() {
 
   // Define columns for the blog table
   const blogColumns: ColumnDef<Blog, any>[] = [
-    blogColumnHelper.accessor("id", {
-      header: "ID",
-    }),
+    
     blogColumnHelper.accessor("coverImage", {
       header: "Header",
       cell: (info) => (
-        <img
-          src={info.getValue() as string}
-          alt="cover"
-          className="rounded-sm w-[70px] h-10 object-cover"
-        />
+        <div className="flex justify-center">
+          <img
+            src={info.getValue() as string}
+            alt="cover"
+            className="rounded-sm w-[70px] h-10 object-cover"
+          />
+        </div>
       ),
     }),
     blogColumnHelper.accessor("title", {
-      header: "Title",
+      header: () => <div className="w-[200px]">Title</div>,
+      cell: (info) => (
+        <div className="w-[200px]">{info.getValue()}</div>
+      ),
     }),
     blogColumnHelper.accessor("author", {
       header: "Author",
     }),
     blogColumnHelper.accessor("date", {
-      header: "Date",
-      // cell: (info) => new Date(info.getValue() as string).toLocaleDateString(), 
+      header: "Date", 
     }),
     {
       id: 'actions',
@@ -250,6 +253,7 @@ export default function AdminDashboard() {
           date,
           coverImage,
           content,
+          createdAt: serverTimestamp(),
         });
         closeDialog();
       } catch (error) {
@@ -366,7 +370,10 @@ export default function AdminDashboard() {
           <DialogPanel className="fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center">
             <div className="bg-white p-6 rounded shadow-lg w-full max-w-2xl lg:max-w-3xl max-h-[400px] lg:max-h-[550px] overflow-y-auto">
               <DialogTitle className="text-xl font-semibold">
-                <div className="flex justify-between"> {dialogType === "blog" ? "Add New Blog" : "Add New Career"}
+                <div className="flex justify-between">
+                  {dialogType === "blog" && "Add New Blog"}
+                  {dialogType === "career" && "Add New Career"}
+                  {dialogType === "editBlog" && "Edit Blog"}
                 <button
                   onClick={closeDialog}
                 >
