@@ -1,12 +1,12 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 
-interface EditBlogProps {
+interface EditCareerProps {
   careerData: { id:string; position: string; date: string; lastDate: string; location: string; type: string;createdAt: string; totalPositions:string;salary:string };
   handleUpdateCareer: (updatedCareer: { id:string; position: string; date: string; lastDate: string; location: string; type: string; createdAt: string; totalPositions:string; salary:string }) => void;
 }
 
-const EditCareer: React.FC<EditBlogProps> = ({ careerData, handleUpdateCareer }) => {
+const EditCareer: React.FC<EditCareerProps> = ({ careerData, handleUpdateCareer }) => {
   const [isUploading, setIsUploading] = useState(false);
   const [updatedCareer, setUpdatedCareer] = useState(careerData);
 
