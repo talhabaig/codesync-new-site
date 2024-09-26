@@ -7,7 +7,7 @@ import BlogEditor from '@/app/components/blogEditor';
 interface AddBlogProps {
   newBlog: { title: string; author: string; date: string; coverImage: string; content: string };
   setNewBlog: React.Dispatch<React.SetStateAction<{ title: string; author: string; date: string; coverImage: string; content: string }>>;
-  handleAddBlog: (coverImageUrl: string) => Promise<void>; // Update the type
+  handleAddBlog: (coverImageUrl: string) => Promise<void>;
 }
 
 const AddBlog: React.FC<AddBlogProps> = ({ newBlog, setNewBlog, handleAddBlog }) => {
