@@ -44,7 +44,7 @@ const blogColumnHelper = createColumnHelper<Blog>();
 const careerColumnHelper = createColumnHelper<Career>();
 
 export default function AdminDashboard() {
-  const [view, setView] = useState<"blog" | "career" | null>(null);
+  const [view, setView] = useState<any>();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [dialogType, setDialogType] = useState<"blog" | "career" | "editBlog" | "editCareer" | null>(null);
   const [newBlog, setNewBlog] = useState({

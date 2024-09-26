@@ -6,7 +6,7 @@ interface EditCareerProps {
   handleUpdateCareer: (updatedCareer: { id:string; position: string; date: string; lastDate: string; location: string; type: string; createdAt: string; totalPositions:string; salary:string }) => void;
 }
 
-const EditCareer: React.FC<EditCareerProps> = ({ careerData, handleUpdateCareer }) => {
+const EditCareer: React.FC<any> = ({ careerData, handleUpdateCareer }) => {
   const [isUploading, setIsUploading] = useState(false);
   const [updatedCareer, setUpdatedCareer] = useState(careerData);
 
