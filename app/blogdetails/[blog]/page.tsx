@@ -43,7 +43,7 @@ const BlogDetailPage: React.FC<Props> = ({ params }) => {
   }, [blogId]);
 
   if (!blog) {
-    return <p>Loading...</p>;
+    return <div className="h-[400px] flex justify-center items-center"><p>Loading...</p></div>;
   }
 
   return (
@@ -52,7 +52,7 @@ const BlogDetailPage: React.FC<Props> = ({ params }) => {
         <div className="flex justify-center md:my-4">
           <div className="lg:basis-[80%] 2xl:basis-[60%] 3xl:basis-[57%]">
             <div className="mb-4 px-[15px]">
-              <h1 className="font-poppins font-bold text-[18px] md:text-[22px] lg:text-[26px] leading-[22px] md:leading-[25px] lg:leading-[31.46px] mb-4">
+              <h1 className="font-poppins font-bold text-[30px] md:text-[35px] lg:text-[40px] leading-[40px] md:leading-[50px] lg:leading-[60.46px] mb-4">
                 {blog.title}
               </h1>
               <div className="h-[420px] w-full rounded-lg">
