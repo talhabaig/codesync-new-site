@@ -1,12 +1,13 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-
+import CareerEditor from '@/app/components/blogEditor';
 interface EditCareerProps {
-  careerData: { id:string; position: string; date: string; lastDate: string; location: string; type: string;createdAt: string; totalPositions:string;salary:string };
-  handleUpdateCareer: (updatedCareer: { id:string; position: string; date: string; lastDate: string; location: string; type: string; createdAt: string; totalPositions:string; salary:string }) => void;
+  careerData: { id:string; position: string; date: string; lastDate: string; location: string; type: string;createdAt: string; totalPositions:string;salary:string; jobcontent: string; };
+  handleUpdateCareer: (updatedCareer: { id:string; position: string; date: string; lastDate: string; location: string; type: string; createdAt: string; totalPositions:string; salary:string; jobcontent: string }) => void;
 }
 
 const EditCareer: React.FC<any> = ({ careerData, handleUpdateCareer }) => {
+  const [editorContent, setEditorContent] = useState(careerData.jobcontent);
   const [isUploading, setIsUploading] = useState(false);
   const [updatedCareer, setUpdatedCareer] = useState(careerData);
 
@@ -14,8 +15,12 @@ const EditCareer: React.FC<any> = ({ careerData, handleUpdateCareer }) => {
     setUpdatedCareer(careerData);
   }, [careerData]);
 
+  const handleEditorChange = (jobcontent: string) => {
+    setEditorContent(jobcontent);
+    setUpdatedCareer((prev: any) => ({ ...prev, jobcontent }));
+  };
   const handleSubmit = async () => {
-    if (!updatedCareer.position || !updatedCareer.location || !updatedCareer.type) {
+    if (!updatedCareer.position || !updatedCareer.location || !updatedCareer.type || !editorContent) {
       alert("All fields are required.");
       return;
     }
@@ -69,6 +74,9 @@ const EditCareer: React.FC<any> = ({ careerData, handleUpdateCareer }) => {
         onChange={(e) => setUpdatedCareer({ ...updatedCareer, salary: e.target.value })}
         className="block w-full mb-4 p-2 border border-gray-300 rounded"
       />
+      <div className='mb-20 md:mb-12'>
+        <CareerEditor value={editorContent} onChange={handleEditorChange} />
+      </div>
 
       <button
         onClick={handleSubmit}

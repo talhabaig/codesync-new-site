@@ -2,20 +2,20 @@
 import React, { useState } from 'react';
 import CareerEditor from '@/app/components/careerEditor';
 interface AddCareerProps {
-  newCareer: { position: string; date: string; lastDate:string; location: string; type: string; totalPositions:string; salary:string; createdAt:string; };
-  setNewCareer: React.Dispatch<React.SetStateAction<{ position: string; location: string; date: string; lastDate:string; type:string; totalPositions:string; salary:string; createdAt:string; }>>;
+  newCareer: { position: string; date: string; lastDate:string; location: string; type: string; totalPositions:string; salary:string; createdAt:string; jobcontent: string; };
+  setNewCareer: React.Dispatch<React.SetStateAction<{ position: string; location: string; date: string; lastDate:string; type:string; totalPositions:string; salary:string; createdAt:string; jobcontent: string; }>>;
   handleAddCareer: () => void;
 }
 
 const AddCareer: React.FC<AddCareerProps> = ({ newCareer, setNewCareer, handleAddCareer }) => {
   const [editorContent, setEditorContent] = useState('');
   const [isUploading, setIsUploading] = useState(false);
-  const handleEditorChange = (content: string) => {
-    setEditorContent(content);
-    setNewCareer((prev) => ({ ...prev, content }));
+  const handleEditorChange = (jobcontent: string) => {
+    setEditorContent(jobcontent);
+    setNewCareer((prev) => ({ ...prev, jobcontent }));
   };
   const handleSubmit = async () => {
-    if (!newCareer.position || !newCareer.type || !newCareer.location || !newCareer.lastDate || !newCareer.totalPositions || !newCareer.salary) {
+    if (!newCareer.position || !newCareer.type || !newCareer.location || !newCareer.lastDate || !newCareer.totalPositions || !newCareer.salary || !editorContent) {
       alert("All fields are required.");
       return;
     }
