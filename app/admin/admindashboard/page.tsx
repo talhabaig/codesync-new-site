@@ -36,6 +36,7 @@ type Career = {
   lastDate:string;
   totalPositions:string;
   salary:string;
+  jobcontent:string;
   createdAt:string;
 };
 
@@ -64,6 +65,7 @@ export default function AdminDashboard() {
     totalPositions:"",
     salary:"",
     createdAt:"",
+    jobcontent:"",
   });
   const [editingCareer, setEditingCareer] = useState<Career | null>(null); 
   const [blogs, setBlogs] = useState<Blog[]>([]);
@@ -272,6 +274,7 @@ export default function AdminDashboard() {
         totalPositions:"",
         salary:"",
         createdAt:"",
+        jobcontent:"",
       });
     }
   };
@@ -305,13 +308,13 @@ export default function AdminDashboard() {
     }
   };
   const handleAddCareer = async () => {
-    const { position, location, type, lastDate, totalPositions, salary } = newCareer;
+    const { position, location, type, lastDate, totalPositions, salary, jobcontent} = newCareer;
     const date = new Date().toLocaleDateString("en-GB", {
       year: "numeric",
       month: "2-digit",
       day: "2-digit",
     });
-    if (position && location && type && date && lastDate && totalPositions && salary) {
+    if (position && location && type && date && lastDate && totalPositions && salary && jobcontent) {
       try {
         await addDoc(collection(db, "careers"), {
           position,
@@ -321,6 +324,7 @@ export default function AdminDashboard() {
           lastDate,
           totalPositions,
           salary,
+          jobcontent,
           createdAt: serverTimestamp(),
         });
         closeDialog();
