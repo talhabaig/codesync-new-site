@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase/config";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import "react-quill/dist/quill.bubble.css"; // Import Quill's CSS
 import dynamic from 'next/dynamic';
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
@@ -74,14 +75,7 @@ const CareerDetailPage: React.FC<Props> = ({ params }) => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const file = e.target.files[0];
-      const reader = new FileReader();
-  
-      reader.onloadend = () => {
-        const base64File = reader.result as string;
-        setFormData({ ...formData, resume: base64File });
-      };
-  
-      reader.readAsDataURL(file);
+      setFormData({ ...formData, resume: file });
     }
   };
 
@@ -97,7 +91,12 @@ const CareerDetailPage: React.FC<Props> = ({ params }) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    if (!formData.resume || typeof formData.resume === 'string') {
+      console.error('Resume file is required');
+      return;
+    }
+    const storage = getStorage();
+    const storageRef = ref(storage, `resumes/${formData.resume.name}`);
     // Validate email and phone
     if (!validateEmail(formData.email)) {
       setEmailError(true);
@@ -110,29 +109,29 @@ const CareerDetailPage: React.FC<Props> = ({ params }) => {
 
     setIsSending(true);
 
-    const data = {
-      service_id: "service_lrbfgto",
-      template_id: "template_8rl61km",
-      user_id: "1H1lVLszHQKK8Rwn0",
-      template_params: {
-        userName: formData.name,
-        userEmail: formData.email,
-        phoneNumber: formData.phone,
-        resume: formData.resume,
-        linkedin: formData.linkedin,
-        github: formData.github,
-        portfolio: formData.portfolio,
-        jobPosition: career?.position
-      },
-    };
-
     try {
-      const res = await axios.post(
-        "https://api.emailjs.com/api/v1.0/email/send",
-        data
-      );
-      console.log('Email sent successfully', res);
-      // Reset form after successful submission
+      // Upload the file to Firebase Storage
+      await uploadBytes(storageRef, formData.resume as Blob);
+      const fileUrl = await getDownloadURL(storageRef); // Get the file URL
+      
+      const data = {
+        service_id: "service_lrbfgto",
+        template_id: "template_8rl61km",
+        user_id: "1H1lVLszHQKK8Rwn0",
+        template_params: {
+          userName: formData.name,
+          userEmail: formData.email,
+          phoneNumber: formData.phone,
+          resume: fileUrl,  // Use the file URL in your email template
+          linkedin: formData.linkedin,
+          github: formData.github,
+          portfolio: formData.portfolio,
+          jobPosition: career?.position,
+        },
+      };
+
+      await axios.post("https://api.emailjs.com/api/v1.0/email/send", data);
+      console.log('Email sent successfully');
       setFormData({
         name: '',
         email: '',
@@ -145,7 +144,7 @@ const CareerDetailPage: React.FC<Props> = ({ params }) => {
       setIsOpen(false);
       routes.push("/thankyou");
     } catch (error) {
-      console.error('Error sending email', error);
+      console.error('Error uploading file or sending email', error);
     } finally {
       setIsSending(false);
     }
