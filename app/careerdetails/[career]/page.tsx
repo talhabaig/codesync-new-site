@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 // Dynamically import the Quill editor to avoid SSR issues
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
@@ -36,6 +37,7 @@ interface Props {
 }
 
 const CareerDetailPage: React.FC<Props> = ({ params }) => {
+  const routes = useRouter();
   const pathname = usePathname();
   const [career, setCareer] = useState<Career | null>(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -141,6 +143,7 @@ const CareerDetailPage: React.FC<Props> = ({ params }) => {
         portfolio: '',
       });
       setIsOpen(false);
+      routes.push("/thankyou");
     } catch (error) {
       console.error('Error sending email', error);
     } finally {
