@@ -46,7 +46,7 @@ const CareerDetailPage: React.FC<Props> = ({ params }) => {
     name: '',
     email: '',
     phone: '',
-    // resume: null as File | string | null,
+    resume: null as File | string | null,
     linkedin: '',
     github: '',
     portfolio: '',
@@ -71,19 +71,19 @@ const CareerDetailPage: React.FC<Props> = ({ params }) => {
     fetchCareerDetails();
   }, [careerId]);
 
-  // const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (e.target.files) {
-  //     const file = e.target.files[0];
-  //     const reader = new FileReader();
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
   
-  //     reader.onloadend = () => {
-  //       const base64File = reader.result as string;
-  //       setFormData({ ...formData, resume: base64File });
-  //     };
+      reader.onloadend = () => {
+        const base64File = reader.result as string;
+        setFormData({ ...formData, resume: base64File });
+      };
   
-  //     reader.readAsDataURL(file);
-  //   }
-  // };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const validateEmail = (email: string) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -118,7 +118,7 @@ const CareerDetailPage: React.FC<Props> = ({ params }) => {
         userName: formData.name,
         userEmail: formData.email,
         phoneNumber: formData.phone,
-        // resume: formData.resume,
+        resume: formData.resume,
         linkedin: formData.linkedin,
         github: formData.github,
         portfolio: formData.portfolio,
@@ -137,7 +137,7 @@ const CareerDetailPage: React.FC<Props> = ({ params }) => {
         name: '',
         email: '',
         phone: '',
-        // resume: null,
+        resume: null,
         linkedin: '',
         github: '',
         portfolio: '',
@@ -156,7 +156,7 @@ const CareerDetailPage: React.FC<Props> = ({ params }) => {
       name: '',
       email: '',
       phone: '',
-      // resume: null,
+      resume: null,
       linkedin: '',
       github: '',
       portfolio: '',
@@ -287,7 +287,7 @@ const CareerDetailPage: React.FC<Props> = ({ params }) => {
                 />
                 {phoneError && <span className="text-red-500 text-sm">Invalid phone format</span>}
               </div>
-              {/* <div>
+              <div>
                 <label htmlFor="resume" className="block font-medium">Upload Resume</label>
                 <input
                   type="file"
@@ -297,7 +297,7 @@ const CareerDetailPage: React.FC<Props> = ({ params }) => {
                   required
                   accept=".pdf,.doc,.docx"
                 />
-              </div> */}
+              </div>
               <div>
                 <label htmlFor="linkedin" className="block font-medium">LinkedIn URL</label>
                 <input
