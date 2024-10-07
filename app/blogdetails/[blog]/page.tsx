@@ -59,19 +59,25 @@ const BlogDetailPage: React.FC<Props> = ({ params }) => {
                 <img src={blog.coverImage} alt={blog.title} className="w-full h-full object-cover object-top rounded-lg" />
               </div>
             </div>
-            <div className="px-[15px]">
-              <div className="mb-1">
-                <span className="font-semibold font-poppins">Author: </span>
-                {blog.author}
-              </div>
-              <div>
-                <span className="font-semibold font-poppins">Published Date: </span>
-                {blog.date}
-              </div>
-            </div>
+            
             <div>
               <div className="font-poppins">
                 <ReactQuill value={blog.content} readOnly theme="bubble" />
+              </div>
+            </div>
+            <div className="px-[15px] py-5 flex justify-center">
+              <div>
+                <div className="flex justify-center mb-1">
+                 <div className="h-[50px] w-[50px] lg:h-[60px] lg:w-[60px] rounded-[50%] bg-gray-500 flex items-center justify-center text-white text-lg lg:text-2xl">
+                  <span className="">{blog.author.charAt(0).toUpperCase()}</span>
+                 </div>
+                </div>
+                <div className="mb-1 text-center font-poppins text-lg lg:text-xl">
+                  {blog.author}
+                </div>
+                <div className="text-center font-poppins text-lg lg:text-xl">
+                  {blog.date}
+                </div>
               </div>
             </div>
           </div>
