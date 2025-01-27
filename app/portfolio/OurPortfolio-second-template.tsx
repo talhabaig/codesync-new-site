@@ -133,6 +133,14 @@ const portfolioItems = [
     imageSrc: getImagePath("norswap1.webp"),
     order: "order-2",
   },
+  {
+    id: 17,
+    title: "Animations",
+    description:
+      "We are thrilled to introduce our Animation project, a creative and engaging endeavor showcasing cutting-edge animation techniques designed to captivate and inspire.",
+    imageSrc: getImagePath("animations.png"),
+    order: "order-1",
+  },
 ];
 function PortfolioContent() {
   const [currentPage, setCurrentPage] = useState(1);

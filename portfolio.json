@@ -362,5 +362,28 @@
       "image2Desc":"",
       "image3Desc":""
     }
-  }
+  },
+  {
+    "id": 17,
+    "image": "animations.png",
+    "title": "Creative Animations",
+    "year": "2025",
+    "type": "Animation Project",
+    "description": "We are thrilled to introduce our Animation project, a creative and engaging endeavor showcasing cutting-edge animation techniques designed to captivate and inspire.",
+    "details": {
+      "projectName": "Creative Animations",
+      "date": "2025",
+      "type": "Animation Project",
+      "description": "This project focuses on delivering high-quality animations for a variety of purposes, including marketing, education, entertainment, and more. We aim to push the boundaries of creativity and innovation in the animation field.",
+      "subDescription": "The Animations project highlights our expertise in digital animation, storytelling, and design. It serves as a testament to our dedication to crafting visually appealing and impactful content. If you'd like to learn more or discuss potential collaborations, feel free to get in touch.",
+      "image1": "animation1.png",
+      "image2": "animation2.png",
+      "image3": "animation3.png",
+      "image1Desc": "This animation illustrates the concept of product advertisement, designed to engage audiences and boost brand awareness.",
+      "image2Desc": "An educational animation that explains complex topics through visually appealing and easy-to-understand graphics.",
+      "image3Desc": "A storytelling animation that captures the audience’s imagination with compelling visuals and narratives.",
+      "siteName": "Explore Our Animations",
+      "siteLink": "https://animation-project-0400123123.web.app/"
+    }
+}
 ]
