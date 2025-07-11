@@ -47,7 +47,7 @@ export default function OurTeam() {
       designation: "Frontend Developer",
     },
     {
-      src: getImagePath("Ehsan.jpg"),
+      src: getImagePath("ehsan3.png"),
       name: "Muhammad Ehsan",
       designation: "Frontend Developer",
     },
