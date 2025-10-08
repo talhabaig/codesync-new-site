@@ -141,6 +141,14 @@ const portfolioItems = [
     imageSrc: getImagePath("animations.png"),
     order: "order-1",
   },
+  {
+    id: 18,
+    title: "A2A Lab Go",
+    description:
+      "A2A Lab Go is a comprehensive platform for managing and monitoring blood sample logistics across labs, technicians, dispatchers, and healthcare providers. It centralizes all operations, from order creation to dispatch and reporting, ensuring smooth coordination and real-time visibility at every stage.",
+    imageSrc: getImagePath("A2A_Lab_Go3.png"),
+    order: "order-2",
+  },
 ];
 function PortfolioContent() {
   const [currentPage, setCurrentPage] = useState(1);

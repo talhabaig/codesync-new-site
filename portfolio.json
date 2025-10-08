@@ -385,5 +385,29 @@
       "siteName": "Explore Our Animations",
       "siteLink": "https://animation-project-0400123123.web.app/"
     }
-}
+  },
+  {
+    "id": 18,
+    "image": "A2A_Lab_Go3.png",
+    "title": "A2A Lab Go",
+    "year": "2025",
+    "type": "Healthcare Management Platform",
+    "description": "A2A Lab Go is a comprehensive platform for managing and monitoring blood sample logistics across labs, technicians, dispatchers, and healthcare providers. It centralizes all operations, from order creation to dispatch and reporting, ensuring smooth coordination and real-time visibility at every stage.",
+    "details": {
+      "projectName": "A2A Lab Go",
+      "date": "2025",
+      "type": "Healthcare Management Platform",
+      "description": "A2A Lab Go is a comprehensive platform for managing and monitoring blood sample logistics across labs, technicians, dispatchers, and healthcare providers. It centralizes all operations, from order creation to dispatch and reporting, ensuring smooth coordination and real-time visibility at every stage.",
+      "subDescription": "The platform offers role-based dashboards for labs, dispatchers, and care requestors, enabling efficient tracking of sample orders and technician assignments. Users can view live technician locations on an interactive map, generate reports, review performance metrics, and export order summaries. With features like secure login, profile management, real-time notifications, and feedback collection, A2A Lab Go enhances transparency, accuracy, and communication throughout the blood collection and testing process.",
+      "image1": "A2A_Lab_Go4.png",
+      "image2": "A2A_Lab_Go1.png",
+      "image3": "A2A_Lab_Go2.png",
+      "image1Desc": "The dashboard provides real-time tracking of technicians and active blood sample collections to streamline coordination between labs and dispatchers.",
+      "image2Desc": "The reports module enables users to generate and export detailed summaries of blood orders, deliveries, and performance insights.",
+      "image3Desc": "Interactive maps display live technician locations and optimized routes, improving efficiency and turnaround times in sample collection.",
+      "siteName": "Explore A2A Lab Go",
+      "siteLink": "https://blood-tracker.rootpointers.net/"
+    }
+  }
+
 ]

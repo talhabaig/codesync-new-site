@@ -7,19 +7,19 @@ import "keen-slider/keen-slider.min.css";
 export default function OurTeam() {
   const teamMembers = [
     {
-      src: getImagePath("mahad.jpg"),
+      src: getImagePath("mahad2.jpg"),
       name: "Mahad Khursheed",
-      designation: "Frontend Developer",
+      designation: "Sr. Frontend Developer",
     },
     {
       src: getImagePath("moiz.jpg"),
       name: "Moiz Ahmad",
-      designation: "Full Stack Developer",
+      designation: "Sr. Full Stack Developer",
     },
     {
       src: getImagePath("zeshan.jpg"),
       name: "Zeeshan Bajwa",
-      designation: "Frontend Developer",
+      designation: "Sr. Frontend Developer",
     },
     {
       src: getImagePath("Imran-baig.jpg"),
@@ -34,22 +34,22 @@ export default function OurTeam() {
     {
       src: getImagePath("Ahmad-khursheed.jpeg"),
       name: "Ahmed Khursheed",
-      designation: "Backend Developer",
+      designation: "Sr. Backend Developer",
     },
     {
       src: getImagePath("Hamza.jpg"),
       name: "Hamza",
-      designation: "Frontend Developer",
+      designation: "Sr. Frontend Developer",
     },
     {
       src: getImagePath("haseeb7.jpg"),
       name: "Haseeb Hamza",
-      designation: "Frontend Developer",
+      designation: "Sr. Frontend Developer",
     },
     {
-      src: getImagePath("ehsan3.png"),
+      src: getImagePath("ehsan4.jpg"),
       name: "Muhammad Ehsan",
-      designation: "Frontend Developer",
+      designation: "Sr. Frontend Developer",
     },
     {
       src: getImagePath("Ahmad-sheikh.jpg"),
@@ -59,7 +59,32 @@ export default function OurTeam() {
     {
       src: getImagePath("muaz.jpeg"),
       name: "Muaz Mughal",
-      designation: "Backend Developer",
+      designation: "Sr. Backend Developer",
+    },
+    {
+      src: getImagePath("hassanSajid.jpg"),
+      name: "Hassan Sajid",
+      designation: "Jr. Frontend Developer",
+    },
+    {
+      src: getImagePath("Taha.jpg"),
+      name: "Taha Khursheed",
+      designation: "Full Stack Developer",
+    },
+    {
+      src: getImagePath("mushahid3.jpg"),
+      name: "Mushahid Buttar",
+      designation: "Jr. Frontend Developer",
+    },
+    {
+      src: getImagePath("abbas.jpg"),
+      name: "Afqar ul Abbas",
+      designation: "Jr. Frontend Developer",
+    },
+    {
+      src: getImagePath("haseebJr.jpg"),
+      name: "Haseeb",
+      designation: "Jr. Backend Developer",
     },
   ];
   const animation = { duration: 20000, easing: (t: number) => t };
