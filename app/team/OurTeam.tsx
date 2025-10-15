@@ -17,9 +17,9 @@ export default function OurTeam() {
       designation: "Sr. Full Stack Developer",
     },
     {
-      src: getImagePath("zeshan.jpg"),
+      src: getImagePath("zeeshan.jpeg"),
       name: "Zeeshan Bajwa",
-      designation: "Sr. Frontend Developer",
+      designation: "Sr. Full Stack Developer",
     },
     {
       src: getImagePath("Imran-baig.jpg"),
@@ -52,11 +52,6 @@ export default function OurTeam() {
       designation: "Sr. Frontend Developer",
     },
     {
-      src: getImagePath("Ahmad-sheikh.jpg"),
-      name: "Ahmad Sheikh",
-      designation: "Frontend Developer",
-    },
-    {
       src: getImagePath("muaz.jpeg"),
       name: "Muaz Mughal",
       designation: "Sr. Backend Developer",
@@ -68,7 +63,7 @@ export default function OurTeam() {
     },
     {
       src: getImagePath("Taha.jpg"),
-      name: "Taha Khursheed",
+      name: "Taha Rasheed",
       designation: "Full Stack Developer",
     },
     {
