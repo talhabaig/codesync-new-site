@@ -1,9 +1,9 @@
 "use client";
-import React, { useState, useEffect, Suspense  } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { FeedReadMore } from "../components/common/readMore";
 import { getImagePath } from "./utils.js";
 import Link from "next/link";
-import { usePathname, useSearchParams  } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 const portfolioItems = [
   {
     id: 1,
@@ -275,9 +275,12 @@ function PortfolioContent() {
               </div>
               <div className="md:basis-[45%] lg:basis-[48%] xl:basis-[45%] flex items-center">
                 <div className="md:p-4 lg:p-8 md:basis-full xl:basis-[90%] 2xl:basis-[85%]">
-                  <h3 className="text-[30px] md:text-[35px] lg:text-[45px] xl:text-[50px] 2xl:text-[64px] font-semibold text-[#0693EB] leading-[50px] md:leading-[60px] lg:leading-[75px] xl:leading-[80px] 2xl:leading-[96px] uppercase">
-                    {project.title}
-                  </h3>
+                  <Link href={`/projectdetails/${project.id}`}>
+                    <h3 className="text-[30px] md:text-[35px] lg:text-[45px] xl:text-[50px] 2xl:text-[64px] font-semibold text-[#0693EB] leading-[50px] md:leading-[60px] lg:leading-[75px] xl:leading-[80px] 2xl:leading-[96px] uppercase cursor-pointer">
+                      {project.title}
+                    </h3>
+                  </Link>
+
                   <div className="text-[#454545] font-work-sans leading-[30.25px] font-light text-[25px] mb-2 xl:mb-0">
                     <FeedReadMore maxLength={150}>
                       {project.description}
