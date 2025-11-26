@@ -48,7 +48,7 @@ const Page: React.FC<Props> = (props) => {
                 {item.details.image2Desc}
               </div>
             </div>
-            <div className="flex justify-center my-8 xl:my-12">
+            <div className="flex justify-center my-8 xl:my-12"> 
               <div className="xl:basis-[80%]">
                 <img
                   src={getImagePath(item.details.image2)}

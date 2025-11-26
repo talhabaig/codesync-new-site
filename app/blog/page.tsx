@@ -4,7 +4,7 @@ import OurBlog from "./OurBlog"
 export default function Blog() {
   return (
     <>
-      <Hero />
+      {/* <Hero /> */}
       <OurBlog />
     </>
   )

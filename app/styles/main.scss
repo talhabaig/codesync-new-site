@@ -222,3 +222,51 @@ input[type=number] {
     width: 70%;
   }
 }
+
+
+
+.blog-content {
+
+  /* Target the Quill editor content */
+  .ql-editor {
+    font-size: 22px !important;
+    line-height: 1.9 !important;
+    letter-spacing: 0.3px;
+    color: #333 !important;
+    font-family: "Georgia", "Times New Roman", serif !important;
+    text-align: justify !important;
+  }
+
+  .ql-editor p {
+    margin-bottom: 22px !important;
+  }
+
+  .ql-editor h1,
+  .ql-editor h2,
+  .ql-editor h3 {
+    margin-top: 30px !important;
+    margin-bottom: 15px !important;
+    font-weight: bold !important;
+  }
+
+  .ql-editor img {
+    width: 100% !important;
+    height: auto !important;
+    margin: 20px 0 !important;
+    border-radius: 12px;
+  }
+
+  .ql-editor ul,
+  .ql-editor ol {
+    margin-left: 25px !important;
+    margin-bottom: 20px !important;
+  }
+
+  .ql-editor blockquote {
+    padding: 18px !important;
+    background: #f7f7f7 !important;
+    border-left: 4px solid #3b82f6 !important;
+    margin: 20px 0 !important;
+    font-style: italic !important;
+  }
+}
