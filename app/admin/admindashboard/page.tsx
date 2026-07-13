@@ -356,6 +356,18 @@ export default function AdminDashboard() {
     closeDialog();
   };
 
+  const handleUpdateBlog = async (updatedBlog: Blog) => {
+    const { id, title, author, content, date, coverImage } = updatedBlog;
+    await updateDoc(doc(db, "blogs", id), {
+      title,
+      author,
+      content,
+      date,
+      coverImage,
+    });
+    closeDialog();
+  };
+
   const handleAddCareer = async () => {
     const {
       position,
@@ -377,6 +389,31 @@ export default function AdminDashboard() {
       jobcontent,
       date,
       createdAt: serverTimestamp(),
+    });
+    closeDialog();
+  };
+
+  const handleUpdateCareer = async (updatedCareer: Career) => {
+    const {
+      id,
+      position,
+      location,
+      type,
+      lastDate,
+      totalPositions,
+      salary,
+      jobcontent,
+      date,
+    } = updatedCareer;
+    await updateDoc(doc(db, "careers", id), {
+      position,
+      location,
+      type,
+      lastDate,
+      totalPositions,
+      salary,
+      jobcontent,
+      date,
     });
     closeDialog();
   };
@@ -698,7 +735,7 @@ export default function AdminDashboard() {
                   {dialogType === "editBlog" && editingBlog && (
                     <EditBlog
                       blogData={editingBlog}
-                      handleUpdateBlog={handleAddBlog}
+                      handleUpdateBlog={handleUpdateBlog}
                     />
                   )}
                   {dialogType === "blog" && (
@@ -711,7 +748,7 @@ export default function AdminDashboard() {
                   {dialogType === "editCareer" && editingCareer && (
                     <EditCareer
                       careerData={editingCareer}
-                      handleUpdateCareer={handleAddCareer}
+                      handleUpdateCareer={handleUpdateCareer}
                     />
                   )}
                   {dialogType === "career" && (
