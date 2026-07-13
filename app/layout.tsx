@@ -27,6 +27,7 @@ export default function RootLayout({ children }: Props) {
           <meta name="format-detection" content="telephone=no" />
           <meta name="keywords" content="Code Sync" />
           <meta property="og:site_name" content="Code Sync" />
+          <meta name="google-site-verification" content="yhKetG3xA7fFPnzgMSMSXaFBqVWgzZRpWE8js2vmCeE" />
           <link rel="icon" type="image/x-icon" href="/icon.png" />
         </head>
         <body>
