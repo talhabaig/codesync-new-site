@@ -2,8 +2,28 @@
 import React, { useState } from 'react';
 import CareerEditor from '@/app/components/careerEditor';
 interface AddCareerProps {
-  newCareer: { position: string; date: string; lastDate:string; location: string; type: string; totalPositions:string; salary:string; createdAt:string; jobcontent: string; };
-  setNewCareer: React.Dispatch<React.SetStateAction<{ position: string; location: string; date: string; lastDate:string; type:string; totalPositions:string; salary:string; createdAt:string; jobcontent: string; }>>;
+  newCareer: {
+    position: string;
+    date: string;
+    lastDate: string;
+    location: string;
+    type: string;
+    totalPositions: string;
+    salary: string;
+    jobcontent: string;
+  };
+  setNewCareer: React.Dispatch<
+    React.SetStateAction<{
+      position: string;
+      location: string;
+      date: string;
+      lastDate: string;
+      type: string;
+      totalPositions: string;
+      salary: string;
+      jobcontent: string;
+    }>
+  >;
   handleAddCareer: () => void;
 }
 
