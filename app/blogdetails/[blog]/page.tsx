@@ -11,8 +11,6 @@ import {
   getDocs,
   where,
   limit,
-} from "firebase/firestore";
-import { db } from "../../firebase/config";
 import "react-quill/dist/quill.bubble.css";
 import dynamic from "next/dynamic";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

@@ -2,8 +2,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { collection, getDocs, query, orderBy } from "firebase/firestore";
-import { db } from "../firebase/config";
 
 interface Blog {
   id: string;
@@ -24,25 +22,9 @@ function OurBlog() {
   const itemsPerPage = 6;
 
   useEffect(() => {
-    const fetchBlogs = async () => {
-      try {
-        setLoading(true);
-        const blogCollection = collection(db, "blogs");
-        const blogQuery = query(blogCollection, orderBy("createdAt", "desc"));
-        const blogSnapshot = await getDocs(blogQuery);
-
-        const blogList = blogSnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        })) as Blog[];
-
-        setBlogs(blogList);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchBlogs();
+    // Firebase removed — backend blogs wiring later
+    setBlogs([]);
+    setLoading(false);
   }, []);
 
   const totalPages = Math.ceil(blogs.length / itemsPerPage);

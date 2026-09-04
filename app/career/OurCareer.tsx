@@ -2,8 +2,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { collection, getDocs, query, orderBy } from "firebase/firestore";
-import { db } from "../firebase/config";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import Button from "../components/common/Button";
@@ -27,18 +25,8 @@ function OurCareer() {
   const itemsPerPage = 6;
 
   useEffect(() => {
-    const fetchCareers = async () => {
-      const careerCollection = collection(db, "careers");
-      const careerQuery = query(careerCollection, orderBy("createdAt", "desc"));
-      const careerSnapshot = await getDocs(careerQuery);
-      const careerList = careerSnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      })) as Career[];
-      setCareers(careerList);
-    };
-    
-    fetchCareers();
+    // Firebase removed — backend jobs wiring later
+    setCareers([]);
   }, []);
 
   const totalPages = Math.ceil(careers.length / itemsPerPage);

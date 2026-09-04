@@ -12,8 +12,6 @@ import {
   updateDoc,
   serverTimestamp,
   orderBy,
-} from "firebase/firestore";
-import { db } from "@/app/firebase/config";
 import AddBlog from "./AddBlog";
 import EditBlog from "./EditBlog";
 import AddCareer from "./AddCareer";

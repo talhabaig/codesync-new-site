@@ -1,7 +1,5 @@
 "use client";
 import React, { useState } from 'react';
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { storage } from '@/app/firebase/config';
 import BlogEditor from '@/app/components/blogEditor';
 
 interface AddBlogProps {
@@ -24,12 +22,8 @@ const AddBlog: React.FC<AddBlogProps> = ({ newBlog, setNewBlog, handleAddBlog })
 
   const uploadImageToFirebase = async () => {
     if (!coverImage) return '';
-    
-    const storageRef = ref(storage, `blog_covers/${coverImage.name}`);
-    const snapshot = await uploadBytes(storageRef, coverImage);
-    const downloadURL = await getDownloadURL(snapshot.ref);
-    
-    return downloadURL;
+    // Firebase removed — return object URL placeholder until Cloudinary is wired
+    return URL.createObjectURL(coverImage);
   };
 
   const handleEditorChange = (content: string) => {

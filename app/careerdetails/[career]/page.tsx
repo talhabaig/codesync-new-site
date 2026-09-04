@@ -1,8 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../firebase/config";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import "react-quill/dist/quill.bubble.css"; // Import Quill's CSS
 import dynamic from 'next/dynamic';
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
