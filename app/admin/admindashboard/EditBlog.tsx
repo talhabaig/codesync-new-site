@@ -26,7 +26,7 @@ const EditBlog: React.FC<EditBlogProps> = ({ blogData, handleUpdateBlog }) => {
   };
 
   const uploadImageToFirebase = async () => {
-    if (!coverImage) return editingBlog.coverImage || '';
+    if (!coverImage) return updatedBlog.coverImage || '';
     // Firebase removed — return object URL placeholder until Cloudinary is wired
     return URL.createObjectURL(coverImage);
   };

@@ -1,5 +1,10 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { toast } from "react-hot-toast";
+import {
+  TOKEN_KEY,
+  handleSessionExpired,
+  isAccessTokenValid,
+} from "@/lib/api/session";
 
 interface basicParams extends AxiosRequestConfig {
   url: string;
@@ -31,11 +36,19 @@ async function makeApiCall<T>({
   headers: customHeaders = {},
   ...config
 }: paramsWithConfig | paramsWithoutConfig) {
+  const rawToken =
+    typeof window !== "undefined" ? localStorage.getItem(TOKEN_KEY) : null;
   const token =
-    typeof window !== "undefined" ? localStorage.getItem("token") : null;
+    !noAuth && rawToken && isAccessTokenValid(rawToken) ? rawToken : null;
+
+  // Token present but already expired — kick to login before calling API
+  if (!noAuth && rawToken && !isAccessTokenValid(rawToken)) {
+    handleSessionExpired("Session expired. Please log in again.");
+    throw new Error("Session expired");
+  }
 
   const headers: Record<string, string> = {
-    ...(token && !noAuth ? { Authorization: `Bearer ${token}` } : {}),
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
     ...(customHeaders as Record<string, string>),
   };
 
@@ -56,23 +69,16 @@ async function makeApiCall<T>({
   } catch (error: any) {
     const response = error.response;
 
-    // Skip session redirect on public/login calls (noAuth)
+    // Authenticated routes: 401 = bad/expired JWT → force re-login
     if (response?.status === 401 && !noAuth) {
-      toast.error("Session expired or invalid. Please log in again.");
-      if (typeof window !== "undefined") {
-        localStorage.clear();
-        setTimeout(() => {
-          window.location.href = "/admin/login";
-        }, 1500);
-      }
+      handleSessionExpired(
+        response?.data?.message ||
+          "Session expired or invalid. Please log in again."
+      );
     }
 
     if (response?.status === 403 && !noAuth) {
       toast.error("You are not authorized to access this page.");
-      if (typeof window !== "undefined") {
-        localStorage.clear();
-        window.location.href = "/403";
-      }
     }
 
     throw error;

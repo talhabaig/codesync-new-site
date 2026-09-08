@@ -20,30 +20,64 @@ export interface LoginResponse {
   };
 }
 
+export interface UpdateProfilePayload {
+  name?: string;
+  email?: string;
+}
+
+export interface ChangePasswordPayload {
+  currentPassword: string;
+  newPassword: string;
+}
+
 export const loginAdmin = async (payload: LoginPayload) => {
   try {
-    const response = await makeApiCall<LoginResponse>({
+    return await makeApiCall<LoginResponse>({
       url: "auth/login",
       method: "POST",
       data: payload,
       noAuth: true,
     });
-    return response;
   } catch (err: any) {
-    const message =
-      err?.response?.data?.message || "Failed to login. Please try again.";
-    throw new Error(message);
+    throw new Error(
+      err?.response?.data?.message || "Failed to login. Please try again."
+    );
   }
 };
 
 export const getAdminProfile = async () => {
   try {
-    const response = await makeApiCall<{ success: boolean; data: AuthUser }>({
+    return await makeApiCall<{ success: boolean; data: AuthUser }>({
       url: "admin/me",
       method: "GET",
     });
-    return response;
   } catch (err: any) {
     throw new Error(err?.response?.data?.message || "Failed to fetch profile");
+  }
+};
+
+export const updateAdminProfile = async (payload: UpdateProfilePayload) => {
+  try {
+    return await makeApiCall<{ success: boolean; data: AuthUser }>({
+      url: "admin/me",
+      method: "PATCH",
+      data: payload,
+    });
+  } catch (err: any) {
+    throw new Error(err?.response?.data?.message || "Failed to update profile");
+  }
+};
+
+export const changeAdminPassword = async (payload: ChangePasswordPayload) => {
+  try {
+    return await makeApiCall<{ success: boolean; data: { message: string } }>({
+      url: "admin/me/password",
+      method: "PATCH",
+      data: payload,
+    });
+  } catch (err: any) {
+    throw new Error(
+      err?.response?.data?.message || "Failed to change password"
+    );
   }
 };
