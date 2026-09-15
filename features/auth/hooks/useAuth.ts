@@ -91,7 +91,7 @@ export function useAuth() {
     onSuccess: (res) => {
       localStorage.setItem(USER_KEY, JSON.stringify(res.data));
       queryClient.setQueryData(AUTH_USER_QUERY_KEY, res.data);
-      toast.success("Profile updated");
+      toast.success("Profile updated successfully");
     },
     onError: (err: Error) => {
       toast.error(err.message || "Failed to update profile");
@@ -101,7 +101,7 @@ export function useAuth() {
   const changePasswordMutation = useMutation({
     mutationFn: (payload: ChangePasswordPayload) => changeAdminPassword(payload),
     onSuccess: () => {
-      toast.success("Password updated");
+      toast.success("Password updated successfully");
     },
     onError: (err: Error) => {
       toast.error(err.message || "Failed to change password");

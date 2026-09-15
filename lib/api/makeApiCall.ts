@@ -55,12 +55,14 @@ async function makeApiCall<T>({
   if (!isFormData && !headers["Content-Type"]) {
     headers["Content-Type"] = "application/json";
   }
+  const baseUrl = (process.env.NEXT_PUBLIC_BASE_URL || "").replace(/\/$/, "");
+  const endpoint = url.replace(/^\//, "");
 
   try {
     const response = await axios<T>({
       method,
       data,
-      url: `${process.env.NEXT_PUBLIC_BASE_URL}/${url}`,
+      url: `${baseUrl}/${endpoint}`,
       headers,
       ...config,
     });
@@ -93,6 +95,22 @@ export interface errType {
 
 function checkErrorHasMessage(err: any): err is errType {
   return err?.message !== undefined;
+}
+
+export function getApiErrorMessage(err: unknown, fallback: string) {
+  const axiosErr = err as {
+    response?: { data?: { message?: string } };
+    message?: string;
+  };
+  return axiosErr.response?.data?.message || axiosErr.message || fallback;
+}
+
+export function compactParams<T extends Record<string, unknown>>(params: T) {
+  return Object.fromEntries(
+    Object.entries(params).filter(
+      ([, value]) => value !== undefined && value !== ""
+    )
+  ) as Partial<T>;
 }
 
 export { makeApiCall, checkErrorHasMessage };

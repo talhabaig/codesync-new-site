@@ -53,9 +53,9 @@ export function CustomModal({
       <div
         role="dialog"
         aria-modal="true"
-        className={`relative w-full ${sizeClasses[size]} rounded-2xl bg-white shadow-xl border border-gray-100`}
+        className={`relative flex flex-col w-full ${sizeClasses[size]} max-h-[80vh] rounded-2xl bg-white shadow-xl border border-gray-100`}
       >
-        <div className="flex items-center justify-between border-b border-gray-100 px-5 py-4">
+        <div className="flex shrink-0 items-center justify-between border-b border-gray-100 px-5 py-4">
           <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
           <CustomButton
             type="button"
@@ -67,9 +67,13 @@ export function CustomModal({
             <FaTimes />
           </CustomButton>
         </div>
-        <div className="px-5 py-4">{children}</div>
+
+        <div className="flex-1 overflow-y-auto px-5 py-4">
+          {children}
+        </div>
+
         {footer && (
-          <div className="flex justify-end gap-2 border-t border-gray-100 px-5 py-4">
+          <div className="flex shrink-0 justify-end gap-2 border-t border-gray-100 px-5 py-4">
             {footer}
           </div>
         )}

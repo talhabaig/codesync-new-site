@@ -3,16 +3,30 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
+  FaBriefcase,
+  FaCogs,
+  FaImages,
+  FaLayerGroup,
+  FaNewspaper,
+  FaQuoteLeft,
   FaSignOutAlt,
   FaTachometerAlt,
   FaTimes,
   FaUserCog,
+  FaUsers,
 } from "react-icons/fa";
 import { useAuth } from "@/features/auth/hooks/useAuth";
 
 const navItems = [
   { href: "/admin/admindashboard", label: "Dashboard", icon: FaTachometerAlt },
   { href: "/admin/profile", label: "Profile", icon: FaUserCog },
+  { href: "/admin/services", label: "Services", icon: FaCogs },
+  { href: "/admin/tech-stacks", label: "Tech Stacks", icon: FaLayerGroup },
+  { href: "/admin/testimonials", label: "Testimonials", icon: FaQuoteLeft },
+  { href: "/admin/portfolio", label: "Portfolio", icon: FaImages },
+  { href: "/admin/team", label: "Team", icon: FaUsers },
+  { href: "/admin/blogs", label: "Blogs", icon: FaNewspaper },
+  { href: "/admin/jobs", label: "Jobs", icon: FaBriefcase },
 ];
 
 interface AdminSidebarProps {
