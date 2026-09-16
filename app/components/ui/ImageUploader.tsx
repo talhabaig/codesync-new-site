@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { FaCloudUploadAlt, FaSpinner } from "react-icons/fa";
 import type { UploadFolder, UploadResourceType } from "../../../features/upload/api";
 import { useCloudinaryUpload } from "../../../features/upload/hooks/useCloudinaryUpload";
+import { SafeImage } from "./SafeImage";
 
 interface ImageUploaderProps {
   label: string;
@@ -13,6 +14,7 @@ interface ImageUploaderProps {
   resourceType?: UploadResourceType;
   error?: string;
   objectFit?: "cover" | "contain";
+  fallbackSrc?: string;
 }
 
 export function ImageUploader({
@@ -23,6 +25,7 @@ export function ImageUploader({
   resourceType = "image",
   error,
   objectFit = "cover",
+  fallbackSrc,
 }: ImageUploaderProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { uploadFile, isUploading, error: uploadError } = useCloudinaryUpload();
@@ -54,7 +57,12 @@ export function ImageUploader({
           {isVideo ? (
             <video src={value} className={`h-32 w-full ${fitClass}`} muted />
           ) : (
-            <img src={value} alt={label} className={`h-32 w-full ${fitClass}`} />
+            <SafeImage
+              src={value}
+              fallback={fallbackSrc || value}
+              alt={label}
+              className={`h-32 w-full ${fitClass}`}
+            />
           )}
           <div
             className={`absolute inset-0 flex items-center justify-center gap-2 bg-black/50 transition-opacity ${

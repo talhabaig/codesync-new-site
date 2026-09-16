@@ -193,7 +193,7 @@ export default function AdminServices() {
   const formError = createError || updateError;
 
   return (
-    <div className="mx-auto max-w-7xl space-y-6">
+    <div className="image.png">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="text-sm font-medium text-customLightBlue2">Content management</p>
