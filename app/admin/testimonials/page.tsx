@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   FaChevronLeft,
   FaChevronRight,
@@ -14,16 +14,13 @@ import {
   FaTrash,
 } from "react-icons/fa";
 import { CustomModal } from "../../components/ui/CustomModal";
-import { CustomInput } from "../../components/ui/CustomInput";
 import { CustomButton } from "../../components/ui/CustomButton";
-import { ImageUploader } from "../../components/ui/ImageUploader";
-import { toast } from "react-hot-toast";
+import { TestimonialForm } from "./TestimonialForm";
 import {
   Testimonial,
   TestimonialStatus,
   CreateTestimonialPayload,
   GetTestimonialsParams,
-  UpdateTestimonialPayload,
 } from "../../../features/testimonials/types";
 import { useGetTestimonials } from "../../../features/testimonials/hooks/useGetTestimonials";
 import { useTestimonialMutations } from "../../../features/testimonials/hooks/useTestimonialMutations";
@@ -96,7 +93,7 @@ export default function AdminTestimonials() {
   const [selected, setSelected] = useState<string[]>([]);
   const [menuOpen, setMenuOpen] = useState<string | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
-  const [editing, setEditing] = useState<UpdateTestimonialPayload | null>(null);
+  const [editing, setEditing] = useState<CreateTestimonialPayload | null>(null);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [pendingDelete, setPendingDelete] = useState<{
     ids: string[];
@@ -151,27 +148,6 @@ export default function AdminTestimonials() {
     setMenuOpen(null);
   };
 
-  const saveTestimonial = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (!editing) return;
-    if (!editing.photo) {
-      toast.error("Please upload a photo");
-      return;
-    }
-
-    try {
-      if (editingId) {
-        await updateTestimonial(editingId, editing);
-      } else {
-        await createTestimonial(editing);
-      }
-      setEditing(null);
-      setEditingId(null);
-    } catch {
-      // Toast is handled in the mutation hook
-    }
-  };
-
   const confirmPendingDelete = async () => {
     if (!pendingDelete) return;
     try {
@@ -187,11 +163,6 @@ export default function AdminTestimonials() {
       // Toast is handled in the mutation hook
     }
   };
-
-  const updateEditing = <K extends keyof UpdateTestimonialPayload>(
-    key: K,
-    value: UpdateTestimonialPayload[K]
-  ) => setEditing((item) => (item ? { ...item, [key]: value } : item));
 
   const allOnPageSelected =
     testimonials.length > 0 && testimonials.every((s) => selected.includes(s.id));
@@ -571,104 +542,17 @@ export default function AdminTestimonials() {
             </>
           }
         >
-          <form id="testimonial-form" onSubmit={saveTestimonial} className="grid gap-4 sm:grid-cols-2">
-            {formError && (
-              <div className="rounded-md bg-red-50 p-3 text-sm text-red-700 sm:col-span-2">
-                {formError}
-              </div>
-            )}
-
-            <CustomInput
-              label="Client name"
-              required
-              value={editing.clientName}
-              onChange={(e) => updateEditing("clientName", e.target.value)}
-            />
-            <CustomInput
-              label="Company"
-              required
-              value={editing.company}
-              onChange={(e) => updateEditing("company", e.target.value)}
-            />
-            <div className="sm:col-span-2">
-              <CustomInput
-                label="Designation"
-                required
-                value={editing.designation}
-                onChange={(e) => updateEditing("designation", e.target.value)}
-              />
-            </div>
-
-            <div className="sm:col-span-2">
-              <ImageUploader
-                label="Photo"
-                value={editing.photo}
-                onChange={(url) => updateEditing("photo", url)}
-                folder="codesyncs/testimonials"
-                objectFit="cover"
-              />
-              {!editing.photo && (
-                <p className="mt-1 text-xs text-gray-500">A Cloudinary photo URL is required.</p>
-              )}
-            </div>
-
-            <div className="space-y-1.5 sm:col-span-2">
-              <label className="block text-sm font-semibold text-gray-700">Testimonial</label>
-              <textarea
-                required
-                rows={4}
-                value={editing.testimonial}
-                onChange={(e) => updateEditing("testimonial", e.target.value)}
-                className="block w-full resize-y rounded-lg border border-gray-300 px-3 py-2.5 text-sm text-gray-800 focus:border-customLightBlue2 focus:outline-none focus:ring-2 focus:ring-customLightBlue2"
-              />
-            </div>
-
-            <div className="space-y-1.5">
-              <label className="block text-sm font-semibold text-gray-700">Rating</label>
-              <select
-                value={editing.rating}
-                onChange={(e) => updateEditing("rating", Number(e.target.value))}
-                className="block w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm text-gray-800 focus:border-customLightBlue2 focus:outline-none focus:ring-2 focus:ring-customLightBlue2"
-              >
-                {[1, 2, 3, 4, 5].map((n) => (
-                  <option key={n} value={n}>
-                    {n} star{n === 1 ? "" : "s"}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <CustomInput
-              label="Display order"
-              type="number"
-              required
-              min={1}
-              value={editing.displayOrder}
-              onChange={(e) => updateEditing("displayOrder", Number(e.target.value))}
-            />
-
-            <label className="flex items-center gap-2 text-sm font-semibold text-gray-700">
-              <input
-                type="checkbox"
-                checked={editing.featured}
-                onChange={(e) => updateEditing("featured", e.target.checked)}
-                className="h-4 w-4 rounded border-gray-300 text-customLightBlue2 focus:ring-customLightBlue2"
-              />
-              Featured
-            </label>
-
-            <div className="space-y-1.5">
-              <label className="block text-sm font-semibold text-gray-700">Status</label>
-              <select
-                value={editing.status}
-                onChange={(e) => updateEditing("status", e.target.value as TestimonialStatus)}
-                className="block w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm text-gray-800 focus:border-customLightBlue2 focus:outline-none focus:ring-2 focus:ring-customLightBlue2"
-              >
-                <option value="ACTIVE">Active</option>
-                <option value="INACTIVE">Inactive</option>
-              </select>
-            </div>
-          </form>
+          <TestimonialForm
+            formId="testimonial-form"
+            defaultValues={editing}
+            apiError={formError}
+            onSubmit={async (values) => {
+              if (editingId) await updateTestimonial(editingId, values);
+              else await createTestimonial(values);
+              setEditing(null);
+              setEditingId(null);
+            }}
+          />
         </CustomModal>
       )}
 

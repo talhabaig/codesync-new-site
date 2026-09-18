@@ -9,6 +9,7 @@ import {
 } from "react";
 import { IconType } from "react-icons";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FieldLabel } from "./FieldLabel";
 
 export interface CustomInputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
@@ -44,6 +45,7 @@ export const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(
       className = "",
       id,
       type = "text",
+      required,
       ...props
     },
     ref
@@ -64,12 +66,9 @@ export const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(
     return (
       <div className="w-full space-y-1.5">
         {label && (
-          <label
-            htmlFor={inputId}
-            className="block text-sm font-semibold text-gray-700"
-          >
+          <FieldLabel htmlFor={inputId} required={required}>
             {label}
-          </label>
+          </FieldLabel>
         )}
 
         <div className="relative">

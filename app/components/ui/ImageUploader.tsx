@@ -5,6 +5,7 @@ import { FaCloudUploadAlt, FaSpinner } from "react-icons/fa";
 import type { UploadFolder, UploadResourceType } from "../../../features/upload/api";
 import { useCloudinaryUpload } from "../../../features/upload/hooks/useCloudinaryUpload";
 import { SafeImage } from "./SafeImage";
+import { FieldLabel } from "./FieldLabel";
 
 interface ImageUploaderProps {
   label: string;
@@ -15,6 +16,7 @@ interface ImageUploaderProps {
   error?: string;
   objectFit?: "cover" | "contain";
   fallbackSrc?: string;
+  required?: boolean;
 }
 
 export function ImageUploader({
@@ -26,6 +28,7 @@ export function ImageUploader({
   error,
   objectFit = "cover",
   fallbackSrc,
+  required,
 }: ImageUploaderProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { uploadFile, isUploading, error: uploadError } = useCloudinaryUpload();
@@ -50,7 +53,7 @@ export function ImageUploader({
 
   return (
     <div className="w-full space-y-1.5">
-      <label className="block text-sm font-semibold text-gray-700">{label}</label>
+      <FieldLabel required={required}>{label}</FieldLabel>
 
       {value ? (
         <div className="group relative overflow-hidden rounded-lg border border-gray-300 bg-gray-50">

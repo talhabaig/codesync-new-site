@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
 import Hero from "../Hero";
-import data from "portfolio.json";
+import data from "@/portfolio.json";
 import { getImagePath } from "../utils";
 interface Props {
   params: {

@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   FaChevronLeft,
   FaChevronRight,
@@ -12,18 +12,15 @@ import {
   FaSearch,
   FaTrash,
 } from "react-icons/fa";
-import { toast } from "react-hot-toast";
 import { CustomModal } from "../../components/ui/CustomModal";
-import { CustomInput } from "../../components/ui/CustomInput";
 import { CustomButton } from "../../components/ui/CustomButton";
-import { ImageUploader } from "../../components/ui/ImageUploader";
 import { SafeImage } from "../../components/ui/SafeImage";
+import { TeamMemberForm } from "./TeamMemberForm";
 import {
   TeamMember,
   TeamMemberStatus,
   CreateTeamMemberPayload,
   GetTeamMembersParams,
-  UpdateTeamMemberPayload,
 } from "../../../features/team/types";
 import { useGetTeamMembers } from "../../../features/team/hooks/useGetTeamMembers";
 import { useTeamMutations } from "../../../features/team/hooks/useTeamMutations";
@@ -82,7 +79,7 @@ export default function AdminTeam() {
   const [selected, setSelected] = useState<string[]>([]);
   const [menuOpen, setMenuOpen] = useState<string | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
-  const [editing, setEditing] = useState<UpdateTeamMemberPayload | null>(null);
+  const [editing, setEditing] = useState<CreateTeamMemberPayload | null>(null);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [pendingDelete, setPendingDelete] = useState<{
     ids: string[];
@@ -124,27 +121,6 @@ export default function AdminTeam() {
     setMenuOpen(null);
   };
 
-  const saveTeamMember = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (!editing) return;
-    if (!editing.image) {
-      toast.error("Please upload a photo");
-      return;
-    }
-
-    try {
-      if (editingId) {
-        await updateTeamMember(editingId, editing);
-      } else {
-        await createTeamMember(editing);
-      }
-      setEditing(null);
-      setEditingId(null);
-    } catch {
-      // Toast is handled in the mutation hook
-    }
-  };
-
   const confirmPendingDelete = async () => {
     if (!pendingDelete) return;
     try {
@@ -160,11 +136,6 @@ export default function AdminTeam() {
       // Toast is handled in the mutation hook
     }
   };
-
-  const updateEditing = <K extends keyof UpdateTeamMemberPayload>(
-    key: K,
-    value: UpdateTeamMemberPayload[K]
-  ) => setEditing((item) => (item ? { ...item, [key]: value } : item));
 
   const allOnPageSelected =
     members.length > 0 && members.every((s) => selected.includes(s.id));
@@ -487,61 +458,17 @@ export default function AdminTeam() {
             </>
           }
         >
-          <form id="team-member-form" onSubmit={saveTeamMember} className="grid gap-4 sm:grid-cols-2">
-            {formError && (
-              <div className="rounded-md bg-red-50 p-3 text-sm text-red-700 sm:col-span-2">
-                {formError}
-              </div>
-            )}
-
-            <CustomInput
-              label="Name"
-              required
-              value={editing.name}
-              onChange={(e) => updateEditing("name", e.target.value)}
-            />
-            <CustomInput
-              label="Designation"
-              required
-              value={editing.designation}
-              onChange={(e) => updateEditing("designation", e.target.value)}
-            />
-
-            <div className="sm:col-span-2">
-              <ImageUploader
-                label="Photo"
-                value={editing.image}
-                onChange={(url) => updateEditing("image", url)}
-                folder="codesyncs/team"
-                objectFit="cover"
-                fallbackSrc={DEFAULT_MEMBER_IMAGE}
-              />
-              {!editing.image && (
-                <p className="mt-1 text-xs text-gray-500">A Cloudinary photo URL is required.</p>
-              )}
-            </div>
-
-            <CustomInput
-              label="Display order"
-              type="number"
-              required
-              min={1}
-              value={editing.displayOrder}
-              onChange={(e) => updateEditing("displayOrder", Number(e.target.value))}
-            />
-
-            <div className="space-y-1.5">
-              <label className="block text-sm font-semibold text-gray-700">Status</label>
-              <select
-                value={editing.status}
-                onChange={(e) => updateEditing("status", e.target.value as TeamMemberStatus)}
-                className="block w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm text-gray-800 focus:border-customLightBlue2 focus:outline-none focus:ring-2 focus:ring-customLightBlue2"
-              >
-                <option value="ACTIVE">Active</option>
-                <option value="INACTIVE">Inactive</option>
-              </select>
-            </div>
-          </form>
+          <TeamMemberForm
+            formId="team-member-form"
+            defaultValues={editing}
+            apiError={formError}
+            onSubmit={async (values) => {
+              if (editingId) await updateTeamMember(editingId, values);
+              else await createTeamMember(values);
+              setEditing(null);
+              setEditingId(null);
+            }}
+          />
         </CustomModal>
       )}
 

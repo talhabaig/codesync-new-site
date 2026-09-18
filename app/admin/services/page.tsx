@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   FaCheck,
   FaChevronLeft,
@@ -14,17 +14,14 @@ import {
   FaSearch,
   FaTrash,
 } from "react-icons/fa";
-import { ImageUploader } from "../../components/ui/ImageUploader";
 import { CustomModal } from "../../components/ui/CustomModal";
-import { CustomInput } from "../../components/ui/CustomInput";
 import { CustomButton } from "../../components/ui/CustomButton";
-import { RichTextEditor } from "../../components/ui/RichTextEditor";
+import { ServiceForm } from "./ServiceForm";
 import {
   Service,
   ServiceStatus,
   CreateServicePayload,
   GetServicesParams,
-  UpdateServicePayload,
 } from "../../../features/services/types";
 import { useGetServices } from "../../../features/services/hooks/useGetServices";
 import { useServiceMutations } from "../../../features/services/hooks/useServiceMutations";
@@ -87,7 +84,7 @@ export default function AdminServices() {
   const [selected, setSelected] = useState<string[]>([]);
   const [menuOpen, setMenuOpen] = useState<string | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
-  const [editing, setEditing] = useState<UpdateServicePayload | null>(null);
+  const [editing, setEditing] = useState<CreateServicePayload | null>(null);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [pendingDelete, setPendingDelete] = useState<{
     ids: string[];
@@ -136,23 +133,6 @@ export default function AdminServices() {
     setMenuOpen(null);
   };
 
-  const saveService = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (!editing) return;
-
-    try {
-      if (editingId) {
-        await updateService(editingId, editing);
-      } else {
-        await createService(editing as CreateServicePayload);
-      }
-      setEditing(null);
-      setEditingId(null);
-    } catch {
-      // Toast is handled in the mutation hook
-    }
-  };
-
   const confirmPendingDelete = async () => {
     if (!pendingDelete) return;
     try {
@@ -168,11 +148,6 @@ export default function AdminServices() {
       // Toast is handled in the mutation hook
     }
   };
-
-  const updateEditing = <K extends keyof UpdateServicePayload>(
-    key: K,
-    value: UpdateServicePayload[K]
-  ) => setEditing((item) => (item ? { ...item, [key]: value } : item));
 
   const allOnPageSelected =
     services.length > 0 && services.every((s) => selected.includes(s.id));
@@ -193,7 +168,7 @@ export default function AdminServices() {
   const formError = createError || updateError;
 
   return (
-    <div className="image.png">
+    <div className="">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="text-sm font-medium text-customLightBlue2">Content management</p>
@@ -520,117 +495,17 @@ export default function AdminServices() {
             </>
           }
         >
-          <form id="service-form" onSubmit={saveService} className="grid gap-4 sm:grid-cols-2">
-            {formError && (
-              <div className="rounded-md bg-red-50 p-3 text-sm text-red-700 sm:col-span-2">
-                {formError}
-              </div>
-            )}
-
-            <div className="sm:col-span-2">
-              <CustomInput
-                label="Title"
-                required
-                value={editing.title}
-                onChange={(e) => updateEditing("title", e.target.value)}
-              />
-            </div>
-
-            <div className="space-y-1.5 sm:col-span-2">
-              <label className="block text-sm font-semibold text-gray-700">
-                Short description
-              </label>
-              <textarea
-                required
-                rows={2}
-                value={editing.shortDescription}
-                onChange={(e) => updateEditing("shortDescription", e.target.value)}
-                className="block w-full resize-none rounded-lg border border-gray-300 px-3 py-2.5 text-sm text-gray-800 focus:border-customLightBlue2 focus:outline-none focus:ring-2 focus:ring-customLightBlue2"
-              />
-            </div>
-
-            <div className="sm:col-span-2">
-              <RichTextEditor
-                label="Full Description"
-                content={editing.description}
-                onChange={(html) => updateEditing("description", html)}
-                placeholder="Write the full service description..."
-              />
-            </div>
-
-            <CustomInput
-              label="Icon (URL or character)"
-              required
-              value={editing.icon}
-              onChange={(e) => updateEditing("icon", e.target.value)}
-            />
-            <CustomInput
-              label="Display order"
-              type="number"
-              required
-              min={1}
-              value={editing.displayOrder}
-              onChange={(e) => updateEditing("displayOrder", Number(e.target.value))}
-            />
-
-            <div className="sm:col-span-2">
-              <ImageUploader
-                label="Banner Image"
-                value={editing.bannerImage}
-                onChange={(url) => updateEditing("bannerImage", url)}
-                folder="codesyncs/services"
-              />
-            </div>
-
-            <div className="sm:col-span-2">
-              <ImageUploader
-                label="Header Image"
-                value={editing.headerImage}
-                onChange={(url) => updateEditing("headerImage", url)}
-                folder="codesyncs/services"
-              />
-            </div>
-
-            <CustomInput
-              label="SEO Title"
-              value={editing.seoTitle}
-              onChange={(e) => updateEditing("seoTitle", e.target.value)}
-            />
-            <CustomInput
-              label="SEO Keywords"
-              value={editing.seoKeywords}
-              onChange={(e) => updateEditing("seoKeywords", e.target.value)}
-            />
-            <div className="sm:col-span-2">
-              <CustomInput
-                label="SEO Description"
-                value={editing.seoDescription}
-                onChange={(e) => updateEditing("seoDescription", e.target.value)}
-              />
-            </div>
-
-            <label className="flex items-center gap-2 text-sm font-semibold text-gray-700">
-              <input
-                type="checkbox"
-                checked={editing.showOnHome}
-                onChange={(e) => updateEditing("showOnHome", e.target.checked)}
-                className="h-4 w-4 rounded border-gray-300 text-customLightBlue2 focus:ring-customLightBlue2"
-              />
-              Show on home page
-            </label>
-
-            <div className="space-y-1.5">
-              <label className="block text-sm font-semibold text-gray-700">Status</label>
-              <select
-                value={editing.status}
-                onChange={(e) => updateEditing("status", e.target.value as ServiceStatus)}
-                className="block w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm text-gray-800 focus:border-customLightBlue2 focus:outline-none focus:ring-2 focus:ring-customLightBlue2"
-              >
-                <option value="ACTIVE">Active</option>
-                <option value="INACTIVE">Inactive</option>
-              </select>
-            </div>
-          </form>
+          <ServiceForm
+            formId="service-form"
+            defaultValues={editing}
+            apiError={formError}
+            onSubmit={async (values) => {
+              if (editingId) await updateService(editingId, values);
+              else await createService(values);
+              setEditing(null);
+              setEditingId(null);
+            }}
+          />
         </CustomModal>
       )}
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { FieldLabel } from "./FieldLabel";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import {
@@ -20,6 +21,7 @@ interface RichTextEditorProps {
   onChange: (html: string) => void;
   label?: string;
   error?: string;
+  required?: boolean;
   placeholder?: string;
   minHeight?: string;
 }
@@ -29,6 +31,7 @@ export function RichTextEditor({
   onChange,
   label,
   error,
+  required,
   placeholder = "Start typing...",
   minHeight = "180px",
 }: RichTextEditorProps) {
@@ -66,9 +69,7 @@ export function RichTextEditor({
 
   return (
     <div className="w-full space-y-1.5">
-      {label && (
-        <label className="block text-sm font-semibold text-gray-700">{label}</label>
-      )}
+      {label && <FieldLabel required={required}>{label}</FieldLabel>}
 
       <div
         className={`overflow-hidden rounded-lg border ${
