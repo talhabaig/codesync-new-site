@@ -1,9 +1,11 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import { toast } from "react-hot-toast";
 import { FieldLabel } from "./FieldLabel";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+import Image from "@tiptap/extension-image";
 import {
   FaBold,
   FaItalic,
@@ -12,9 +14,17 @@ import {
   FaListOl,
   FaQuoteRight,
   FaCode,
+  FaImage,
   FaUndo,
   FaRedo,
+  FaSpinner,
 } from "react-icons/fa";
+import {
+  destroyCloudinaryAsset,
+  isCloudinaryUrl,
+  type UploadFolder,
+} from "../../../features/upload/api";
+import { useCloudinaryUpload } from "../../../features/upload/hooks/useCloudinaryUpload";
 
 interface RichTextEditorProps {
   content: string;
@@ -24,6 +34,16 @@ interface RichTextEditorProps {
   required?: boolean;
   placeholder?: string;
   minHeight?: string;
+  imageFolder?: UploadFolder;
+}
+
+function cloudinarySrcs(html: string): string[] {
+  const urls = new Set<string>();
+  const matches = html.matchAll(/<img\b[^>]*\bsrc=["']([^"']+)["']/gi);
+  for (const match of matches) {
+    if (isCloudinaryUrl(match[1])) urls.add(match[1]);
+  }
+  return [...urls];
 }
 
 export function RichTextEditor({
@@ -34,13 +54,37 @@ export function RichTextEditor({
   required,
   placeholder = "Start typing...",
   minHeight = "180px",
+  imageFolder,
 }: RichTextEditorProps) {
+  const imageInputRef = useRef<HTMLInputElement>(null);
+  const htmlRef = useRef(content || "");
+  const { uploadFile, isUploading, error: uploadError } = useCloudinaryUpload();
+
   const editor = useEditor({
-    extensions: [StarterKit],
+    extensions: [
+      StarterKit,
+      Image.configure({
+        HTMLAttributes: {
+          class: "max-w-full rounded-md",
+        },
+      }),
+    ],
     content,
     immediatelyRender: false,
     onUpdate: ({ editor }) => {
-      onChange(editor.getHTML());
+      const html = editor.getHTML();
+      const removed = cloudinarySrcs(htmlRef.current).filter(
+        (src) => !cloudinarySrcs(html).includes(src)
+      );
+      htmlRef.current = html;
+      onChange(html);
+      if (imageFolder) {
+        removed.forEach((src) => {
+          destroyCloudinaryAsset(src, "image").catch(() => {
+            toast.error("Could not delete a removed image from Cloudinary");
+          });
+        });
+      }
     },
     editorProps: {
       attributes: {
@@ -55,6 +99,7 @@ export function RichTextEditor({
     const current = editor.getHTML();
     if (content !== current) {
       editor.commands.setContent(content || "", { emitUpdate: false });
+      htmlRef.current = content || "";
     }
   }, [content, editor]);
 
@@ -151,6 +196,37 @@ export function RichTextEditor({
           >
             <FaCode className="h-3.5 w-3.5" />
           </button>
+          {imageFolder && (
+            <>
+              <div className="mx-1 h-5 w-px bg-gray-300" />
+              <button
+                type="button"
+                onClick={() => imageInputRef.current?.click()}
+                disabled={isUploading}
+                className={toolbarButtonClass(false)}
+                title="Insert image"
+              >
+                {isUploading ? (
+                  <FaSpinner className="h-3.5 w-3.5 animate-spin" />
+                ) : (
+                  <FaImage className="h-3.5 w-3.5" />
+                )}
+              </button>
+              <input
+                ref={imageInputRef}
+                type="file"
+                accept="image/png, image/jpeg, image/jpg, image/webp, image/svg+xml"
+                className="hidden"
+                onChange={async (event) => {
+                  const file = event.target.files?.[0];
+                  if (!file || !imageFolder) return;
+                  const url = await uploadFile(file, imageFolder, "image");
+                  if (url) editor.chain().focus().setImage({ src: url }).run();
+                  if (imageInputRef.current) imageInputRef.current.value = "";
+                }}
+              />
+            </>
+          )}
           <div className="mx-1 h-5 w-px bg-gray-300" />
           <button
             type="button"
@@ -190,7 +266,9 @@ export function RichTextEditor({
         </div>
       </div>
 
-      {error && <p className="text-xs text-red-600">{error}</p>}
+      {(error || uploadError) && (
+        <p className="text-xs text-red-600">{error || uploadError}</p>
+      )}
     </div>
   );
 }

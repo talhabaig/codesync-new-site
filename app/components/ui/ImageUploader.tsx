@@ -1,8 +1,14 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { toast } from "react-hot-toast";
 import { FaCloudUploadAlt, FaSpinner } from "react-icons/fa";
-import type { UploadFolder, UploadResourceType } from "../../../features/upload/api";
+import {
+  destroyCloudinaryAsset,
+  isCloudinaryUrl,
+  type UploadFolder,
+  type UploadResourceType,
+} from "../../../features/upload/api";
 import { useCloudinaryUpload } from "../../../features/upload/hooks/useCloudinaryUpload";
 import { SafeImage } from "./SafeImage";
 import { FieldLabel } from "./FieldLabel";
@@ -31,18 +37,41 @@ export function ImageUploader({
   required,
 }: ImageUploaderProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [isDestroying, setIsDestroying] = useState(false);
   const { uploadFile, isUploading, error: uploadError } = useCloudinaryUpload();
+  const isBusy = isUploading || isDestroying;
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
+    const oldUrl = value;
     const url = await uploadFile(file, folder, resourceType);
-    if (url) onChange(url);
+    if (url) {
+      if (oldUrl && oldUrl !== url && isCloudinaryUrl(oldUrl)) {
+        try {
+          await destroyCloudinaryAsset(oldUrl, resourceType);
+        } catch {
+          toast.error("New file uploaded, but the previous Cloudinary file could not be deleted");
+        }
+      }
+      onChange(url);
+    }
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
-  const handleRemove = () => {
+  const handleRemove = async () => {
+    if (isCloudinaryUrl(value)) {
+      setIsDestroying(true);
+      try {
+        await destroyCloudinaryAsset(value, resourceType);
+      } catch (err) {
+        toast.error(err instanceof Error ? err.message : "Failed to delete Cloudinary file");
+        setIsDestroying(false);
+        return;
+      }
+      setIsDestroying(false);
+    }
     onChange("");
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
@@ -69,10 +98,10 @@ export function ImageUploader({
           )}
           <div
             className={`absolute inset-0 flex items-center justify-center gap-2 bg-black/50 transition-opacity ${
-              isUploading ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+              isBusy ? "opacity-100" : "opacity-0 group-hover:opacity-100"
             }`}
           >
-            {isUploading ? (
+            {isBusy ? (
               <FaSpinner className="h-6 w-6 animate-spin text-white" />
             ) : (
               <>
@@ -98,17 +127,19 @@ export function ImageUploader({
         <button
           type="button"
           onClick={() => fileInputRef.current?.click()}
-          disabled={isUploading}
+          disabled={isBusy}
           className={`flex h-32 w-full flex-col items-center justify-center rounded-lg border-2 border-dashed transition-colors ${
             hasError
               ? "border-red-400 bg-red-50"
               : "border-gray-300 bg-gray-50 hover:bg-gray-100"
           }`}
         >
-          {isUploading ? (
+          {isBusy ? (
             <>
               <FaSpinner className="mb-2 h-6 w-6 animate-spin text-customLightBlue2" />
-              <span className="text-sm font-medium text-gray-600">Uploading...</span>
+              <span className="text-sm font-medium text-gray-600">
+                {isDestroying ? "Removing..." : "Uploading..."}
+              </span>
             </>
           ) : (
             <>
