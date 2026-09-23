@@ -4,6 +4,7 @@ import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { CustomInput } from "../../components/ui/CustomInput";
 import { ImageUploader } from "../../components/ui/ImageUploader";
+import { GalleryUploader } from "../../components/ui/GalleryUploader";
 import { RichTextEditor } from "../../components/ui/RichTextEditor";
 import { FieldLabel, fieldControlClass } from "../../components/ui/FieldLabel";
 import { CreatePortfolioPayload } from "../../../features/portfolio/types";
@@ -31,6 +32,7 @@ export function PortfolioForm({
     resolver: yupResolver(portfolioFormSchema),
     defaultValues: {
       ...defaultValues,
+      galleryImages: defaultValues.galleryImages ?? [],
       siteUrl: defaultValues.siteUrl ?? "",
       videoUrl: defaultValues.videoUrl ?? "",
     },
@@ -43,6 +45,7 @@ export function PortfolioForm({
       onSubmit={handleSubmit(async (values) => {
         await onSubmit({
           ...values,
+          galleryImages: values.galleryImages ?? [],
           siteUrl: values.siteUrl || null,
           videoUrl: values.videoUrl || null,
         });
@@ -85,6 +88,26 @@ export function PortfolioForm({
               folder="codesyncs/portfolio"
               objectFit="cover"
               error={errors.coverImage?.message}
+            />
+          )}
+        />
+      </div>
+
+      <div className="sm:col-span-2">
+        <Controller
+          name="galleryImages"
+          control={control}
+          render={({ field }) => (
+            <GalleryUploader
+              label="Gallery images"
+              value={field.value || []}
+              onChange={field.onChange}
+              folder="codesyncs/portfolio"
+              error={
+                typeof errors.galleryImages?.message === "string"
+                  ? errors.galleryImages.message
+                  : undefined
+              }
             />
           )}
         />

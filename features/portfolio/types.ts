@@ -6,6 +6,7 @@ export interface Portfolio {
   slug: string;
   shortDescription: string;
   coverImage: string;
+  galleryImages: string[];
   siteUrl: string | null;
   videoUrl: string | null;
   content: string;
@@ -19,6 +20,7 @@ export interface CreatePortfolioPayload {
   title: string;
   shortDescription: string;
   coverImage: string;
+  galleryImages: string[];
   siteUrl: string | null;
   videoUrl: string | null;
   content: string;

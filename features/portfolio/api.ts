@@ -20,13 +20,38 @@ export const getPortfoliosApi = async (
   params: GetPortfoliosParams
 ): Promise<ApiListResponse<Portfolio>> => {
   try {
-    return await makeApiCall<ApiListResponse<Portfolio>>({
+    const response = await makeApiCall<ApiListResponse<Portfolio>>({
       url: "/portfolio/manage",
       method: "GET",
       params: compactParams(params as Record<string, unknown>),
     });
+    return {
+      ...response,
+      data: (response.data ?? []).map((item) => ({
+        ...item,
+        galleryImages: item.galleryImages ?? [],
+      })),
+    };
   } catch (err) {
     throw new Error(getApiErrorMessage(err, "Failed to fetch portfolios"));
+  }
+};
+
+export const getPublicPortfolioBySlugApi = async (slug: string): Promise<Portfolio> => {
+  try {
+    const response = await makeApiCall<ApiResponse<Portfolio>>({
+      url: `/portfolio/slug/${encodeURIComponent(slug)}`,
+      method: "GET",
+    });
+    if (!response.success || !response.data) {
+      throw new Error("Failed to fetch portfolio");
+    }
+    return {
+      ...response.data,
+      galleryImages: response.data.galleryImages ?? [],
+    };
+  } catch (err) {
+    throw new Error(getApiErrorMessage(err, "Failed to fetch portfolio"));
   }
 };
 

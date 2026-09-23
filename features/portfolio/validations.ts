@@ -36,6 +36,10 @@ export const portfolioFormSchema: yup.ObjectSchema<CreatePortfolioPayload> = yup
     .required("Short description is required")
     .max(300, "Short description must be at most 300 characters"),
   coverImage: yup.string().trim().required("Cover image is required"),
+  galleryImages: yup
+    .array(yup.string().trim().required())
+    .ensure()
+    .default([]),
   siteUrl: yup
     .string()
     .transform(emptyToNull)

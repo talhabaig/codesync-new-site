@@ -31,6 +31,7 @@ const blankPortfolio = (): CreatePortfolioPayload => ({
   title: "",
   shortDescription: "",
   coverImage: "",
+  galleryImages: [],
   siteUrl: null,
   videoUrl: null,
   content: "",
@@ -107,6 +108,7 @@ export default function AdminPortfolio() {
       title: item.title,
       shortDescription: item.shortDescription,
       coverImage: item.coverImage || "",
+      galleryImages: item.galleryImages || [],
       siteUrl: item.siteUrl,
       videoUrl: item.videoUrl,
       content: item.content,
@@ -434,6 +436,7 @@ export default function AdminPortfolio() {
           }
         >
           <PortfolioForm
+            key={editingId ?? "new"}
             formId="portfolio-form"
             defaultValues={editing}
             apiError={formError}
