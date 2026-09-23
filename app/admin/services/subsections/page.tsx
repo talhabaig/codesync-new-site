@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import {
+  FaArrowLeft,
   FaChevronLeft,
   FaChevronRight,
   FaEdit,
@@ -11,38 +13,54 @@ import {
   FaSearch,
   FaTrash,
 } from "react-icons/fa";
-import { CustomModal } from "../../components/ui/CustomModal";
-import { CustomButton } from "../../components/ui/CustomButton";
-import { ActionMenu } from "../../components/ui/ActionMenu";
-import { SafeImage } from "../../components/ui/SafeImage";
-import { TeamMemberForm } from "./TeamMemberForm";
+import { CustomModal } from "../../../components/ui/CustomModal";
+import { CustomButton } from "../../../components/ui/CustomButton";
+import { ActionMenu } from "../../../components/ui/ActionMenu";
+import { SafeImage } from "../../../components/ui/SafeImage";
+import { ServiceSubsectionForm } from "./ServiceSubsectionForm";
 import {
-  TeamMember,
-  TeamMemberStatus,
-  CreateTeamMemberPayload,
-  GetTeamMembersParams,
-} from "../../../features/team/types";
-import { useGetTeamMembers } from "../../../features/team/hooks/useGetTeamMembers";
-import { useTeamMutations } from "../../../features/team/hooks/useTeamMutations";
+  CreateServiceSubsectionPayload,
+  GetServiceSubsectionsParams,
+  ServiceSubsection,
+  ServiceSubsectionStatus,
+} from "../../../../features/service-subsections/types";
+import { useGetServiceSubsections } from "../../../../features/service-subsections/hooks/useGetServiceSubsections";
+import { useServiceSubsectionMutations } from "../../../../features/service-subsections/hooks/useServiceSubsectionMutations";
+import { useGetServices } from "../../../../features/services/hooks/useGetServices";
 
-const DEFAULT_MEMBER_IMAGE = "/default-member.png";
+const LOGO_FALLBACK = "/icon.png";
 
-const blankTeamMember = (): CreateTeamMemberPayload => ({
-  name: "",
-  designation: "",
-  image: "",
+const blankSubsection = (serviceId = ""): CreateServiceSubsectionPayload => ({
+  serviceId,
+  title: "",
+  logo: "",
+  shortDescription: null,
+  description: null,
   displayOrder: 1,
   status: "ACTIVE",
 });
 
-export default function AdminTeam() {
-  const [params, setParams] = useState<GetTeamMembersParams>({
+function AdminServiceSubsections() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const initialServiceId = searchParams.get("serviceId") || undefined;
+
+  const [params, setParams] = useState<GetServiceSubsectionsParams>({
     page: 1,
     limit: 5,
     sortBy: "displayOrder",
     sortOrder: "asc",
+    serviceId: initialServiceId,
   });
   const [searchInput, setSearchInput] = useState("");
+
+  useEffect(() => {
+    const serviceId = searchParams.get("serviceId") || undefined;
+    setParams((prev) => {
+      if (prev.serviceId === serviceId) return prev;
+      return { ...prev, serviceId, page: 1 };
+    });
+  }, [searchParams]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -55,41 +73,59 @@ export default function AdminTeam() {
     return () => clearTimeout(timer);
   }, [searchInput]);
 
+  const { data: services } = useGetServices({
+    getAll: true,
+    limit: 100,
+    sortBy: "displayOrder",
+    sortOrder: "asc",
+  });
+
   const {
-    data: members,
+    data: subsections,
     meta,
     isLoading: isFetching,
     isFetching: isRefetching,
     error: fetchError,
-  } = useGetTeamMembers(params);
+  } = useGetServiceSubsections(params);
 
   const {
-    createTeamMember,
-    updateTeamMember,
+    createSubsection,
+    updateSubsection,
     toggleStatus,
-    deleteTeamMember,
+    deleteSubsection,
     deleteBulk,
     isCreating,
     isUpdating,
     isDeleting,
     createError,
     updateError,
-  } = useTeamMutations();
+  } = useServiceSubsectionMutations();
 
   const [selected, setSelected] = useState<string[]>([]);
   const [menuOpen, setMenuOpen] = useState<string | null>(null);
-  const [editing, setEditing] = useState<CreateTeamMemberPayload | null>(null);
+  const [editing, setEditing] = useState<CreateServiceSubsectionPayload | null>(null);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [pendingDelete, setPendingDelete] = useState<{
     ids: string[];
     label: string;
   } | null>(null);
 
+  const serviceTitleById = Object.fromEntries(services.map((s) => [s.id, s.title]));
+
+  const handleServiceFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const val = e.target.value || undefined;
+    const next = new URLSearchParams(searchParams.toString());
+    if (val) next.set("serviceId", val);
+    else next.delete("serviceId");
+    router.replace(`/admin/services/subsections${next.toString() ? `?${next}` : ""}`);
+    setParams((prev) => ({ ...prev, serviceId: val, page: 1 }));
+  };
+
   const handleStatusFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const val = e.target.value;
     setParams((prev) => ({
       ...prev,
-      status: val === "ALL" ? undefined : (val as TeamMemberStatus),
+      status: val === "ALL" ? undefined : (val as ServiceSubsectionStatus),
       page: 1,
     }));
   };
@@ -98,14 +134,16 @@ export default function AdminTeam() {
     setParams((prev) => ({ ...prev, limit: Number(e.target.value), page: 1 }));
   };
 
-  const handleEditClick = (member: TeamMember) => {
-    setEditingId(member.id);
+  const handleEditClick = (item: ServiceSubsection) => {
+    setEditingId(item.id);
     setEditing({
-      name: member.name,
-      designation: member.designation,
-      image: member.image || "",
-      displayOrder: member.displayOrder,
-      status: member.status,
+      serviceId: item.serviceId,
+      title: item.title,
+      logo: item.logo || "",
+      shortDescription: item.shortDescription,
+      description: item.description,
+      displayOrder: item.displayOrder,
+      status: item.status,
     });
     setMenuOpen(null);
   };
@@ -114,7 +152,7 @@ export default function AdminTeam() {
     if (!pendingDelete) return;
     try {
       if (pendingDelete.ids.length === 1) {
-        await deleteTeamMember(pendingDelete.ids[0]);
+        await deleteSubsection(pendingDelete.ids[0]);
         setSelected((prev) => prev.filter((item) => item !== pendingDelete.ids[0]));
       } else {
         await deleteBulk(pendingDelete.ids);
@@ -127,42 +165,53 @@ export default function AdminTeam() {
   };
 
   const allOnPageSelected =
-    members.length > 0 && members.every((s) => selected.includes(s.id));
+    subsections.length > 0 && subsections.every((item) => selected.includes(item.id));
   const toggleSelected = (id: string) =>
-    setSelected((items) =>
-      items.includes(id) ? items.filter((i) => i !== id) : [...items, id]
-    );
+    setSelected((items) => (items.includes(id) ? items.filter((i) => i !== id) : [...items, id]));
   const togglePageSelection = () => {
-    const ids = members.map((s) => s.id);
+    const ids = subsections.map((item) => item.id);
     setSelected((items) =>
-      allOnPageSelected
-        ? items.filter((id) => !ids.includes(id))
-        : [...new Set([...items, ...ids])]
+      allOnPageSelected ? items.filter((id) => !ids.includes(id)) : [...new Set([...items, ...ids])]
     );
   };
 
   const isFormLoading = isCreating || isUpdating;
   const formError = createError || updateError;
+  const currentServiceTitle = params.serviceId
+    ? serviceTitleById[params.serviceId]
+    : undefined;
 
   return (
     <div className="">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-      <div>
-          <p className="text-sm font-medium text-customLightBlue2">Content management</p>
-          <h1 className="mt-1 text-2xl font-bold text-gray-900">Team</h1>
-          <p className="mt-1 text-sm text-gray-500">
-            Manage the team members displayed on your website.
-          </p>
+        <div className="flex items-start gap-3">
+          <button
+            type="button"
+            aria-label="Back to services"
+            onClick={() => router.push("/admin/services")}
+            className="mt-6 rounded-md p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-800"
+          >
+            <FaArrowLeft className="h-4 w-4" />
+          </button>
+          <div>
+            <p className="text-sm font-medium text-customLightBlue2">Content management</p>
+            <h1 className="mt-1 text-2xl font-bold text-gray-900">Service subsections</h1>
+            <p className="mt-1 text-sm text-gray-500">
+              {currentServiceTitle
+                ? `Subsections for ${currentServiceTitle}`
+                : "Manage offerings nested under each service."}
+            </p>
+          </div>
         </div>
         <CustomButton
           type="button"
           onClick={() => {
-            setEditing(blankTeamMember());
+            setEditing(blankSubsection(params.serviceId || ""));
             setEditingId(null);
           }}
           className="bg-customNavy hover:bg-customNavy/90"
         >
-          <FaPlus className="h-3.5 w-3.5" /> Add team member
+          <FaPlus className="h-3.5 w-3.5" /> Add subsection
         </CustomButton>
       </div>
 
@@ -173,19 +222,33 @@ export default function AdminTeam() {
             <input
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
-              placeholder="Search team members..."
+              placeholder="Search subsections..."
               className="w-full rounded-lg border border-gray-300 py-2 pl-9 pr-3 text-sm outline-none placeholder:text-gray-400 focus:border-customLightBlue2 focus:ring-2 focus:ring-customLightBlue2/20"
             />
           </div>
-          <select
-            value={params.status || "ALL"}
-            onChange={handleStatusFilter}
-            className="rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-700 outline-none focus:border-customLightBlue2"
-          >
-            <option value="ALL">All statuses</option>
-            <option value="ACTIVE">Active</option>
-            <option value="INACTIVE">Inactive</option>
-          </select>
+          <div className="flex flex-wrap gap-2">
+            <select
+              value={params.serviceId || ""}
+              onChange={handleServiceFilter}
+              className="rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-700 outline-none focus:border-customLightBlue2"
+            >
+              <option value="">All services</option>
+              {services.map((service) => (
+                <option key={service.id} value={service.id}>
+                  {service.title}
+                </option>
+              ))}
+            </select>
+            <select
+              value={params.status || "ALL"}
+              onChange={handleStatusFilter}
+              className="rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-700 outline-none focus:border-customLightBlue2"
+            >
+              <option value="ALL">All statuses</option>
+              <option value="ACTIVE">Active</option>
+              <option value="INACTIVE">Inactive</option>
+            </select>
+          </div>
         </div>
 
         {fetchError && (
@@ -197,7 +260,7 @@ export default function AdminTeam() {
         {selected.length > 0 && (
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-blue-100 bg-blue-50 px-4 py-3 text-sm">
             <span className="font-medium text-blue-900">
-              {selected.length} team member{selected.length === 1 ? "" : "s"} selected
+              {selected.length} subsection{selected.length === 1 ? "" : "s"} selected
             </span>
             <CustomButton
               type="button"
@@ -206,7 +269,7 @@ export default function AdminTeam() {
               onClick={() =>
                 setPendingDelete({
                   ids: selected,
-                  label: `${selected.length} selected team member${selected.length === 1 ? "" : "s"}`,
+                  label: `${selected.length} selected subsection${selected.length === 1 ? "" : "s"}`,
                 })
               }
               className="bg-transparent px-2.5 py-1.5 text-red-700 hover:bg-red-100"
@@ -236,78 +299,76 @@ export default function AdminTeam() {
                     className="h-4 w-4 rounded border-gray-300 text-customLightBlue2 focus:ring-customLightBlue2"
                   />
                 </th>
-                <th className="px-3 py-3.5 font-semibold">Member</th>
+                <th className="px-3 py-3.5 font-semibold">Subsection</th>
                 <th className="px-3 py-3.5 font-semibold">Order</th>
                 <th className="px-3 py-3.5 font-semibold">Status</th>
                 <th className="w-16 px-5 py-3.5" />
               </tr>
             </thead>
             <tbody className={`divide-y divide-gray-100 ${isRefetching ? "opacity-60" : ""}`}>
-              {isFetching && members.length === 0 ? (
+              {isFetching && subsections.length === 0 ? (
                 <tr>
                   <td colSpan={5} className="px-5 py-14 text-center text-gray-500">
-                    Loading team members...
+                    Loading subsections...
                   </td>
                 </tr>
-              ) : members.length === 0 ? (
+              ) : subsections.length === 0 ? (
                 <tr>
                   <td colSpan={5} className="px-5 py-14 text-center text-gray-500">
-                    No team members match your filters.
+                    No subsections match your filters.
                   </td>
                 </tr>
               ) : (
-                members.map((member) => (
-                  <tr key={member.id} className="transition hover:bg-gray-50">
+                subsections.map((item) => (
+                  <tr key={item.id} className="transition hover:bg-gray-50">
                     <td className="px-5 py-4">
                       <input
-                        aria-label={`Select ${member.name}`}
+                        aria-label={`Select ${item.title}`}
                         type="checkbox"
-                        checked={selected.includes(member.id)}
-                        onChange={() => toggleSelected(member.id)}
+                        checked={selected.includes(item.id)}
+                        onChange={() => toggleSelected(item.id)}
                         className="h-4 w-4 rounded border-gray-300 text-customLightBlue2 focus:ring-customLightBlue2"
                       />
                     </td>
                     <td className="max-w-0 px-3 py-4">
                       <div className="flex min-w-0 items-center gap-3">
-                        <span className="grid h-10 w-10 shrink-0 place-items-center overflow-hidden rounded-full bg-gray-100">
+                        <span className="grid h-10 w-10 shrink-0 place-items-center overflow-hidden rounded-md bg-gray-100 p-1">
                           <SafeImage
-                            src={member.image}
-                            fallback={DEFAULT_MEMBER_IMAGE}
-                            alt={member.name}
-                            className="h-full w-full object-cover"
+                            src={item.logo}
+                            fallback={LOGO_FALLBACK}
+                            alt={item.title}
+                            className="h-full w-full object-contain"
                           />
                         </span>
                         <div className="min-w-0 flex-1">
-                          <p className="truncate font-semibold text-gray-900">{member.name}</p>
+                          <p className="truncate font-semibold text-gray-900">{item.title}</p>
                           <p className="mt-0.5 truncate text-xs text-gray-500">
-                            {member.designation}
+                            {serviceTitleById[item.serviceId] || item.shortDescription || "—"}
                           </p>
                         </div>
                       </div>
                     </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-gray-600">
-                      {member.displayOrder}
-                    </td>
+                    <td className="whitespace-nowrap px-3 py-4 text-gray-600">{item.displayOrder}</td>
                     <td className="whitespace-nowrap px-3 py-4">
                       <span
                         className={`rounded-full px-2.5 py-1 text-xs font-semibold ${
-                          member.status === "ACTIVE"
+                          item.status === "ACTIVE"
                             ? "bg-emerald-100 text-emerald-700"
                             : "bg-gray-100 text-gray-600"
                         }`}
                       >
-                        {member.status === "ACTIVE" ? "Active" : "Inactive"}
+                        {item.status === "ACTIVE" ? "Active" : "Inactive"}
                       </span>
                     </td>
                     <td className="px-5 py-4 text-right">
                       <ActionMenu
-                        open={menuOpen === member.id}
-                        onOpenChange={(open) => setMenuOpen(open ? member.id : null)}
-                        label={`Actions for ${member.name}`}
+                        open={menuOpen === item.id}
+                        onOpenChange={(open) => setMenuOpen(open ? item.id : null)}
+                        label={`Actions for ${item.title}`}
                       >
                             <button
                               type="button"
-                              onClick={() => handleEditClick(member)}
+                              onClick={() => handleEditClick(item)}
                               className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-gray-50"
                             >
                               <FaEdit className="text-gray-400" /> Edit
@@ -316,11 +377,11 @@ export default function AdminTeam() {
                               type="button"
                               onClick={() => {
                                 setMenuOpen(null);
-                                toggleStatus(member.id);
+                                toggleStatus(item.id);
                               }}
                               className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-gray-50"
                             >
-                              {member.status === "ACTIVE" ? (
+                              {item.status === "ACTIVE" ? (
                                 <>
                                   <FaEyeSlash className="text-gray-400" /> Set Inactive
                                 </>
@@ -336,8 +397,8 @@ export default function AdminTeam() {
                               onClick={() => {
                                 setMenuOpen(null);
                                 setPendingDelete({
-                                  ids: [member.id],
-                                  label: member.name,
+                                  ids: [item.id],
+                                  label: item.title,
                                 });
                               }}
                               className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm text-red-600 hover:bg-red-50"
@@ -365,7 +426,7 @@ export default function AdminTeam() {
               <option value={10}>10</option>
               <option value={20}>20</option>
             </select>
-            <span>of {meta.total} team members</span>
+            <span>of {meta.total} subsections</span>
           </div>
           <div className="flex items-center gap-3">
             <span>
@@ -396,7 +457,7 @@ export default function AdminTeam() {
               </CustomButton>
             </div>
           </div>
-      </div>
+        </div>
       </section>
 
       {editing && (
@@ -407,7 +468,7 @@ export default function AdminTeam() {
             setEditing(null);
             setEditingId(null);
           }}
-          title={editingId ? "Edit team member" : "Add team member"}
+          title={editingId ? "Edit subsection" : "Add subsection"}
           size="lg"
           footer={
             <>
@@ -424,22 +485,23 @@ export default function AdminTeam() {
               </CustomButton>
               <CustomButton
                 type="submit"
-                form="team-member-form"
+                form="service-subsection-form"
                 loading={isFormLoading}
                 className="bg-customNavy hover:bg-customNavy/90"
               >
-                {editingId ? "Save changes" : "Create team member"}
+                {editingId ? "Save changes" : "Create subsection"}
               </CustomButton>
             </>
           }
         >
-          <TeamMemberForm
-            formId="team-member-form"
+          <ServiceSubsectionForm
+            formId="service-subsection-form"
             defaultValues={editing}
+            services={services}
             apiError={formError}
             onSubmit={async (values) => {
-              if (editingId) await updateTeamMember(editingId, values);
-              else await createTeamMember(values);
+              if (editingId) await updateSubsection(editingId, values);
+              else await createSubsection(values);
               setEditing(null);
               setEditingId(null);
             }}
@@ -451,7 +513,7 @@ export default function AdminTeam() {
         <CustomModal
           open={!!pendingDelete}
           onClose={() => !isDeleting && setPendingDelete(null)}
-          title="Delete team member"
+          title="Delete subsection"
           size="sm"
           footer={
             <>
@@ -481,5 +543,13 @@ export default function AdminTeam() {
         </CustomModal>
       )}
     </div>
+  );
+}
+
+export default function AdminServiceSubsectionsPage() {
+  return (
+    <Suspense fallback={<p className="text-sm text-gray-500">Loading subsections...</p>}>
+      <AdminServiceSubsections />
+    </Suspense>
   );
 }

@@ -175,7 +175,7 @@ const teamMembers = [
     name: "Muaz Mughal",
     designation: "Backend Developer",
     bio: "Former co-founder of Opendoor. Early staff at Spotify and Clearbit.",
-    image: getImagePath("muaz.jpeg"),
+    image: getImagePath("muaz.jpg"),
     social: {
       twitter: {
         url: "https://twitter.com/Muaz",

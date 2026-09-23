@@ -52,7 +52,7 @@ export default function OurTeam() {
       designation: "Sr. Frontend Developer",
     },
     {
-      src: getImagePath("muaz.jpeg"),
+      src: getImagePath("muaz.jpg"),
       name: "Muaz Mughal",
       designation: "Sr. Backend Developer",
     },
@@ -66,21 +66,21 @@ export default function OurTeam() {
       name: "Taha Rasheed",
       designation: "Full Stack Developer",
     },
-    {
-      src: getImagePath("mushahid3.jpg"),
-      name: "Mushahid Buttar",
-      designation: "Jr. Frontend Developer",
-    },
-    {
-      src: getImagePath("abbas.jpg"),
-      name: "Afqar ul Abbas",
-      designation: "Jr. Frontend Developer",
-    },
-    {
-      src: getImagePath("haseebJr.jpg"),
-      name: "Haseeb",
-      designation: "Jr. Backend Developer",
-    },
+    // {
+    //   src: getImagePath("mushahid3.jpg"),
+    //   name: "Mushahid Buttar",
+    //   designation: "Jr. Frontend Developer",
+    // },
+    // {
+    //   src: getImagePath("abbas.jpg"),
+    //   name: "Afqar ul Abbas",
+    //   designation: "Jr. Frontend Developer",
+    // },
+    // {
+    //   src: getImagePath("haseebJr.jpg"),
+    //   name: "Haseeb",
+    //   designation: "Jr. Backend Developer",
+    // },
   ];
   const animation = { duration: 20000, easing: (t: number) => t };
   const [ref] = useKeenSlider<HTMLDivElement>({

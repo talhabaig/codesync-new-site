@@ -38,6 +38,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
     router.prefetch("/admin/admindashboard");
     router.prefetch("/admin/profile");
     router.prefetch("/admin/services");
+    router.prefetch("/admin/services/subsections");
     router.prefetch("/admin/tech-stacks");
     router.prefetch("/admin/testimonials");
     router.prefetch("/admin/portfolio");

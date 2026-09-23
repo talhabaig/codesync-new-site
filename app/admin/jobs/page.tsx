@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   FaChevronLeft,
   FaChevronRight,
   FaEdit,
-  FaEllipsisV,
   FaEye,
   FaEyeSlash,
   FaPlus,
@@ -14,6 +13,7 @@ import {
 } from "react-icons/fa";
 import { CustomModal } from "../../components/ui/CustomModal";
 import { CustomButton } from "../../components/ui/CustomButton";
+import { ActionMenu } from "../../components/ui/ActionMenu";
 import { JobForm } from "./JobForm";
 import {
   CreateJobPayload,
@@ -87,23 +87,12 @@ export default function AdminJobs() {
 
   const [selected, setSelected] = useState<string[]>([]);
   const [menuOpen, setMenuOpen] = useState<string | null>(null);
-  const menuRef = useRef<HTMLDivElement>(null);
   const [editing, setEditing] = useState<CreateJobPayload | null>(null);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [pendingDelete, setPendingDelete] = useState<{
     ids: string[];
     label: string;
   } | null>(null);
-
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setMenuOpen(null);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
 
   const handleStatusFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const val = e.target.value;
@@ -334,22 +323,12 @@ export default function AdminJobs() {
                         {job.status === "ACTIVE" ? "Active" : "Inactive"}
                       </span>
                     </td>
-                    <td className="relative px-5 py-4 text-right">
-                      <div
-                        ref={menuOpen === job.id ? menuRef : null}
-                        className="relative inline-block text-left"
+                    <td className="px-5 py-4 text-right">
+                      <ActionMenu
+                        open={menuOpen === job.id}
+                        onOpenChange={(open) => setMenuOpen(open ? job.id : null)}
+                        label={`Actions for ${job.title}`}
                       >
-                        <button
-                          aria-label={`Actions for ${job.title}`}
-                          type="button"
-                          onClick={() => setMenuOpen(menuOpen === job.id ? null : job.id)}
-                          className="rounded-md p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-800"
-                        >
-                          <FaEllipsisV />
-                        </button>
-
-                        {menuOpen === job.id && (
-                          <div className="absolute right-0 top-11 z-10 w-48 rounded-lg border border-gray-200 bg-white p-1 text-left shadow-lg">
                             <button
                               type="button"
                               onClick={() => handleEditClick(job)}
@@ -389,9 +368,7 @@ export default function AdminJobs() {
                             >
                               <FaTrash /> Delete
                             </button>
-                          </div>
-                        )}
-                      </div>
+                      </ActionMenu>
                     </td>
                   </tr>
                 ))

@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   FaChevronLeft,
   FaChevronRight,
   FaEdit,
-  FaEllipsisV,
   FaEye,
   FaEyeSlash,
   FaPlus,
@@ -14,6 +13,7 @@ import {
 } from "react-icons/fa";
 import { CustomModal } from "../../components/ui/CustomModal";
 import { CustomButton } from "../../components/ui/CustomButton";
+import { ActionMenu } from "../../components/ui/ActionMenu";
 import { TechStackForm } from "./TechStackForm";
 import {
   TechStack,
@@ -76,23 +76,12 @@ export default function AdminTechStacks() {
 
   const [selected, setSelected] = useState<string[]>([]);
   const [menuOpen, setMenuOpen] = useState<string | null>(null);
-  const menuRef = useRef<HTMLDivElement>(null);
   const [editing, setEditing] = useState<CreateTechStackPayload | null>(null);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [pendingDelete, setPendingDelete] = useState<{
     ids: string[];
     label: string;
   } | null>(null);
-
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setMenuOpen(null);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
 
   const handleStatusFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const val = e.target.value;
@@ -332,24 +321,12 @@ export default function AdminTechStacks() {
                         {stack.status === "ACTIVE" ? "Active" : "Inactive"}
                       </span>
                     </td>
-                    <td className="relative px-5 py-4 text-right">
-                      <div
-                        ref={menuOpen === stack.id ? menuRef : null}
-                        className="relative inline-block text-left"
+                    <td className="px-5 py-4 text-right">
+                      <ActionMenu
+                        open={menuOpen === stack.id}
+                        onOpenChange={(open) => setMenuOpen(open ? stack.id : null)}
+                        label={`Actions for ${stack.name}`}
                       >
-                        <button
-                          aria-label={`Actions for ${stack.name}`}
-                          type="button"
-                          onClick={() =>
-                            setMenuOpen(menuOpen === stack.id ? null : stack.id)
-                          }
-                          className="rounded-md p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-800"
-                        >
-                          <FaEllipsisV />
-                        </button>
-
-                        {menuOpen === stack.id && (
-                          <div className="absolute right-0 top-11 z-10 w-48 rounded-lg border border-gray-200 bg-white p-1 text-left shadow-lg">
                             <button
                               type="button"
                               onClick={() => handleEditClick(stack)}
@@ -389,9 +366,7 @@ export default function AdminTechStacks() {
                             >
                               <FaTrash /> Delete
                             </button>
-                          </div>
-                        )}
-                      </div>
+                      </ActionMenu>
                     </td>
                   </tr>
                 ))
