@@ -20,7 +20,7 @@ export function ActionMenu({
   widthClass = "w-48",
 }: ActionMenuProps) {
   const triggerRef = useRef<HTMLButtonElement>(null);
-  const panelRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement | null>(null);
   const [coords, setCoords] = useState<{ top: number; left: number } | null>(null);
 
   const updatePosition = () => {
