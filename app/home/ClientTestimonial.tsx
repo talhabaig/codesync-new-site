@@ -1,9 +1,11 @@
 "use client";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { useGetPublicTestimonials } from "../../features/testimonials/hooks/useGetPublicTestimonials";
 import { SafeImage } from "../components/ui/SafeImage";
 
 const PHOTO_FALLBACK = "/testimonial-images/Ellipse1.png";
+const HOME_PREVIEW_COUNT = 4;
 
 export default function ClientTestimonial() {
   const { data: testimonials, isLoading } = useGetPublicTestimonials({
@@ -11,23 +13,25 @@ export default function ClientTestimonial() {
     sortBy: "displayOrder",
     sortOrder: "asc",
   });
+  const previewIds = testimonials.slice(0, HOME_PREVIEW_COUNT).map((item) => item.id);
+  const preview = testimonials.slice(0, HOME_PREVIEW_COUNT);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [arrowLeft, setArrowLeft] = useState<number | null>(null);
   const bubbleRef = useRef<HTMLDivElement>(null);
   const avatarRefs = useRef<Record<string, HTMLButtonElement | null>>({});
 
   const selectedTestimonial =
-    testimonials.find((item) => item.id === selectedId) ?? testimonials[0] ?? null;
+    preview.find((item) => item.id === selectedId) ?? preview[0] ?? null;
 
   useEffect(() => {
-    if (!testimonials.length) {
+    if (!previewIds.length) {
       setSelectedId(null);
       return;
     }
-    if (!selectedId || !testimonials.some((item) => item.id === selectedId)) {
-      setSelectedId(testimonials[0].id);
+    if (!selectedId || !previewIds.includes(selectedId)) {
+      setSelectedId(previewIds[0]);
     }
-  }, [testimonials, selectedId]);
+  }, [previewIds.join(","), selectedId]);
 
   useLayoutEffect(() => {
     const updateArrow = () => {
@@ -50,7 +54,7 @@ export default function ClientTestimonial() {
     updateArrow();
     window.addEventListener("resize", updateArrow);
     return () => window.removeEventListener("resize", updateArrow);
-  }, [selectedTestimonial, testimonials]);
+  }, [selectedTestimonial?.id]);
 
   return (
     <div className="w-full text-white bg-gradient-to-b from-[#04396A] to-[#074a88]">
@@ -121,7 +125,7 @@ export default function ClientTestimonial() {
             </div>
 
             <div className="flex flex-wrap justify-center gap-[14px] xs:gap-[18px] sm:gap-6 md:gap-10 lg:gap-16 xl:gap-20">
-              {testimonials.map((testimonial) => (
+              {preview.map((testimonial) => (
                 <button
                   key={testimonial.id}
                   type="button"
@@ -143,6 +147,15 @@ export default function ClientTestimonial() {
                   />
                 </button>
               ))}
+            </div>
+
+            <div className="mt-10 flex justify-center md:mt-14">
+              <Link
+                href="/testimonials"
+                className="inline-flex items-center rounded-[8.45px] bg-gradient-to-b from-customBlue4 to-customSky px-6 py-3 font-poppins text-base font-medium text-white hover:from-[#156fba] hover:to-[#4ba5ea] hover:shadow-[0_0_15px_#156fba] md:text-[18px]"
+              >
+                View all testimonials
+              </Link>
             </div>
           </div>
         )}

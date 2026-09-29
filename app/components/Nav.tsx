@@ -116,6 +116,18 @@ export const Nav = () => {
                 Our Team
               </div>
             </Link>
+            <Link href="/testimonials">
+              <div
+                onClick={handleClose}
+                className={`nav-link ${styles.link} ${
+                  pathname === "/testimonials" || pathname.startsWith("/testimonials/")
+                    ? `${styles.active} active`
+                    : ""
+                } md:px-2 lg:px-[18px] py-[10px] font-poppins font-normal md:text-md lg:text-lg leading-[27px]`}
+              >
+                Testimonials
+              </div>
+            </Link>
           </div>
           <div className="px-[20px] md:px-[1px] md:mt-0">
             <Link

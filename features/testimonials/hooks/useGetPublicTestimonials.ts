@@ -26,12 +26,14 @@ export function useGetPublicTestimonials(
       if (!response.success) throw new Error("Failed to fetch testimonials");
       return response;
     },
+    placeholderData: (previous) => previous,
   });
 
   return {
     data: query.data?.data ?? [],
     meta: query.data?.meta ?? defaultMeta,
     isLoading: query.isPending,
+    isFetching: query.isFetching,
     error: (query.error as Error | null)?.message ?? null,
   };
 }

@@ -152,6 +152,15 @@ export function Footer() {
                 </span>
               </Link>
 
+              <Link href="/testimonials">
+                <span
+                  className="cursor-pointer"
+                  onClick={() => handleSimpleLinkClick("/testimonials")}
+                >
+                  {loading === "/testimonials" ? <FontAwesomeIcon icon={faSpinner} spin /> : "Testimonials"}
+                </span>
+              </Link>
+
               <Link href="/blog">
                 <span
                   className="cursor-pointer"
