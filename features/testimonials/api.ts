@@ -7,6 +7,7 @@ import {
   ApiListResponse,
   CreateTestimonialPayload,
   GetTestimonialsParams,
+  PublicTestimonial,
   Testimonial,
   UpdateTestimonialPayload,
 } from "./types";
@@ -15,6 +16,21 @@ interface ApiResponse<T> {
   success: boolean;
   data: T;
 }
+
+export const getPublicTestimonialsApi = async (
+  params: GetTestimonialsParams = {}
+): Promise<ApiListResponse<PublicTestimonial>> => {
+  try {
+    return await makeApiCall<ApiListResponse<PublicTestimonial>>({
+      url: "/testimonials",
+      method: "GET",
+      noAuth: true,
+      params: compactParams(params as Record<string, unknown>),
+    });
+  } catch (err) {
+    throw new Error(getApiErrorMessage(err, "Failed to fetch testimonials"));
+  }
+};
 
 export const getTestimonialsApi = async (
   params: GetTestimonialsParams

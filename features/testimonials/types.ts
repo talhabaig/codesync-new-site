@@ -15,6 +15,18 @@ export interface Testimonial {
   updatedAt: string;
 }
 
+export interface PublicTestimonial {
+  id: string;
+  clientName: string;
+  designation: string;
+  company: string;
+  photo: string;
+  testimonial: string;
+  rating: number;
+  displayOrder: number;
+  featured: boolean;
+}
+
 export type CreateTestimonialPayload = Omit<
   Testimonial,
   "id" | "createdAt" | "updatedAt"
