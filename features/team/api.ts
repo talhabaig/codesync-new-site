@@ -7,6 +7,7 @@ import {
   ApiListResponse,
   CreateTeamMemberPayload,
   GetTeamMembersParams,
+  PublicTeamMember,
   TeamMember,
   UpdateTeamMemberPayload,
 } from "./types";
@@ -15,6 +16,21 @@ interface ApiResponse<T> {
   success: boolean;
   data: T;
 }
+
+export const getPublicTeamMembersApi = async (
+  params: GetTeamMembersParams = {}
+): Promise<ApiListResponse<PublicTeamMember>> => {
+  try {
+    return await makeApiCall<ApiListResponse<PublicTeamMember>>({
+      url: "/team",
+      method: "GET",
+      noAuth: true,
+      params: compactParams(params as Record<string, unknown>),
+    });
+  } catch (err) {
+    throw new Error(getApiErrorMessage(err, "Failed to fetch team members"));
+  }
+};
 
 export const getTeamMembersApi = async (
   params: GetTeamMembersParams

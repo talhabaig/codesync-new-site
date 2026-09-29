@@ -11,6 +11,14 @@ export interface TeamMember {
   updatedAt: string;
 }
 
+export interface PublicTeamMember {
+  id: string;
+  name: string;
+  designation: string;
+  image: string;
+  displayOrder: number;
+}
+
 export type CreateTeamMemberPayload = Omit<
   TeamMember,
   "id" | "createdAt" | "updatedAt"
