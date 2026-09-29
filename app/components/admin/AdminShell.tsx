@@ -37,6 +37,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
   useEffect(() => {
     router.prefetch("/admin/admindashboard");
     router.prefetch("/admin/profile");
+    router.prefetch("/admin/process");
     router.prefetch("/admin/services");
     router.prefetch("/admin/services/subsections");
     router.prefetch("/admin/tech-stacks");

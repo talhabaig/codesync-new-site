@@ -18,6 +18,7 @@ import { useRouter } from "next/navigation";
 import { CustomModal } from "../../components/ui/CustomModal";
 import { CustomButton } from "../../components/ui/CustomButton";
 import { ActionMenu } from "../../components/ui/ActionMenu";
+import { SafeImage } from "../../components/ui/SafeImage";
 import { ServiceForm } from "./ServiceForm";
 import {
   Service,
@@ -32,7 +33,7 @@ const blankService = (): CreateServicePayload => ({
   title: "",
   shortDescription: "",
   description: "",
-  icon: "✦",
+  icon: "",
   bannerImage: "",
   headerImage: "",
   displayOrder: 1,
@@ -160,7 +161,7 @@ export default function AdminServices() {
   const formError = createError || updateError;
 
   return (
-    <div className="">
+    <div className="min-w-0">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="text-sm font-medium text-customLightBlue2">Content management</p>
@@ -241,10 +242,10 @@ export default function AdminServices() {
         )}
 
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[780px] text-left text-sm">
+          <table className="w-full table-fixed text-left text-sm">
             <thead className="bg-gray-50 text-xs uppercase tracking-wide text-gray-500">
               <tr>
-                <th className="w-12 px-5 py-3.5">
+                <th className="w-12 px-4 py-3.5 sm:px-5">
                   <input
                     aria-label="Select all"
                     type="checkbox"
@@ -254,10 +255,10 @@ export default function AdminServices() {
                   />
                 </th>
                 <th className="px-3 py-3.5 font-semibold">Service</th>
-                <th className="px-3 py-3.5 font-semibold">Order</th>
-                <th className="px-3 py-3.5 font-semibold">Home</th>
-                <th className="px-3 py-3.5 font-semibold">Status</th>
-                <th className="w-16 px-5 py-3.5" />
+                <th className="w-16 px-3 py-3.5 font-semibold">Order</th>
+                <th className="w-28 px-3 py-3.5 font-semibold">Home</th>
+                <th className="w-24 px-3 py-3.5 font-semibold">Status</th>
+                <th className="w-14 px-3 py-3.5 sm:w-16 sm:px-5" />
               </tr>
             </thead>
             <tbody className={`divide-y divide-gray-100 ${isRefetching ? "opacity-60" : ""}`}>
@@ -276,7 +277,7 @@ export default function AdminServices() {
               ) : (
                 services.map((service) => (
                   <tr key={service.id} className="transition hover:bg-gray-50">
-                    <td className="px-5 py-4">
+                    <td className="px-4 py-4 sm:px-5">
                       <input
                         aria-label={`Select ${service.title}`}
                         type="checkbox"
@@ -285,30 +286,37 @@ export default function AdminServices() {
                         className="h-4 w-4 rounded border-gray-300 text-customLightBlue2 focus:ring-customLightBlue2"
                       />
                     </td>
-                    <td className="px-3 py-4">
-                      <div className="flex items-center gap-3">
-                        <span className="grid h-10 w-10 shrink-0 place-items-center overflow-hidden rounded-lg bg-blue-50 font-semibold text-customLightBlue2">
-                          {service.icon?.startsWith("http") ? (
-                            <img
+                    <td className="max-w-0 overflow-hidden px-3 py-4">
+                      <div className="flex min-w-0 items-center gap-3">
+                        <span className="grid h-10 w-10 shrink-0 place-items-center overflow-hidden rounded-lg bg-blue-50 p-1 font-semibold text-customLightBlue2">
+                          {service.icon &&
+                          (/^https?:\/\//i.test(service.icon) || service.icon.startsWith("/")) ? (
+                            <SafeImage
                               src={service.icon}
+                              fallback="/icon.png"
                               alt={service.title}
-                              className="h-full w-full object-cover"
+                              className="h-full w-full object-contain"
                             />
                           ) : (
-                            service.icon
+                            service.icon || "N/A"
                           )}
                         </span>
-                        <div className="min-w-0 flex-1">
-                          <p className="truncate font-semibold text-gray-900">{service.title}</p>
-                          <p className="mt-0.5 truncate text-xs text-gray-500">
+                        <div className="min-w-0 flex-1 overflow-hidden">
+                          <p className="truncate font-semibold text-gray-900" title={service.title}>
+                            {service.title}
+                          </p>
+                          <p
+                            className="mt-0.5 truncate text-xs text-gray-500"
+                            title={service.shortDescription}
+                          >
                             {service.shortDescription}
                           </p>
-                          <p className="mt-1 truncate text-xs text-gray-400">/{service.slug}</p>
+                          {/* <p className="mt-1 truncate text-xs text-gray-400">/{service.slug}</p> */}
                         </div>
                       </div>
                     </td>
-                    <td className="px-3 py-4 text-gray-600">{service.displayOrder}</td>
-                    <td className="px-3 py-4">
+                    <td className="whitespace-nowrap px-3 py-4 text-gray-600">{service.displayOrder}</td>
+                    <td className="whitespace-nowrap px-3 py-4">
                       {service.showOnHome ? (
                         <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700">
                           <FaCheck className="h-2.5 w-2.5" /> Shown
@@ -319,7 +327,7 @@ export default function AdminServices() {
                         </span>
                       )}
                     </td>
-                    <td className="px-3 py-4">
+                    <td className="whitespace-nowrap px-3 py-4">
                       <span
                         className={`rounded-full px-2.5 py-1 text-xs font-semibold ${
                           service.status === "ACTIVE"
@@ -330,7 +338,7 @@ export default function AdminServices() {
                         {service.status === "ACTIVE" ? "Active" : "Inactive"}
                       </span>
                     </td>
-                    <td className="px-5 py-4 text-right">
+                    <td className="px-3 py-4 text-right sm:px-5">
                       <ActionMenu
                         open={menuOpen === service.id}
                         onOpenChange={(open) => setMenuOpen(open ? service.id : null)}
@@ -493,6 +501,7 @@ export default function AdminServices() {
           }
         >
           <ServiceForm
+            key={editingId ?? "new"}
             formId="service-form"
             defaultValues={editing}
             apiError={formError}

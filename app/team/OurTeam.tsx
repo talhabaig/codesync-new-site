@@ -52,7 +52,7 @@ export default function OurTeam() {
       designation: "Sr. Frontend Developer",
     },
     {
-      src: getImagePath("muaz.jpg"),
+      src: getImagePath("muaz.jpeg"),
       name: "Muaz Mughal",
       designation: "Sr. Backend Developer",
     },

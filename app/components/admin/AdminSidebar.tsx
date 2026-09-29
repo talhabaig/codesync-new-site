@@ -6,6 +6,7 @@ import {
   FaBriefcase,
   FaCogs,
   FaImages,
+  FaInfoCircle,
   FaLayerGroup,
   FaNewspaper,
   FaQuoteLeft,
@@ -20,6 +21,7 @@ import { useAuth } from "@/features/auth/hooks/useAuth";
 const navItems = [
   { href: "/admin/admindashboard", label: "Dashboard", icon: FaTachometerAlt },
   { href: "/admin/profile", label: "Profile", icon: FaUserCog },
+  { href: "/admin/process", label: "Our Process", icon: FaInfoCircle },
   { href: "/admin/services", label: "Services", icon: FaCogs },
   { href: "/admin/tech-stacks", label: "Tech Stacks", icon: FaLayerGroup },
   { href: "/admin/testimonials", label: "Testimonials", icon: FaQuoteLeft },

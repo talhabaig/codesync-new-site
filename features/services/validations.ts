@@ -20,7 +20,7 @@ export const serviceFormSchema: yup.ObjectSchema<CreateServicePayload> = yup.obj
     .string()
     .required("Full description is required")
     .test("html", "Full description is required", (value) => hasTextContent(value || "")),
-  icon: yup.string().trim().required("Icon is required").max(500, "Icon must be at most 500 characters"),
+  icon: yup.string().trim().required("Icon image is required"),
   bannerImage: yup.string().default(""),
   headerImage: yup.string().default(""),
   displayOrder: yup

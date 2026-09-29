@@ -44,6 +44,24 @@ export function ServiceForm({ formId, defaultValues, apiError, onSubmit }: Servi
         <CustomInput label="Title" required error={errors.title?.message} {...register("title")} />
       </div>
 
+      <div className="sm:col-span-2">
+        <Controller
+          name="icon"
+          control={control}
+          render={({ field }) => (
+            <ImageUploader
+              label="Icon"
+              required
+              value={/^https?:\/\//i.test(field.value) || field.value?.startsWith("/") ? field.value : ""}
+              onChange={field.onChange}
+              folder="codesyncs/services"
+              objectFit="contain"
+              error={errors.icon?.message}
+            />
+          )}
+        />
+      </div>
+
       <div className="space-y-1.5 sm:col-span-2">
         <FieldLabel htmlFor="shortDescription" required>
           Short description
@@ -76,12 +94,6 @@ export function ServiceForm({ formId, defaultValues, apiError, onSubmit }: Servi
         />
       </div>
 
-      <CustomInput
-        label="Icon (URL or character)"
-        required
-        error={errors.icon?.message}
-        {...register("icon")}
-      />
       <CustomInput
         label="Display order"
         type="number"
