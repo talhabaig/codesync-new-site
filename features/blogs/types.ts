@@ -1,27 +1,57 @@
 export type BlogStatus = "DRAFT" | "PUBLISHED";
 
+export interface RelatedBlog {
+  id: string;
+  title: string;
+  excerpt: string;
+  coverImage: string;
+  author: string | null;
+  slug?: string;
+}
+
 export interface Blog {
   id: string;
   title: string;
   slug: string;
+  author: string | null;
   excerpt: string;
   content: string;
   coverImage: string;
   tags: string[];
   readTime: number;
   viewCount: number;
+  displayOrder: number;
+  relatedBlogIds: string[];
+  relatedBlogs?: RelatedBlog[];
   status: BlogStatus;
   publishedAt: string | null;
   createdAt: string;
   updatedAt: string;
 }
 
+export interface PublicBlogListItem {
+  id: string;
+  title: string;
+  slug: string;
+  author: string | null;
+  excerpt: string;
+  coverImage: string;
+  tags: string[];
+  readTime: number;
+  viewCount: number;
+  displayOrder: number;
+  publishedAt: string | null;
+}
+
 export interface CreateBlogPayload {
   title: string;
+  author: string;
   excerpt: string;
   coverImage: string;
   content: string;
   tags: string[];
+  relatedBlogIds: string[];
+  displayOrder: number;
   status: BlogStatus;
 }
 

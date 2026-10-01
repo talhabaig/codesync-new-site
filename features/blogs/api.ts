@@ -10,6 +10,8 @@ import {
   CreateBlogPayload,
   GetBlogCommentsParams,
   GetBlogsParams,
+  PublicBlogListItem,
+  RelatedBlog,
   UpdateBlogPayload,
 } from "./types";
 
@@ -18,15 +20,93 @@ interface ApiResponse<T> {
   data: T;
 }
 
+function normalizeRelated(item: Partial<RelatedBlog> | null | undefined): RelatedBlog | null {
+  if (!item?.id || !item.title) return null;
+  return {
+    id: item.id,
+    title: item.title,
+    excerpt: item.excerpt ?? "",
+    coverImage: item.coverImage ?? "",
+    author: item.author ?? null,
+    slug: item.slug,
+  };
+}
+
+function normalizeBlog(item: Blog): Blog {
+  return {
+    ...item,
+    author: item.author ?? null,
+    tags: item.tags ?? [],
+    displayOrder: item.displayOrder ?? 0,
+    relatedBlogIds: item.relatedBlogIds ?? [],
+    relatedBlogs: (item.relatedBlogs ?? []).map(normalizeRelated).filter(Boolean) as RelatedBlog[],
+  };
+}
+
 export const getBlogsApi = async (params: GetBlogsParams): Promise<ApiListResponse<Blog>> => {
   try {
-    return await makeApiCall<ApiListResponse<Blog>>({
+    const response = await makeApiCall<ApiListResponse<Blog>>({
       url: "/blogs/manage",
       method: "GET",
       params: compactParams(params as Record<string, unknown>),
     });
+    return {
+      ...response,
+      data: (response.data ?? []).map(normalizeBlog),
+    };
   } catch (err) {
     throw new Error(getApiErrorMessage(err, "Failed to fetch blogs"));
+  }
+};
+
+export const getPublicBlogsApi = async (
+  params: GetBlogsParams = {}
+): Promise<ApiListResponse<PublicBlogListItem>> => {
+  try {
+    const response = await makeApiCall<ApiListResponse<PublicBlogListItem>>({
+      url: "/blogs",
+      method: "GET",
+      noAuth: true,
+      params: compactParams(params as Record<string, unknown>),
+    });
+    return {
+      ...response,
+      data: (response.data ?? []).map((item) => ({
+        ...item,
+        author: item.author ?? null,
+        tags: item.tags ?? [],
+        displayOrder: item.displayOrder ?? 0,
+      })),
+    };
+  } catch (err) {
+    throw new Error(getApiErrorMessage(err, "Failed to fetch blogs"));
+  }
+};
+
+export const getBlogByIdApi = async (id: string): Promise<Blog> => {
+  try {
+    const response = await makeApiCall<ApiResponse<Blog>>({
+      url: `/blogs/${id}`,
+      method: "GET",
+    });
+    if (!response.success || !response.data) throw new Error("Failed to fetch blog");
+    return normalizeBlog(response.data);
+  } catch (err) {
+    throw new Error(getApiErrorMessage(err, "Failed to fetch blog"));
+  }
+};
+
+export const getPublicBlogBySlugApi = async (slug: string): Promise<Blog> => {
+  try {
+    const response = await makeApiCall<ApiResponse<Blog>>({
+      url: `/blogs/slug/${encodeURIComponent(slug)}`,
+      method: "GET",
+      noAuth: true,
+    });
+    if (!response.success || !response.data) throw new Error("Failed to fetch blog");
+    return normalizeBlog(response.data);
+  } catch (err) {
+    throw new Error(getApiErrorMessage(err, "Failed to fetch blog"));
   }
 };
 
@@ -38,7 +118,7 @@ export const createBlogApi = async (payload: CreateBlogPayload): Promise<Blog> =
       data: payload,
     });
     if (!response.success) throw new Error("Failed to create blog");
-    return response.data;
+    return normalizeBlog(response.data);
   } catch (err) {
     throw new Error(getApiErrorMessage(err, "Failed to create blog"));
   }
@@ -52,7 +132,7 @@ export const updateBlogApi = async (id: string, payload: UpdateBlogPayload): Pro
       data: payload,
     });
     if (!response.success) throw new Error("Failed to update blog");
-    return response.data;
+    return normalizeBlog(response.data);
   } catch (err) {
     throw new Error(getApiErrorMessage(err, "Failed to update blog"));
   }
@@ -65,9 +145,26 @@ export const toggleBlogStatusApi = async (id: string): Promise<Blog> => {
       method: "PATCH",
     });
     if (!response.success) throw new Error("Failed to toggle status");
-    return response.data;
+    return normalizeBlog(response.data);
   } catch (err) {
     throw new Error(getApiErrorMessage(err, "Failed to toggle status"));
+  }
+};
+
+export const updateBlogDisplayOrderApi = async (
+  id: string,
+  displayOrder: number
+): Promise<Blog> => {
+  try {
+    const response = await makeApiCall<ApiResponse<Blog>>({
+      url: `/blogs/${id}/display-order`,
+      method: "PATCH",
+      data: { displayOrder },
+    });
+    if (!response.success) throw new Error("Failed to update display order");
+    return normalizeBlog(response.data);
+  } catch (err) {
+    throw new Error(getApiErrorMessage(err, "Failed to update display order"));
   }
 };
 

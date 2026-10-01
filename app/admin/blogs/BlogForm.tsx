@@ -10,16 +10,30 @@ import { RichTextEditor } from "../../components/ui/RichTextEditor";
 import { FieldLabel, fieldControlClass } from "../../components/ui/FieldLabel";
 import { CreateBlogPayload } from "../../../features/blogs/types";
 import { blogFormSchema } from "../../../features/blogs/validations";
+import { useGetBlogs } from "../../../features/blogs/hooks/useGetBlogs";
 
 interface BlogFormProps {
   formId: string;
+  excludeBlogId?: string | null;
   defaultValues: CreateBlogPayload;
   apiError: string | null;
   onSubmit: (values: CreateBlogPayload) => Promise<void>;
 }
 
-export function BlogForm({ formId, defaultValues, apiError, onSubmit }: BlogFormProps) {
+export function BlogForm({
+  formId,
+  excludeBlogId,
+  defaultValues,
+  apiError,
+  onSubmit,
+}: BlogFormProps) {
   const [tagDraft, setTagDraft] = useState("");
+  const { data: blogOptions, isLoading: isLoadingOptions } = useGetBlogs({
+    getAll: true,
+    sortBy: "displayOrder",
+    sortOrder: "asc",
+  });
+
   const {
     register,
     control,
@@ -29,9 +43,13 @@ export function BlogForm({ formId, defaultValues, apiError, onSubmit }: BlogForm
     resolver: yupResolver(blogFormSchema),
     defaultValues: {
       ...defaultValues,
+      author: defaultValues.author ?? "",
       tags: defaultValues.tags ?? [],
+      relatedBlogIds: defaultValues.relatedBlogIds ?? [],
     },
   });
+
+  const selectableBlogs = blogOptions.filter((blog) => blog.id !== excludeBlogId);
 
   const addTag = (current: string[], onChange: (tags: string[]) => void) => {
     const next = tagDraft.trim().replace(/,$/, "");
@@ -61,9 +79,14 @@ export function BlogForm({ formId, defaultValues, apiError, onSubmit }: BlogForm
       id={formId}
       noValidate
       onSubmit={handleSubmit(async (values) => {
+        const relatedBlogIds = [...new Set(values.relatedBlogIds)].filter(
+          (id) => id && id !== excludeBlogId
+        );
         await onSubmit({
           ...values,
+          author: values.author.trim(),
           tags: values.tags.map((tag) => tag.trim()).filter(Boolean),
+          relatedBlogIds,
         });
       })}
       className="grid gap-4 sm:grid-cols-2"
@@ -75,6 +98,17 @@ export function BlogForm({ formId, defaultValues, apiError, onSubmit }: BlogForm
       <div className="sm:col-span-2">
         <CustomInput label="Title" required error={errors.title?.message} {...register("title")} />
       </div>
+
+      <CustomInput label="Author" error={errors.author?.message} {...register("author")} />
+
+      <CustomInput
+        label="Display order"
+        type="number"
+        min={0}
+        required
+        error={errors.displayOrder?.message}
+        {...register("displayOrder", { valueAsNumber: true })}
+      />
 
       <div className="space-y-1.5 sm:col-span-2">
         <FieldLabel htmlFor="excerpt" required>
@@ -168,6 +202,57 @@ export function BlogForm({ formId, defaultValues, apiError, onSubmit }: BlogForm
           )}
         />
         {errors.tags && <p className="text-xs text-red-600">{errors.tags.message}</p>}
+      </div>
+
+      <div className="space-y-1.5 sm:col-span-2">
+        <FieldLabel>Related blogs</FieldLabel>
+        <Controller
+          name="relatedBlogIds"
+          control={control}
+          render={({ field }) => {
+            const selected = field.value ?? [];
+            const atLimit = selected.length >= 3;
+            return (
+              <div className="max-h-48 overflow-y-auto rounded-lg border border-gray-300 p-2">
+                {isLoadingOptions ? (
+                  <p className="px-2 py-3 text-sm text-gray-500">Loading blogs...</p>
+                ) : selectableBlogs.length === 0 ? (
+                  <p className="px-2 py-3 text-sm text-gray-500">No other blogs available.</p>
+                ) : (
+                  selectableBlogs.map((blog) => {
+                    const checked = selected.includes(blog.id);
+                    return (
+                      <label
+                        key={blog.id}
+                        className="flex cursor-pointer items-start gap-2 rounded-md px-2 py-1.5 text-sm hover:bg-gray-50"
+                      >
+                        <input
+                          type="checkbox"
+                          checked={checked}
+                          disabled={!checked && atLimit}
+                          onChange={() => {
+                            if (checked) {
+                              field.onChange(selected.filter((id) => id !== blog.id));
+                              return;
+                            }
+                            if (atLimit) return;
+                            field.onChange([...selected, blog.id]);
+                          }}
+                          className="mt-0.5 h-4 w-4 rounded border-gray-300 text-customLightBlue2 focus:ring-customLightBlue2"
+                        />
+                        <span className="min-w-0 leading-5 text-gray-700">{blog.title}</span>
+                      </label>
+                    );
+                  })
+                )}
+              </div>
+            );
+          }}
+        />
+        <p className="text-xs text-gray-400">Select up to 3 related posts.</p>
+        {errors.relatedBlogIds && (
+          <p className="text-xs text-red-600">{errors.relatedBlogIds.message}</p>
+        )}
       </div>
 
       <div className="space-y-1.5">

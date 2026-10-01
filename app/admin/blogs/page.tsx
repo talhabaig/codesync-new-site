@@ -24,6 +24,7 @@ import {
   CreateBlogPayload,
   GetBlogsParams,
 } from "../../../features/blogs/types";
+import { getBlogByIdApi } from "../../../features/blogs/api";
 import { useGetBlogs } from "../../../features/blogs/hooks/useGetBlogs";
 import { useBlogMutations } from "../../../features/blogs/hooks/useBlogMutations";
 
@@ -31,12 +32,29 @@ const COVER_FALLBACK = "/icon.png";
 
 const blankBlog = (): CreateBlogPayload => ({
   title: "",
+  author: "",
   excerpt: "",
   coverImage: "",
   content: "",
   tags: [],
+  relatedBlogIds: [],
+  displayOrder: 0,
   status: "DRAFT",
 });
+
+function toFormValues(blog: Blog): CreateBlogPayload {
+  return {
+    title: blog.title,
+    author: blog.author ?? "",
+    excerpt: blog.excerpt,
+    coverImage: blog.coverImage || "",
+    content: blog.content,
+    tags: blog.tags || [],
+    relatedBlogIds: blog.relatedBlogIds || [],
+    displayOrder: blog.displayOrder ?? 0,
+    status: blog.status,
+  };
+}
 
 function formatDate(value: string | null) {
   if (!value) return "—";
@@ -53,8 +71,8 @@ export default function AdminBlogs() {
   const [params, setParams] = useState<GetBlogsParams>({
     page: 1,
     limit: 5,
-    sortBy: "publishedAt",
-    sortOrder: "desc",
+    sortBy: "displayOrder",
+    sortOrder: "asc",
   });
   const [searchInput, setSearchInput] = useState("");
   const [tagInput, setTagInput] = useState("");
@@ -97,6 +115,7 @@ export default function AdminBlogs() {
   const [editing, setEditing] = useState<CreateBlogPayload | null>(null);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [commentsFor, setCommentsFor] = useState<Blog | null>(null);
+  const [loadingEdit, setLoadingEdit] = useState(false);
   const [pendingDelete, setPendingDelete] = useState<{
     ids: string[];
     label: string;
@@ -115,17 +134,19 @@ export default function AdminBlogs() {
     setParams((prev) => ({ ...prev, limit: Number(e.target.value), page: 1 }));
   };
 
-  const handleEditClick = (blog: Blog) => {
-    setEditingId(blog.id);
-    setEditing({
-      title: blog.title,
-      excerpt: blog.excerpt,
-      coverImage: blog.coverImage || "",
-      content: blog.content,
-      tags: blog.tags || [],
-      status: blog.status,
-    });
+  const handleEditClick = async (blog: Blog) => {
     setMenuOpen(null);
+    setLoadingEdit(true);
+    try {
+      const full = await getBlogByIdApi(blog.id);
+      setEditingId(full.id);
+      setEditing(toFormValues(full));
+    } catch {
+      setEditingId(blog.id);
+      setEditing(toFormValues(blog));
+    } finally {
+      setLoadingEdit(false);
+    }
   };
 
   const confirmPendingDelete = async () => {
@@ -242,6 +263,7 @@ export default function AdminBlogs() {
             <colgroup>
               <col className="w-12" />
               <col />
+              <col className="w-20" />
               <col className="w-24" />
               <col className="w-28" />
               <col className="w-16" />
@@ -258,6 +280,7 @@ export default function AdminBlogs() {
                   />
                 </th>
                 <th className="px-3 py-3.5 font-semibold">Post</th>
+                <th className="px-3 py-3.5 font-semibold">Order</th>
                 <th className="px-3 py-3.5 font-semibold">Status</th>
                 <th className="px-3 py-3.5 font-semibold">Published</th>
                 <th className="w-16 px-5 py-3.5" />
@@ -266,13 +289,13 @@ export default function AdminBlogs() {
             <tbody className={`divide-y divide-gray-100 ${isRefetching ? "opacity-60" : ""}`}>
               {isFetching && blogs.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="px-5 py-14 text-center text-gray-500">
+                  <td colSpan={6} className="px-5 py-14 text-center text-gray-500">
                     Loading blogs...
                   </td>
                 </tr>
               ) : blogs.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="px-5 py-14 text-center text-gray-500">
+                  <td colSpan={6} className="px-5 py-14 text-center text-gray-500">
                     No blogs match your filters.
                   </td>
                 </tr>
@@ -301,12 +324,13 @@ export default function AdminBlogs() {
                         <div className="min-w-0 flex-1">
                           <p className="truncate font-semibold text-gray-900">{blog.title}</p>
                           <p className="mt-0.5 truncate text-xs text-gray-500">
-                            {(blog.tags || []).join(", ") || "No tags"} · {blog.readTime || 0} min
-                            read
+                            {blog.author || "No author"} · {(blog.tags || []).join(", ") || "No tags"} ·{" "}
+                            {blog.readTime || 0} min read
                           </p>
                         </div>
                       </div>
                     </td>
+                    <td className="whitespace-nowrap px-3 py-4 text-gray-600">{blog.displayOrder}</td>
                     <td className="whitespace-nowrap px-3 py-4">
                       <span
                         className={`rounded-full px-2.5 py-1 text-xs font-semibold ${
@@ -329,6 +353,7 @@ export default function AdminBlogs() {
                       >
                             <button
                               type="button"
+                              disabled={loadingEdit}
                               onClick={() => handleEditClick(blog)}
                               className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-gray-50"
                             >
@@ -467,6 +492,7 @@ export default function AdminBlogs() {
         >
           <BlogForm
             formId="blog-form"
+            excludeBlogId={editingId}
             defaultValues={editing}
             apiError={formError}
             onSubmit={async (values) => {

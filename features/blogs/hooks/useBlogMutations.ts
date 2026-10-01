@@ -6,14 +6,19 @@ import {
   deleteBlogsBulkApi,
   toggleBlogStatusApi,
   updateBlogApi,
+  updateBlogDisplayOrderApi,
 } from "../api";
 import { CreateBlogPayload, UpdateBlogPayload } from "../types";
 import { BLOGS_QUERY_KEY } from "./useGetBlogs";
+import { PUBLIC_BLOGS_QUERY_KEY } from "./useGetPublicBlogs";
 
 export function useBlogMutations() {
   const queryClient = useQueryClient();
 
-  const invalidate = () => queryClient.invalidateQueries({ queryKey: BLOGS_QUERY_KEY });
+  const invalidate = () => {
+    queryClient.invalidateQueries({ queryKey: BLOGS_QUERY_KEY });
+    queryClient.invalidateQueries({ queryKey: PUBLIC_BLOGS_QUERY_KEY });
+  };
 
   const createMutation = useMutation({
     mutationFn: (payload: CreateBlogPayload) => createBlogApi(payload),
@@ -61,11 +66,23 @@ export function useBlogMutations() {
     onError: (err: Error) => toast.error(err.message),
   });
 
+  const displayOrderMutation = useMutation({
+    mutationFn: ({ id, displayOrder }: { id: string; displayOrder: number }) =>
+      updateBlogDisplayOrderApi(id, displayOrder),
+    onSuccess: () => {
+      toast.success("Display order updated");
+      invalidate();
+    },
+    onError: (err: Error) => toast.error(err.message),
+  });
+
   return {
     createBlog: createMutation.mutateAsync,
     updateBlog: (id: string, payload: UpdateBlogPayload) =>
       updateMutation.mutateAsync({ id, payload }),
     toggleStatus: toggleStatusMutation.mutateAsync,
+    updateDisplayOrder: (id: string, displayOrder: number) =>
+      displayOrderMutation.mutateAsync({ id, displayOrder }),
     deleteBlog: deleteMutation.mutateAsync,
     deleteBulk: deleteBulkMutation.mutateAsync,
     isCreating: createMutation.isPending,

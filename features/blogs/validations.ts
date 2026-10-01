@@ -15,6 +15,7 @@ export const blogFormSchema: yup.ObjectSchema<CreateBlogPayload> = yup.object({
     .trim()
     .required("Title is required")
     .max(160, "Title must be at most 160 characters"),
+  author: yup.string().trim().max(80, "Author must be at most 80 characters").default(""),
   excerpt: yup
     .string()
     .trim()
@@ -29,6 +30,16 @@ export const blogFormSchema: yup.ObjectSchema<CreateBlogPayload> = yup.object({
     .array(yup.string().trim().required())
     .min(1, "Add at least one tag")
     .required("Add at least one tag"),
+  relatedBlogIds: yup
+    .array(yup.string().required())
+    .max(3, "You can select up to 3 related blogs")
+    .default([]),
+  displayOrder: yup
+    .number()
+    .typeError("Display order is required")
+    .integer("Display order must be a whole number")
+    .min(0, "Display order cannot be negative")
+    .required("Display order is required"),
   status: yup
     .mixed<BlogStatus>()
     .oneOf(["DRAFT", "PUBLISHED"])
