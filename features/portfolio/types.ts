@@ -16,6 +16,17 @@ export interface Portfolio {
   updatedAt: string;
 }
 
+export interface PublicPortfolioListItem {
+  id: string;
+  title: string;
+  slug: string;
+  shortDescription: string;
+  coverImage: string;
+  siteUrl: string | null;
+  videoUrl: string | null;
+  displayOrder: number;
+}
+
 export interface CreatePortfolioPayload {
   title: string;
   shortDescription: string;

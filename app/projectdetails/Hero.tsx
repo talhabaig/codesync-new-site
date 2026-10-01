@@ -62,14 +62,20 @@ export default function Hero({
                        leading-[22px] sm:leading-[24px] md:leading-[24px] 
                        lg:leading-[28px] xl:leading-[31.46px]"
           >
-            <span>{description}</span>&nbsp;
-            <a
-              href={sitelink}
-              target="_blank"
-              className="font-bold italic text-black cursor-pointer underline"
-            >
-              {sitename}
-            </a>
+            <span>{description}</span>
+            {sitelink ? (
+              <>
+                &nbsp;
+                <a
+                  href={sitelink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-bold italic text-black cursor-pointer underline"
+                >
+                  {sitename || "Visit site"}
+                </a>
+              </>
+            ) : null}
           </p>
 
         </div>

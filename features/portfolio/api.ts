@@ -8,6 +8,7 @@ import {
   CreatePortfolioPayload,
   GetPortfoliosParams,
   Portfolio,
+  PublicPortfolioListItem,
   UpdatePortfolioPayload,
 } from "./types";
 
@@ -37,11 +38,27 @@ export const getPortfoliosApi = async (
   }
 };
 
+export const getPublicPortfoliosApi = async (
+  params: GetPortfoliosParams = {}
+): Promise<ApiListResponse<PublicPortfolioListItem>> => {
+  try {
+    return await makeApiCall<ApiListResponse<PublicPortfolioListItem>>({
+      url: "/portfolio",
+      method: "GET",
+      noAuth: true,
+      params: compactParams(params as Record<string, unknown>),
+    });
+  } catch (err) {
+    throw new Error(getApiErrorMessage(err, "Failed to fetch portfolios"));
+  }
+};
+
 export const getPublicPortfolioBySlugApi = async (slug: string): Promise<Portfolio> => {
   try {
     const response = await makeApiCall<ApiResponse<Portfolio>>({
       url: `/portfolio/slug/${encodeURIComponent(slug)}`,
       method: "GET",
+      noAuth: true,
     });
     if (!response.success || !response.data) {
       throw new Error("Failed to fetch portfolio");

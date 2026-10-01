@@ -53,7 +53,7 @@ function Stars({ rating }: { rating: number }) {
 export default function AdminTestimonials() {
   const [params, setParams] = useState<GetTestimonialsParams>({
     page: 1,
-    limit: 5,
+    limit: 10,
   });
   const [searchInput, setSearchInput] = useState("");
 
@@ -446,9 +446,9 @@ export default function AdminTestimonials() {
               onChange={handleLimitChange}
               className="rounded border border-gray-300 px-2 py-1 text-sm text-gray-700"
             >
-              <option value={5}>5</option>
               <option value={10}>10</option>
               <option value={20}>20</option>
+              <option value={30}>30</option>
             </select>
             <span>of {meta.total} testimonials</span>
           </div>
