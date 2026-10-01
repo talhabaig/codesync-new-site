@@ -104,3 +104,21 @@ export interface GetBlogCommentsParams {
   blogId?: string;
   isVisible?: boolean;
 }
+
+export interface PublicBlogComment {
+  id: string;
+  authorName: string;
+  body: string;
+  createdAt: string;
+}
+
+export interface CreatePublicBlogCommentPayload {
+  authorName: string;
+  body: string;
+}
+
+export interface GetPublicBlogCommentsParams {
+  page?: number;
+  limit?: number;
+  getAll?: boolean;
+}

@@ -8,8 +8,11 @@ import {
   Blog,
   BlogComment,
   CreateBlogPayload,
+  CreatePublicBlogCommentPayload,
   GetBlogCommentsParams,
   GetBlogsParams,
+  GetPublicBlogCommentsParams,
+  PublicBlogComment,
   PublicBlogListItem,
   RelatedBlog,
   UpdateBlogPayload,
@@ -185,6 +188,53 @@ export const deleteBlogsBulkApi = async (ids: string[]): Promise<void> => {
   const failed = results.filter((result) => result.status === "rejected").length;
   if (failed) {
     throw new Error(`Deleted ${ids.length - failed} of ${ids.length} blogs. ${failed} failed.`);
+  }
+};
+
+function normalizePublicComment(item: PublicBlogComment): PublicBlogComment {
+  return {
+    id: item.id,
+    authorName: item.authorName || "Guest",
+    body: item.body || "",
+    createdAt: item.createdAt || "",
+  };
+}
+
+export const getPublicBlogCommentsApi = async (
+  slug: string,
+  params: GetPublicBlogCommentsParams = {}
+): Promise<ApiListResponse<PublicBlogComment>> => {
+  try {
+    const response = await makeApiCall<ApiListResponse<PublicBlogComment>>({
+      url: `/blogs/slug/${encodeURIComponent(slug)}/comments`,
+      method: "GET",
+      noAuth: true,
+      params: compactParams(params as Record<string, unknown>),
+    });
+    return {
+      ...response,
+      data: (response.data ?? []).map(normalizePublicComment),
+    };
+  } catch (err) {
+    throw new Error(getApiErrorMessage(err, "Failed to fetch comments"));
+  }
+};
+
+export const createPublicBlogCommentApi = async (
+  slug: string,
+  payload: CreatePublicBlogCommentPayload
+): Promise<PublicBlogComment> => {
+  try {
+    const response = await makeApiCall<ApiResponse<PublicBlogComment>>({
+      url: `/blogs/slug/${encodeURIComponent(slug)}/comments`,
+      method: "POST",
+      noAuth: true,
+      data: payload,
+    });
+    if (!response.success || !response.data) throw new Error("Failed to post comment");
+    return normalizePublicComment(response.data);
+  } catch (err) {
+    throw new Error(getApiErrorMessage(err, "Failed to post comment"));
   }
 };
 

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useGetPublicBlogBySlug } from "../../../features/blogs/hooks/useGetPublicBlogBySlug";
 import { useGetPublicBlogs } from "../../../features/blogs/hooks/useGetPublicBlogs";
 import { SafeImage } from "../../components/ui/SafeImage";
+import { BlogComments } from "../BlogComments";
 
 interface Props {
   params: {
@@ -114,6 +115,8 @@ export default function BlogDetailPage({ params }: Props) {
           </div>
         ) : null}
       </div>
+
+      <BlogComments slug={blog.slug} />
 
       {related.length > 0 ? (
         <div className="mx-auto max-w-6xl px-6 pb-16 md:px-8">

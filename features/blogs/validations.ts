@@ -47,3 +47,18 @@ export const blogFormSchema: yup.ObjectSchema<CreateBlogPayload> = yup.object({
 });
 
 export type BlogFormValues = yup.InferType<typeof blogFormSchema>;
+
+export const publicBlogCommentSchema = yup.object({
+  authorName: yup
+    .string()
+    .trim()
+    .required("Name is required")
+    .max(80, "Name must be at most 80 characters"),
+  body: yup
+    .string()
+    .trim()
+    .required("Comment is required")
+    .max(1000, "Comment must be at most 1000 characters"),
+});
+
+export type PublicBlogCommentFormValues = yup.InferType<typeof publicBlogCommentSchema>;
