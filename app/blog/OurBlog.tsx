@@ -70,7 +70,7 @@ function BlogGrid() {
           <div className="mb-4 flex items-center justify-center gap-4 text-2xl font-bold uppercase md:gap-6 md:text-4xl xl:text-5xl">
             <div className="hidden h-1 w-16 rounded-full bg-gradient-to-r from-customBlue1 to-customLightBlue md:block md:w-24" />
             <h2 className="font-bold">
-              <span className="text-customBlue1">Our </span>
+              <span className="text-customBlue1">Our </span> 
               <span className="text-customDarkGray">Blogs</span>
             </h2>
             <div className="hidden h-1 w-16 rounded-full bg-gradient-to-r from-customLightBlue to-customBlue1 md:block md:w-24" />
