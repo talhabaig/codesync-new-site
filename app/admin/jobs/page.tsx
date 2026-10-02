@@ -426,6 +426,7 @@ export default function AdminJobs() {
       {editing && (
         <CustomModal
           open={!!editing}
+          closeOnBackdrop={false}
           onClose={() => {
             if (isFormLoading) return;
             setEditing(null);

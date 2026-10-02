@@ -2,12 +2,15 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 import { deleteBlogCommentApi, updateBlogCommentVisibilityApi } from "../api";
 import { BLOG_COMMENTS_QUERY_KEY } from "./useGetBlogComments";
+import { PUBLIC_BLOG_COMMENTS_QUERY_KEY } from "./useGetPublicBlogComments";
 
 export function useBlogCommentMutations() {
   const queryClient = useQueryClient();
 
-  const invalidate = () =>
+  const invalidate = () => {
     queryClient.invalidateQueries({ queryKey: BLOG_COMMENTS_QUERY_KEY });
+    queryClient.invalidateQueries({ queryKey: PUBLIC_BLOG_COMMENTS_QUERY_KEY });
+  };
 
   const visibilityMutation = useMutation({
     mutationFn: ({ id, isVisible }: { id: string; isVisible: boolean }) =>

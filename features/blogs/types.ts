@@ -84,14 +84,9 @@ export interface ApiListResponse<T> {
 
 export interface BlogComment {
   id: string;
-  blogId?: string;
-  name?: string;
-  authorName?: string;
-  email?: string;
-  authorEmail?: string;
-  content?: string;
-  message?: string;
-  comment?: string;
+  blogId: string;
+  authorName: string;
+  body: string;
   isVisible: boolean;
   createdAt?: string;
   updatedAt?: string;

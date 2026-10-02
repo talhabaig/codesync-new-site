@@ -43,7 +43,7 @@ export interface CreateJobPayload {
   jobType: JobType;
   department: string;
   salaryRange: string;
-  requirements: string;
+  requirements?: string;
   displayOrder: number;
   status: JobStatus;
   expiresAt: string | null;

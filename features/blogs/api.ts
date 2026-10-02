@@ -238,15 +238,31 @@ export const createPublicBlogCommentApi = async (
   }
 };
 
+function normalizeAdminComment(item: BlogComment): BlogComment {
+  return {
+    id: item.id,
+    blogId: item.blogId || "",
+    authorName: item.authorName || "Guest",
+    body: item.body || "",
+    isVisible: Boolean(item.isVisible),
+    createdAt: item.createdAt,
+    updatedAt: item.updatedAt,
+  };
+}
+
 export const getBlogCommentsApi = async (
   params: GetBlogCommentsParams
 ): Promise<ApiListResponse<BlogComment>> => {
   try {
-    return await makeApiCall<ApiListResponse<BlogComment>>({
+    const response = await makeApiCall<ApiListResponse<BlogComment>>({
       url: "/blog-comments/manage",
       method: "GET",
       params: compactParams(params as Record<string, unknown>),
     });
+    return {
+      ...response,
+      data: (response.data ?? []).map(normalizeAdminComment),
+    };
   } catch (err) {
     throw new Error(getApiErrorMessage(err, "Failed to fetch comments"));
   }
@@ -263,7 +279,7 @@ export const updateBlogCommentVisibilityApi = async (
       data: { isVisible },
     });
     if (!response.success) throw new Error("Failed to update comment visibility");
-    return response.data;
+    return normalizeAdminComment(response.data);
   } catch (err) {
     throw new Error(getApiErrorMessage(err, "Failed to update comment visibility"));
   }

@@ -11,6 +11,7 @@ export interface CustomModalProps {
   children: ReactNode;
   footer?: ReactNode;
   size?: "sm" | "md" | "lg";
+  closeOnBackdrop?: boolean;
 }
 
 const sizeClasses = {
@@ -26,6 +27,7 @@ export function CustomModal({
   children,
   footer,
   size = "md",
+  closeOnBackdrop = true,
 }: CustomModalProps) {
   useEffect(() => {
     if (!open) return;
@@ -44,12 +46,16 @@ export function CustomModal({
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-      <button
-        type="button"
-        aria-label="Close modal backdrop"
-        className="absolute inset-0 bg-black/40"
-        onClick={onClose}
-      />
+      {closeOnBackdrop ? (
+        <button
+          type="button"
+          aria-label="Close modal backdrop"
+          className="absolute inset-0 bg-black/40"
+          onClick={onClose}
+        />
+      ) : (
+        <div className="absolute inset-0 bg-black/40" aria-hidden />
+      )}
       <div
         role="dialog"
         aria-modal="true"

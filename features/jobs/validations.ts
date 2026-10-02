@@ -49,11 +49,7 @@ export const jobFormSchema: yup.ObjectSchema<CreateJobPayload> = yup.object({
     .trim()
     .required("Salary range is required")
     .max(80, "Salary range must be at most 80 characters"),
-  requirements: yup
-    .string()
-    .trim()
-    .required("Requirements are required")
-    .max(2000, "Requirements must be at most 2000 characters"),
+  requirements: yup.string().trim().default(""),
   displayOrder: yup
     .number()
     .typeError("Display order is required")

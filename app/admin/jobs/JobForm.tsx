@@ -51,6 +51,7 @@ export function JobForm({ formId, defaultValues, apiError, onSubmit }: JobFormPr
       onSubmit={handleSubmit(async (values) => {
         await onSubmit({
           ...values,
+          requirements: values.requirements ?? "",
           expiresAt: toIsoOrNull(values.expiresAt),
         });
       })}
@@ -124,21 +125,6 @@ export function JobForm({ formId, defaultValues, apiError, onSubmit }: JobFormPr
         error={errors.salaryRange?.message}
         {...register("salaryRange")}
       />
-
-      <div className="space-y-1.5 sm:col-span-2">
-        <FieldLabel htmlFor="requirements" required>
-          Requirements
-        </FieldLabel>
-        <textarea
-          id="requirements"
-          rows={3}
-          className={`${fieldControlClass(!!errors.requirements)} resize-y`}
-          {...register("requirements")}
-        />
-        {errors.requirements && (
-          <p className="text-xs text-red-600">{errors.requirements.message}</p>
-        )}
-      </div>
 
       <CustomInput
         label="Display order"
