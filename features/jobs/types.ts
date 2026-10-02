@@ -17,20 +17,30 @@ export const JOB_TYPES: { value: JobType; label: string }[] = [
   { value: "REMOTE", label: "Remote" },
 ];
 
-export interface Job {
+export function jobTypeLabel(type: JobType | string) {
+  return JOB_TYPES.find((item) => item.value === type)?.label ?? type;
+}
+
+export interface PublicJobListItem {
   id: string;
   title: string;
   slug: string;
   shortDescription: string;
-  description: string;
   location: string;
   jobType: JobType;
   department: string;
   salaryRange: string;
-  requirements: string;
   displayOrder: number;
-  status: JobStatus;
   expiresAt: string | null;
+}
+
+export interface PublicJob extends PublicJobListItem {
+  description: string;
+  requirements?: string | null;
+}
+
+export interface Job extends PublicJob {
+  status: JobStatus;
   createdAt: string;
   updatedAt: string;
 }

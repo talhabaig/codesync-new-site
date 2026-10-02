@@ -8,6 +8,8 @@ import {
   CreateJobPayload,
   GetJobsParams,
   Job,
+  PublicJob,
+  PublicJobListItem,
   UpdateJobPayload,
 } from "./types";
 
@@ -15,6 +17,35 @@ interface ApiResponse<T> {
   success: boolean;
   data: T;
 }
+
+export const getPublicJobsApi = async (
+  params: GetJobsParams = {}
+): Promise<ApiListResponse<PublicJobListItem>> => {
+  try {
+    return await makeApiCall<ApiListResponse<PublicJobListItem>>({
+      url: "/jobs",
+      method: "GET",
+      noAuth: true,
+      params: compactParams(params as Record<string, unknown>),
+    });
+  } catch (err) {
+    throw new Error(getApiErrorMessage(err, "Failed to fetch jobs"));
+  }
+};
+
+export const getPublicJobBySlugApi = async (slug: string): Promise<PublicJob> => {
+  try {
+    const response = await makeApiCall<ApiResponse<PublicJob>>({
+      url: `/jobs/slug/${encodeURIComponent(slug)}`,
+      method: "GET",
+      noAuth: true,
+    });
+    if (!response.success || !response.data) throw new Error("Failed to fetch job");
+    return response.data;
+  } catch (err) {
+    throw new Error(getApiErrorMessage(err, "Failed to fetch job"));
+  }
+};
 
 export const getJobsApi = async (params: GetJobsParams): Promise<ApiListResponse<Job>> => {
   try {
