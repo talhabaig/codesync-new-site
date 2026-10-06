@@ -126,7 +126,7 @@ export default function AdminJobs() {
       jobType: job.jobType,
       department: job.department,
       salaryRange: job.salaryRange,
-      requirements: job.requirements,
+      requirements: job.requirements ?? "",
       displayOrder: job.displayOrder,
       status: job.status,
       expiresAt: job.expiresAt,
