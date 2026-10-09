@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { getImagePath } from "./utils.js";
 import { FeedReadMore } from "../components/common/readMore";
-import data from "portfolio.json";
+import data from "@/portfolio.json";
 
 
 function OurPortfolio() {

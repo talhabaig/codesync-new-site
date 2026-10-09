@@ -1,92 +1,18 @@
 "use client";
 import React from "react";
-import { getImagePath } from "./utils.js";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
+import { useGetPublicTeamMembers } from "../../features/team/hooks/useGetPublicTeamMembers";
+import { PublicTeamMember } from "../../features/team/types";
+import { SafeImage } from "../components/ui/SafeImage";
 
-export default function OurTeam() {
-  const teamMembers = [
-    {
-      src: getImagePath("mahad2.jpg"),
-      name: "Mahad Khursheed",
-      designation: "Sr. Frontend Developer",
-    },
-    {
-      src: getImagePath("moiz.jpg"),
-      name: "Moiz Ahmad",
-      designation: "Sr. Full Stack Developer",
-    },
-    {
-      src: getImagePath("zeeshan.jpeg"),
-      name: "Zeeshan Bajwa",
-      designation: "Sr. Full Stack Developer",
-    },
-    {
-      src: getImagePath("Imran-baig.jpg"),
-      name: "Imran Baig",
-      designation: "Frontend Developer",
-    },
-    {
-      src: getImagePath("Ibad-baig.jpg"),
-      name: "Ibad Baig",
-      designation: "Business Developer",
-    },
-    {
-      src: getImagePath("Ahmad-khursheed.jpeg"),
-      name: "Ahmed Khursheed",
-      designation: "Sr. Backend Developer",
-    },
-    {
-      src: getImagePath("Hamza.jpg"),
-      name: "Hamza",
-      designation: "Sr. Frontend Developer",
-    },
-    {
-      src: getImagePath("haseeb7.jpg"),
-      name: "Haseeb Hamza",
-      designation: "Sr. Frontend Developer",
-    },
-    {
-      src: getImagePath("ehsan4.jpg"),
-      name: "Muhammad Ehsan",
-      designation: "Sr. Frontend Developer",
-    },
-    {
-      src: getImagePath("muaz.jpeg"),
-      name: "Muaz Mughal",
-      designation: "Sr. Backend Developer",
-    },
-    {
-      src: getImagePath("hassanSajid.jpg"),
-      name: "Hassan Sajid",
-      designation: "Jr. Frontend Developer",
-    },
-    {
-      src: getImagePath("Taha.jpg"),
-      name: "Taha Rasheed",
-      designation: "Full Stack Developer",
-    },
-    {
-      src: getImagePath("mushahid3.jpg"),
-      name: "Mushahid Buttar",
-      designation: "Jr. Frontend Developer",
-    },
-    {
-      src: getImagePath("abbas.jpg"),
-      name: "Afqar ul Abbas",
-      designation: "Jr. Frontend Developer",
-    },
-    {
-      src: getImagePath("haseebJr.jpg"),
-      name: "Haseeb",
-      designation: "Jr. Backend Developer",
-    },
-  ];
+const PHOTO_FALLBACK = "/icon.png";
+
+function TeamCarousel({ members }: { members: PublicTeamMember[] }) {
   const animation = { duration: 20000, easing: (t: number) => t };
   const [ref] = useKeenSlider<HTMLDivElement>({
     loop: true,
     renderMode: "performance",
-    // drag: false,
     slides: {
       perView: 4,
       origin: "auto",
@@ -118,6 +44,46 @@ export default function OurTeam() {
       s.moveToIdx(s.track.details.abs + 5, true, animation);
     },
   });
+
+  return (
+    <div className="overflow-hidden">
+      <div ref={ref} className="keen-slider flex px-[50px]">
+        {members.map((member, index) => (
+          <div
+            key={member.id}
+            className={`keen-slider__slide max-h-[516px] max-w-[330px] flex-none relative rounded-[22px] cursor-pointer number-slide${
+              index + 1
+            }`}
+          >
+            <SafeImage
+              src={member.image}
+              fallback={PHOTO_FALLBACK}
+              alt={`Our team ${member.name}`}
+              className="z-10 h-full w-full rounded-[22px] object-cover"
+            />
+            <div className="absolute top-0 left-0 w-full h-full rounded-[22px] bg-gradient-to-t from-[#0693EB] to-[rgba(255, 255, 255, 0)] to-[45.01%]" />
+            <div className="absolute bottom-5 md:bottom-6 left-0 w-full bg-transparent bg-opacity-50 p-2 rounded-b-[22px] text-center">
+              <h3 className="font-semibold text-center text-[18px] leading-[22px] md:text-[25px] md:leading-[31.19px] text-white">
+                {member.name}
+              </h3>
+              <div className="text-[15px] md:text-[17.83px] font-normal leading-[20px] md:leading-[26.74px] text-center">
+                {member.designation}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default function OurTeam() {
+  const { data: teamMembers, isLoading } = useGetPublicTeamMembers({
+    getAll: true,
+    sortBy: "displayOrder",
+    sortOrder: "asc",
+  });
+
   return (
     <div className="w-full bg-gradient-to-r from-customLightBlue to-customVeryLightBlue">
       <div className="pt-12 md:pt-20 xl:pt-28">
@@ -148,33 +114,20 @@ export default function OurTeam() {
 
         <div className="py-8 sm:py-12 xl:py-24 bg-[#BEF3FF]">
           <div className="py-12 md:py-24 bg-[#BEF3FF]">
-            <div className="overflow-hidden">
-              <div ref={ref} className="keen-slider flex px-[50px]">
-                {teamMembers.map((member, index) => (
+            {isLoading ? (
+              <div className="flex gap-8 overflow-hidden px-[50px]">
+                {Array.from({ length: 4 }).map((_, index) => (
                   <div
                     key={index}
-                    className={`keen-slider__slide max-h-[516px] max-w-[330px] flex-none relative rounded-[22px] cursor-pointer number-slide${
-                      index + 1
-                    }`}
-                  >
-                    <img
-                      src={member.src}
-                      alt={`Our team ${member.name}`}
-                      className="w-full h-full object-cover rounded-[22px] z-10"
-                    />
-                    <div className="absolute top-0 left-0 w-full h-full rounded-[22px] bg-gradient-to-t from-[#0693EB] to-[rgba(255, 255, 255, 0)] to-[45.01%]" />
-                    <div className="absolute bottom-5 md:bottom-6 left-0 w-full bg-transparent bg-opacity-50 p-2 rounded-b-[22px] text-center">
-                      <h3 className="font-semibold text-center text-[18px] leading-[22px] md:text-[25px] md:leading-[31.19px] text-white">
-                        {member.name}
-                      </h3>
-                      <div className="text-[15px] md:text-[17.83px] font-normal leading-[20px] md:leading-[26.74px] text-center">
-                        {member.designation}
-                      </div>
-                    </div>
-                  </div>
+                    className="h-[360px] max-w-[330px] min-w-[220px] flex-1 animate-pulse rounded-[22px] bg-white/60"
+                  />
                 ))}
               </div>
-            </div>
+            ) : teamMembers.length === 0 ? (
+              <p className="px-6 py-8 text-center text-customDarkGray/70">No team members yet.</p>
+            ) : (
+              <TeamCarousel key={teamMembers.map((member) => member.id).join("-")} members={teamMembers} />
+            )}
           </div>
         </div>
       </div>

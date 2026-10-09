@@ -1,180 +1,146 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { collection, getDocs, query, orderBy } from "firebase/firestore";
-import { db } from "../firebase/config";
 
-interface Blog {
-  id: string;
-  title: string;
-  coverImage: string;
-  createdAt: any;
-  readTime?: string;
-  category?: string;
-  summary?: string;
-  authorName?: string;
-  authorAvatar?: string;
+import { Suspense, useEffect } from "react";
+import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useGetPublicBlogs } from "../../features/blogs/hooks/useGetPublicBlogs";
+import { SafeImage } from "../components/ui/SafeImage";
+
+const PAGE_SIZE = 6;
+const COVER_FALLBACK = "/icon.png";
+
+function formatDate(value: string | null) {
+  if (!value) return "";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  }).format(date);
 }
 
-function OurBlog() {
-  const [blogs, setBlogs] = useState<Blog[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [loading, setLoading] = useState(true);
-  const itemsPerPage = 6;
+function getVisiblePages(currentPage: number, totalPages: number) {
+  const pageNumbers: number[] = [];
+  if (totalPages <= 8) {
+    for (let i = 1; i <= totalPages; i++) pageNumbers.push(i);
+  } else if (currentPage <= 4) {
+    for (let i = 1; i <= 8; i++) pageNumbers.push(i);
+  } else if (currentPage > totalPages - 4) {
+    for (let i = totalPages - 7; i <= totalPages; i++) pageNumbers.push(i);
+  } else {
+    for (let i = currentPage - 3; i <= currentPage + 4; i++) pageNumbers.push(i);
+  }
+  return pageNumbers;
+}
+
+function BlogGrid() {
+  const pathname = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const pageParam = Number(searchParams.get("page"));
+  const currentPage = Number.isFinite(pageParam) && pageParam > 0 ? pageParam : 1;
+
+  const { data: blogs, meta, isLoading, isFetching } = useGetPublicBlogs({
+    page: currentPage,
+    limit: PAGE_SIZE,
+    sortBy: "displayOrder",
+    sortOrder: "asc",
+  });
+
+  const totalPages = Math.max(meta.totalPages, 1);
 
   useEffect(() => {
-    const fetchBlogs = async () => {
-      try {
-        setLoading(true);
-        const blogCollection = collection(db, "blogs");
-        const blogQuery = query(blogCollection, orderBy("createdAt", "desc"));
-        const blogSnapshot = await getDocs(blogQuery);
-
-        const blogList = blogSnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        })) as Blog[];
-
-        setBlogs(blogList);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchBlogs();
-  }, []);
-
-  const totalPages = Math.ceil(blogs.length / itemsPerPage);
-
-  const currentBlogs = blogs.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
-
-  const handleNextPage = () =>
-    currentPage < totalPages && setCurrentPage(currentPage + 1);
-
-  const handlePreviousPage = () =>
-    currentPage > 1 && setCurrentPage(currentPage - 1);
-
-  const getVisiblePages = () => {
-    const pageNumbers = [];
-    if (totalPages <= 8) {
-      for (let i = 1; i <= totalPages; i++) pageNumbers.push(i);
-    } else {
-      if (currentPage <= 4) {
-        for (let i = 1; i <= 8; i++) pageNumbers.push(i);
-      } else if (currentPage > totalPages - 4) {
-        for (let i = totalPages - 7; i <= totalPages; i++) pageNumbers.push(i);
-      } else {
-        for (let i = currentPage - 3; i <= currentPage + 4; i++)
-          pageNumbers.push(i);
-      }
+    if (!isLoading && currentPage > totalPages) {
+      router.replace(totalPages === 1 ? pathname : `${pathname}?page=${totalPages}`);
     }
-    return pageNumbers;
-  };
+  }, [isLoading, currentPage, totalPages, pathname, router]);
 
-  const formatDate = (timestamp: any) => {
-    if (!timestamp) return "";
-    const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
-    return new Intl.DateTimeFormat("en-US", {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-    }).format(date);
+  const handlePageChange = (page: number) => {
+    const next = Math.min(Math.max(page, 1), totalPages);
+    router.push(next === 1 ? pathname : `${pathname}?page=${next}`, { scroll: false });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <div className="w-full pt-16 md:pt-24 xl:pt-28 bg-gradient-to-r from-customLightBlue to-customVeryLightBlue min-h-screen">
-
-      {/* HEADER */}
+    <div className="min-h-screen w-full bg-gradient-to-r from-customLightBlue to-customVeryLightBlue pt-16 md:pt-24 xl:pt-28">
       <div className="relative overflow-hidden py-12 md:py-16 lg:py-20">
-        <div className="absolute inset-0 bg-gradient-to-r from-customBlue1/10 to-customLightBlue/10"></div>
-        <div className="absolute top-10 left-10 w-20 h-20 bg-customBlue1/10 rounded-full blur-lg"></div>
-        <div className="absolute bottom-10 right-10 w-24 h-24 bg-customBlue1/10 rounded-full blur-xl"></div>
-
-        <div className="relative text-center font-poppins px-6 z-10">
-          <div className="flex items-center justify-center gap-4 md:gap-6 uppercase font-bold text-2xl md:text-4xl xl:text-5xl mb-4">
-            <div className="hidden md:block w-16 md:w-24 h-1 bg-gradient-to-r from-customBlue1 to-customLightBlue rounded-full"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-customBlue1/10 to-customLightBlue/10" />
+        <div className="relative z-10 px-6 text-center font-poppins">
+          <div className="mb-4 flex items-center justify-center gap-4 text-2xl font-bold uppercase md:gap-6 md:text-4xl xl:text-5xl">
+            <div className="hidden h-1 w-16 rounded-full bg-gradient-to-r from-customBlue1 to-customLightBlue md:block md:w-24" />
             <h2 className="font-bold">
-              <span className="text-customBlue1">Our </span>
+              <span className="text-customBlue1">Our </span> 
               <span className="text-customDarkGray">Blogs</span>
             </h2>
-            <div className="hidden md:block w-16 md:w-24 h-1 bg-gradient-to-r from-customLightBlue to-customBlue1 rounded-full"></div>
+            <div className="hidden h-1 w-16 rounded-full bg-gradient-to-r from-customLightBlue to-customBlue1 md:block md:w-24" />
           </div>
-
-          <p className="text-[15px] md:text-[20px] lg:text-[22px] font-light md:w-[70%] xl:w-1/2 mx-auto mb-6 text-customDarkGray/80">
-            Explore our blog for the latest trends and strategies to keep you ahead in the industry.
+          <p className="mx-auto mb-6 text-[15px] font-light text-customDarkGray/80 md:w-[70%] md:text-[20px] lg:text-[22px] xl:w-1/2">
+            Explore our blog for the latest trends and strategies to keep you ahead in the
+            industry.
           </p>
-
           <div className="flex justify-center">
-            <div className="w-16 h-1 bg-customBlue1 rounded-full"></div>
+            <div className="h-1 w-16 rounded-full bg-customBlue1" />
           </div>
         </div>
       </div>
 
-      {/* BLOG GRID */}
-      <div className="flex justify-center px-4 md:px-8 py-8 md:py-12">
-        {loading ? (
-          <div className="flex justify-center items-center py-20">
-            <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-customBlue1"></div>
+      <div className={`flex justify-center px-4 py-8 md:px-8 md:py-12 ${isFetching ? "opacity-80" : ""}`}>
+        {isLoading && blogs.length === 0 ? (
+          <div className="flex items-center justify-center py-20">
+            <div className="h-16 w-16 animate-spin rounded-full border-b-2 border-t-2 border-customBlue1" />
+          </div>
+        ) : blogs.length === 0 ? (
+          <div className="flex flex-col items-center justify-center px-4 py-20 text-center">
+            <h3 className="mb-3 text-2xl font-bold text-customDarkGray">No Blogs Yet</h3>
+            <p className="max-w-md text-gray-600">
+              We&apos;re working on creating amazing content for you. Check back soon!
+            </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl">
-            {currentBlogs.map((blog) => (
+          <div className="grid w-full max-w-7xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {blogs.map((blog) => (
               <div
                 key={blog.id}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden group transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-gray-100"
+                className="group overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
               >
-                <Link href={`/blogdetails/${blog.id}`}>
-                  <div className="relative overflow-hidden h-[220px] lg:h-60 w-full">
-                    <img
+                <Link href={`/blogdetails/${blog.slug}`}>
+                  <div className="relative h-[220px] w-full overflow-hidden lg:h-60">
+                    <SafeImage
                       src={blog.coverImage}
-                      alt="cover"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      fallback={COVER_FALLBACK}
+                      alt={blog.title}
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-customBlue1 text-white text-xs font-medium px-3 py-1 rounded-full">
-                        {blog.category || "General"}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="p-6">
-                    <div className="flex items-center text-sm text-gray-500 mb-3">
-                      <span>{formatDate(blog.createdAt)}</span>
-                      <span className="mx-2">•</span>
-                      <span>{blog.readTime || "5 min read"}</span>
-                    </div>
-
-                    <h3 className="text-customDarkGray font-bold text-xl lg:text-[22px] leading-tight mb-3 group-hover:text-customBlue1 transition-colors duration-300 line-clamp-2">
-                      {blog.title}
-                    </h3>
-
-                    <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
-                      {blog.summary || "Click to read more about this insightful article..."}
-                    </p>
-
-                    <div className="flex items-center justify-between pt-3 border-t border-gray-100">
-                      <div className="flex items-center">
-                        {blog.authorAvatar && (
-                          <img
-                            src={blog.authorAvatar}
-                            className="w-8 h-8 rounded-full mr-2"
-                          />
-                        )}
-                        <span className="text-sm text-gray-600 font-medium">
-                          {blog.authorName || "Admin"}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                    {blog.tags[0] ? (
+                      <div className="absolute left-4 top-4">
+                        <span className="rounded-full bg-customBlue1 px-3 py-1 text-xs font-medium text-white">
+                          {blog.tags[0]}
                         </span>
                       </div>
-
-                      <span className="text-customBlue1 font-medium text-sm flex items-center group-hover:translate-x-1 transition-transform duration-300">
+                    ) : null}
+                  </div>
+                  <div className="p-6">
+                    <div className="mb-3 flex items-center text-sm text-gray-500">
+                      <span>{formatDate(blog.publishedAt)}</span>
+                      <span className="mx-2">•</span>
+                      <span>{blog.readTime || 1} min read</span>
+                    </div>
+                    <h3 className="mb-3 line-clamp-2 text-xl font-bold leading-tight text-customDarkGray transition-colors duration-300 group-hover:text-customBlue1 lg:text-[22px]">
+                      {blog.title}
+                    </h3>
+                    <p className="mb-4 line-clamp-3 text-sm leading-relaxed text-gray-600">
+                      {blog.excerpt}
+                    </p>
+                    <div className="flex items-center justify-between border-t border-gray-100 pt-3">
+                      <span className="text-sm font-medium text-gray-600">
+                        {blog.author || "CodeSyncs"}
+                      </span>
+                      <span className="flex items-center text-sm font-medium text-customBlue1 transition-transform duration-300 group-hover:translate-x-1">
                         Read More
-                        <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                        <svg className="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                         </svg>
                       </span>
                     </div>
@@ -186,24 +152,24 @@ function OurBlog() {
         )}
       </div>
 
-      {/* PAGINATION */}
-      {!loading && blogs.length > 0 && (
-        <div className="flex justify-center mt-6 pb-16">
-          <div className="bg-white rounded-2xl flex items-center p-2 shadow-lg border border-gray-200">
+      {!isLoading && blogs.length > 0 && totalPages >= 1 ? (
+        <div className="mt-6 flex justify-center pb-16">
+          <div className="flex items-center rounded-2xl border border-gray-200 bg-white p-2 shadow-lg">
             <button
-              onClick={handlePreviousPage}
-              disabled={currentPage === 1}
-              className="p-2 disabled:opacity-30 w-10 h-10 rounded-full hover:bg-gray-100 flex items-center justify-center"
+              type="button"
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1 || isFetching}
+              className="flex h-10 w-10 items-center justify-center rounded-full p-2 hover:bg-gray-100 disabled:opacity-30"
             >
-              <svg className="w-5 h-5 text-customBlue1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
+              <svg className="h-5 w-5 text-customBlue1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
               </svg>
             </button>
-
-            {getVisiblePages().map((page) => (
+            {getVisiblePages(currentPage, totalPages).map((page) => (
               <button
                 key={page}
-                onClick={() => setCurrentPage(page)}
+                type="button"
+                onClick={() => handlePageChange(page)}
                 className={`mx-1 h-10 w-10 rounded-full font-medium transition-all ${
                   currentPage === page
                     ? "bg-customBlue1 text-white shadow-md"
@@ -213,36 +179,35 @@ function OurBlog() {
                 {page}
               </button>
             ))}
-
             <button
-              onClick={handleNextPage}
-              disabled={currentPage === totalPages}
-              className="p-2 disabled:opacity-30 w-10 h-10 rounded-full hover:bg-gray-100 flex items-center justify-center"
+              type="button"
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages || isFetching}
+              className="flex h-10 w-10 items-center justify-center rounded-full p-2 hover:bg-gray-100 disabled:opacity-30"
             >
-              <svg className="w-5 h-5 text-customBlue1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+              <svg className="h-5 w-5 text-customBlue1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
               </svg>
             </button>
           </div>
         </div>
-      )}
-
-      {/* EMPTY STATE */}
-      {!loading && blogs.length === 0 && (
-        <div className="flex flex-col items-center justify-center py-20 px-4 text-center">
-          <div className="w-24 h-24 bg-customLightBlue rounded-full flex items-center justify-center mb-6">
-            <svg className="w-12 h-12 text-customBlue1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-            </svg>
-          </div>
-          <h3 className="text-2xl font-bold text-customDarkGray mb-3">No Blogs Yet</h3>
-          <p className="text-gray-600 max-w-md">
-            We're working on creating amazing content for you. Check back soon!
-          </p>
-        </div>
+      ) : (
+        <div className="pb-16" />
       )}
     </div>
   );
 }
 
-export default OurBlog;
+export default function OurBlog() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex min-h-[50vh] items-center justify-center bg-gradient-to-r from-customLightBlue to-customVeryLightBlue">
+          <div className="h-16 w-16 animate-spin rounded-full border-b-2 border-t-2 border-customBlue1" />
+        </div>
+      }
+    >
+      <BlogGrid />
+    </Suspense>
+  );
+}
